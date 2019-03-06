@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace Clinic.DAL
 {
-    public static class Login
+    public static class LoginDAL
     {
         public static Employee LoginEmployee(string username, string password)
         {
