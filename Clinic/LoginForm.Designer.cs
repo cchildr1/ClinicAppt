@@ -1,6 +1,6 @@
 ﻿namespace Clinic
 {
-    partial class Form1
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
