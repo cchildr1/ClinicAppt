@@ -1,0 +1,23 @@
+﻿using System.Data.SqlClient;
+
+namespace Clinic.DAL
+{
+    /// <summary>
+    /// Static class for database connection
+    /// </summary>
+    public static class ClinicDBConnection
+    {
+        /// <summary>
+        /// Returns the SQL Connection to Clinic Database
+        /// </summary>
+        /// <returns>SqlConnection to Clinic Database</returns>
+        public static SqlConnection GetConnection()
+        {
+            string connectionString = "Data Source =localhost;Initial Catalog=Clinic;" +
+                "Integrated Security=True;";
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            return connection;
+        }
+    }
+}
