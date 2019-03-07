@@ -37,6 +37,7 @@
             this.userNameTextBox = new System.Windows.Forms.TextBox();
             this.bt_Login = new System.Windows.Forms.Button();
             this.bt_Clear = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             userNameLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -74,16 +75,18 @@
             this.tableLayoutPanel1.Controls.Add(this.passwordTextBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(userNameLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.userNameTextBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.bt_Login, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.bt_Clear, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.bt_Clear, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.bt_Login, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.errorLabel, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(197, 89);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 116);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // passwordTextBox
@@ -108,7 +111,7 @@
             // 
             // bt_Login
             // 
-            this.bt_Login.Location = new System.Drawing.Point(3, 55);
+            this.bt_Login.Location = new System.Drawing.Point(3, 85);
             this.bt_Login.Name = "bt_Login";
             this.bt_Login.Size = new System.Drawing.Size(75, 23);
             this.bt_Login.TabIndex = 4;
@@ -118,7 +121,7 @@
             // 
             // bt_Clear
             // 
-            this.bt_Clear.Location = new System.Drawing.Point(84, 55);
+            this.bt_Clear.Location = new System.Drawing.Point(84, 85);
             this.bt_Clear.Name = "bt_Clear";
             this.bt_Clear.Size = new System.Drawing.Size(75, 23);
             this.bt_Clear.TabIndex = 5;
@@ -126,11 +129,26 @@
             this.bt_Clear.UseVisualStyleBackColor = true;
             this.bt_Clear.Click += new System.EventHandler(this.Bt_Clear_Click);
             // 
+            // errorLabel
+            // 
+            this.errorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.errorLabel.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.errorLabel, 2);
+            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.Location = new System.Drawing.Point(3, 52);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(188, 30);
+            this.errorLabel.TabIndex = 6;
+            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(197, 89);
+            this.ClientSize = new System.Drawing.Size(194, 116);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -150,6 +168,7 @@
         private System.Windows.Forms.TextBox userNameTextBox;
         private System.Windows.Forms.Button bt_Login;
         private System.Windows.Forms.Button bt_Clear;
+        private System.Windows.Forms.Label errorLabel;
     }
 }
 
