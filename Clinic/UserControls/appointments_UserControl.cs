@@ -19,7 +19,7 @@ namespace Clinic.UserControls
         {
             InitializeComponent();
             this.appointmentController = new AppointmentController();
-           // this.GetAppointmentData();
+            this.GetAppointmentData();
         }
 
         private void PatientName_TextBox_Click(object sender, EventArgs e)
@@ -32,11 +32,11 @@ namespace Clinic.UserControls
 
         public void GetAppointmentData()
         {
-         //   this.appointment_DataGridView.DataSource = null;
+            this.appointment_DataGridView.DataSource = null;
             this.appointment_DataGridView.DataSource = this.appointmentController.GetAppointments();
         }
 
-        private void filterAppointment_button_Click(object sender, EventArgs e)
+        private void FilterAppointment_button_Click(object sender, EventArgs e)
         {
             this.GetAppointmentData();
         }

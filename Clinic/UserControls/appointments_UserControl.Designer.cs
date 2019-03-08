@@ -122,12 +122,13 @@
             this.filterAppointment_button.TabIndex = 3;
             this.filterAppointment_button.Text = "filter";
             this.filterAppointment_button.UseVisualStyleBackColor = true;
-            this.filterAppointment_button.Click += new System.EventHandler(this.filterAppointment_button_Click);
+            this.filterAppointment_button.Click += new System.EventHandler(this.FilterAppointment_button_Click);
             // 
             // appointment_DataGridView
             // 
             this.appointment_DataGridView.AllowUserToAddRows = false;
             this.appointment_DataGridView.AllowUserToDeleteRows = false;
+            this.appointment_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.appointment_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appointment_DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.appointment_DataGridView.Location = new System.Drawing.Point(10, 74);
