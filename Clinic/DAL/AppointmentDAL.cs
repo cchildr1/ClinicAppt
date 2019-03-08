@@ -14,7 +14,7 @@ namespace Clinic.DAL
         {
            
             List<Appointment> appointments = new List<Appointment>();
-            string selectStatement = "Select * FROM appointment";
+            string selectStatement = "Select id, CAST(scheduled_date as datetime) + CAST(scheduled_time as datetime) as scheduled_datetime, reason_for_visit, doctor_id, patient_id FROM appointment";
 
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
@@ -27,8 +27,7 @@ namespace Clinic.DAL
                         {
                             Appointment appointment = new Appointment();
                             appointment.AppointmentID = (int)reader["id"];
-                            appointment.Scheduled_Date = (DateTime)reader["scheduled_date"];
-                         //   appointment.Scheduled_Time = (Time)reader["scheduled_time"];
+                            appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
                             appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
                             appointment.Doctor_ID = (int)reader["doctor_id"];
                             appointment.Patient_ID = (int)reader["patient_id"];

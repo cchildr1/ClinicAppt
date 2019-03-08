@@ -32,10 +32,11 @@ namespace Clinic.UserControls
 
         public void GetAppointmentData()
         {
-            this.appointment_DataGridView.DataSource = null;
-            this.appointment_DataGridView.DataSource = this.appointmentController.GetAppointments();
+            appointmentBindingSource.DataSource = null;
+            appointmentBindingSource.DataSource = this.appointmentController.GetAppointments();
+            appointmentDataGridView.Columns[1].DefaultCellStyle.Format = "MM/dd/yyyy";
+            appointmentDataGridView.Columns[2].DefaultCellStyle.Format = "hh:mm tt";
         }
-
         private void FilterAppointment_button_Click(object sender, EventArgs e)
         {
            

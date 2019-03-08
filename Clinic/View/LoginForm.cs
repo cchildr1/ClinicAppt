@@ -28,8 +28,8 @@ namespace Clinic
 
         private void Bt_Login_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 Employee employee = this.controller.LoginEmployee(userNameTextBox.Text, passwordMaskedTextBox.Text);
                 if (employee == null)
                 {
@@ -57,11 +57,11 @@ namespace Clinic
                         errorLabel.Text = "";
                     }
                 }
-            } catch (Exception ex)
-            {
-                MessageBox.Show("There is an error with the database.\n" + ex.Message.ToString(), "Error!");
-                this.Close();
-            }
+            //} catch (Exception ex)
+            //{ 
+            //    MessageBox.Show("There is an error with the database.\n" + ex.Message.ToString(), "Error!");
+            //    this.Close();
+            //}
 
         }
     }

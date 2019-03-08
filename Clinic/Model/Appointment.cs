@@ -10,7 +10,6 @@ namespace Clinic.Model
     {
         public int AppointmentID { get; set; }
         public DateTime Scheduled_Date { get; set; }
-        //public DateTime Scheduled_Time { get; set; }
         public string Reason_For_Visit { get; set; }
         public int Doctor_ID { get; set; }
         public int Patient_ID { get; set; }
