@@ -38,6 +38,11 @@ namespace Clinic.UserControls
 
         private void FilterAppointment_button_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void Reset_Button_Click(object sender, EventArgs e)
+        {
             this.GetAppointmentData();
         }
     }

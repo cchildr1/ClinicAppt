@@ -60,6 +60,7 @@ namespace Clinic
             } catch (Exception ex)
             {
                 MessageBox.Show("There is an error with the database.\n" + ex.Message.ToString(), "Error!");
+                this.Close();
             }
 
         }

@@ -38,6 +38,7 @@
             this.bottomRow_Appointments_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.create_Appointments_Button = new System.Windows.Forms.Button();
             this.edit_appointments_Button = new System.Windows.Forms.Button();
+            this.reset_Button = new System.Windows.Forms.Button();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointment_DataGridView)).BeginInit();
@@ -146,6 +147,7 @@
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.create_Appointments_Button, 0, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.edit_appointments_Button, 1, 0);
+            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.reset_Button, 2, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomRow_Appointments_TableLayoutPanel.Location = new System.Drawing.Point(3, 357);
             this.bottomRow_Appointments_TableLayoutPanel.Name = "bottomRow_Appointments_TableLayoutPanel";
@@ -171,6 +173,17 @@
             this.edit_appointments_Button.TabIndex = 1;
             this.edit_appointments_Button.Text = "Edit Appointment";
             this.edit_appointments_Button.UseVisualStyleBackColor = true;
+            // 
+            // reset_Button
+            // 
+            this.reset_Button.Location = new System.Drawing.Point(721, 3);
+            this.reset_Button.Margin = new System.Windows.Forms.Padding(385, 3, 3, 3);
+            this.reset_Button.Name = "reset_Button";
+            this.reset_Button.Size = new System.Drawing.Size(112, 23);
+            this.reset_Button.TabIndex = 2;
+            this.reset_Button.Text = "Reset Appointments";
+            this.reset_Button.UseVisualStyleBackColor = true;
+            this.reset_Button.Click += new System.EventHandler(this.Reset_Button_Click);
             // 
             // appointments_UserControl
             // 
@@ -200,5 +213,6 @@
         private System.Windows.Forms.TableLayoutPanel bottomRow_Appointments_TableLayoutPanel;
         private System.Windows.Forms.Button create_Appointments_Button;
         private System.Windows.Forms.Button edit_appointments_Button;
+        private System.Windows.Forms.Button reset_Button;
     }
 }
