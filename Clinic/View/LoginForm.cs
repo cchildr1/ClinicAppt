@@ -40,12 +40,16 @@ namespace Clinic
                     if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                     {
                         this.Hide();
-                        //MessageBox.Show("Welcome Nurse " + employee.FirstName + " " + employee.LastName);
-                        //errorLabel.Text = "";
-                        
+                                        
                         MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
                         mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
                         DialogResult result = mainDashboardNurse.ShowDialog();
+
+                        if (result == DialogResult.Cancel)
+                        {
+                            this.Bt_Clear_Click(sender, e);
+                            this.Show();
+                        }
                     }
                     else if (employee.GetType().ToString() == "Clinic.Model.Admin")
                     {

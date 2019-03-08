@@ -32,6 +32,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.WelcomeLBL = new System.Windows.Forms.Label();
+            this.LogOut_Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,17 +71,28 @@
             // 
             this.WelcomeLBL.AutoSize = true;
             this.WelcomeLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WelcomeLBL.Location = new System.Drawing.Point(687, 9);
+            this.WelcomeLBL.Location = new System.Drawing.Point(12, 9);
             this.WelcomeLBL.Name = "WelcomeLBL";
             this.WelcomeLBL.Size = new System.Drawing.Size(75, 20);
             this.WelcomeLBL.TabIndex = 1;
             this.WelcomeLBL.Text = "Welcome";
+            // 
+            // LogOut_Button
+            // 
+            this.LogOut_Button.Location = new System.Drawing.Point(897, 6);
+            this.LogOut_Button.Name = "LogOut_Button";
+            this.LogOut_Button.Size = new System.Drawing.Size(75, 23);
+            this.LogOut_Button.TabIndex = 2;
+            this.LogOut_Button.Text = "Log Out";
+            this.LogOut_Button.UseVisualStyleBackColor = true;
+            this.LogOut_Button.Click += new System.EventHandler(this.LogOut_Button_Click);
             // 
             // MainDashboardNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 461);
+            this.Controls.Add(this.LogOut_Button);
             this.Controls.Add(this.WelcomeLBL);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainDashboardNurse";
@@ -97,5 +109,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label WelcomeLBL;
+        private System.Windows.Forms.Button LogOut_Button;
     }
 }
