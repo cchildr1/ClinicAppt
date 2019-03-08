@@ -1,5 +1,6 @@
 ﻿using Clinic.Controller;
 using Clinic.Model;
+using Clinic.View;
 using System;
 using System.Windows.Forms;
 
@@ -38,8 +39,13 @@ namespace Clinic
                 {
                     if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                     {
-                        MessageBox.Show("Welcome Nurse " + employee.FirstName + " " + employee.LastName);
-                        errorLabel.Text = "";
+                        this.Hide();
+                        //MessageBox.Show("Welcome Nurse " + employee.FirstName + " " + employee.LastName);
+                        //errorLabel.Text = "";
+                        
+                        MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
+                        mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
+                        DialogResult result = mainDashboardNurse.ShowDialog();
                     }
                     else if (employee.GetType().ToString() == "Clinic.Model.Admin")
                     {
