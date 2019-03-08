@@ -49,6 +49,18 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="DAL\ClinicDBConnection.cs" />
     <Compile Include="DAL\LoginDAL.cs" />
+    <Compile Include="UserControls\appointments_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\appointments_UserControl.Designer.cs">
+      <DependentUpon>appointments_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\temp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\temp.Designer.cs">
+      <DependentUpon>temp.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +78,12 @@
     <Compile Include="View\MainDashboardNurse.Designer.cs">
       <DependentUpon>MainDashboardNurse.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\appointments_UserControl.resx">
+      <DependentUpon>appointments_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\temp.resx">
+      <DependentUpon>temp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,7 +114,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UserControls\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
