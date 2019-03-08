@@ -103,6 +103,7 @@
             this.PatientName_TextBox.Size = new System.Drawing.Size(200, 20);
             this.PatientName_TextBox.TabIndex = 1;
             this.PatientName_TextBox.Text = "patient name";
+            this.PatientName_TextBox.Click += new System.EventHandler(this.PatientName_TextBox_Click);
             // 
             // dateTimePicker2
             // 
@@ -121,6 +122,7 @@
             this.filterAppointment_button.TabIndex = 3;
             this.filterAppointment_button.Text = "filter";
             this.filterAppointment_button.UseVisualStyleBackColor = true;
+            this.filterAppointment_button.Click += new System.EventHandler(this.filterAppointment_button_Click);
             // 
             // appointment_DataGridView
             // 
