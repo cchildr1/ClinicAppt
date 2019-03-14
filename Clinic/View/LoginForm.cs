@@ -1,5 +1,6 @@
 ﻿using Clinic.Controller;
 using Clinic.Model;
+using Clinic.View;
 using System;
 using System.Windows.Forms;
 
@@ -27,8 +28,8 @@ namespace Clinic
 
         private void Bt_Login_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 Employee employee = this.controller.LoginEmployee(userNameTextBox.Text, passwordMaskedTextBox.Text);
                 if (employee == null)
                 {
@@ -38,8 +39,17 @@ namespace Clinic
                 {
                     if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                     {
-                        MessageBox.Show("Welcome Nurse " + employee.FirstName + " " + employee.LastName);
-                        errorLabel.Text = "";
+                        this.Hide();
+                                        
+                        MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
+                        mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
+                        DialogResult result = mainDashboardNurse.ShowDialog();
+
+                        if (result == DialogResult.Cancel)
+                        {
+                            this.Bt_Clear_Click(sender, e);
+                            this.Show();
+                        }
                     }
                     else if (employee.GetType().ToString() == "Clinic.Model.Admin")
                     {
@@ -47,10 +57,11 @@ namespace Clinic
                         errorLabel.Text = "";
                     }
                 }
-            } catch (Exception ex)
-            {
-                MessageBox.Show("There is an error with the database.\n" + ex.Message.ToString(), "Error!");
-            }
+            //} catch (Exception ex)
+            //{ 
+            //    MessageBox.Show("There is an error with the database.\n" + ex.Message.ToString(), "Error!");
+            //    this.Close();
+            //}
 
         }
     }

@@ -17,11 +17,11 @@ namespace Clinic.DAL
         /// <returns>either nurse or admin object containing the personal information depending on their role</returns>
         public static Employee LoginEmployee(string username, string password)
         {
-            string selectStatement = "SELECT e.id as employee_id, e.username, e.password, e.personal_information_id, n.id as nurse_id, a.id as admin_id, phi.first_name, phi.last_name " +
-                "FROM employees e " +
-                "LEFT JOIN nurse n ON e.id = n.employee_id " +
-                "LEFT JOIN administrator a ON e.id = a.employee_id " +
-                "JOIN personal_information phi ON e.personal_information_id = phi.id " +
+            string selectStatement = "SELECT u.id as employee_id, u.username, u.password, u.person_id, n.id as nurse_id, a.id as admin_id, phi.first_name, phi.last_name " +
+                "FROM users u " +
+                "LEFT JOIN nurse n ON u.person_id = n.person_id " +
+                "LEFT JOIN administrator a ON u.person_id = a.person_id " +
+                "JOIN person phi ON u.person_id = phi.id "  +
                 "WHERE username = @username AND password = @password;";
 
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
