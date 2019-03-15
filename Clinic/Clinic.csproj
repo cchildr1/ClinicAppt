@@ -53,6 +53,7 @@
     <Compile Include="DAL\LoginDAL.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="UserControls\appointments_UserControl.cs">
       <SubType>UserControl</SubType>
