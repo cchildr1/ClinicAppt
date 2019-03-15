@@ -9,17 +9,17 @@ namespace Clinic.Model
     /// <summary>
     /// Represents person table with all information
     /// </summary>
-    public abstract class Person
+    public class Person
     {
-        public int id { get; set; }
-        public string firstName {get; set;}
-        public string lastName { get; set; }
-        public DateTime dateOfBirth { get; set; }
-        public string socialSecurityNumber { get; set; }
-        public string gender { get; set; }
-        public string streetAddress { get; set; }
-        public string phone { get; set; }
-        public string zipcode { get; set; }
+        public int PersonId { get; set; }
+        public string FirstName {get; set;}
+        public string LastName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string SocialSecurityNumber { get; set; }
+        public string Gender { get; set; }
+        public string StreetAddress { get; set; }
+        public string Phone { get; set; }
+        public string Zipcode { get; set; }
 
     }
 }
