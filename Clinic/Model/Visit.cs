@@ -11,12 +11,12 @@ namespace Clinic.Model
     /// </summary>
     public class Visit
     {
-        public int id { get; set; }
+        public int VisitId { get; set; }
         public DateTime DateTime { get; set; }
         public decimal Weight { get; set; }
         public int BpSystolic { get; set; }
         public int BpDiastolic { get; set; }
-        public decimal bodyTemperature { get; set; }
+        public decimal BodyTemperature { get; set; }
         public int Pulse { get; set; }
         public string Symptoms { get; set; }
         public string Info { get; set; }
