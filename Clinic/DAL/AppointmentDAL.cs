@@ -26,11 +26,13 @@ namespace Clinic.DAL
                         while (reader.Read())
                         {
                             Appointment appointment = new Appointment();
+                            appointment.Doctor = new Doctor();
+                            appointment.Patient = new Patient();
                             appointment.AppointmentID = (int)reader["id"];
                             appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
                             appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
-                            appointment.Doctor_ID = (int)reader["doctor_id"];
-                            appointment.Patient_ID = (int)reader["patient_id"];
+                            appointment.Doctor.DoctorId = (int)reader["doctor_id"];
+                            appointment.Patient.PatientID = (int)reader["patient_id"];
 
                             appointments.Add(appointment);
                         }
