@@ -85,6 +85,10 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// Gets all patients from DB with personal information populated
+        /// </summary>
+        /// <returns>List of all patients</returns>
         public static List<Patient> GetAllPatients()
         {
             List<Patient> patients = new List<Patient>();
@@ -113,6 +117,41 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return patients;
+        }
+
+        public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            string selectStatement = "SELECT * FROM appointment WHERE patient_id = @patientID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@patientID", patient.PatientID);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Appointment appointment = new Appointment
+                            {
+                                AppointmentID = (int)reader["id"],
+                                Scheduled_Date = (DateTime)reader["scheduled_datetime"],
+                                Reason_For_Visit = reader["reason_for_visit"].ToString(),
+                                Doctor = new Doctor
+                                {
+                                    DoctorId = (int)reader["doctor_id"]
+                                },
+                                Patient = patient
+                            };
+                            PopulatePersonalInformation(appointment.Doctor);
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return appointments;
         }
 
         private static Person PopulatePersonalInformation(Person person)
