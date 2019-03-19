@@ -5,8 +5,16 @@ using System.Data.SqlClient;
 
 namespace Clinic.DAL
 {
+    /// <summary>
+    /// Returns information from DB regarding patients
+    /// </summary>
     public static class PatientDAL
     {
+        /// <summary>
+        /// Returns all visits for a specified patient
+        /// </summary>
+        /// <param name="patient">patient object, must contain a patient ID at minimum</param>
+        /// <returns>List of all visits</returns>
         public static List<Visit> GetAllVisitsByPatient(Patient patient)
         {
             List<Visit> visits = new List<Visit>();
@@ -67,12 +75,112 @@ namespace Clinic.DAL
                                     Reason_For_Visit = reader["reason_for_visit"].ToString()
                                 }
                             };
+                            PopulatePersonalInformation(visit.Nurse);
+                            PopulatePersonalInformation(visit.Appointment.Doctor);
                             visits.Add(visit);
                         }
                     }
                     return visits;
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets all patients from DB with personal information populated
+        /// </summary>
+        /// <returns>List of all patients</returns>
+        public static List<Patient> GetAllPatients()
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT * FROM patient;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["person_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+
+                    }
+
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            string selectStatement = "SELECT * FROM appointment WHERE patient_id = @patientID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@patientID", patient.PatientID);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Appointment appointment = new Appointment
+                            {
+                                AppointmentID = (int)reader["id"],
+                                Scheduled_Date = (DateTime)reader["scheduled_datetime"],
+                                Reason_For_Visit = reader["reason_for_visit"].ToString(),
+                                Doctor = new Doctor
+                                {
+                                    DoctorId = (int)reader["doctor_id"]
+                                },
+                                Patient = patient
+                            };
+                            PopulatePersonalInformation(appointment.Doctor);
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return appointments;
+        }
+
+        private static Person PopulatePersonalInformation(Person person)
+        {
+            string selectStatement = "SELECT * FROM person WHERE id = @personID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", person.PersonId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            person.LastName = reader["last_name"].ToString();
+                            person.FirstName = reader["first_name"].ToString();
+                            person.DateOfBirth = (DateTime)reader["date_of_birth"];
+                            person.SocialSecurityNumber = reader["ssn"].ToString();
+                            person.Gender = reader["gender"].ToString();
+                            person.StreetAddress = reader["street_address"].ToString();
+                            person.Phone = reader["phone"].ToString();
+                            person.Zipcode = reader["zipcode"].ToString();
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return person;
         }
     }
 }
