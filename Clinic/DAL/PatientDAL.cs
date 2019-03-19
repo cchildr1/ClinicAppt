@@ -154,6 +154,32 @@ namespace Clinic.DAL
             return appointments;
         }
 
+        //Returns a patient equal to the accepted ID
+        public static Patient GetPatientByID(int patientID) {
+            string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
+            Patient patient = new Patient();
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@patientID", @patientID);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patient.PatientID = (int)reader["id"];
+                            patient.PersonId= (int)reader["personal_information_id"];
+                        }
+                        PopulatePersonalInformation(patient);
+                    }
+                }
+                connection.Close();
+
+                return patient;
+            }
+        }
+
         private static Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";

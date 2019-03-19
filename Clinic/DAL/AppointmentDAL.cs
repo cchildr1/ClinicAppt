@@ -33,7 +33,7 @@ namespace Clinic.DAL
                             appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
                             appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
                             appointment.Doctor = GetDoctorByID((int)reader["doctor_id"]);
-                            appointment.Patient.PatientID = (int)reader["patient_id"];
+                            appointment.Patient = GetPatientByID((int)reader["patient_id"]);
 
                             appointments.Add(appointment);
                         }
@@ -46,8 +46,12 @@ namespace Clinic.DAL
 
         private Doctor GetDoctorByID(int doctorID)
         {
-            
             return DoctorDAL.GetDoctorByID(doctorID);
+        }
+
+        private Patient GetPatientByID(int patientID)
+        {
+            return PatientDAL.GetPatientByID(patientID);
         }
     }
 }
