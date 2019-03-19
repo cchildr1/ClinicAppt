@@ -67,12 +67,40 @@ namespace Clinic.DAL
                                     Reason_For_Visit = reader["reason_for_visit"].ToString()
                                 }
                             };
+                            PopulatePersonalInformation(visit.Nurse);
+                            PopulatePersonalInformation(visit.Appointment.Doctor);
                             visits.Add(visit);
                         }
                     }
                     return visits;
                 }
             }
+        }
+
+        private static Person PopulatePersonalInformation(Person person)
+        {
+            string selectStatement = "SELECT * FROM person WHERE id = @personID";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", person.PersonId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        person.LastName = reader["last_name"].ToString();
+                        person.FirstName = reader["first_name"].ToString();
+                        person.DateOfBirth = (DateTime)reader["date_of_birth"];
+                        person.SocialSecurityNumber = reader["ssn"].ToString();
+                        person.Gender = reader["gender"].ToString();
+                        person.StreetAddress = reader["street_address"].ToString();
+                        person.Phone = reader["phone"].ToString();
+                        person.Zipcode = reader["zipcode"].ToString();
+                    }
+                }
+                connection.Close();
+            }
+            return person;
         }
     }
 }
