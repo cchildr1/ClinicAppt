@@ -5,8 +5,16 @@ using System.Data.SqlClient;
 
 namespace Clinic.DAL
 {
+    /// <summary>
+    /// Returns information from DB regarding patients
+    /// </summary>
     public static class PatientDAL
     {
+        /// <summary>
+        /// Returns all visits for a specified patient
+        /// </summary>
+        /// <param name="patient">patient object, must contain a patient ID at minimum</param>
+        /// <returns>List of all visits</returns>
         public static List<Visit> GetAllVisitsByPatient(Patient patient)
         {
             List<Visit> visits = new List<Visit>();
@@ -77,9 +85,39 @@ namespace Clinic.DAL
             }
         }
 
+        public static List<Patient> GetAllPatients()
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT * FROM patient;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["person_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+
+                    }
+
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
         private static Person PopulatePersonalInformation(Person person)
         {
-            string selectStatement = "SELECT * FROM person WHERE id = @personID";
+            string selectStatement = "SELECT * FROM person WHERE id = @personID;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -88,14 +126,17 @@ namespace Clinic.DAL
                     command.Parameters.AddWithValue("@personID", person.PersonId);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        person.LastName = reader["last_name"].ToString();
-                        person.FirstName = reader["first_name"].ToString();
-                        person.DateOfBirth = (DateTime)reader["date_of_birth"];
-                        person.SocialSecurityNumber = reader["ssn"].ToString();
-                        person.Gender = reader["gender"].ToString();
-                        person.StreetAddress = reader["street_address"].ToString();
-                        person.Phone = reader["phone"].ToString();
-                        person.Zipcode = reader["zipcode"].ToString();
+                        while (reader.Read())
+                        {
+                            person.LastName = reader["last_name"].ToString();
+                            person.FirstName = reader["first_name"].ToString();
+                            person.DateOfBirth = (DateTime)reader["date_of_birth"];
+                            person.SocialSecurityNumber = reader["ssn"].ToString();
+                            person.Gender = reader["gender"].ToString();
+                            person.StreetAddress = reader["street_address"].ToString();
+                            person.Phone = reader["phone"].ToString();
+                            person.Zipcode = reader["zipcode"].ToString();
+                        }
                     }
                 }
                 connection.Close();
