@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Clinic.DAL;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,20 +46,8 @@ namespace Clinic.DAL
 
         private Doctor GetDoctorByID(int doctorID)
         {
-            Doctor doctor = new Doctor();
-            doctor.City = "TestCity";
-            doctor.DateOfBirth = DateTime.Now;
-            doctor.DoctorId = doctorID;
-            doctor.FirstName = "John";
-            doctor.LastName = "Smith";
-            doctor.PersonId = 21;
-            doctor.Phone = "123456789";
-            doctor.SocialSecurityNumber = "123456789";
-            doctor.State = "GA";
-            doctor.StreetAddress = "123 Greenway";
-            doctor.Zipcode = "30180";
-       
-            return doctor;
+            
+            return DoctorDAL.GetDoctorByID(doctorID);
         }
     }
 }

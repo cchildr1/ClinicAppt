@@ -27,9 +27,9 @@ namespace Clinic.UserControls
 
         private void PatientName_TextBox_Click(object sender, EventArgs e)
         {
-       //     if (this.PatientName_TextBox.Text == "patient name")
+            if (this.PatientName_TextBox.Text == "patient name")
                 {
-         //           this.PatientName_TextBox.Text = "";
+                    this.PatientName_TextBox.Text = "";
                 }          
         }
 

@@ -43,6 +43,15 @@ namespace Clinic.DAL
             return doctors;
         }
 
+        public static Doctor GetDoctorByID(int doctorID)
+        {
+            Doctor doctor = new Doctor();
+            doctor.LastName = "look";
+            doctor.FirstName = "made you";
+
+            return doctor;
+        }
+
         private static Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";
@@ -73,4 +82,4 @@ namespace Clinic.DAL
         }
     }
 }
-}
+
