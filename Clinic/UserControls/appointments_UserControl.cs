@@ -2,6 +2,7 @@
 using Clinic.Controller;
 using System.Collections.Generic;
 using Clinic.Model;
+using Clinic.View;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
@@ -48,9 +49,7 @@ namespace Clinic.UserControls
         {
             this.appointments_datagridview.DataSource = null;
             List<Appointment> appointments = new List<Appointment>();
-            try
-            {
-                appointments = this.appointmentController.GetAppointments();
+             appointments = this.appointmentController.GetAppointments();
 
                 if (appointments.Count > 0)
                 {
@@ -68,12 +67,6 @@ namespace Clinic.UserControls
                         this.appointments_datagridview.Rows.Add(rowAdded);
                     }
                 }
-            }
-            catch
-            {
-            }
-            
-     
         }
 
         private void FilterAppointment_button_Click(object sender, EventArgs e)
@@ -83,7 +76,14 @@ namespace Clinic.UserControls
 
         private void Reset_Button_Click(object sender, EventArgs e)
         {
+            this.SetUpAppointment_DataGridView();
+            this.GetAppointmentData();
+        }
 
+        private void Create_Appointments_Button_Click(object sender, EventArgs e)
+        {          
+            AddAppointment addAppointment = new AddAppointment();
+            DialogResult result = addAppointment.ShowDialog();
         }
     }
 }

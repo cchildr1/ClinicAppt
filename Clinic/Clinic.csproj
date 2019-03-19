@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AppointmentController.cs" />
+    <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\PatientController.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\ClinicDBConnection.cs" />
     <Compile Include="DAL\DoctorDAL.cs" />
@@ -65,11 +67,11 @@
     <Compile Include="UserControls\appointments_UserControl.Designer.cs">
       <DependentUpon>appointments_UserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\temp.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="View\AddAppointment.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserControls\temp.Designer.cs">
-      <DependentUpon>temp.cs</DependentUpon>
+    <Compile Include="View\AddAppointment.Designer.cs">
+      <DependentUpon>AddAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -91,8 +93,8 @@
     <EmbeddedResource Include="UserControls\appointments_UserControl.resx">
       <DependentUpon>appointments_UserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\temp.resx">
-      <DependentUpon>temp.cs</DependentUpon>
+    <EmbeddedResource Include="View\AddAppointment.resx">
+      <DependentUpon>AddAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

@@ -23,5 +23,13 @@ namespace Clinic.Model
         public string City { get; set; }
         public string State { get; set; }
 
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+
     }
 }

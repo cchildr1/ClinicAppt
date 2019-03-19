@@ -162,6 +162,7 @@
             this.create_Appointments_Button.TabIndex = 0;
             this.create_Appointments_Button.Text = "Create Appointment";
             this.create_Appointments_Button.UseVisualStyleBackColor = true;
+            this.create_Appointments_Button.Click += new System.EventHandler(this.Create_Appointments_Button_Click);
             // 
             // edit_appointments_Button
             // 
@@ -216,9 +217,6 @@
 
         #endregion
         private System.Windows.Forms.BindingSource appointmentBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.TableLayoutPanel baseAppointment_TableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel topRow_Appointment_tableLOP;
         private System.Windows.Forms.Label filterAppointments_LBL;

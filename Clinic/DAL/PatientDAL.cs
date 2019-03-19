@@ -105,7 +105,7 @@ namespace Clinic.DAL
                             Patient patient = new Patient
                             {
                                 PatientID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["personal_information_id"]
                             };
                             PopulatePersonalInformation(patient);
                             patients.Add(patient);
