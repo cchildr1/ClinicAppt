@@ -47,10 +47,5 @@ namespace Clinic.View
                 Environment.Exit(0);
             }
         }
-
-        private void appointments_UserControl1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -31,7 +31,7 @@ namespace Clinic.DAL
                             appointment.AppointmentID = (int)reader["id"];
                             appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
                             appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
-                            appointment.Doctor.DoctorId = (int)reader["doctor_id"];
+                            appointment.Doctor = GetDoctorByID((int)reader["doctor_id"]);
                             appointment.Patient.PatientID = (int)reader["patient_id"];
 
                             appointments.Add(appointment);
@@ -41,21 +41,24 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return appointments;
+        }
 
-
-
-          
-                        
-           // appointment.AppointmentID = 5;
-           // appointment.Doctor_ID = 6;
-           // appointment.Patient_ID = 21;
-           // appointment.Reason_For_Visit = "This is test code";
-           // appointment.Scheduled_Date = new DateTime(2012, 12, 25, 10, 30, 50);
-           // appointment.Scheduled_Time = new DateTime(1111, 12, 25, 10, 30, 50);
-            
-          //  appointments.Add(appointment);
-           
-
+        private Doctor GetDoctorByID(int doctorID)
+        {
+            Doctor doctor = new Doctor();
+            doctor.City = "TestCity";
+            doctor.DateOfBirth = DateTime.Now;
+            doctor.DoctorId = doctorID;
+            doctor.FirstName = "John";
+            doctor.LastName = "Smith";
+            doctor.PersonId = 21;
+            doctor.Phone = "123456789";
+            doctor.SocialSecurityNumber = "123456789";
+            doctor.State = "GA";
+            doctor.StreetAddress = "123 Greenway";
+            doctor.Zipcode = "30180";
+       
+            return doctor;
         }
     }
 }
