@@ -45,11 +45,28 @@ namespace Clinic.DAL
 
         public static Doctor GetDoctorByID(int doctorID)
         {
+            string selectStatement = "SELECT * FROM doctor WHERE id = @doctorID;";
             Doctor doctor = new Doctor();
-            doctor.LastName = "look";
-            doctor.FirstName = "made you";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@doctorID", @doctorID);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            doctor.DoctorId = (int)reader["id"];
+                            doctor.PersonId = (int)reader["person_id"];
+                        }
+                        PopulatePersonalInformation(doctor);
+                    }
+                }
+                connection.Close();
 
-            return doctor;
+                return doctor;
+            }
         }
 
         private static Person PopulatePersonalInformation(Person person)
