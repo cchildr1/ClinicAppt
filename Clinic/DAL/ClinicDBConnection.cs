@@ -13,7 +13,7 @@ namespace Clinic.DAL
         /// <returns>SqlConnection to Clinic Database</returns>
         public static SqlConnection GetConnection()
         {
-            string connectionString = "Data Source =localhost;Initial Catalog=CS6232_g3;" +
+            string connectionString = "Data Source=triforce\\dekutree;Initial Catalog=CS6232_g3;" +
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection(connectionString);
