@@ -18,7 +18,7 @@ namespace Clinic.DAL
                 throw new ArgumentException("Visit object cannot be null");
             }
 
-            string insertStatement = "INSERT visit (id,visit_datetime, weight, bp_systolic, bp_diastolic, body_temp, " + 
+            string insertStatement = "INSERT visit (id,visit_datetime, weight, bp_systolic, bp_diastolic, body_temp, " +
                 "pulse, symptoms, checkup_info, nurse_id, appointment_id, initial_diagnosis, final_diagnosis) " +
                 "VALUES (@id, @visit_datetime, @weight, @bp_systolic, @bp_diastolic, @body_temp, @pulse, " +
                 "@symptoms, @checkup_info, @nurse_id, @appointment_id, @initial_diagnosis, @final_diagnosis)";
