@@ -13,12 +13,25 @@ namespace Clinic.DAL
         /// <returns>The count of records added, if a record was added.</returns>
         public int AddNewVisit(Visit visit)
         {
+            //throw arg exec if visit is null.
             if (visit is null)
             {
                 throw new ArgumentException("Visit object cannot be null");
             }
 
-            string insertStatement = "INSERT visit (id,visit_datetime, weight, bp_systolic, bp_diastolic, body_temp, " +
+            //throw arg exec if there is no Nurse in Visit.
+            if (visit.Nurse is null)
+            {
+                throw new ArgumentException("The Visit object has no Nurse specified.");
+            }
+
+            //throw arg exec if there is no Appointment in Visit.
+            if (visit.Appointment is null)
+            {
+                throw new ArgumentException("The Visit object has no Appointment specified.");
+            }
+
+            string insertStatement = "INSERT visit (id, visit_datetime, weight, bp_systolic, bp_diastolic, body_temp, " +
                 "pulse, symptoms, checkup_info, nurse_id, appointment_id, initial_diagnosis, final_diagnosis) " +
                 "VALUES (@id, @visit_datetime, @weight, @bp_systolic, @bp_diastolic, @body_temp, @pulse, " +
                 "@symptoms, @checkup_info, @nurse_id, @appointment_id, @initial_diagnosis, @final_diagnosis)";
@@ -39,8 +52,8 @@ namespace Clinic.DAL
                         insertCommand.Parameters.AddWithValue("@pulse", visit.Pulse);
                         insertCommand.Parameters.AddWithValue("@symptoms", visit.Symptoms);
                         insertCommand.Parameters.AddWithValue("@checkup_info", visit.Info);
-                        insertCommand.Parameters.AddWithValue("@nurse_id", visit.Nurse);
-                        insertCommand.Parameters.AddWithValue("@appointment_id", visit.Appointment);
+                        insertCommand.Parameters.AddWithValue("@nurse_id", visit.Nurse.NurseID);
+                        insertCommand.Parameters.AddWithValue("@appointment_id", visit.Appointment.AppointmentID);
                         insertCommand.Parameters.AddWithValue("@initial_diagnosis", visit.InitialDiagnosis);
                         insertCommand.Parameters.AddWithValue("@final_diagnosis", visit.FinalDiagnosis);
                         insertCommand.ExecuteNonQuery();
