@@ -261,4 +261,4 @@ __pycache__/
 *.pyc
 
 # My local version of my DB connection
-DAL/ClinicDBConnection.cs
+Clinic/DAL/ClinicDBConnection.cs
