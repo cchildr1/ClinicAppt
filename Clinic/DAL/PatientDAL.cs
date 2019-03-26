@@ -119,6 +119,11 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets all the appointments for a specified patient.
+        /// </summary>
+        /// <param name="patient">Patient object</param>
+        /// <returns>a List of appointment objects</returns>
         public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -152,6 +157,37 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return appointments;
+        }
+
+        public static int UpdatePatient(Patient oldPatient, Patient newPatient)
+        {
+            string updateStatement = "UPDATE person SET " +
+                "last_name = @new_last_name, " +
+                "first_name = @new_first_name, " +
+                "date_of_birth = @new_date_of_birth, " +
+                "ssn = @new_ssn, " +
+                "gender = @new_gender, " +
+                "street_address = @new_street_address, " +
+                "phone = @new_phone, " +
+                "zipcode = @new_zipcode " +
+                "WHERE id = @id" +
+                "last_name = @old_last_name " +
+                "AND first_name = @old_first_name " +
+                "AND date_of_birth = @old_date_of_birth " +
+                "AND ssn = @old_ssn " +
+                "AND gender = @old_gender " +
+                "AND street_address = old_street_address " +
+                "AND phone = @old_phone " +
+                "AND zipcode = @old_zipcode";
+
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+
+                }
+            }
         }
 
         private static Person PopulatePersonalInformation(Person person)
