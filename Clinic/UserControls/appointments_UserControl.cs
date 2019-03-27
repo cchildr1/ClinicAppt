@@ -3,14 +3,7 @@ using Clinic.Controller;
 using System.Collections.Generic;
 using Clinic.Model;
 using Clinic.View;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Clinic.UserControls
 {
@@ -86,6 +79,10 @@ namespace Clinic.UserControls
         {          
             AddAppointment addAppointment = new AddAppointment();
             DialogResult result = addAppointment.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.Reset_Button_Click(sender, e);
+            }
         }
     }
 }

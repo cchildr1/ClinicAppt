@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.background_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.cancelAddAppointment_button = new System.Windows.Forms.Button();
             this.Doctor_ComboBox = new System.Windows.Forms.ComboBox();
-            this.reasonForVisit_Textbox = new System.Windows.Forms.TextBox();
+            this.appointment_time_selector = new System.Windows.Forms.DateTimePicker();
             this.Patient_ComboBox = new System.Windows.Forms.ComboBox();
             this.doctor_label = new System.Windows.Forms.Label();
             this.patient_label = new System.Windows.Forms.Label();
             this.date_lbl = new System.Windows.Forms.Label();
-            this.reasonForVisit_LBL = new System.Windows.Forms.Label();
             this.addAppointment_button = new System.Windows.Forms.Button();
-            this.appointment_time_selector = new System.Windows.Forms.DateTimePicker();
+            this.cancelAddAppointment_button = new System.Windows.Forms.Button();
+            this.reasonForVisit_Textbox = new System.Windows.Forms.TextBox();
+            this.reasonForVisit_LBL = new System.Windows.Forms.Label();
             this.time_lbl = new System.Windows.Forms.Label();
             this.time_Appointment_DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.background_TableLayoutPanel.SuspendLayout();
@@ -76,17 +76,6 @@
             this.background_TableLayoutPanel.Size = new System.Drawing.Size(395, 450);
             this.background_TableLayoutPanel.TabIndex = 0;
             // 
-            // cancelAddAppointment_button
-            // 
-            this.cancelAddAppointment_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.cancelAddAppointment_button.Location = new System.Drawing.Point(211, 419);
-            this.cancelAddAppointment_button.Name = "cancelAddAppointment_button";
-            this.cancelAddAppointment_button.Size = new System.Drawing.Size(75, 23);
-            this.cancelAddAppointment_button.TabIndex = 9;
-            this.cancelAddAppointment_button.Text = "Cancel";
-            this.cancelAddAppointment_button.UseVisualStyleBackColor = true;
-            this.cancelAddAppointment_button.Click += new System.EventHandler(this.cancelAddAppointment_button_Click);
-            // 
             // Doctor_ComboBox
             // 
             this.Doctor_ComboBox.FormattingEnabled = true;
@@ -95,13 +84,12 @@
             this.Doctor_ComboBox.Size = new System.Drawing.Size(121, 21);
             this.Doctor_ComboBox.TabIndex = 0;
             // 
-            // reasonForVisit_Textbox
+            // appointment_time_selector
             // 
-            this.reasonForVisit_Textbox.Location = new System.Drawing.Point(116, 180);
-            this.reasonForVisit_Textbox.Multiline = true;
-            this.reasonForVisit_Textbox.Name = "reasonForVisit_Textbox";
-            this.reasonForVisit_Textbox.Size = new System.Drawing.Size(266, 199);
-            this.reasonForVisit_Textbox.TabIndex = 3;
+            this.appointment_time_selector.Location = new System.Drawing.Point(116, 88);
+            this.appointment_time_selector.Name = "appointment_time_selector";
+            this.appointment_time_selector.Size = new System.Drawing.Size(200, 20);
+            this.appointment_time_selector.TabIndex = 2;
             // 
             // Patient_ComboBox
             // 
@@ -138,18 +126,10 @@
             this.date_lbl.TabIndex = 7;
             this.date_lbl.Text = "Date";
             // 
-            // reasonForVisit_LBL
-            // 
-            this.reasonForVisit_LBL.AutoSize = true;
-            this.reasonForVisit_LBL.Location = new System.Drawing.Point(13, 177);
-            this.reasonForVisit_LBL.Name = "reasonForVisit_LBL";
-            this.reasonForVisit_LBL.Size = new System.Drawing.Size(84, 13);
-            this.reasonForVisit_LBL.TabIndex = 8;
-            this.reasonForVisit_LBL.Text = "Reason For Visit";
-            // 
             // addAppointment_button
             // 
             this.addAppointment_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addAppointment_button.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.addAppointment_button.Location = new System.Drawing.Point(13, 419);
             this.addAppointment_button.Name = "addAppointment_button";
             this.addAppointment_button.Size = new System.Drawing.Size(97, 23);
@@ -158,12 +138,33 @@
             this.addAppointment_button.UseVisualStyleBackColor = true;
             this.addAppointment_button.Click += new System.EventHandler(this.AddAppointment_button_Click);
             // 
-            // appointment_time_selector
+            // cancelAddAppointment_button
             // 
-            this.appointment_time_selector.Location = new System.Drawing.Point(116, 88);
-            this.appointment_time_selector.Name = "appointment_time_selector";
-            this.appointment_time_selector.Size = new System.Drawing.Size(200, 20);
-            this.appointment_time_selector.TabIndex = 2;
+            this.cancelAddAppointment_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cancelAddAppointment_button.Location = new System.Drawing.Point(211, 419);
+            this.cancelAddAppointment_button.Name = "cancelAddAppointment_button";
+            this.cancelAddAppointment_button.Size = new System.Drawing.Size(75, 23);
+            this.cancelAddAppointment_button.TabIndex = 9;
+            this.cancelAddAppointment_button.Text = "Cancel";
+            this.cancelAddAppointment_button.UseVisualStyleBackColor = true;
+            this.cancelAddAppointment_button.Click += new System.EventHandler(this.cancelAddAppointment_button_Click);
+            // 
+            // reasonForVisit_Textbox
+            // 
+            this.reasonForVisit_Textbox.Location = new System.Drawing.Point(116, 180);
+            this.reasonForVisit_Textbox.Multiline = true;
+            this.reasonForVisit_Textbox.Name = "reasonForVisit_Textbox";
+            this.reasonForVisit_Textbox.Size = new System.Drawing.Size(266, 199);
+            this.reasonForVisit_Textbox.TabIndex = 3;
+            // 
+            // reasonForVisit_LBL
+            // 
+            this.reasonForVisit_LBL.AutoSize = true;
+            this.reasonForVisit_LBL.Location = new System.Drawing.Point(13, 177);
+            this.reasonForVisit_LBL.Name = "reasonForVisit_LBL";
+            this.reasonForVisit_LBL.Size = new System.Drawing.Size(84, 13);
+            this.reasonForVisit_LBL.TabIndex = 8;
+            this.reasonForVisit_LBL.Text = "Reason For Visit";
             // 
             // time_lbl
             // 
