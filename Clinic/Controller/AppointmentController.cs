@@ -17,5 +17,9 @@ namespace Clinic.Controller
             return this.appointmentDAL.GetAppointments();
         }
 
+        public void AddAppointment(Appointment addedAppointment)
+        {
+            this.appointmentDAL.AddAppointment(addedAppointment);
+        }
     }
 }

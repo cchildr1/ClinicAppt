@@ -14,5 +14,10 @@ namespace Clinic.Controller
         {
             return PatientDAL.GetAllPatients();
         }
+
+        public Patient GetPatientByID(int patientID)
+        {
+            return PatientDAL.GetPatientByID(patientID);
+        }
     }
 }
