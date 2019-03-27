@@ -76,6 +76,8 @@ namespace Clinic.UserControls
 
         private void Reset_Button_Click(object sender, EventArgs e)
         {
+            this.appointments_datagridview.DataSource = null;
+            this.appointments_datagridview.Rows.Clear();
             this.SetUpAppointment_DataGridView();
             this.GetAppointmentData();
         }
