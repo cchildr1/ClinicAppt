@@ -36,19 +36,19 @@ namespace Clinic.Controller
         /// <summary>
         /// This method checks to see if a doctor is already scheduled at this time
         /// </summary>
-        /// <param name="scheduledDateTime"></param>
-        /// <param name="doctorID"></param>
-        /// <returns></returns>
+        /// <param name="scheduledDateTime">is the scheduledDateTime to check</param>
+        /// <param name="doctorID">Is the Doctor checking for double booking</param>
+        /// <returns>true if doctor is already booked</returns>
         public bool IsDoctorDoubleBooked(DateTime scheduledDateTime, int doctorID)
         {
             return this.appointmentDAL.IsDoctorDoubleBooked(scheduledDateTime, doctorID);
         }
 
-        public List<Appointment> GetAppointmentsByName()
-        {
-            return this.appointmentDAL.GetAppointments();
-        }
-
+        /// <summary>
+        /// Gets Appointments by PatientID
+        /// </summary>
+        /// <param name="selectedRowPatientID">Accepted PatientID</param>
+        /// <returns>All appointments with the accepted PatientID</returns>
         public List<Appointment> GetAppointmentsByPatientID(int selectedRowPatientID)
         {
             return this.appointmentDAL.GetAppointmentsByPatientID(selectedRowPatientID);
