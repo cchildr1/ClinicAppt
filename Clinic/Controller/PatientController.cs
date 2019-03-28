@@ -19,5 +19,10 @@ namespace Clinic.Controller
         {
             return PatientDAL.GetPatientByID(patientID);
         }
+
+        public List<Patient> PatientByFirst_Last_DOB(string firstname, string lastname, DateTime dateOfBirth)
+        {
+            return PatientDAL.GetPatientByFirst_Last_DOB(firstname, lastname, dateOfBirth);
+        }
     }
 }

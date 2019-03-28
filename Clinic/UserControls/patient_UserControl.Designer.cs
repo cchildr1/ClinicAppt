@@ -34,7 +34,7 @@
             this.bottomRow_Appointments_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.baseAppointment_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topRow_Appointment_tableLOP = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.DateOfBirth_datetimePicker = new System.Windows.Forms.DateTimePicker();
             this.searchAppointment_button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.firstname_textbox = new System.Windows.Forms.TextBox();
@@ -43,13 +43,13 @@
             this.firstname_lbl = new System.Windows.Forms.Label();
             this.lastname_LBL = new System.Windows.Forms.Label();
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
-            this.appointments_datagridview = new System.Windows.Forms.DataGridView();
+            this.patients_datagridview = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).BeginInit();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.patientnameLBL_TLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.appointments_datagridview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patients_datagridview)).BeginInit();
             this.SuspendLayout();
             // 
             // appointmentBindingSource
@@ -87,7 +87,7 @@
             this.baseAppointment_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.baseAppointment_TableLayoutPanel.Controls.Add(this.topRow_Appointment_tableLOP, 0, 0);
             this.baseAppointment_TableLayoutPanel.Controls.Add(this.bottomRow_Appointments_TableLayoutPanel, 0, 2);
-            this.baseAppointment_TableLayoutPanel.Controls.Add(this.appointments_datagridview, 0, 1);
+            this.baseAppointment_TableLayoutPanel.Controls.Add(this.patients_datagridview, 0, 1);
             this.baseAppointment_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.baseAppointment_TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.baseAppointment_TableLayoutPanel.Margin = new System.Windows.Forms.Padding(10, 3, 10, 10);
@@ -115,7 +115,7 @@
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.Controls.Add(this.searchPatients_LBL, 0, 0);
-            this.topRow_Appointment_tableLOP.Controls.Add(this.dateTimePicker2, 2, 0);
+            this.topRow_Appointment_tableLOP.Controls.Add(this.DateOfBirth_datetimePicker, 2, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.searchAppointment_button, 3, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.tableLayoutPanel1, 1, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.patientnameLBL_TLP, 1, 1);
@@ -130,14 +130,15 @@
             this.topRow_Appointment_tableLOP.Size = new System.Drawing.Size(840, 54);
             this.topRow_Appointment_tableLOP.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // DateOfBirth_datetimePicker
             // 
-            this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker2.Location = new System.Drawing.Point(425, 5);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(5);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 2;
+            this.DateOfBirth_datetimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DateOfBirth_datetimePicker.Location = new System.Drawing.Point(425, 5);
+            this.DateOfBirth_datetimePicker.Margin = new System.Windows.Forms.Padding(5);
+            this.DateOfBirth_datetimePicker.Name = "DateOfBirth_datetimePicker";
+            this.DateOfBirth_datetimePicker.Size = new System.Drawing.Size(200, 20);
+            this.DateOfBirth_datetimePicker.TabIndex = 2;
+            this.DateOfBirth_datetimePicker.ValueChanged += new System.EventHandler(this.DateOfBirth_datetimePicker_ValueChanged);
             // 
             // searchAppointment_button
             // 
@@ -145,8 +146,9 @@
             this.searchAppointment_button.Name = "searchAppointment_button";
             this.searchAppointment_button.Size = new System.Drawing.Size(75, 23);
             this.searchAppointment_button.TabIndex = 3;
-            this.searchAppointment_button.Text = "filter";
+            this.searchAppointment_button.Text = "Search";
             this.searchAppointment_button.UseVisualStyleBackColor = true;
+            this.searchAppointment_button.Click += new System.EventHandler(this.SearchAppointment_button_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -217,15 +219,15 @@
             this.dateOfBirth_LBL.TabIndex = 5;
             this.dateOfBirth_LBL.Text = "Date Of Birth";
             // 
-            // appointments_datagridview
+            // patients_datagridview
             // 
-            this.appointments_datagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.appointments_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointments_datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.appointments_datagridview.Location = new System.Drawing.Point(3, 67);
-            this.appointments_datagridview.Name = "appointments_datagridview";
-            this.appointments_datagridview.Size = new System.Drawing.Size(844, 284);
-            this.appointments_datagridview.TabIndex = 3;
+            this.patients_datagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.patients_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.patients_datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.patients_datagridview.Location = new System.Drawing.Point(3, 67);
+            this.patients_datagridview.Name = "patients_datagridview";
+            this.patients_datagridview.Size = new System.Drawing.Size(844, 284);
+            this.patients_datagridview.TabIndex = 3;
             // 
             // patient_UserControl
             // 
@@ -242,7 +244,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.patientnameLBL_TLP.ResumeLayout(false);
             this.patientnameLBL_TLP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.appointments_datagridview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patients_datagridview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,7 +256,7 @@
         private System.Windows.Forms.TableLayoutPanel bottomRow_Appointments_TableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel baseAppointment_TableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel topRow_Appointment_tableLOP;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker DateOfBirth_datetimePicker;
         private System.Windows.Forms.Button searchAppointment_button;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox firstname_textbox;
@@ -263,6 +265,6 @@
         private System.Windows.Forms.Label firstname_lbl;
         private System.Windows.Forms.Label lastname_LBL;
         private System.Windows.Forms.Label dateOfBirth_LBL;
-        private System.Windows.Forms.DataGridView appointments_datagridview;
+        private System.Windows.Forms.DataGridView patients_datagridview;
     }
 }

@@ -85,6 +85,38 @@ namespace Clinic.DAL
             }
         }
 
+        public static List<Patient> GetPatientByFirst_Last_DOB(string firstname, string lastname, DateTime dateOfBirth)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+               "JOIN person person ON personal_information_id = person.id " +
+               "WHERE person.id IN (SELECT id FROM person WHERE first_name = 'Rolando')";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+
+                    }
+
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
         /// <summary>
         /// Gets all patients from DB with personal information populated
         /// </summary>
