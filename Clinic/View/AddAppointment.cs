@@ -44,11 +44,11 @@ namespace Clinic.View
             this.time_Appointment_DateTimePicker.ShowUpDown = true;
             this.time_Appointment_DateTimePicker.Value = DateTime.Now.Date.AddHours(DateTime.Now.Hour);
             this.SelectedDateTime = this.appointment_time_selector.Value.Date + this.time_Appointment_DateTimePicker.Value.TimeOfDay;
-            time_Appointment_DateTimePicker.ValueChanged += new EventHandler(time_Appointment_ValueChanged);
+            time_Appointment_DateTimePicker.ValueChanged += new EventHandler(Time_Appointment_ValueChanged);
         }
 
 
-        private void time_Appointment_ValueChanged(object sender, EventArgs e)
+        private void Time_Appointment_ValueChanged(object sender, EventArgs e)
         {
             if (!timeBusy)
             {
@@ -124,7 +124,24 @@ namespace Clinic.View
                 this.patient_label.ForeColor = System.Drawing.Color.Red;
                 allFieldsFilled = false;
             }
+            DateTime scheduledDateTime = this.appointment_time_selector.Value.Date + this.time_Appointment_DateTimePicker.Value.TimeOfDay;
+            if (this.CheckForDoctorDoubleBook(scheduledDateTime, (int)this.Doctor_ComboBox.SelectedValue))
+            {
+                allFieldsFilled = false;
+                this.patient_label.Text = "You must select a Patient";
+                this.patient_label.ForeColor = System.Drawing.Color.Red;
+                this.doctor_label.Text = "You must select a Doctor";
+                this.doctor_label.ForeColor = System.Drawing.Color.Red;
+                this.time_lbl.Text = "Doctor " + this.doctor_label.Text + " is unavaiable at this date/time";
+                this.time_lbl.ForeColor = System.Drawing.Color.Red;
+            }
+
             return allFieldsFilled;
+        }
+
+        private bool CheckForDoctorDoubleBook(DateTime scheduledDateTime, int doctorID)
+        {
+            return this.appointmentController.IsDoctorDoubleBooked(scheduledDateTime, doctorID);
         }
 
         private void ResetErrorLabels_ComboBox_Click(object sender, EventArgs e)

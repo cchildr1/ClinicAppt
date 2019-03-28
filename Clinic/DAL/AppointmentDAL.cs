@@ -40,6 +40,26 @@ namespace Clinic.DAL
             return appointments;
         }
 
+        public bool IsDoctorDoubleBooked(DateTime ScheduledDateTime, int DoctorID)
+        {
+            bool doubleBooked = false;
+            SqlConnection connection = ClinicDBConnection.GetConnection();
+            string sqlStatement = "SELECT COUNT(*) FROM appointment WHERE scheduled_datetime = @scheduledDateTime AND doctor_id = @doctor_id";
+            SqlCommand command = new SqlCommand(sqlStatement, connection);
+            command.Parameters.AddWithValue("@scheduledDateTime", @ScheduledDateTime);
+            command.Parameters.AddWithValue("@doctor_id", @DoctorID);
+            connection.Open();
+            Int32 count = Convert.ToInt32(command.ExecuteScalar());
+
+            if (count > 0)
+            {
+                doubleBooked = true;
+            }
+
+            connection.Close();
+            return doubleBooked;
+        }
+
         public void AddAppointment(Appointment addedAppointment)
         {
             SqlConnection connection = ClinicDBConnection.GetConnection();

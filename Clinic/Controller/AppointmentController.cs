@@ -21,5 +21,10 @@ namespace Clinic.Controller
         {
             this.appointmentDAL.AddAppointment(addedAppointment);
         }
+
+        public bool IsDoctorDoubleBooked(DateTime scheduledDateTime, int doctorID)
+        {
+            return this.appointmentDAL.IsDoctorDoubleBooked(scheduledDateTime, doctorID);
+        }
     }
 }
