@@ -44,9 +44,9 @@
             this.lastname_LBL = new System.Windows.Forms.Label();
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
-            this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ResetDataGridView_button = new System.Windows.Forms.Button();
             this.getAllPatients = new System.Windows.Forms.Button();
+            this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
@@ -244,10 +244,6 @@
             this.patients_datagridview.TabIndex = 3;
             this.patients_datagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patients_datagridview_CellContentClick);
             // 
-            // appointmentBindingSource
-            // 
-            this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
-            // 
             // ResetDataGridView_button
             // 
             this.ResetDataGridView_button.Location = new System.Drawing.Point(339, 3);
@@ -266,6 +262,11 @@
             this.getAllPatients.TabIndex = 1;
             this.getAllPatients.Text = "Get All Patients";
             this.getAllPatients.UseVisualStyleBackColor = true;
+            this.getAllPatients.Click += new System.EventHandler(this.getAllPatients_Click);
+            // 
+            // appointmentBindingSource
+            // 
+            this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
             // 
             // patient_UserControl
             // 
