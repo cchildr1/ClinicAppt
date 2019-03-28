@@ -85,6 +85,231 @@ namespace Clinic.DAL
             }
         }
 
+        public static List<Patient> GetAllPatients_DOB(DateTime dateOfBirth)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+           "JOIN person person ON personal_information_id = person.id " +
+           "WHERE person.id IN (SELECT id FROM person WHERE date_of_birth = @dateOfBirthdate_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("dateOfBirthdate_clean", @dateOfBirth);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Patient> GetPatientByLastName_Only(string lastname)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+               "JOIN person person ON personal_information_id = person.id " +
+               "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("lastname_clean", @lastname);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+
+                    }
+
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Patient> GetPatientByLastName_DOB(string lastname, DateTime dateOfBirth)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+           "JOIN person person ON personal_information_id = person.id " +
+           "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+        
+                    command.Parameters.AddWithValue("lastname_clean", @lastname);
+                    command.Parameters.AddWithValue("dateOfBirthdate_clean", @dateOfBirth);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Patient> GetPatientByFirstName_DOB(string firstname, DateTime dateOfBirth)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+           "JOIN person person ON personal_information_id = person.id " +
+           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND date_of_birth = @dateOfBirthdate_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("firstname_clean", @firstname);
+                    command.Parameters.AddWithValue("dateOfBirthdate_clean", @dateOfBirth);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Patient> PatientByFirst_LastName(string firstname, string lastname)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+               "JOIN person person ON personal_information_id = person.id " +
+               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("firstname_clean", @firstname);
+                    command.Parameters.AddWithValue("lastname_clean", @lastname);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Patient> GetPatientByFirst_Last_DOB(string firstname, string lastname, DateTime dateOfBirth)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+           "JOIN person person ON personal_information_id = person.id " +
+           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("firstname_clean", @firstname);
+                    command.Parameters.AddWithValue("lastname_clean", @lastname);
+                    command.Parameters.AddWithValue("dateOfBirthdate_clean", @dateOfBirth);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
+        public static List<Patient> GetPatientByFirstName_Only(string @firstname)
+        {
+            List<Patient> patients = new List<Patient>();
+            string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
+               "JOIN person person ON personal_information_id = person.id " +
+               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("firstname_clean", @firstname);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Patient patient = new Patient
+                            {
+                                PatientID = (int)reader["id"],
+                                PersonId = (int)reader["personal_information_id"]
+                            };
+                            PopulatePersonalInformation(patient);
+                            patients.Add(patient);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return patients;
+        }
+
         /// <summary>
         /// Gets all patients from DB with personal information populated
         /// </summary>
@@ -110,9 +335,7 @@ namespace Clinic.DAL
                             PopulatePersonalInformation(patient);
                             patients.Add(patient);
                         }
-
                     }
-
                 }
                 connection.Close();
             }
@@ -120,10 +343,10 @@ namespace Clinic.DAL
         }
 
         /// <summary>
-        /// Gets any and all appointments for a provided patient.
+        /// Gets all the appointments for a specified patient.
         /// </summary>
-        /// <param name="patient">input patient object</param>
-        /// <returns>a list of appointments</returns>
+        /// <param name="patient">Patient object</param>
+        /// <returns>a List of appointment objects</returns>
         public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -159,97 +382,6 @@ namespace Clinic.DAL
             return appointments;
         }
 
-        /// <summary>
-        /// Gets a patient object by patient id number.
-        /// </summary>
-        /// <param name="patientID">patient id integer</param>
-        /// <returns>the patient object</returns>
-        public static Patient GetPatientByID(int patientID) {
-            string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
-            Patient patient = new Patient();
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@patientID", @patientID);
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            patient.PatientID = (int)reader["id"];
-                            patient.PersonId= (int)reader["personal_information_id"];
-                        }
-                        PopulatePersonalInformation(patient);
-                    }
-                }
-                connection.Close();
-
-                return patient;
-            }
-        }
-
-        /// <summary>
-        /// Inserts a patient object into the database by inserting a person and then a patient.
-        /// </summary>
-        /// <param name="patient">Patient object</param>
-        /// <returns>A number indicating if the insert was successful</returns>
-        public static int InsertPatient(Patient patient)
-        {
-            string insertPersonStatement = "INSERT INTO person (last_name, first_name, " +
-                "date_of_birth, ssn, gender, street_address, phone, zipcode)" +
-                "VALUES (@LastName, @FirstName, @Date_Of_Birth, @SSN, @Gender, " +
-                "@Street_Address, @Phone, @ZipCode); ";
-            string insertPatientStatement = "INSERT INTO patient (personal_information_id) " +
-                "VALUES (@PersonalInformationID)";
-
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                try
-                {
-                    int personID;
-                    connection.Open();
-
-                    using (SqlCommand insertCommand = new SqlCommand(insertPersonStatement, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@LastName", patient.LastName);
-                        insertCommand.Parameters.AddWithValue("@FirstName", patient.FirstName);
-                        insertCommand.Parameters.AddWithValue("@Date_Of_Birth", patient.DateOfBirth);
-                        insertCommand.Parameters.AddWithValue("@SSN", patient.SocialSecurityNumber);
-                        insertCommand.Parameters.AddWithValue("@Gender", patient.Gender);
-                        insertCommand.Parameters.AddWithValue("@Street_Address", patient.StreetAddress);
-                        insertCommand.Parameters.AddWithValue("@Phone", patient.Phone);
-                        insertCommand.Parameters.AddWithValue("@ZipCode", patient.Zipcode);
-                        insertCommand.ExecuteNonQuery();
-
-                        string selectStatement = "SELECT IDENT_CURRENT('person')";
-                        SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-                        personID = Convert.ToInt32(selectCommand.ExecuteScalar());
-                    }
-
-                    using (SqlCommand insertCommand = new SqlCommand(insertPatientStatement, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@PersonalInformationID", personID);
-                        insertCommand.ExecuteNonQuery();
-
-                        string selectStatement = "SELECT IDENT_CURRENT('patient')";
-                        SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-                        int patientID = Convert.ToInt32(selectCommand.ExecuteScalar());
-                        return patientID;
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Helper method that populates personal info the patient object by Person data.
-        /// </summary>
-        /// <param name="person">Person object</param>
-        /// <returns>Person object with populated info from the database.</returns>
         private static Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";
@@ -277,6 +409,32 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return person;
+        }
+
+        public static Patient GetPatientByID(int patientID)
+        {
+            string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
+            Patient patient = new Patient();
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@patientID", @patientID);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            patient.PatientID = (int)reader["id"];
+                            patient.PersonId = (int)reader["personal_information_id"];
+                        }
+                        PopulatePersonalInformation(patient);
+                    }
+                }
+                connection.Close();
+
+                return patient;
+            }
         }
     }
 }

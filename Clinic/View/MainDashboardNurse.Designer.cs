@@ -30,18 +30,20 @@
         {
             this.mainDashBoardNurse_TabControl = new System.Windows.Forms.TabControl();
             this.appointments_tabPage = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.appointments_UserControl1 = new Clinic.UserControls.appointments_UserControl();
+            this.patients_tabpage = new System.Windows.Forms.TabPage();
             this.WelcomeLBL = new System.Windows.Forms.Label();
             this.LogOut_Button = new System.Windows.Forms.Button();
-            this.appointments_UserControl1 = new Clinic.UserControls.appointments_UserControl();
+            this.patient_UserControl1 = new Clinic.UserControls.patient_UserControl();
             this.mainDashBoardNurse_TabControl.SuspendLayout();
             this.appointments_tabPage.SuspendLayout();
+            this.patients_tabpage.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainDashBoardNurse_TabControl
             // 
             this.mainDashBoardNurse_TabControl.Controls.Add(this.appointments_tabPage);
-            this.mainDashBoardNurse_TabControl.Controls.Add(this.tabPage2);
+            this.mainDashBoardNurse_TabControl.Controls.Add(this.patients_tabpage);
             this.mainDashBoardNurse_TabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mainDashBoardNurse_TabControl.Location = new System.Drawing.Point(0, 51);
             this.mainDashBoardNurse_TabControl.Name = "mainDashBoardNurse_TabControl";
@@ -60,15 +62,24 @@
             this.appointments_tabPage.Text = "Appointments";
             this.appointments_tabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // appointments_UserControl1
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(976, 384);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.appointments_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.appointments_UserControl1.Location = new System.Drawing.Point(3, 3);
+            this.appointments_UserControl1.Name = "appointments_UserControl1";
+            this.appointments_UserControl1.Size = new System.Drawing.Size(970, 378);
+            this.appointments_UserControl1.TabIndex = 0;
+            // 
+            // patients_tabpage
+            // 
+            this.patients_tabpage.Controls.Add(this.patient_UserControl1);
+            this.patients_tabpage.Location = new System.Drawing.Point(4, 22);
+            this.patients_tabpage.Name = "patients_tabpage";
+            this.patients_tabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.patients_tabpage.Size = new System.Drawing.Size(976, 384);
+            this.patients_tabpage.TabIndex = 1;
+            this.patients_tabpage.Text = "Patients";
+            this.patients_tabpage.UseVisualStyleBackColor = true;
             // 
             // WelcomeLBL
             // 
@@ -90,13 +101,13 @@
             this.LogOut_Button.UseVisualStyleBackColor = true;
             this.LogOut_Button.Click += new System.EventHandler(this.LogOut_Button_Click);
             // 
-            // appointments_UserControl1
+            // patient_UserControl1
             // 
-            this.appointments_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.appointments_UserControl1.Location = new System.Drawing.Point(3, 3);
-            this.appointments_UserControl1.Name = "appointments_UserControl1";
-            this.appointments_UserControl1.Size = new System.Drawing.Size(970, 378);
-            this.appointments_UserControl1.TabIndex = 0;
+            this.patient_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.patient_UserControl1.Location = new System.Drawing.Point(3, 3);
+            this.patient_UserControl1.Name = "patient_UserControl1";
+            this.patient_UserControl1.Size = new System.Drawing.Size(970, 378);
+            this.patient_UserControl1.TabIndex = 0;
             // 
             // MainDashboardNurse
             // 
@@ -110,6 +121,7 @@
             this.Text = "Clinic";
             this.mainDashBoardNurse_TabControl.ResumeLayout(false);
             this.appointments_tabPage.ResumeLayout(false);
+            this.patients_tabpage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,9 +131,10 @@
 
         private System.Windows.Forms.TabControl mainDashBoardNurse_TabControl;
         private System.Windows.Forms.TabPage appointments_tabPage;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage patients_tabpage;
         private System.Windows.Forms.Label WelcomeLBL;
         private System.Windows.Forms.Button LogOut_Button;
         private UserControls.appointments_UserControl appointments_UserControl1;
+        private UserControls.patient_UserControl patient_UserControl1;
     }
 }

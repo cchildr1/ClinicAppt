@@ -16,5 +16,9 @@ namespace Clinic.Controller
             return DoctorDAL.GetAllDoctors();
         }
 
+        public Doctor GetDoctorByID(int doctorID)
+        {
+            return DoctorDAL.GetDoctorByID(doctorID);
+        }
     }
 }
