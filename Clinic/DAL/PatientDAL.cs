@@ -119,6 +119,11 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets any and all appointments for a provided patient.
+        /// </summary>
+        /// <param name="patient">input patient object</param>
+        /// <returns>a list of appointments</returns>
         public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -154,7 +159,11 @@ namespace Clinic.DAL
             return appointments;
         }
 
-        //Returns a patient equal to the accepted ID
+        /// <summary>
+        /// Gets a patient object by patient id number.
+        /// </summary>
+        /// <param name="patientID">patient id integer</param>
+        /// <returns>the patient object</returns>
         public static Patient GetPatientByID(int patientID) {
             string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
             Patient patient = new Patient();
@@ -180,6 +189,11 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// Helper method that populates personal info the patient object by Person data.
+        /// </summary>
+        /// <param name="person">Person object</param>
+        /// <returns>Person object with populated info from the database.</returns>
         private static Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";
