@@ -8,6 +8,7 @@ namespace Clinic.Model
 {
     public class Test
     {
+        //Getters and setters for test values
         public int TestID { get; set; }
         public DateTime DatePerformed { get; set;  }
         public DateTime DateAvailable { get; set; }

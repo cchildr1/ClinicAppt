@@ -5,6 +5,10 @@ using Clinic.Model;
 
 namespace Clinic.View
 {
+    /// <summary>
+    /// This class allows users to add appointments
+    /// It is error checked against double booking of doctors, invalid/insufficent information
+    /// </summary>
     public partial class AddAppointment : Form
     {
         private DoctorController doctorController = new DoctorController();

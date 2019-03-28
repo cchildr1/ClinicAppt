@@ -13,6 +13,11 @@ using Clinic.Model;
 
 namespace Clinic.UserControls
 {
+    /// <summary>
+    /// This class allows users to search patient's by first/last name and/or DOB
+    /// All patients can be scene
+    /// Selecting a patient allows for the appointment to be brought up
+    /// </summary>
     public partial class patient_UserControl : UserControl
     {
         private bool DOB_ValueChanged = false;

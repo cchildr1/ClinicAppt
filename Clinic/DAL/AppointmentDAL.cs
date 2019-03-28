@@ -127,7 +127,13 @@ namespace Clinic.DAL
             }
         }
 
-
+        /// <summary>
+        /// This method returns true if the doctor is already schduled for the accepted time slot
+        /// 
+        /// </summary>
+        /// <param name="ScheduledDateTime">accepted time checked to see if doctor is already scheduled</param>
+        /// <param name="DoctorID">Doctor being checked</param>
+        /// <returns>true if doctor is already scheduled duing this time</returns>
         public bool IsDoctorDoubleBooked(DateTime ScheduledDateTime, int DoctorID)
         {
             bool doubleBooked = false;
@@ -148,6 +154,10 @@ namespace Clinic.DAL
             return doubleBooked;
         }
 
+        /// <summary>
+        /// This method adds an appointment value to the database
+        /// </summary>
+        /// <param name="addedAppointment"> appointment that is added</param>
         public void AddAppointment(Appointment addedAppointment)
         {
             SqlConnection connection = ClinicDBConnection.GetConnection();

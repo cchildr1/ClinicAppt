@@ -85,6 +85,11 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// Returns a list of Patients equal to the accepted DateTime
+        /// </summary>
+        /// <param name="dateOfBirth">Accepted DateTime value - shorted to just Date</param>
+        /// <returns>List of Patients equal to the accepted DateTime</returns>
         public static List<Patient> GetAllPatients_DOB(DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
@@ -116,6 +121,11 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of all patients with a lastname equal to the accepted string value
+        /// </summary>
+        /// <param name="lastname">Accepted Lastname value</param>
+        /// <returns>All patients with a lastname equal to lastname</returns>
         public static List<Patient> GetPatientByLastName_Only(string lastname)
         {
             List<Patient> patients = new List<Patient>();
@@ -149,6 +159,12 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of all patients with a lastname equal to the accepted string value and datetime
+        /// </summary>
+        /// <param name="lastname">Accepted Lastname value</param>
+        /// <param name="dateOfBirth">accepted datetime</param>
+        /// <returns>All patients with a lastname equal to lastname and dateOfBirth equal to accepted dateOfBirth</returns>
         public static List<Patient> GetPatientByLastName_DOB(string lastname, DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
@@ -182,6 +198,12 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of all patients with a firstname equal to the accepted string value and datetime
+        /// </summary>
+        /// <param name="firstname">Accepted Lastname value</param>
+        /// <param name="dateOfBirth">accepted datetime</param>
+        /// <returns>All patients with a firstname equal to firstname and dateOfBirth equal to accepted dateOfBirth</returns>
         public static List<Patient> GetPatientByFirstName_DOB(string firstname, DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
@@ -214,6 +236,12 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of all patients with a firstname and lastname equal to the accepted values
+        /// </summary>
+        /// <param name="firstname">Accepted firstname value</param>
+        /// <param name="lastname">accepted lastname</param>
+        /// <returns>All patients with a first and last name equal to the respected accepted values</returns>
         public static List<Patient> PatientByFirst_LastName(string firstname, string lastname)
         {
             List<Patient> patients = new List<Patient>();
@@ -246,6 +274,13 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Returns a list of patients with first last and DOB equal to the respective active values
+        /// </summary>
+        /// <param name="firstname">accepted Firstname</param>
+        /// <param name="lastname">accepted lastname</param>
+        /// <param name="dateOfBirth">accepted DateTime</param>
+        /// <returns>Returns a list of patients with first last and DOB equal to the respective active values</returns>
         public static List<Patient> GetPatientByFirst_Last_DOB(string firstname, string lastname, DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
@@ -279,6 +314,11 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets a list of all patients with a firstname equal to the accepted string value
+        /// </summary>
+        /// <param name="firstname">Accepted Lastname value</param>
+        /// <returns>All patients with a firstname equal to firstname</returns>
         public static List<Patient> GetPatientByFirstName_Only(string @firstname)
         {
             List<Patient> patients = new List<Patient>();
@@ -411,6 +451,11 @@ namespace Clinic.DAL
             return person;
         }
 
+        /// <summary>
+        /// Returns a Patient equal to the accepted ID
+        /// </summary>
+        /// <param name="patientID">Accepted Patient ID</param>
+        /// <returns>returns a patient equal to the accepted patientID</returns>
         public static Patient GetPatientByID(int patientID)
         {
             string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";

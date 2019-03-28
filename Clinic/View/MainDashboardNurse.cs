@@ -11,6 +11,9 @@ using Clinic.UserControls;
 
 namespace Clinic.View
 {
+    /// <summary>
+    /// This class is the main location for all tabpages and usercontrols for the Clinic application
+    /// </summary>
     public partial class MainDashboardNurse : Form
     {
         private bool loggingOut;

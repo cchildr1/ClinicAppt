@@ -12,6 +12,7 @@ namespace Clinic.Model
     /// </summary>
     public class Nurse : Employee
     {
+        //Getters and setters for Nurse values
         public int NurseID { get; set; }
     }
 }

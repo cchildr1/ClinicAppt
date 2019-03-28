@@ -14,7 +14,10 @@ namespace Clinic.DAL
     /// </summary>
     public static class DoctorDAL
     {
-
+        /// <summary>
+        /// Returns a list of all Doctors
+        /// </summary>
+        /// <returns>list of all Doctors</returns>
         public static List<Doctor> GetAllDoctors()
         {
             List<Doctor> doctors = new List<Doctor>();
@@ -43,6 +46,11 @@ namespace Clinic.DAL
             return doctors;
         }
 
+        /// <summary>
+        /// Returns a Doctor equal to the doctorID
+        /// </summary>
+        /// <param name="doctorID"></param>
+        /// <returns>returns Doctor equal to the accepted DoctorID</returns>
         public static Doctor GetDoctorByID(int doctorID)
         {
             string selectStatement = "SELECT * FROM doctor WHERE id = @doctorID;";

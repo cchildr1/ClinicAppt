@@ -11,6 +11,7 @@ namespace Clinic.Model
     /// </summary>
     public class Person
     {
+        //Getters and setters for Person values
         public int PersonId { get; set; }
         public string FirstName {get; set;}
         public string LastName { get; set; }
@@ -23,6 +24,7 @@ namespace Clinic.Model
         public string City { get; set; }
         public string State { get; set; }
 
+        //Allows for the combination of names and for searching for full name
         public string FullName
         {
             get

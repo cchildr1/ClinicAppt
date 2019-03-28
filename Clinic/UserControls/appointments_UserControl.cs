@@ -7,10 +7,14 @@ using System.Windows.Forms;
 
 namespace Clinic.UserControls
 {
+    /// <summary>
+    /// This class allows users to see all the appointments 
+    /// </summary>
     public partial class appointments_UserControl : System.Windows.Forms.UserControl
     {
         private AppointmentController appointmentController;
 
+        //Sets up the appointment_usercontrol insures that everything has been initialized
         public appointments_UserControl()
         {
             InitializeComponent();
