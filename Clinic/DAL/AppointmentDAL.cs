@@ -31,8 +31,8 @@ namespace Clinic.DAL
                             appointment.AppointmentID = (int)reader["id"];
                             appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
                             appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
-                            appointment.Doctor.DoctorId = (int)reader["doctor_id"];
-                            appointment.Patient.PatientID = (int)reader["patient_id"];
+                            appointment.Doctor = GetDoctorByID((int)reader["doctor_id"]);
+                            appointment.Patient = GetPatientByID((int)reader["patient_id"]);
 
                             appointments.Add(appointment);
                         }
@@ -41,51 +41,21 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return appointments;
-        }
-        
-        /// <summary>
-        /// Updates an Appointment record in the database.
-        /// </summary>
-        /// <param name="oldAppointment">The existing appointment record in the db</param>
-        /// <param name="newAppointment">The new value or values for the appointment record in the db</param>
-        /// <returns>true or false if the query returns any records</returns>
-        public bool UpdateAppointment(Appointment oldAppointment, Appointment newAppointment)
-        {
-            string updateStatement = "UPDATE appointment SET " +
-                "scheduled_datetime = @NewScheduled_Datetime, " +
-                "reason_for_visit = @NewReasonForVisit, " +
-                "doctor_id = @NewDoctorID, " +
-                "patient_id = @NewPatientID " +
-                "WHERE id = @OldID " +
-                "AND scheduled_datetime = @OldScheduled_Datetime " +
-                "AND reason_for_visit = @OldReasonForVisit " +
-                "AND doctor_id = @OldDoctorID " +
-                "AND patient_id = @OldPatientID;";
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
-                {
-                    // new item params
-                    updateCommand.Parameters.AddWithValue("@NewScheduled_Datetime", newAppointment.Scheduled_Date);
-                    updateCommand.Parameters.AddWithValue("@NewReasonForVisit", newAppointment.Reason_For_Visit);
-                    updateCommand.Parameters.AddWithValue("@NewDoctorID", newAppointment.Doctor.DoctorId);
-                    updateCommand.Parameters.AddWithValue("@NewPatientID", newAppointment.Patient.PatientID);
 
-                    // old item params
-                    updateCommand.Parameters.AddWithValue("@OldID", oldAppointment.AppointmentID);
-                    updateCommand.Parameters.AddWithValue("@OldScheduled_Datetime", oldAppointment.Scheduled_Date);
-                    updateCommand.Parameters.AddWithValue("@OldReasonForVisit", oldAppointment.Reason_For_Visit);
-                    updateCommand.Parameters.AddWithValue("@OldDoctorID", oldAppointment.Doctor.DoctorId);
-                    updateCommand.Parameters.AddWithValue("@OldPatientID", oldAppointment.Patient.PatientID);
 
-                    int count = updateCommand.ExecuteNonQuery();
-                    if (count > 0)
-                        return true;
-                    else
-                        return false;
-                }
-            }
+
+          
+                        
+           // appointment.AppointmentID = 5;
+           // appointment.Doctor_ID = 6;
+           // appointment.Patient_ID = 21;
+           // appointment.Reason_For_Visit = "This is test code";
+           // appointment.Scheduled_Date = new DateTime(2012, 12, 25, 10, 30, 50);
+           // appointment.Scheduled_Time = new DateTime(1111, 12, 25, 10, 30, 50);
+            
+          //  appointments.Add(appointment);
+           
+
         }
     }
 }
