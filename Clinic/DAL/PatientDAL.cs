@@ -190,6 +190,62 @@ namespace Clinic.DAL
         }
 
         /// <summary>
+        /// Inserts a patient object into the database by inserting a person and then a patient.
+        /// </summary>
+        /// <param name="patient">Patient object</param>
+        /// <returns>A number indicating if the insert was successful</returns>
+        public static int InsertPatient(Patient patient)
+        {
+            string insertPersonStatement = "INSERT INTO person (last_name, first_name, " +
+                "date_of_birth, ssn, gender, street_address, phone, zipcode)" +
+                "VALUES (@LastName, @FirstName, @Date_Of_Birth, @SSN, @Gender, " +
+                "@Street_Address, @Phone, @ZipCode); ";
+            string insertPatientStatement = "INSERT INTO patient (personal_information_id) " +
+                "VALUES (@PersonalInformationID)";
+
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                try
+                {
+                    int personID;
+                    connection.Open();
+
+                    using (SqlCommand insertCommand = new SqlCommand(insertPersonStatement, connection))
+                    {
+                        insertCommand.Parameters.AddWithValue("@LastName", patient.LastName);
+                        insertCommand.Parameters.AddWithValue("@FirstName", patient.FirstName);
+                        insertCommand.Parameters.AddWithValue("@Date_Of_Birth", patient.DateOfBirth);
+                        insertCommand.Parameters.AddWithValue("@SSN", patient.SocialSecurityNumber);
+                        insertCommand.Parameters.AddWithValue("@Gender", patient.Gender);
+                        insertCommand.Parameters.AddWithValue("@Street_Address", patient.StreetAddress);
+                        insertCommand.Parameters.AddWithValue("@Phone", patient.Phone);
+                        insertCommand.Parameters.AddWithValue("@ZipCode", patient.Zipcode);
+                        insertCommand.ExecuteNonQuery();
+
+                        string selectStatement = "SELECT IDENT_CURRENT('person')";
+                        SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+                        personID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                    }
+
+                    using (SqlCommand insertCommand = new SqlCommand(insertPatientStatement, connection))
+                    {
+                        insertCommand.Parameters.AddWithValue("@PersonalInformationID", personID);
+                        insertCommand.ExecuteNonQuery();
+
+                        string selectStatement = "SELECT IDENT_CURRENT('patient')";
+                        SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+                        int patientID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                        return patientID;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        /// <summary>
         /// Helper method that populates personal info the patient object by Person data.
         /// </summary>
         /// <param name="person">Person object</param>
