@@ -101,5 +101,14 @@ namespace Clinic.UserControls
                 }
             }
         }
+
+        private void ResetDataGridView_button_Click(object sender, EventArgs e)
+        {
+            
+            this.patients_datagridview.DataSource = null;
+            this.patients_datagridview.ColumnCount = 0;
+            this.dataGridView_Is_Patient = true;
+
+        }
     }
 }

@@ -45,6 +45,9 @@
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ResetDataGridView_button = new System.Windows.Forms.Button();
+            this.getAllPatients = new System.Windows.Forms.Button();
+            this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -70,6 +73,8 @@
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.ResetDataGridView_button, 2, 0);
+            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.getAllPatients, 1, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomRow_Appointments_TableLayoutPanel.Location = new System.Drawing.Point(3, 357);
             this.bottomRow_Appointments_TableLayoutPanel.Name = "bottomRow_Appointments_TableLayoutPanel";
@@ -243,6 +248,25 @@
             // 
             this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
             // 
+            // ResetDataGridView_button
+            // 
+            this.ResetDataGridView_button.Location = new System.Drawing.Point(339, 3);
+            this.ResetDataGridView_button.Name = "ResetDataGridView_button";
+            this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
+            this.ResetDataGridView_button.TabIndex = 0;
+            this.ResetDataGridView_button.Text = "Reset Field";
+            this.ResetDataGridView_button.UseVisualStyleBackColor = true;
+            this.ResetDataGridView_button.Click += new System.EventHandler(this.ResetDataGridView_button_Click);
+            // 
+            // getAllPatients
+            // 
+            this.getAllPatients.Location = new System.Drawing.Point(171, 3);
+            this.getAllPatients.Name = "getAllPatients";
+            this.getAllPatients.Size = new System.Drawing.Size(91, 23);
+            this.getAllPatients.TabIndex = 1;
+            this.getAllPatients.Text = "Get All Patients";
+            this.getAllPatients.UseVisualStyleBackColor = true;
+            // 
             // patient_UserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,6 +274,7 @@
             this.Controls.Add(this.baseAppointment_TableLayoutPanel);
             this.Name = "patient_UserControl";
             this.Size = new System.Drawing.Size(850, 400);
+            this.bottomRow_Appointments_TableLayoutPanel.ResumeLayout(false);
             this.baseAppointment_TableLayoutPanel.ResumeLayout(false);
             this.topRow_Appointment_tableLOP.ResumeLayout(false);
             this.topRow_Appointment_tableLOP.PerformLayout();
@@ -281,5 +306,7 @@
         private System.Windows.Forms.Label dateOfBirth_LBL;
         private System.Windows.Forms.DataGridView patients_datagridview;
         private System.Windows.Forms.Button resetDateOfBirth;
+        private System.Windows.Forms.Button ResetDataGridView_button;
+        private System.Windows.Forms.Button getAllPatients;
     }
 }
