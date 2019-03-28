@@ -119,6 +119,11 @@ namespace Clinic.DAL
             return patients;
         }
 
+        /// <summary>
+        /// Gets all the appointments for a specified patient.
+        /// </summary>
+        /// <param name="patient">Patient object</param>
+        /// <returns>a List of appointment objects</returns>
         public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -152,32 +157,6 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return appointments;
-        }
-
-        //Returns a patient equal to the accepted ID
-        public static Patient GetPatientByID(int patientID) {
-            string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
-            Patient patient = new Patient();
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@patientID", @patientID);
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            patient.PatientID = (int)reader["id"];
-                            patient.PersonId= (int)reader["personal_information_id"];
-                        }
-                        PopulatePersonalInformation(patient);
-                    }
-                }
-                connection.Close();
-
-                return patient;
-            }
         }
 
         private static Person PopulatePersonalInformation(Person person)
