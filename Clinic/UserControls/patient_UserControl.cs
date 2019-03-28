@@ -24,10 +24,15 @@ namespace Clinic.UserControls
 
         private void SearchAppointment_button_Click(object sender, EventArgs e)
         {
-            if (this.firstname_textbox.Text != "" && this.lastname_textbox.Text != "" && this.DOB_ValueChanged)
+            if (this.DOB_ValueChanged)
             {
                 this.patients_datagridview.DataSource = this.patientController.PatientByFirst_Last_DOB(this.firstname_textbox.Text, this.lastname_textbox.Text, this.DateOfBirth_datetimePicker.Value);
             }
+            else 
+            {
+                this.patients_datagridview.DataSource = this.patientController.PatientByWithoutDOB_Firstname_LastName(this.firstname_textbox.Text, this.lastname_textbox.Text);
+            }
+
         }
 
         private void DateOfBirth_datetimePicker_ValueChanged(object sender, EventArgs e)
