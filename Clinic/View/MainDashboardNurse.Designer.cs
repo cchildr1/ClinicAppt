@@ -97,7 +97,7 @@
             this.appointments_UserControl1.Name = "appointments_UserControl1";
             this.appointments_UserControl1.Size = new System.Drawing.Size(970, 378);
             this.appointments_UserControl1.TabIndex = 0;
-            // 
+           // 
             // MainDashboardNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

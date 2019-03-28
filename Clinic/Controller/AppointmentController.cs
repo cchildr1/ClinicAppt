@@ -17,5 +17,19 @@ namespace Clinic.Controller
             return this.appointmentDAL.GetAppointments();
         }
 
+        public void AddAppointment(Appointment addedAppointment)
+        {
+            this.appointmentDAL.AddAppointment(addedAppointment);
+        }
+
+        public bool IsDoctorDoubleBooked(DateTime scheduledDateTime, int doctorID)
+        {
+            return this.appointmentDAL.IsDoctorDoubleBooked(scheduledDateTime, doctorID);
+        }
+
+        public List<Appointment> GetAppointmentsByName()
+        {
+            return this.appointmentDAL.GetAppointments();
+        }
     }
 }

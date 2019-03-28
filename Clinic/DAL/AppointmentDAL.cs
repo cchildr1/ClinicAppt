@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using Clinic.DAL;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Clinic.Model;
 
 namespace Clinic.DAL
@@ -42,6 +38,63 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return appointments;
+        }
+
+        public bool IsDoctorDoubleBooked(DateTime ScheduledDateTime, int DoctorID)
+        {
+            bool doubleBooked = false;
+            SqlConnection connection = ClinicDBConnection.GetConnection();
+            string sqlStatement = "SELECT COUNT(*) FROM appointment WHERE scheduled_datetime = @scheduledDateTime AND doctor_id = @doctor_id";
+            SqlCommand command = new SqlCommand(sqlStatement, connection);
+            command.Parameters.AddWithValue("@scheduledDateTime", @ScheduledDateTime);
+            command.Parameters.AddWithValue("@doctor_id", @DoctorID);
+            connection.Open();
+            Int32 count = Convert.ToInt32(command.ExecuteScalar());
+
+            if (count > 0)
+            {
+                doubleBooked = true;
+            }
+
+            connection.Close();
+            return doubleBooked;
+        }
+
+        public void AddAppointment(Appointment addedAppointment)
+        {
+            SqlConnection connection = ClinicDBConnection.GetConnection();
+            string insertAppointment = "INSERT appointment (scheduled_datetime, reason_for_visit, doctor_id, patient_id) " +
+            "VALUES (@scheduled_datetime, @reason_for_visit, @doctor_id, @patient_id)";
+
+            SqlCommand insertCommand = new SqlCommand(insertAppointment, connection);
+            insertCommand.Parameters.AddWithValue("@scheduled_datetime", addedAppointment.Scheduled_Date);
+            insertCommand.Parameters.AddWithValue("@reason_for_visit", addedAppointment.Reason_For_Visit);
+            insertCommand.Parameters.AddWithValue("@doctor_id", addedAppointment.Doctor.DoctorId);
+            insertCommand.Parameters.AddWithValue("@patient_id", addedAppointment.Patient.PatientID);
+            insertCommand.Parameters.AddWithValue("@id", this.HelperAddAppointment(connection, insertCommand));
+
+      
+        }
+
+        private int HelperAddAppointment(SqlConnection connection, SqlCommand insertCommand)
+        {
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                string selectStatement = "SELECT IDENT_CURRENT('appointment') FROM  appointment";
+                SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+                int appointmentID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                return appointmentID;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         private Doctor GetDoctorByID(int doctorID)

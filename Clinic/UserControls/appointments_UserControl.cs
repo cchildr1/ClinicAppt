@@ -3,14 +3,7 @@ using Clinic.Controller;
 using System.Collections.Generic;
 using Clinic.Model;
 using Clinic.View;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Clinic.UserControls
 {
@@ -24,14 +17,6 @@ namespace Clinic.UserControls
             this.appointmentController = new AppointmentController();
             this.SetUpAppointment_DataGridView();
             this.GetAppointmentData();
-        }
-
-        private void PatientName_TextBox_Click(object sender, EventArgs e)
-        {
-            if (this.PatientName_TextBox.Text == "patient name")
-                {
-                    this.PatientName_TextBox.Text = "";
-                }          
         }
 
         public void SetUpAppointment_DataGridView()
@@ -71,7 +56,30 @@ namespace Clinic.UserControls
 
         private void FilterAppointment_button_Click(object sender, EventArgs e)
         {
+            if (this.lastname_textbox.Text == "")
+            {
+                this.appointments_datagridview.DataSource = null;
+                List<Appointment> appointments = new List<Appointment>();
+                appointments = this.appointmentController.GetAppointmentsByName();
 
+                if (appointments.Count > 0)
+                {
+                    Appointment appointment = new Appointment();
+
+                    for (int count = 0; count < appointments.Count; count++)
+                    {
+                        appointment = appointments[count];
+                        string[] rowAdded = new string[] {
+                            appointment.AppointmentID.ToString(),
+                            appointment.Scheduled_Date.ToString(),
+                            appointment.Reason_For_Visit,
+                            appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
+                            appointment.Patient.FirstName + " " + appointment.Patient.LastName
+                        };
+                        this.appointments_datagridview.Rows.Add(rowAdded);
+                    }
+                }
+            }
         }
 
         private void Reset_Button_Click(object sender, EventArgs e)
@@ -86,6 +94,10 @@ namespace Clinic.UserControls
         {          
             AddAppointment addAppointment = new AddAppointment();
             DialogResult result = addAppointment.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.Reset_Button_Click(sender, e);
+            }
         }
     }
 }
