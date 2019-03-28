@@ -116,7 +116,7 @@ namespace Clinic.UserControls
 
         private void getAllPatients_Click(object sender, EventArgs e)
         {
-            this.patients_datagridview.DataSource = null;
+            this.ResetDataGridView_button_Click(sender, e);
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
         }
     }
