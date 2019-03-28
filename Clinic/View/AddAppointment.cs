@@ -34,12 +34,12 @@ namespace Clinic.View
             this.Patient_ComboBox.SelectedIndex = -1;
         }
 
-        private void SetUp_DateTimePicker() 
+        private void SetUp_DateTimePicker()
         {
             this.appointment_time_selector.Format = DateTimePickerFormat.Custom;
             this.appointment_time_selector.CustomFormat = "MM/dd/yyyy hh:mm";
         }
-   
+
 
         private void cancelAddAppointment_button_Click(object sender, EventArgs e)
         {
@@ -48,20 +48,24 @@ namespace Clinic.View
 
         private void AddAppointment_button_Click(object sender, EventArgs e)
         {
-            try
+            if (this.ErrorHelper())
             {
-                Appointment appointment = new Appointment();
-                appointment.Scheduled_Date = this.appointment_time_selector.Value.Date + this.time_Appointment_DateTimePicker.Value.TimeOfDay;
-                appointment.Reason_For_Visit = this.reasonForVisit_Textbox.Text;
-                appointment.Patient = this.SelectedPatientByID((int)this.Patient_ComboBox.SelectedValue);
-                appointment.Doctor = this.SelectedDoctorByID((int)this.Doctor_ComboBox.SelectedValue);
+                try
+                {
+                    Appointment appointment = new Appointment();
+                    appointment.Scheduled_Date = this.appointment_time_selector.Value.Date + this.time_Appointment_DateTimePicker.Value.TimeOfDay;
+                    appointment.Reason_For_Visit = this.reasonForVisit_Textbox.Text;
+                    appointment.Patient = this.SelectedPatientByID((int)this.Patient_ComboBox.SelectedValue);
+                    appointment.Doctor = this.SelectedDoctorByID((int)this.Doctor_ComboBox.SelectedValue);
 
-                this.appointmentController.AddAppointment(appointment);
-                this.Close();
-            }
-            catch (Exception)
-            {
-                this.ErrorHelper();
+                    this.appointmentController.AddAppointment(appointment);
+                    this.DialogResult = DialogResult.Yes;
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    this.ErrorHelper();
+                }
             }
         }
 
@@ -75,8 +79,38 @@ namespace Clinic.View
             return this.doctorController.GetDoctorByID(doctorID);
         }
 
-        private void ErrorHelper()
+        private bool ErrorHelper()
         {
+            bool allFieldsFilled = true;
+            if (this.reasonForVisit_Textbox.Text == "")
+            {
+                this.reasonForVisit_LBL.Text = "Required Please add Patient's Reason for Visit";
+                this.reasonForVisit_LBL.ForeColor = System.Drawing.Color.Red;
+                allFieldsFilled = false;
+            }
+            if (this.Doctor_ComboBox.SelectedIndex < 0)
+            {
+                this.doctor_label.Text = "You must select a Doctor";
+                this.doctor_label.ForeColor = System.Drawing.Color.Red;
+                allFieldsFilled = false;
+            }
+            if (this.Patient_ComboBox.SelectedIndex < 0)
+            {
+                this.patient_label.Text = "You must select a Patient";
+                this.patient_label.ForeColor = System.Drawing.Color.Red;
+                allFieldsFilled = false;
+            }
+            return allFieldsFilled;
+        }
+
+        private void ResetErrorLabels_ComboBox_Click(object sender, EventArgs e)
+        {
+            this.doctor_label.Text = "Doctor";
+            this.doctor_label.ForeColor = System.Drawing.Color.Black;
+            this.patient_label.Text = "Patient";
+            this.patient_label.ForeColor = System.Drawing.Color.Black;
+            this.reasonForVisit_LBL.Text = "Reason for Visit";
+            this.reasonForVisit_LBL.ForeColor = System.Drawing.Color.Black;
 
         }
     }

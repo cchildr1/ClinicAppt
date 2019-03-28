@@ -83,6 +83,7 @@
             this.Doctor_ComboBox.Name = "Doctor_ComboBox";
             this.Doctor_ComboBox.Size = new System.Drawing.Size(121, 21);
             this.Doctor_ComboBox.TabIndex = 0;
+            this.Doctor_ComboBox.Click += new System.EventHandler(this.ResetErrorLabels_ComboBox_Click);
             // 
             // appointment_time_selector
             // 
@@ -98,6 +99,7 @@
             this.Patient_ComboBox.Name = "Patient_ComboBox";
             this.Patient_ComboBox.Size = new System.Drawing.Size(121, 21);
             this.Patient_ComboBox.TabIndex = 1;
+            this.Patient_ComboBox.Click += new System.EventHandler(this.ResetErrorLabels_ComboBox_Click);
             // 
             // doctor_label
             // 
@@ -129,7 +131,6 @@
             // addAppointment_button
             // 
             this.addAppointment_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.addAppointment_button.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.addAppointment_button.Location = new System.Drawing.Point(13, 419);
             this.addAppointment_button.Name = "addAppointment_button";
             this.addAppointment_button.Size = new System.Drawing.Size(97, 23);
@@ -156,6 +157,7 @@
             this.reasonForVisit_Textbox.Name = "reasonForVisit_Textbox";
             this.reasonForVisit_Textbox.Size = new System.Drawing.Size(266, 199);
             this.reasonForVisit_Textbox.TabIndex = 3;
+            this.reasonForVisit_Textbox.Click += new System.EventHandler(this.ResetErrorLabels_ComboBox_Click);
             // 
             // reasonForVisit_LBL
             // 
