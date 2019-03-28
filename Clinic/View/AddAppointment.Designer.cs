@@ -87,10 +87,13 @@
             // 
             // appointment_time_selector
             // 
+            this.appointment_time_selector.CustomFormat = "";
+            this.appointment_time_selector.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.appointment_time_selector.Location = new System.Drawing.Point(116, 88);
             this.appointment_time_selector.Name = "appointment_time_selector";
             this.appointment_time_selector.Size = new System.Drawing.Size(200, 20);
             this.appointment_time_selector.TabIndex = 2;
+            this.appointment_time_selector.Value = new System.DateTime(2019, 3, 7, 0, 0, 0, 0);
             // 
             // Patient_ComboBox
             // 

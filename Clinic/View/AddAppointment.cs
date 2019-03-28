@@ -10,6 +10,8 @@ namespace Clinic.View
         private DoctorController doctorController = new DoctorController();
         private PatientController patientController = new PatientController();
         private AppointmentController appointmentController = new AppointmentController();
+        private DateTime SelectedDateTime;
+        private bool timeBusy;
         public AddAppointment()
         {
             InitializeComponent();
@@ -37,9 +39,31 @@ namespace Clinic.View
         private void SetUp_DateTimePicker()
         {
             this.appointment_time_selector.Format = DateTimePickerFormat.Custom;
-            this.appointment_time_selector.CustomFormat = "MM/dd/yyyy hh:mm";
+            this.appointment_time_selector.CustomFormat = "MM/dd/yyyy";
+            this.time_Appointment_DateTimePicker.CustomFormat = "HH:MM";
+            this.time_Appointment_DateTimePicker.ShowUpDown = true;
+            this.time_Appointment_DateTimePicker.Value = DateTime.Now.Date.AddHours(DateTime.Now.Hour);
+            this.SelectedDateTime = this.appointment_time_selector.Value.Date + this.time_Appointment_DateTimePicker.Value.TimeOfDay;
+            time_Appointment_DateTimePicker.ValueChanged += new EventHandler(time_Appointment_ValueChanged);
         }
 
+
+        private void time_Appointment_ValueChanged(object sender, EventArgs e)
+        {
+            if (!timeBusy)
+            {
+                timeBusy = true;
+                DateTime dt = time_Appointment_DateTimePicker.Value;
+                if ((dt.Minute * 60 + dt.Second) % 300 != 0)
+                {
+                    TimeSpan diff = dt - this.SelectedDateTime;
+                    if (diff.Ticks < 0) time_Appointment_DateTimePicker.Value = this.SelectedDateTime.AddMinutes(-15);
+                    else time_Appointment_DateTimePicker.Value = this.SelectedDateTime.AddMinutes(15);
+                }
+                timeBusy = false;
+            }
+            this.SelectedDateTime = time_Appointment_DateTimePicker.Value;
+        }
 
         private void cancelAddAppointment_button_Click(object sender, EventArgs e)
         {
