@@ -16,6 +16,7 @@ namespace Clinic.UserControls
     public partial class patient_UserControl : UserControl
     {
         private bool DOB_ValueChanged = false;
+        private bool dataGridView_Is_Patient = true;
         private PatientController patientController = new PatientController();
         private AppointmentController appointmentController = new AppointmentController();
         public patient_UserControl()
@@ -54,9 +55,51 @@ namespace Clinic.UserControls
 
         private void patients_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow selectedRow = this.patients_datagridview.CurrentRow;
-            int selectedRowPatientID = (int) selectedRow.Cells["PatientID"].Value;
-            this.patients_datagridview.DataSource = this.appointmentController.GetAppointmentsByID(selectedRowPatientID);
+            if (this.dataGridView_Is_Patient)
+            {   
+                DataGridViewRow selectedRow = this.patients_datagridview.CurrentRow;
+                int selectedRowPatientID = (int)selectedRow.Cells["PatientID"].Value;
+                this.patients_datagridview.DataSource = null;
+                this.SetUpDataGridView_ForSelectedPatientAppointment();
+                this.GetAppointmentData_ForSelectedPatient(selectedRowPatientID);
+                this.dataGridView_Is_Patient = false;
+            }
+        }
+
+        private void SetUpDataGridView_ForSelectedPatientAppointment()
+        {
+            this.patients_datagridview.ColumnCount = 5;
+            this.patients_datagridview.ColumnHeadersVisible = true;
+            this.patients_datagridview.Columns[0].Name = "AppointmentID";
+            this.patients_datagridview.Columns[1].Name = "Date";
+            this.patients_datagridview.Columns[2].Name = "Reason For Visit";
+            this.patients_datagridview.Columns[3].Name = "Doctor";
+            this.patients_datagridview.Columns[4].Name = "Patient";
+        }
+
+        public void GetAppointmentData_ForSelectedPatient(int patientID)
+        {
+            this.patients_datagridview.DataSource = null;
+            List<Appointment> appointments = new List<Appointment>();
+            appointments = this.appointmentController.GetAppointmentsByPatientID(patientID);
+
+            if (appointments.Count > 0)
+            {
+                Appointment appointment = new Appointment();
+
+                for (int count = 0; count < appointments.Count; count++)
+                {
+                    appointment = appointments[count];
+                    string[] rowAdded = new string[] {
+                            appointment.AppointmentID.ToString(),
+                            appointment.Scheduled_Date.ToString(),
+                            appointment.Reason_For_Visit,
+                            appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
+                            appointment.Patient.FirstName + " " + appointment.Patient.LastName
+                        };
+                    this.patients_datagridview.Rows.Add(rowAdded);
+                }
+            }
         }
     }
 }

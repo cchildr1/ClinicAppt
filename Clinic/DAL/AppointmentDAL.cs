@@ -43,10 +43,15 @@ namespace Clinic.DAL
             return appointments;
         }
 
-        public List<Appointment> GetAppointmentsByID(int selectedRowPatientID)
+        /// <summary>
+        /// Returns appointents equal to the patient ID
+        /// </summary>
+        /// <param name="selectedRowPatientID"></param>
+        /// <returns></returns>
+        public List<Appointment> GetAppointmentsByPatientID(int selectedRowPatientID)
         {
             List<Appointment> appointments = new List<Appointment>();
-            string selectStatement = "Select id, scheduled_datetime, reason_for_visit, doctor_id, patient_id FROM appointment WHERE id = @id_clean";
+            string selectStatement = "Select id, scheduled_datetime, reason_for_visit, doctor_id, patient_id FROM appointment WHERE patient_id = @id_clean";
 
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
