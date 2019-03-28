@@ -233,9 +233,11 @@
             this.patients_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.patients_datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patients_datagridview.Location = new System.Drawing.Point(3, 76);
+            this.patients_datagridview.MultiSelect = false;
             this.patients_datagridview.Name = "patients_datagridview";
             this.patients_datagridview.Size = new System.Drawing.Size(844, 275);
             this.patients_datagridview.TabIndex = 3;
+            this.patients_datagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patients_datagridview_CellContentClick);
             // 
             // appointmentBindingSource
             // 

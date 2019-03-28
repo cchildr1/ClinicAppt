@@ -31,5 +31,10 @@ namespace Clinic.Controller
         {
             return this.appointmentDAL.GetAppointments();
         }
+
+        public List<Appointment> GetAppointmentsByID(int selectedRowPatientID)
+        {
+            return this.appointmentDAL.GetAppointmentsByID(selectedRowPatientID);
+        }
     }
 }

@@ -34,9 +34,7 @@ namespace Clinic.Controller
             {
                 return PatientDAL.GetPatientByLastName_DOB(lastname, dateOfBirth);
             }
-            else return PatientDAL.GetAllPatients();
-
-
+            else return PatientDAL.GetAllPatients_DOB(dateOfBirth);
         }
 
         public List<Patient> PatientByWithoutDOB_Firstname_LastName(string firstname, string lastname)
@@ -54,7 +52,6 @@ namespace Clinic.Controller
                 return PatientDAL.GetPatientByLastName_Only(lastname);
             }
             else return PatientDAL.GetAllPatients();
-
         }
     }
 }

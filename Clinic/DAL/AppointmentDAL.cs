@@ -43,6 +43,40 @@ namespace Clinic.DAL
             return appointments;
         }
 
+        public List<Appointment> GetAppointmentsByID(int selectedRowPatientID)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            string selectStatement = "Select id, scheduled_datetime, reason_for_visit, doctor_id, patient_id FROM appointment WHERE id = @id_clean";
+
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+               
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@id_clean", selectedRowPatientID);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Appointment appointment = new Appointment();
+                            appointment.Doctor = new Doctor();
+                            appointment.Patient = new Patient();
+                            appointment.AppointmentID = (int)reader["id"];
+                            appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
+                            appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
+                            appointment.Doctor = GetDoctorByID((int)reader["doctor_id"]);
+                            appointment.Patient = GetPatientByID((int)reader["patient_id"]);
+
+                            appointments.Add(appointment);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return appointments;
+        }
+
         /// <summary>
         /// Updates an Appointment record in the database.
         /// </summary>

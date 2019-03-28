@@ -17,6 +17,7 @@ namespace Clinic.UserControls
     {
         private bool DOB_ValueChanged = false;
         private PatientController patientController = new PatientController();
+        private AppointmentController appointmentController = new AppointmentController();
         public patient_UserControl()
         {
             InitializeComponent();
@@ -29,10 +30,12 @@ namespace Clinic.UserControls
             {
                 DateTime selected_DOB = this.DateOfBirth_datetimePicker.Value;
                 this.patients_datagridview.DataSource = this.patientController.PatientByFirst_Last_DOB(this.firstname_textbox.Text, this.lastname_textbox.Text, selected_DOB.Date);
+                this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
             else 
             {
                 this.patients_datagridview.DataSource = this.patientController.PatientByWithoutDOB_Firstname_LastName(this.firstname_textbox.Text, this.lastname_textbox.Text);
+                this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
 
         }
@@ -47,6 +50,13 @@ namespace Clinic.UserControls
             this.DateOfBirth_datetimePicker.Value = DateTime.Now;
             this.DOB_ValueChanged = false;
           
+        }
+
+        private void patients_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = this.patients_datagridview.CurrentRow;
+            int selectedRowPatientID = (int) selectedRow.Cells["PatientID"].Value;
+            this.patients_datagridview.DataSource = this.appointmentController.GetAppointmentsByID(selectedRowPatientID);
         }
     }
 }
