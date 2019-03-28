@@ -19,17 +19,22 @@ namespace Clinic.UserControls
             this.GetAppointmentData();
         }
 
+        /// <summary>
+        /// Sets up the appointment_DataGridView to display all apppointment's date, reason for visit, Doctor's name and nurse name
+        /// </summary>
         public void SetUpAppointment_DataGridView()
         {
-            this.appointments_datagridview.ColumnCount = 5;
+            this.appointments_datagridview.ColumnCount = 4;
             this.appointments_datagridview.ColumnHeadersVisible = true;
-            this.appointments_datagridview.Columns[0].Name ="AppointmentID";
-            this.appointments_datagridview.Columns[1].Name = "Date";
-            this.appointments_datagridview.Columns[2].Name ="Reason For Visit";
-            this.appointments_datagridview.Columns[3].Name ="Doctor";
-            this.appointments_datagridview.Columns[4].Name = "Patient";
+            this.appointments_datagridview.Columns[0].Name = "Date";
+            this.appointments_datagridview.Columns[1].Name ="Reason For Visit";
+            this.appointments_datagridview.Columns[2].Name ="Doctor";
+            this.appointments_datagridview.Columns[3].Name = "Patient";
         }
 
+        /// <summary>
+        /// Fills the DataGridView with all Appointments Date, reason for visit, Doctor's name and Patient's name
+        /// </summary>
         public void GetAppointmentData()
         {
             this.appointments_datagridview.DataSource = null;
@@ -43,7 +48,6 @@ namespace Clinic.UserControls
                     for (int count =0; count< appointments.Count;  count++) {
                         appointment = appointments[count];
                         string[] rowAdded = new string[] {
-                            appointment.AppointmentID.ToString(),
                             appointment.Scheduled_Date.ToString(),
                             appointment.Reason_For_Visit,
                             appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
@@ -52,34 +56,6 @@ namespace Clinic.UserControls
                         this.appointments_datagridview.Rows.Add(rowAdded);
                     }
                 }
-        }
-
-        private void FilterAppointment_button_Click(object sender, EventArgs e)
-        {
-            if (this.lastname_textbox.Text == "")
-            {
-                this.appointments_datagridview.DataSource = null;
-                List<Appointment> appointments = new List<Appointment>();
-                appointments = this.appointmentController.GetAppointmentsByName();
-
-                if (appointments.Count > 0)
-                {
-                    Appointment appointment = new Appointment();
-
-                    for (int count = 0; count < appointments.Count; count++)
-                    {
-                        appointment = appointments[count];
-                        string[] rowAdded = new string[] {
-                            appointment.AppointmentID.ToString(),
-                            appointment.Scheduled_Date.ToString(),
-                            appointment.Reason_For_Visit,
-                            appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
-                            appointment.Patient.FirstName + " " + appointment.Patient.LastName
-                        };
-                        this.appointments_datagridview.Rows.Add(rowAdded);
-                    }
-                }
-            }
         }
 
         private void Reset_Button_Click(object sender, EventArgs e)

@@ -51,7 +51,7 @@ namespace Clinic.Controller
             {
                 return PatientDAL.GetPatientByLastName_Only(lastname);
             }
-            else return PatientDAL.GetAllPatients();
+            else return PatientDAL.GetPatientByLastName_Only(lastname);
         }
     }
 }

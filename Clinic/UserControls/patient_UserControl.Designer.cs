@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.searchPatients_LBL = new System.Windows.Forms.Label();
             this.bottomRow_Appointments_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.ResetDataGridView_button = new System.Windows.Forms.Button();
+            this.getAllPatients = new System.Windows.Forms.Button();
             this.baseAppointment_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topRow_Appointment_tableLOP = new System.Windows.Forms.TableLayoutPanel();
             this.resetDateOfBirth = new System.Windows.Forms.Button();
@@ -44,8 +46,6 @@
             this.lastname_LBL = new System.Windows.Forms.Label();
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
-            this.ResetDataGridView_button = new System.Windows.Forms.Button();
-            this.getAllPatients = new System.Windows.Forms.Button();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
@@ -82,6 +82,26 @@
             this.bottomRow_Appointments_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.bottomRow_Appointments_TableLayoutPanel.Size = new System.Drawing.Size(844, 40);
             this.bottomRow_Appointments_TableLayoutPanel.TabIndex = 2;
+            // 
+            // ResetDataGridView_button
+            // 
+            this.ResetDataGridView_button.Location = new System.Drawing.Point(339, 3);
+            this.ResetDataGridView_button.Name = "ResetDataGridView_button";
+            this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
+            this.ResetDataGridView_button.TabIndex = 0;
+            this.ResetDataGridView_button.Text = "Reset Field";
+            this.ResetDataGridView_button.UseVisualStyleBackColor = true;
+            this.ResetDataGridView_button.Click += new System.EventHandler(this.ResetDataGridView_button_Click);
+            // 
+            // getAllPatients
+            // 
+            this.getAllPatients.Location = new System.Drawing.Point(171, 3);
+            this.getAllPatients.Name = "getAllPatients";
+            this.getAllPatients.Size = new System.Drawing.Size(91, 23);
+            this.getAllPatients.TabIndex = 1;
+            this.getAllPatients.Text = "Get All Patients";
+            this.getAllPatients.UseVisualStyleBackColor = true;
+            this.getAllPatients.Click += new System.EventHandler(this.getAllPatients_Click);
             // 
             // baseAppointment_TableLayoutPanel
             // 
@@ -243,26 +263,6 @@
             this.patients_datagridview.Size = new System.Drawing.Size(844, 275);
             this.patients_datagridview.TabIndex = 3;
             this.patients_datagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patients_datagridview_CellContentClick);
-            // 
-            // ResetDataGridView_button
-            // 
-            this.ResetDataGridView_button.Location = new System.Drawing.Point(339, 3);
-            this.ResetDataGridView_button.Name = "ResetDataGridView_button";
-            this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
-            this.ResetDataGridView_button.TabIndex = 0;
-            this.ResetDataGridView_button.Text = "Reset Field";
-            this.ResetDataGridView_button.UseVisualStyleBackColor = true;
-            this.ResetDataGridView_button.Click += new System.EventHandler(this.ResetDataGridView_button_Click);
-            // 
-            // getAllPatients
-            // 
-            this.getAllPatients.Location = new System.Drawing.Point(171, 3);
-            this.getAllPatients.Name = "getAllPatients";
-            this.getAllPatients.Size = new System.Drawing.Size(91, 23);
-            this.getAllPatients.TabIndex = 1;
-            this.getAllPatients.Text = "Get All Patients";
-            this.getAllPatients.UseVisualStyleBackColor = true;
-            this.getAllPatients.Click += new System.EventHandler(this.getAllPatients_Click);
             // 
             // appointmentBindingSource
             // 
