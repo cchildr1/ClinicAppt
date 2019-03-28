@@ -165,7 +165,7 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
            "JOIN person person ON personal_information_id = person.id " +
-           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean AND date_of_birth = @dateOfBirth)";
+           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -173,7 +173,7 @@ namespace Clinic.DAL
                 {
                     command.Parameters.AddWithValue("firstname_clean", @firstname);
                     command.Parameters.AddWithValue("lastname_clean", @lastname);
-                    command.Parameters.AddWithValue("dateOfBirth", dateOfBirth);
+                    command.Parameters.AddWithValue("dateOfBirthdate_clean", @dateOfBirth);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -186,9 +186,7 @@ namespace Clinic.DAL
                             PopulatePersonalInformation(patient);
                             patients.Add(patient);
                         }
-
                     }
-
                 }
                 connection.Close();
             }
@@ -219,9 +217,7 @@ namespace Clinic.DAL
                             PopulatePersonalInformation(patient);
                             patients.Add(patient);
                         }
-
                     }
-
                 }
                 connection.Close();
             }
@@ -253,9 +249,7 @@ namespace Clinic.DAL
                             PopulatePersonalInformation(patient);
                             patients.Add(patient);
                         }
-
                     }
-
                 }
                 connection.Close();
             }

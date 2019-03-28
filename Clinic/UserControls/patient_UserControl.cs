@@ -24,9 +24,11 @@ namespace Clinic.UserControls
 
         private void SearchAppointment_button_Click(object sender, EventArgs e)
         {
+            this.patients_datagridview.DataSource = null;
             if (this.DOB_ValueChanged)
             {
-                this.patients_datagridview.DataSource = this.patientController.PatientByFirst_Last_DOB(this.firstname_textbox.Text, this.lastname_textbox.Text, this.DateOfBirth_datetimePicker.Value);
+                DateTime selected_DOB = this.DateOfBirth_datetimePicker.Value;
+                this.patients_datagridview.DataSource = this.patientController.PatientByFirst_Last_DOB(this.firstname_textbox.Text, this.lastname_textbox.Text, selected_DOB.Date);
             }
             else 
             {
@@ -38,6 +40,13 @@ namespace Clinic.UserControls
         private void DateOfBirth_datetimePicker_ValueChanged(object sender, EventArgs e)
         {
             this.DOB_ValueChanged = true;
+        }
+
+        private void ResetDateOfBirth_Click(object sender, EventArgs e)
+        {
+            this.DateOfBirth_datetimePicker.Value = DateTime.Now;
+            this.DOB_ValueChanged = false;
+          
         }
     }
 }
