@@ -19,14 +19,6 @@ namespace Clinic.UserControls
             this.GetAppointmentData();
         }
 
-        private void PatientName_TextBox_Click(object sender, EventArgs e)
-        {
-            if (this.PatientName_TextBox.Text == "patient name")
-                {
-                    this.PatientName_TextBox.Text = "";
-                }          
-        }
-
         public void SetUpAppointment_DataGridView()
         {
             this.appointments_datagridview.ColumnCount = 5;
@@ -64,7 +56,30 @@ namespace Clinic.UserControls
 
         private void FilterAppointment_button_Click(object sender, EventArgs e)
         {
+            if (this.lastname_textbox.Text == "")
+            {
+                this.appointments_datagridview.DataSource = null;
+                List<Appointment> appointments = new List<Appointment>();
+                appointments = this.appointmentController.GetAppointmentsByName();
 
+                if (appointments.Count > 0)
+                {
+                    Appointment appointment = new Appointment();
+
+                    for (int count = 0; count < appointments.Count; count++)
+                    {
+                        appointment = appointments[count];
+                        string[] rowAdded = new string[] {
+                            appointment.AppointmentID.ToString(),
+                            appointment.Scheduled_Date.ToString(),
+                            appointment.Reason_For_Visit,
+                            appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
+                            appointment.Patient.FirstName + " " + appointment.Patient.LastName
+                        };
+                        this.appointments_datagridview.Rows.Add(rowAdded);
+                    }
+                }
+            }
         }
 
         private void Reset_Button_Click(object sender, EventArgs e)

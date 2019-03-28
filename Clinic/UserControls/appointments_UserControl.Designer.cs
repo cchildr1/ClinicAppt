@@ -32,17 +32,24 @@
             this.baseAppointment_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topRow_Appointment_tableLOP = new System.Windows.Forms.TableLayoutPanel();
             this.filterAppointments_LBL = new System.Windows.Forms.Label();
-            this.PatientName_TextBox = new System.Windows.Forms.TextBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.filterAppointment_button = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.firstname_textbox = new System.Windows.Forms.TextBox();
+            this.lastname_textbox = new System.Windows.Forms.TextBox();
+            this.patientnameLBL_TLP = new System.Windows.Forms.TableLayoutPanel();
+            this.firstname_lbl = new System.Windows.Forms.Label();
+            this.lastname_LBL = new System.Windows.Forms.Label();
+            this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.bottomRow_Appointments_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.create_Appointments_Button = new System.Windows.Forms.Button();
-            this.edit_appointments_Button = new System.Windows.Forms.Button();
             this.reset_Button = new System.Windows.Forms.Button();
             this.appointments_datagridview = new System.Windows.Forms.DataGridView();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.patientnameLBL_TLP.SuspendLayout();
             this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointments_datagridview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).BeginInit();
@@ -82,9 +89,11 @@
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.Controls.Add(this.filterAppointments_LBL, 0, 0);
-            this.topRow_Appointment_tableLOP.Controls.Add(this.PatientName_TextBox, 1, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.dateTimePicker2, 2, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.filterAppointment_button, 3, 0);
+            this.topRow_Appointment_tableLOP.Controls.Add(this.tableLayoutPanel1, 1, 0);
+            this.topRow_Appointment_tableLOP.Controls.Add(this.patientnameLBL_TLP, 1, 1);
+            this.topRow_Appointment_tableLOP.Controls.Add(this.dateOfBirth_LBL, 2, 1);
             this.topRow_Appointment_tableLOP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.topRow_Appointment_tableLOP.Location = new System.Drawing.Point(5, 5);
             this.topRow_Appointment_tableLOP.Margin = new System.Windows.Forms.Padding(5);
@@ -106,18 +115,6 @@
             this.filterAppointments_LBL.TabIndex = 0;
             this.filterAppointments_LBL.Text = "Filter Appointments";
             // 
-            // PatientName_TextBox
-            // 
-            this.PatientName_TextBox.AllowDrop = true;
-            this.PatientName_TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PatientName_TextBox.Location = new System.Drawing.Point(215, 5);
-            this.PatientName_TextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.PatientName_TextBox.Name = "PatientName_TextBox";
-            this.PatientName_TextBox.Size = new System.Drawing.Size(200, 20);
-            this.PatientName_TextBox.TabIndex = 1;
-            this.PatientName_TextBox.Text = "patient name";
-            this.PatientName_TextBox.Click += new System.EventHandler(this.PatientName_TextBox_Click);
-            // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -137,6 +134,75 @@
             this.filterAppointment_button.UseVisualStyleBackColor = true;
             this.filterAppointment_button.Click += new System.EventHandler(this.FilterAppointment_button_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.firstname_textbox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lastname_textbox, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(213, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 28);
+            this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // firstname_textbox
+            // 
+            this.firstname_textbox.Location = new System.Drawing.Point(3, 3);
+            this.firstname_textbox.Name = "firstname_textbox";
+            this.firstname_textbox.Size = new System.Drawing.Size(94, 20);
+            this.firstname_textbox.TabIndex = 0;
+            // 
+            // lastname_textbox
+            // 
+            this.lastname_textbox.Location = new System.Drawing.Point(103, 3);
+            this.lastname_textbox.Name = "lastname_textbox";
+            this.lastname_textbox.Size = new System.Drawing.Size(94, 20);
+            this.lastname_textbox.TabIndex = 1;
+            // 
+            // patientnameLBL_TLP
+            // 
+            this.patientnameLBL_TLP.ColumnCount = 2;
+            this.patientnameLBL_TLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.patientnameLBL_TLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.patientnameLBL_TLP.Controls.Add(this.firstname_lbl, 0, 0);
+            this.patientnameLBL_TLP.Controls.Add(this.lastname_LBL, 1, 0);
+            this.patientnameLBL_TLP.Location = new System.Drawing.Point(213, 37);
+            this.patientnameLBL_TLP.Name = "patientnameLBL_TLP";
+            this.patientnameLBL_TLP.RowCount = 1;
+            this.patientnameLBL_TLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.patientnameLBL_TLP.Size = new System.Drawing.Size(200, 14);
+            this.patientnameLBL_TLP.TabIndex = 7;
+            // 
+            // firstname_lbl
+            // 
+            this.firstname_lbl.AutoSize = true;
+            this.firstname_lbl.Location = new System.Drawing.Point(3, 0);
+            this.firstname_lbl.Name = "firstname_lbl";
+            this.firstname_lbl.Size = new System.Drawing.Size(55, 13);
+            this.firstname_lbl.TabIndex = 0;
+            this.firstname_lbl.Text = "First name";
+            // 
+            // lastname_LBL
+            // 
+            this.lastname_LBL.AutoSize = true;
+            this.lastname_LBL.Location = new System.Drawing.Point(103, 0);
+            this.lastname_LBL.Name = "lastname_LBL";
+            this.lastname_LBL.Size = new System.Drawing.Size(56, 13);
+            this.lastname_LBL.TabIndex = 1;
+            this.lastname_LBL.Text = "Last name";
+            // 
+            // dateOfBirth_LBL
+            // 
+            this.dateOfBirth_LBL.AutoSize = true;
+            this.dateOfBirth_LBL.Location = new System.Drawing.Point(423, 34);
+            this.dateOfBirth_LBL.Name = "dateOfBirth_LBL";
+            this.dateOfBirth_LBL.Size = new System.Drawing.Size(68, 13);
+            this.dateOfBirth_LBL.TabIndex = 5;
+            this.dateOfBirth_LBL.Text = "Date Of Birth";
+            // 
             // bottomRow_Appointments_TableLayoutPanel
             // 
             this.bottomRow_Appointments_TableLayoutPanel.ColumnCount = 3;
@@ -144,7 +210,6 @@
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.create_Appointments_Button, 0, 0);
-            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.edit_appointments_Button, 1, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.reset_Button, 2, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomRow_Appointments_TableLayoutPanel.Location = new System.Drawing.Point(3, 357);
@@ -163,15 +228,6 @@
             this.create_Appointments_Button.Text = "Create Appointment";
             this.create_Appointments_Button.UseVisualStyleBackColor = true;
             this.create_Appointments_Button.Click += new System.EventHandler(this.Create_Appointments_Button_Click);
-            // 
-            // edit_appointments_Button
-            // 
-            this.edit_appointments_Button.Location = new System.Drawing.Point(171, 3);
-            this.edit_appointments_Button.Name = "edit_appointments_Button";
-            this.edit_appointments_Button.Size = new System.Drawing.Size(107, 23);
-            this.edit_appointments_Button.TabIndex = 1;
-            this.edit_appointments_Button.Text = "Edit Appointment";
-            this.edit_appointments_Button.UseVisualStyleBackColor = true;
             // 
             // reset_Button
             // 
@@ -208,6 +264,10 @@
             this.baseAppointment_TableLayoutPanel.ResumeLayout(false);
             this.topRow_Appointment_tableLOP.ResumeLayout(false);
             this.topRow_Appointment_tableLOP.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.patientnameLBL_TLP.ResumeLayout(false);
+            this.patientnameLBL_TLP.PerformLayout();
             this.bottomRow_Appointments_TableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.appointments_datagridview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).EndInit();
@@ -220,13 +280,18 @@
         private System.Windows.Forms.TableLayoutPanel baseAppointment_TableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel topRow_Appointment_tableLOP;
         private System.Windows.Forms.Label filterAppointments_LBL;
-        private System.Windows.Forms.TextBox PatientName_TextBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button filterAppointment_button;
         private System.Windows.Forms.TableLayoutPanel bottomRow_Appointments_TableLayoutPanel;
         private System.Windows.Forms.Button create_Appointments_Button;
-        private System.Windows.Forms.Button edit_appointments_Button;
         private System.Windows.Forms.Button reset_Button;
         private System.Windows.Forms.DataGridView appointments_datagridview;
+        private System.Windows.Forms.Label dateOfBirth_LBL;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox firstname_textbox;
+        private System.Windows.Forms.TextBox lastname_textbox;
+        private System.Windows.Forms.TableLayoutPanel patientnameLBL_TLP;
+        private System.Windows.Forms.Label firstname_lbl;
+        private System.Windows.Forms.Label lastname_LBL;
     }
 }
