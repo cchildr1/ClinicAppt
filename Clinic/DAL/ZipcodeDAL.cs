@@ -1,4 +1,5 @@
 ﻿using Clinic.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -64,6 +65,11 @@ namespace Clinic.DAL
                 connection.Close();
                 return city;
             }
+        }
+
+        internal bool IsValidZipcode(string zipcode)
+        {
+            throw new NotImplementedException();
         }
     }
 }
