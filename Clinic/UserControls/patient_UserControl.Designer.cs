@@ -33,6 +33,7 @@
             this.bottomRow_Appointments_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ResetDataGridView_button = new System.Windows.Forms.Button();
             this.getAllPatients = new System.Windows.Forms.Button();
+            this.addPatient_button = new System.Windows.Forms.Button();
             this.baseAppointment_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topRow_Appointment_tableLOP = new System.Windows.Forms.TableLayoutPanel();
             this.resetDateOfBirth = new System.Windows.Forms.Button();
@@ -75,6 +76,7 @@
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.ResetDataGridView_button, 2, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.getAllPatients, 1, 0);
+            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.addPatient_button, 0, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomRow_Appointments_TableLayoutPanel.Location = new System.Drawing.Point(3, 357);
             this.bottomRow_Appointments_TableLayoutPanel.Name = "bottomRow_Appointments_TableLayoutPanel";
@@ -102,6 +104,16 @@
             this.getAllPatients.Text = "Get All Patients";
             this.getAllPatients.UseVisualStyleBackColor = true;
             this.getAllPatients.Click += new System.EventHandler(this.getAllPatients_Click);
+            // 
+            // addPatient_button
+            // 
+            this.addPatient_button.Location = new System.Drawing.Point(3, 3);
+            this.addPatient_button.Name = "addPatient_button";
+            this.addPatient_button.Size = new System.Drawing.Size(75, 23);
+            this.addPatient_button.TabIndex = 2;
+            this.addPatient_button.Text = "Add Patient";
+            this.addPatient_button.UseVisualStyleBackColor = true;
+            this.addPatient_button.Click += new System.EventHandler(this.AddPatient_button_Click);
             // 
             // baseAppointment_TableLayoutPanel
             // 
@@ -312,5 +324,6 @@
         private System.Windows.Forms.Button resetDateOfBirth;
         private System.Windows.Forms.Button ResetDataGridView_button;
         private System.Windows.Forms.Button getAllPatients;
+        private System.Windows.Forms.Button addPatient_button;
     }
 }
