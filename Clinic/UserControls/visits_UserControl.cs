@@ -38,6 +38,7 @@ namespace Clinic.UserControls
             foreach (Visit visit in visits) {
                 string[] row =
                 {
+                    visit.VisitId.ToString(),
                     visit.DateTime.ToString(),
                     visit.Appointment.Scheduled_Date.ToString(),
                     visit.Appointment.Patient.FullName,
@@ -71,16 +72,47 @@ namespace Clinic.UserControls
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            this.Reset();
+            this.ResetDataGridView();
+            int doctorID = 0;
+            int nurseID = 0;
+            DateTime appointmentStart = DateTime.MinValue;
+            DateTime appointmentEnd = DateTime.MaxValue;
+            DateTime visitStart = DateTime.MinValue;
+            DateTime visitEnd = DateTime.MaxValue;
+            if (this.DoctorComboBox.SelectedValue != null)
+            {
+                doctorID = (int)this.DoctorComboBox.SelectedValue;
+            }
+            if (this.NurseComboBox.SelectedValue != null)
+            {
+                nurseID = (int)this.NurseComboBox.SelectedValue;
+            }
+            if (this.DTPAppointmentStart.Checked)
+            {
+                appointmentStart = this.DTPAppointmentStart.Value;
+            }
+            if (this.DTPAppointmentEnd.Checked)
+            {
+                appointmentEnd = this.DTPAppointmentEnd.Value;
+            }
             this.PopulateDataGridView(this.visitController.SearchVisits(
-                (int)this.DoctorComboBox.SelectedValue)
-                );
+                    doctorID,
+                    nurseID, 
+                    this.TbPatient.Text,
+                    appointmentStart,
+                    appointmentEnd,
+                    visitStart,
+                    visitEnd
+                ));
             
         }
 
+        private void ResetDataGridView() {
+            this.PopulateDataGridView(this.visitController.GetAllVisits());
+        }
         private void Reset()
         {
-            this.PopulateDataGridView(this.visitController.GetAllVisits());
+            this.ResetDataGridView();
             this.DoctorComboBox.SelectedIndex = -1;
             this.NurseComboBox.SelectedIndex = -1;
             this.TbPatient.Text = "";
