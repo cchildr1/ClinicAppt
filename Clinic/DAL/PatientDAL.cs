@@ -1,4 +1,5 @@
 ﻿using Clinic.Model;
+using Clinic.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,14 +9,15 @@ namespace Clinic.DAL
     /// <summary>
     /// Returns information from DB regarding patients
     /// </summary>
-    public static class PatientDAL
+    public class PatientDAL
     {
+        private ZipcodeDAL zipcodeDAL = new ZipcodeDAL();
         /// <summary>
         /// Returns all visits for a specified patient
         /// </summary>
         /// <param name="patient">patient object, must contain a patient ID at minimum</param>
         /// <returns>List of all visits</returns>
-        public static List<Visit> GetAllVisitsByPatient(Patient patient)
+        public List<Visit> GetAllVisitsByPatient(Patient patient)
         {
             List<Visit> visits = new List<Visit>();
             string selectStatement = "SELECT visit_datetime as visitTime, " +
@@ -90,7 +92,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="dateOfBirth">Accepted DateTime value - shorted to just Date</param>
         /// <returns>List of Patients equal to the accepted DateTime</returns>
-        public static List<Patient> GetAllPatients_DOB(DateTime dateOfBirth)
+        public List<Patient> GetAllPatients_DOB(DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -126,7 +128,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="lastname">Accepted Lastname value</param>
         /// <returns>All patients with a lastname equal to lastname</returns>
-        public static List<Patient> GetPatientByLastName_Only(string lastname)
+        public List<Patient> GetPatientByLastName_Only(string lastname)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -165,7 +167,7 @@ namespace Clinic.DAL
         /// <param name="lastname">Accepted Lastname value</param>
         /// <param name="dateOfBirth">accepted datetime</param>
         /// <returns>All patients with a lastname equal to lastname and dateOfBirth equal to accepted dateOfBirth</returns>
-        public static List<Patient> GetPatientByLastName_DOB(string lastname, DateTime dateOfBirth)
+        public List<Patient> GetPatientByLastName_DOB(string lastname, DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -204,7 +206,7 @@ namespace Clinic.DAL
         /// <param name="firstname">Accepted Lastname value</param>
         /// <param name="dateOfBirth">accepted datetime</param>
         /// <returns>All patients with a firstname equal to firstname and dateOfBirth equal to accepted dateOfBirth</returns>
-        public static List<Patient> GetPatientByFirstName_DOB(string firstname, DateTime dateOfBirth)
+        public List<Patient> GetPatientByFirstName_DOB(string firstname, DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -242,7 +244,7 @@ namespace Clinic.DAL
         /// <param name="firstname">Accepted firstname value</param>
         /// <param name="lastname">accepted lastname</param>
         /// <returns>All patients with a first and last name equal to the respected accepted values</returns>
-        public static List<Patient> PatientByFirst_LastName(string firstname, string lastname)
+        public List<Patient> PatientByFirst_LastName(string firstname, string lastname)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -281,7 +283,7 @@ namespace Clinic.DAL
         /// <param name="lastname">accepted lastname</param>
         /// <param name="dateOfBirth">accepted DateTime</param>
         /// <returns>Returns a list of patients with first last and DOB equal to the respective active values</returns>
-        public static List<Patient> GetPatientByFirst_Last_DOB(string firstname, string lastname, DateTime dateOfBirth)
+        public List<Patient> GetPatientByFirst_Last_DOB(string firstname, string lastname, DateTime dateOfBirth)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -319,7 +321,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="firstname">Accepted Lastname value</param>
         /// <returns>All patients with a firstname equal to firstname</returns>
-        public static List<Patient> GetPatientByFirstName_Only(string @firstname)
+        public List<Patient> GetPatientByFirstName_Only(string @firstname)
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
@@ -354,7 +356,7 @@ namespace Clinic.DAL
         /// Gets all patients from DB with personal information populated
         /// </summary>
         /// <returns>List of all patients</returns>
-        public static List<Patient> GetAllPatients()
+        public List<Patient> GetAllPatients()
         {
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT * FROM patient;";
@@ -387,7 +389,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="patient">Patient object</param>
         /// <returns>a List of appointment objects</returns>
-        public static List<Appointment> GetAllAppointmentsForPatient(Patient patient)
+        public List<Appointment> GetAllAppointmentsForPatient(Patient patient)
         {
             List<Appointment> appointments = new List<Appointment>();
             string selectStatement = "SELECT * FROM appointment WHERE patient_id = @patientID;";
@@ -422,7 +424,7 @@ namespace Clinic.DAL
             return appointments;
         }
 
-        private static Person PopulatePersonalInformation(Person person)
+        private Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -443,6 +445,8 @@ namespace Clinic.DAL
                             person.StreetAddress = reader["street_address"].ToString();
                             person.Phone = reader["phone"].ToString();
                             person.Zipcode = reader["zipcode"].ToString();
+                            person.State = zipcodeDAL.GetStateByZipcode(reader["zipcode"].ToString());
+                            person.City = zipcodeDAL.GetCityByZipcode(reader["zipcode"].ToString());
                         }
                     }
                 }
@@ -456,7 +460,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="patientID">Accepted Patient ID</param>
         /// <returns>returns a patient equal to the accepted patientID</returns>
-        public static Patient GetPatientByID(int patientID)
+        public Patient GetPatientByID(int patientID)
         {
             string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
             Patient patient = new Patient();

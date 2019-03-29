@@ -13,13 +13,14 @@ namespace Clinic.Controller
     /// </summary>
     class PatientController
     {
+        PatientDAL patientDAL = new PatientDAL();
         /// <summary>
         /// Returns a list of all Patients
         /// </summary>
         /// <returns>a list of all Patients</returns>
         public List<Patient> GetAllPatients()
         {
-            return PatientDAL.GetAllPatients();
+            return this.patientDAL.GetAllPatients();
         }
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace Clinic.Controller
         /// <returns>The patient equal to the accepted patientID</returns>
         public Patient GetPatientByID(int patientID)
         {
-            return PatientDAL.GetPatientByID(patientID);
+            return this.patientDAL.GetPatientByID(patientID);
         }
 
         /// <summary>
@@ -44,17 +45,17 @@ namespace Clinic.Controller
         {
             if (firstname != "" && lastname != "")
             {
-                return PatientDAL.GetPatientByFirst_Last_DOB(firstname, lastname, dateOfBirth);
+                return this.patientDAL.GetPatientByFirst_Last_DOB(firstname, lastname, dateOfBirth);
             }
             else if (firstname != "")
             {
-                return PatientDAL.GetPatientByFirstName_DOB(firstname, dateOfBirth);
+                return this.patientDAL.GetPatientByFirstName_DOB(firstname, dateOfBirth);
             }
             else if (lastname != "")
             {
-                return PatientDAL.GetPatientByLastName_DOB(lastname, dateOfBirth);
+                return this.patientDAL.GetPatientByLastName_DOB(lastname, dateOfBirth);
             }
-            else return PatientDAL.GetAllPatients_DOB(dateOfBirth);
+            else return this.patientDAL.GetAllPatients_DOB(dateOfBirth);
         }
 
         /// <summary>
@@ -68,17 +69,17 @@ namespace Clinic.Controller
         {
             if (firstname != "" && lastname != "")
             {
-                return PatientDAL.PatientByFirst_LastName(firstname, lastname);
+                return this.patientDAL.PatientByFirst_LastName(firstname, lastname);
             }
             else if (firstname != "")
             {
-                return PatientDAL.GetPatientByFirstName_Only(firstname);
+                return this.patientDAL.GetPatientByFirstName_Only(firstname);
             }
             else if (lastname != "")
             {
-                return PatientDAL.GetPatientByLastName_Only(lastname);
+                return this.patientDAL.GetPatientByLastName_Only(lastname);
             }
-            else return PatientDAL.GetPatientByLastName_Only(lastname);
+            else return this.patientDAL.GetPatientByLastName_Only(lastname);
         }
     }
 }

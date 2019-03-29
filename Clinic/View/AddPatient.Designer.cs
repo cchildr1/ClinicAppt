@@ -71,23 +71,23 @@
             this.AddPatientBase_TableLayoutPanel.Controls.Add(this.lastname_textbox, 1, 1);
             this.AddPatientBase_TableLayoutPanel.Controls.Add(this.firstname_textbox, 1, 0);
             this.AddPatientBase_TableLayoutPanel.Controls.Add(this.streetAddress_textbox, 1, 5);
-            this.AddPatientBase_TableLayoutPanel.Controls.Add(this.addPatientDialog, 0, 8);
-            this.AddPatientBase_TableLayoutPanel.Controls.Add(this.cancel_button, 1, 8);
+            this.AddPatientBase_TableLayoutPanel.Controls.Add(this.cancel_button, 1, 10);
+            this.AddPatientBase_TableLayoutPanel.Controls.Add(this.addPatientDialog, 0, 10);
             this.AddPatientBase_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddPatientBase_TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.AddPatientBase_TableLayoutPanel.Name = "AddPatientBase_TableLayoutPanel";
             this.AddPatientBase_TableLayoutPanel.RowCount = 11;
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.77193F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.523809F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.270677F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.725686F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.98005F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.5F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.75F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.5F));
             this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.AddPatientBase_TableLayoutPanel.Size = new System.Drawing.Size(395, 450);
             this.AddPatientBase_TableLayoutPanel.TabIndex = 0;
             // 
@@ -104,7 +104,7 @@
             // lastname_lbl
             // 
             this.lastname_lbl.AutoSize = true;
-            this.lastname_lbl.Location = new System.Drawing.Point(5, 50);
+            this.lastname_lbl.Location = new System.Drawing.Point(5, 38);
             this.lastname_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.lastname_lbl.Name = "lastname_lbl";
             this.lastname_lbl.Size = new System.Drawing.Size(58, 13);
@@ -114,7 +114,7 @@
             // dateOfBirth_LBL
             // 
             this.dateOfBirth_LBL.AutoSize = true;
-            this.dateOfBirth_LBL.Location = new System.Drawing.Point(5, 95);
+            this.dateOfBirth_LBL.Location = new System.Drawing.Point(5, 74);
             this.dateOfBirth_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.dateOfBirth_LBL.Name = "dateOfBirth_LBL";
             this.dateOfBirth_LBL.Size = new System.Drawing.Size(68, 13);
@@ -124,7 +124,7 @@
             // SSN_Label
             // 
             this.SSN_Label.AutoSize = true;
-            this.SSN_Label.Location = new System.Drawing.Point(5, 140);
+            this.SSN_Label.Location = new System.Drawing.Point(5, 105);
             this.SSN_Label.Margin = new System.Windows.Forms.Padding(5);
             this.SSN_Label.Name = "SSN_Label";
             this.SSN_Label.Size = new System.Drawing.Size(29, 13);
@@ -134,7 +134,7 @@
             // gender_LBL
             // 
             this.gender_LBL.AutoSize = true;
-            this.gender_LBL.Location = new System.Drawing.Point(5, 185);
+            this.gender_LBL.Location = new System.Drawing.Point(5, 142);
             this.gender_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.gender_LBL.Name = "gender_LBL";
             this.gender_LBL.Size = new System.Drawing.Size(42, 13);
@@ -144,7 +144,7 @@
             // streetAddress_LBL
             // 
             this.streetAddress_LBL.AutoSize = true;
-            this.streetAddress_LBL.Location = new System.Drawing.Point(5, 230);
+            this.streetAddress_LBL.Location = new System.Drawing.Point(5, 172);
             this.streetAddress_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.streetAddress_LBL.Name = "streetAddress_LBL";
             this.streetAddress_LBL.Size = new System.Drawing.Size(76, 13);
@@ -154,7 +154,7 @@
             // phone_number_LBL
             // 
             this.phone_number_LBL.AutoSize = true;
-            this.phone_number_LBL.Location = new System.Drawing.Point(5, 275);
+            this.phone_number_LBL.Location = new System.Drawing.Point(5, 251);
             this.phone_number_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.phone_number_LBL.Name = "phone_number_LBL";
             this.phone_number_LBL.Size = new System.Drawing.Size(38, 13);
@@ -164,7 +164,7 @@
             // zipcode_lbl
             // 
             this.zipcode_lbl.AutoSize = true;
-            this.zipcode_lbl.Location = new System.Drawing.Point(5, 320);
+            this.zipcode_lbl.Location = new System.Drawing.Point(5, 292);
             this.zipcode_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.zipcode_lbl.Name = "zipcode_lbl";
             this.zipcode_lbl.Size = new System.Drawing.Size(46, 13);
@@ -174,21 +174,21 @@
             // gender_dropdownBox
             // 
             this.gender_dropdownBox.FormattingEnabled = true;
-            this.gender_dropdownBox.Location = new System.Drawing.Point(200, 183);
+            this.gender_dropdownBox.Location = new System.Drawing.Point(200, 140);
             this.gender_dropdownBox.Name = "gender_dropdownBox";
             this.gender_dropdownBox.Size = new System.Drawing.Size(121, 21);
             this.gender_dropdownBox.TabIndex = 5;
             // 
             // dateOfBirth_DateTimePicker
             // 
-            this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(200, 93);
+            this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(200, 72);
             this.dateOfBirth_DateTimePicker.Name = "dateOfBirth_DateTimePicker";
             this.dateOfBirth_DateTimePicker.Size = new System.Drawing.Size(192, 20);
             this.dateOfBirth_DateTimePicker.TabIndex = 9;
             // 
             // phoneNumber_textbox
             // 
-            this.phoneNumber_textbox.Location = new System.Drawing.Point(200, 273);
+            this.phoneNumber_textbox.Location = new System.Drawing.Point(200, 249);
             this.phoneNumber_textbox.MaxLength = 15;
             this.phoneNumber_textbox.Name = "phoneNumber_textbox";
             this.phoneNumber_textbox.Size = new System.Drawing.Size(100, 20);
@@ -196,21 +196,21 @@
             // 
             // zipcode_textbox
             // 
-            this.zipcode_textbox.Location = new System.Drawing.Point(200, 318);
+            this.zipcode_textbox.Location = new System.Drawing.Point(200, 290);
             this.zipcode_textbox.Name = "zipcode_textbox";
             this.zipcode_textbox.Size = new System.Drawing.Size(100, 20);
             this.zipcode_textbox.TabIndex = 8;
             // 
             // ssn_textbox
             // 
-            this.ssn_textbox.Location = new System.Drawing.Point(200, 138);
+            this.ssn_textbox.Location = new System.Drawing.Point(200, 103);
             this.ssn_textbox.Name = "ssn_textbox";
             this.ssn_textbox.Size = new System.Drawing.Size(100, 20);
             this.ssn_textbox.TabIndex = 4;
             // 
             // lastname_textbox
             // 
-            this.lastname_textbox.Location = new System.Drawing.Point(200, 48);
+            this.lastname_textbox.Location = new System.Drawing.Point(200, 36);
             this.lastname_textbox.Name = "lastname_textbox";
             this.lastname_textbox.Size = new System.Drawing.Size(100, 20);
             this.lastname_textbox.TabIndex = 2;
@@ -225,25 +225,25 @@
             // streetAddress_textbox
             // 
             this.streetAddress_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.streetAddress_textbox.Location = new System.Drawing.Point(200, 228);
+            this.streetAddress_textbox.Location = new System.Drawing.Point(200, 170);
             this.streetAddress_textbox.Multiline = true;
             this.streetAddress_textbox.Name = "streetAddress_textbox";
-            this.streetAddress_textbox.Size = new System.Drawing.Size(192, 39);
+            this.streetAddress_textbox.Size = new System.Drawing.Size(192, 73);
             this.streetAddress_textbox.TabIndex = 6;
             // 
             // addPatientDialog
             // 
-            this.addPatientDialog.Location = new System.Drawing.Point(3, 363);
+            this.addPatientDialog.Location = new System.Drawing.Point(3, 417);
             this.addPatientDialog.Name = "addPatientDialog";
             this.addPatientDialog.Size = new System.Drawing.Size(75, 23);
             this.addPatientDialog.TabIndex = 10;
-            this.addPatientDialog.Text = "button1";
+            this.addPatientDialog.Text = "Add Patient";
             this.addPatientDialog.UseVisualStyleBackColor = true;
             // 
             // cancel_button
             // 
             this.cancel_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel_button.Location = new System.Drawing.Point(200, 363);
+            this.cancel_button.Location = new System.Drawing.Point(200, 417);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 11;
