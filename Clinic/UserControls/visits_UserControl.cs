@@ -26,7 +26,23 @@ namespace Clinic.UserControls
         {
             InitializeComponent();
             this.visits = this.controller.GetAllVisits();
-            this.visitDataGridView.DataSource = this.visits;
+            this.PopulateDataGridView();
+        }
+
+        private void PopulateDataGridView()
+        {
+            foreach (Visit visit in this.visits) {
+                string[] row =
+                {
+                    visit.DateTime.ToString(),
+                    visit.Appointment.Scheduled_Date.ToString(),
+                    visit.Appointment.Patient.FullName,
+                    visit.Appointment.Doctor.FullName,
+                    visit.Nurse.FullName,
+                    visit.Symptoms
+                };
+                this.visitDataGridView.Rows.Add(row);
+            }
         }
     }
 }

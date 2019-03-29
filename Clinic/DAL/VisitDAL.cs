@@ -71,8 +71,13 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// Returns all visits in DB
+        /// </summary>
+        /// <returns>List of all visits</returns>
         public List<Visit> GetAllVisits()
         {
+            AppointmentDAL appointmentDAL = new AppointmentDAL();
             List<Visit> visits = new List<Visit>();
             string selectStatement = "SELECT * FROM visit;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -96,10 +101,7 @@ namespace Clinic.DAL
                                 Symptoms = reader["symptoms"].ToString(),
                                 Info = reader["checkup_info"].ToString(),
                                 Nurse = NurseDAL.GetNurseByID((int)reader["nurse_id"]),
-                                Appointment = new Appointment
-                                {
-                                    AppointmentID = (int)reader["appointment_id"]
-                                },
+                                Appointment = appointmentDAL.GetAppointmentByID((int)reader["appointment_id"]),                               
                                 InitialDiagnosis = reader["initial_diagnosis"].ToString(),
                                 FinalDiagnosis = reader["final_diagnosis"].ToString()
                             };
