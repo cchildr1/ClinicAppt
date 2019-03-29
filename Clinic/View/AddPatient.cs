@@ -90,7 +90,7 @@ namespace Clinic.View
             if (!this.IsPhoneNumber(this.phoneNumber_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must enter a valid phone number\n";
+                this.errorMessage += "Must enter a valid phone number ###-###-####\n";
                 this.phone_number_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
