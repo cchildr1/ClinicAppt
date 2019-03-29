@@ -68,13 +68,12 @@ namespace Clinic.UserControls
 
         private void SetUpDataGridView_ForSelectedPatientAppointment()
         {
-            this.patients_datagridview.ColumnCount = 5;
+            this.patients_datagridview.ColumnCount = 4;
             this.patients_datagridview.ColumnHeadersVisible = true;
-            this.patients_datagridview.Columns[0].Name = "AppointmentID";
-            this.patients_datagridview.Columns[1].Name = "Date";
-            this.patients_datagridview.Columns[2].Name = "Reason For Visit";
-            this.patients_datagridview.Columns[3].Name = "Doctor";
-            this.patients_datagridview.Columns[4].Name = "Patient";
+            this.patients_datagridview.Columns[0].Name = "Date";
+            this.patients_datagridview.Columns[1].Name = "Reason For Visit";
+            this.patients_datagridview.Columns[2].Name = "Doctor";
+            this.patients_datagridview.Columns[3].Name = "Patient";
         }
 
         public void GetAppointmentData_ForSelectedPatient(int patientID)
@@ -91,7 +90,6 @@ namespace Clinic.UserControls
                 {
                     appointment = appointments[count];
                     string[] rowAdded = new string[] {
-                            appointment.AppointmentID.ToString(),
                             appointment.Scheduled_Date.ToString(),
                             appointment.Reason_For_Visit,
                             appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
