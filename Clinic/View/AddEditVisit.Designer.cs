@@ -41,6 +41,8 @@
             System.Windows.Forms.Label initialDiagnosisLabel;
             System.Windows.Forms.Label finalDiagnosisLabel;
             System.Windows.Forms.Label fullNameLabel2;
+            System.Windows.Forms.Label bodyTemperatureLabel;
+            System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.doctorTextBox = new System.Windows.Forms.TextBox();
@@ -57,6 +59,8 @@
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bodyTemperatureTextBox = new System.Windows.Forms.TextBox();
+            this.infoTextBox = new System.Windows.Forms.TextBox();
             fullNameLabel1 = new System.Windows.Forms.Label();
             fullNameLabel = new System.Windows.Forms.Label();
             dateTimeLabel = new System.Windows.Forms.Label();
@@ -69,6 +73,8 @@
             initialDiagnosisLabel = new System.Windows.Forms.Label();
             finalDiagnosisLabel = new System.Windows.Forms.Label();
             fullNameLabel2 = new System.Windows.Forms.Label();
+            bodyTemperatureLabel = new System.Windows.Forms.Label();
+            infoLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -183,9 +189,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             symptomsLabel.AutoSize = true;
-            symptomsLabel.Location = new System.Drawing.Point(3, 131);
+            symptomsLabel.Location = new System.Drawing.Point(3, 157);
             symptomsLabel.Name = "symptomsLabel";
-            symptomsLabel.Size = new System.Drawing.Size(83, 98);
+            symptomsLabel.Size = new System.Drawing.Size(83, 74);
             symptomsLabel.TabIndex = 16;
             symptomsLabel.Text = "Symptoms:";
             symptomsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -196,11 +202,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             initialDiagnosisLabel.AutoSize = true;
-            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 229);
+            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 305);
             initialDiagnosisLabel.Name = "initialDiagnosisLabel";
-            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 98);
+            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 74);
             initialDiagnosisLabel.TabIndex = 18;
             initialDiagnosisLabel.Text = "Initial Diagnosis:";
+            initialDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // finalDiagnosisLabel
             // 
@@ -208,11 +215,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 327);
+            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 379);
             finalDiagnosisLabel.Name = "finalDiagnosisLabel";
-            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 98);
+            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 74);
             finalDiagnosisLabel.TabIndex = 20;
             finalDiagnosisLabel.Text = "Final Diagnosis:";
+            finalDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fullNameLabel2
             // 
@@ -246,14 +254,18 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(infoLabel, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.infoTextBox, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(bodyTemperatureLabel, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.bodyTemperatureTextBox, 1, 5);
             this.tableLayoutPanel1.Controls.Add(fullNameLabel2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.doctorTextBox, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(finalDiagnosisLabel, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.finalDiagnosisTextBox, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(initialDiagnosisLabel, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.initialDiagnosisTextBox, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(symptomsLabel, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.symptomsTextBox, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(finalDiagnosisLabel, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.finalDiagnosisTextBox, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(initialDiagnosisLabel, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.initialDiagnosisTextBox, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(symptomsLabel, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.symptomsTextBox, 1, 6);
             this.tableLayoutPanel1.Controls.Add(weightLabel, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.weightTextBox, 3, 4);
             this.tableLayoutPanel1.Controls.Add(pulseLabel, 0, 4);
@@ -270,22 +282,24 @@
             this.tableLayoutPanel1.Controls.Add(this.NurseComboBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.patientTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(fullNameLabel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btOK, 2, 8);
-            this.tableLayoutPanel1.Controls.Add(this.btCancel, 3, 8);
+            this.tableLayoutPanel1.Controls.Add(this.btOK, 2, 10);
+            this.tableLayoutPanel1.Controls.Add(this.btCancel, 3, 10);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(593, 456);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 483);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // doctorTextBox
@@ -304,10 +318,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.finalDiagnosisTextBox, 3);
             this.finalDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "FinalDiagnosis", true));
-            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 330);
+            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 382);
             this.finalDiagnosisTextBox.Multiline = true;
             this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
-            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(498, 92);
+            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(529, 68);
             this.finalDiagnosisTextBox.TabIndex = 21;
             // 
             // initialDiagnosisTextBox
@@ -317,10 +331,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.initialDiagnosisTextBox, 3);
             this.initialDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "InitialDiagnosis", true));
-            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 232);
+            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 308);
             this.initialDiagnosisTextBox.Multiline = true;
             this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
-            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(498, 92);
+            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(529, 68);
             this.initialDiagnosisTextBox.TabIndex = 19;
             // 
             // symptomsTextBox
@@ -330,10 +344,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.symptomsTextBox, 3);
             this.symptomsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
-            this.symptomsTextBox.Location = new System.Drawing.Point(92, 134);
+            this.symptomsTextBox.Location = new System.Drawing.Point(92, 160);
             this.symptomsTextBox.Multiline = true;
             this.symptomsTextBox.Name = "symptomsTextBox";
-            this.symptomsTextBox.Size = new System.Drawing.Size(498, 92);
+            this.symptomsTextBox.Size = new System.Drawing.Size(529, 68);
             this.symptomsTextBox.TabIndex = 17;
             // 
             // weightTextBox
@@ -397,7 +411,7 @@
             // 
             // btOK
             // 
-            this.btOK.Location = new System.Drawing.Point(298, 428);
+            this.btOK.Location = new System.Drawing.Point(298, 456);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
             this.btOK.TabIndex = 24;
@@ -408,7 +422,7 @@
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(379, 428);
+            this.btCancel.Location = new System.Drawing.Point(379, 456);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 25;
@@ -419,13 +433,61 @@
             // 
             this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
             // 
+            // bodyTemperatureLabel
+            // 
+            bodyTemperatureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            bodyTemperatureLabel.AutoSize = true;
+            bodyTemperatureLabel.Location = new System.Drawing.Point(3, 131);
+            bodyTemperatureLabel.Name = "bodyTemperatureLabel";
+            bodyTemperatureLabel.Size = new System.Drawing.Size(83, 26);
+            bodyTemperatureLabel.TabIndex = 26;
+            bodyTemperatureLabel.Text = "Temperature:";
+            bodyTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bodyTemperatureTextBox
+            // 
+            this.bodyTemperatureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BodyTemperature", true));
+            this.bodyTemperatureTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(92, 134);
+            this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
+            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
+            this.bodyTemperatureTextBox.TabIndex = 27;
+            // 
+            // infoLabel
+            // 
+            infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            infoLabel.AutoSize = true;
+            infoLabel.Location = new System.Drawing.Point(3, 231);
+            infoLabel.Name = "infoLabel";
+            infoLabel.Size = new System.Drawing.Size(83, 74);
+            infoLabel.TabIndex = 28;
+            infoLabel.Text = "Info:";
+            infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // infoTextBox
+            // 
+            this.infoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
+            this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
+            this.infoTextBox.Location = new System.Drawing.Point(92, 234);
+            this.infoTextBox.Multiline = true;
+            this.infoTextBox.Name = "infoTextBox";
+            this.infoTextBox.Size = new System.Drawing.Size(529, 68);
+            this.infoTextBox.TabIndex = 29;
+            // 
             // AddEditVisit
             // 
             this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(593, 456);
+            this.ClientSize = new System.Drawing.Size(624, 483);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
             this.Text = "AddEditVisit";
@@ -454,5 +516,7 @@
         private System.Windows.Forms.TextBox initialDiagnosisTextBox;
         private System.Windows.Forms.Button btOK;
         private System.Windows.Forms.Button btCancel;
+        private System.Windows.Forms.TextBox bodyTemperatureTextBox;
+        private System.Windows.Forms.TextBox infoTextBox;
     }
 }

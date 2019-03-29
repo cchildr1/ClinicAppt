@@ -12,27 +12,40 @@ using Clinic.Controller;
 
 namespace Clinic.View
 {
+    /// <summary>
+    /// Form for editing and creating a visit.
+    /// </summary>
     public partial class AddEditVisit : Form
     {
         private NurseController nurseController = new NurseController();
+        private VisitController visitController = new VisitController();
         private Form mainForm;
         private Visit oldVisit;
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="visit">visit to add to form</param>
         public AddEditVisit(Visit visit)
         {
             InitializeComponent();
-            this.oldVisit = visit;
-            this.patientTextBox.Text = visit.Appointment.Patient.FullName;
-            this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
-            this.PopulateNurseComboBox();
-            this.DTPVisitDate.Value = visit.DateTime.Date;
-            this.DTPVisitTime.Value = visit.DateTime.ToLocalTime();
-            this.bpDiastolicTextBox.Text = visit.BpDiastolic.ToString();
-            this.bpSystolicTextBox.Text = visit.BpSystolic.ToString();
-            this.weightTextBox.Text = visit.Weight.ToString();
-            this.pulseTextBox.Text = visit.Pulse.ToString();
-            this.symptomsTextBox.Text = visit.Symptoms;
-            this.initialDiagnosisTextBox.Text = visit.InitialDiagnosis;
-            this.finalDiagnosisTextBox.Text = visit.FinalDiagnosis;
+            if (visit != null)
+            {
+                this.oldVisit = visit;
+                this.patientTextBox.Text = visit.Appointment.Patient.FullName;
+                this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
+                this.PopulateNurseComboBox();
+                this.DTPVisitDate.Value = visit.DateTime.Date;
+                this.DTPVisitTime.Value = visit.DateTime.ToLocalTime();
+                this.bpDiastolicTextBox.Text = visit.BpDiastolic.ToString();
+                this.bpSystolicTextBox.Text = visit.BpSystolic.ToString();
+                this.weightTextBox.Text = visit.Weight.ToString();
+                this.pulseTextBox.Text = visit.Pulse.ToString();
+                this.symptomsTextBox.Text = visit.Symptoms;
+                this.initialDiagnosisTextBox.Text = visit.InitialDiagnosis;
+                this.finalDiagnosisTextBox.Text = visit.FinalDiagnosis;
+                this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
+                this.infoTextBox.Text = visit.Info;
+            }
         }
 
         private void PopulateNurseComboBox()
@@ -47,14 +60,38 @@ namespace Clinic.View
 
         private void btOK_Click(object sender, EventArgs e)
         {
-            // code for updating goes here
+            Visit newVisit = new Visit
+            {
+                DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay,
+                Weight = decimal.Parse(weightTextBox.Text),
+                BpSystolic = int.Parse(bpSystolicTextBox.Text),
+                BpDiastolic = int.Parse(bpDiastolicTextBox.Text),
+                BodyTemperature = decimal.Parse(bodyTemperatureTextBox.Text),
+                Pulse = int.Parse(pulseTextBox.Text),
+                Symptoms = symptomsTextBox.Text,
+                Info = infoTextBox.Text,
+                Nurse = new Nurse
+                {
+                    NurseID = (int)NurseComboBox.SelectedValue
+                },
+                Appointment = new Appointment
+                {
+                    AppointmentID = oldVisit.Appointment.AppointmentID
+                },
+                InitialDiagnosis = initialDiagnosisTextBox.Text,
+                FinalDiagnosis = finalDiagnosisTextBox.Text
+            };
 
+            if (this.visitController.EditVisit(oldVisit, newVisit))
+            {
+                MessageBox.Show("Visit updated.");
+            }
+            else
+            {
+                MessageBox.Show("Update failed");
+            }
             this.Dispose();
         }
 
-        private Nurse GetNewNurse()
-        {
-            return null;
-        }
     }
 }

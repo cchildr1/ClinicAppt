@@ -75,6 +75,11 @@ namespace Clinic.Controller
             
         }
 
+        public bool EditVisit(Visit oldVisit, Visit newVisit)
+        {
+            return this.visitDAL.UpdateVisit(oldVisit, newVisit);
+        }
+
         private List<Visit> SearchByPatient(string patient, List<Visit> visits)
         {
             return visits.FindAll(V => V.Appointment.Patient.FullName.ToLower().Contains(patient.ToLower()));
@@ -99,5 +104,6 @@ namespace Clinic.Controller
         {
             return visits.FindAll(V => V.DateTime >= visitStart && V.DateTime <= visitEnd);
         }
+
     }
 }

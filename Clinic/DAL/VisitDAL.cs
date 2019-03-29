@@ -155,5 +155,78 @@ namespace Clinic.DAL
             }
             return visit;
         }
+
+        /// <summary>
+        /// updates a visit with new information
+        /// </summary>
+        /// <param name="oldVisit">object containing the old information</param>
+        /// <param name="newVisit">object containing the new information</param>
+        /// <returns>true if updated one row, false otherwise</returns>
+        public bool UpdateVisit(Visit oldVisit, Visit newVisit)
+        {
+            string statement = "UPDATE visit " +
+                "SET visit_datetime = @newDateTime, " +
+                "weight = @newWeight, " +
+                "bp_systolic = @newbp_systolic, " +
+                "bp_diastolic = @newbp_diastolic, " +
+                "body_temp = @newbody_temp, " +
+                "pulse = @newpulse, " +
+                "symptoms = @newsymptoms, " +
+                "checkup_info = @newcheckup_info, " +
+                "nurse_id = @newnurse_id, " +
+                "appointment_id = @newappointment_id, " +
+                "initial_diagnosis = @newinitial_diagnosis, " +
+                "final_diagnosis = @newfinal_diagnosis " +
+                "WHERE visit_datetime = @oldDateTime AND " +
+                "weight = @oldWeight AND " +
+                "bp_systolic = @oldbp_systolic AND " +
+                "bp_diastolic = @oldbp_diastolic AND " +
+                "body_temp = @oldbody_temp AND " +
+                "pulse = @oldpulse AND " +
+                "symptoms = @oldsymptoms AND " +
+                "checkup_info = @oldcheckup_info AND " +
+                "nurse_id = @oldnurse_id AND " +
+                "appointment_id = @oldappointment_id AND " +
+                "initial_diagnosis = @oldinitial_diagnosis AND " +
+                "final_diagnosis = @oldfinal_diagnosis;";
+
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand update = new SqlCommand(statement, connection))
+                {
+                    update.Parameters.AddWithValue("@newDateTime", newVisit.DateTime);
+                    update.Parameters.AddWithValue("@newWeight", newVisit.Weight);
+                    update.Parameters.AddWithValue("@newbp_systolic", newVisit.BpSystolic);
+                    update.Parameters.AddWithValue("@newbp_diastolic", newVisit.BpDiastolic);
+                    update.Parameters.AddWithValue("@newbody_temp", newVisit.BodyTemperature);
+                    update.Parameters.AddWithValue("@newpulse", newVisit.Pulse);
+                    update.Parameters.AddWithValue("@newsymptoms", newVisit.Symptoms);
+                    update.Parameters.AddWithValue("@newcheckup_info", newVisit.Info);
+                    update.Parameters.AddWithValue("@newnurse_id", newVisit.Nurse.NurseID);
+                    update.Parameters.AddWithValue("@newappointment_id", newVisit.Appointment.AppointmentID);
+                    update.Parameters.AddWithValue("@newinitial_diagnosis", newVisit.InitialDiagnosis);
+                    update.Parameters.AddWithValue("@newfinal_diagnosis", newVisit.FinalDiagnosis);
+
+                    update.Parameters.AddWithValue("@oldDateTime", oldVisit.DateTime);
+                    update.Parameters.AddWithValue("@oldWeight", oldVisit.Weight);
+                    update.Parameters.AddWithValue("@oldbp_systolic", oldVisit.BpSystolic);
+                    update.Parameters.AddWithValue("@oldbp_diastolic", oldVisit.BpDiastolic);
+                    update.Parameters.AddWithValue("@oldbody_temp", oldVisit.BodyTemperature);
+                    update.Parameters.AddWithValue("@oldpulse", oldVisit.Pulse);
+                    update.Parameters.AddWithValue("@oldsymptoms", oldVisit.Symptoms);
+                    update.Parameters.AddWithValue("@oldcheckup_info", oldVisit.Info);
+                    update.Parameters.AddWithValue("@oldnurse_id", oldVisit.Nurse.NurseID);
+                    update.Parameters.AddWithValue("@oldappointment_id", oldVisit.Appointment.AppointmentID);
+                    update.Parameters.AddWithValue("@oldinitial_diagnosis", oldVisit.InitialDiagnosis);
+                    update.Parameters.AddWithValue("@oldfinal_diagnosis", oldVisit.FinalDiagnosis);
+
+                    int count = update.ExecuteNonQuery();
+                    connection.Close();
+                    return count > 0;
+
+                }
+            }
+        }
     }
 }
