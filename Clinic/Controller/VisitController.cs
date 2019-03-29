@@ -28,6 +28,18 @@ namespace Clinic.Controller
 
         public List<Visit> SearchVisits(int doctorID)
         {
+            List<Visit> visits = this.visits;
+            if (doctorID != -1)
+            {
+                visits = this.SearchByDoctorID(doctorID, visits);
+            }
+
+            return visits;
+            
+        }
+
+        private List<Visit> SearchByDoctorID(int doctorID, List<Visit> visits)
+        {
             return visits.FindAll(V => V.Appointment.Doctor.DoctorId.Equals(doctorID));
         }
     }

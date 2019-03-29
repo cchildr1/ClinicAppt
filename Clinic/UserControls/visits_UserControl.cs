@@ -19,6 +19,7 @@ namespace Clinic.UserControls
     {
         private VisitController visitController = new VisitController();
         private DoctorController doctorController = new DoctorController();
+        private NurseController nurseController = new NurseController();
         private List<Visit> visits = new List<Visit>();
         /// <summary>
         /// Constructor
@@ -27,6 +28,7 @@ namespace Clinic.UserControls
         {
             InitializeComponent();
             this.PopulateDoctorComboBox();
+            this.PopulateNurseComboBox();
             this.PopulateDataGridView(this.visitController.GetAllVisits());
         }
 
@@ -49,19 +51,48 @@ namespace Clinic.UserControls
 
         private void PopulateDoctorComboBox()
         {
-            this.DoctorComboBox.DataSource = this.doctorController.GetAllDoctors();
+            List<Doctor> doctors = this.doctorController.GetAllDoctors();
+            doctors.OrderBy(D => D.FullName).ToList();
+            this.DoctorComboBox.DataSource = doctors;
             this.DoctorComboBox.ValueMember = "DoctorId";
             this.DoctorComboBox.DisplayMember = "FullName";
             this.DoctorComboBox.SelectedIndex = -1;
         }
 
+        private void PopulateNurseComboBox()
+        {
+            List<Nurse> nurses = this.nurseController.GetAllNurses();
+            nurses.OrderBy(N => N.FullName).ToList();
+            this.NurseComboBox.DataSource = nurses;
+            this.NurseComboBox.ValueMember = "NurseID";
+            this.NurseComboBox.DisplayMember = "FullName";
+            this.NurseComboBox.SelectedIndex = -1;
+        }
+
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            if (this.DoctorComboBox.SelectedIndex == -1)
-            {
-                return;
-            }
-            this.PopulateDataGridView(this.visitController.SearchVisits((int)this.DoctorComboBox.SelectedValue));
+            this.Reset();
+            this.PopulateDataGridView(this.visitController.SearchVisits(
+                (int)this.DoctorComboBox.SelectedValue)
+                );
+            
+        }
+
+        private void Reset()
+        {
+            this.PopulateDataGridView(this.visitController.GetAllVisits());
+            this.DoctorComboBox.SelectedIndex = -1;
+            this.NurseComboBox.SelectedIndex = -1;
+            this.TbPatient.Text = "";
+            this.DTPAppointmentEnd.Checked = false;
+            this.DTPAppointmentStart.Checked = false;
+            this.DTPVisitEnd.Checked = false;
+            this.DTPVisitStart.Checked = false;
+        }
+
+        private void BtReset_Click(object sender, EventArgs e)
+        {
+            this.Reset();
         }
     }
 }
