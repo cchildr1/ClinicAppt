@@ -50,6 +50,7 @@
     <Compile Include="Controller\DoctorController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\VisitController.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\ClinicDBConnection.cs" />
     <Compile Include="DAL\DoctorDAL.cs" />
@@ -74,6 +75,12 @@
     </Compile>
     <Compile Include="UserControls\patient_UserControl.Designer.cs">
       <DependentUpon>patient_UserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\visits_UserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\visits_UserControl.Designer.cs">
+      <DependentUpon>visits_UserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AddAppointment.cs">
       <SubType>Form</SubType>
@@ -104,6 +111,9 @@
     <EmbeddedResource Include="UserControls\patient_UserControl.resx">
       <DependentUpon>patient_UserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\visits_UserControl.resx">
+      <DependentUpon>visits_UserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddAppointment.resx">
       <DependentUpon>AddAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +134,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\Clinic.Model.Appointment2.datasource" />
     <None Include="Properties\DataSources\Clinic.Model.Employee.datasource" />
+    <None Include="Properties\DataSources\Clinic.Model.Visit.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

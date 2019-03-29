@@ -1,5 +1,6 @@
 ﻿using Clinic.Model;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Clinic.DAL
@@ -68,6 +69,47 @@ namespace Clinic.DAL
                     throw ex;
                 }
             }
+        }
+
+        public List<Visit> GetAllVisits()
+        {
+            List<Visit> visits = new List<Visit>();
+            string selectStatement = "SELECT * FROM visit;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Visit visit = new Visit
+                            {
+                                VisitId = (int)reader["id"],
+                                DateTime = (DateTime)reader["visit_datetime"],
+                                Weight = (decimal)reader["weight"],
+                                BpSystolic = (int)reader["bp_systolic"],
+                                BpDiastolic = (int)reader["bp_diastolic"],
+                                BodyTemperature = (decimal)reader["body_temp"],
+                                Pulse = (int)reader["pulse"],
+                                Symptoms = reader["symptoms"].ToString(),
+                                Info = reader["checkup_info"].ToString(),
+                                Nurse = NurseDAL.GetNurseByID((int)reader["nurse_id"]),
+                                Appointment = new Appointment
+                                {
+                                    AppointmentID = (int)reader["appointment_id"]
+                                },
+                                InitialDiagnosis = reader["initial_diagnosis"].ToString(),
+                                FinalDiagnosis = reader["final_diagnosis"].ToString()
+                            };
+                            visits.Add(visit);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return visits;
         }
     }
 }
