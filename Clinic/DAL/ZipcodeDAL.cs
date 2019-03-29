@@ -10,6 +10,11 @@ namespace Clinic.DAL
     /// </summary>
     class ZipcodeDAL
     {
+        /// <summary>
+        /// This method returns the State the zipcode is associated with
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <returns>the state the zipcode is associsated with</returns>
         public string GetStateByZipcode(string zipcode)
         {
             string selectStatement = "SELECT * FROM zipcode WHERE zipcode = @zipcode;";
@@ -33,6 +38,11 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// This method returns the city the zipcode is associated with
+        /// </summary>
+        /// <param name="zipcode"></param>
+        /// <returns>the city the zipcode is associsated with</returns>
         public string GetCityByZipcode(string zipcode)
         {
             string selectStatement = "SELECT * FROM zipcode WHERE zipcode = @zipcode;";
