@@ -14,7 +14,7 @@ namespace Clinic.Controller
     public class VisitController
     {
         private readonly VisitDAL visitDAL = new VisitDAL();
-        private readonly List<Visit> visits;
+        private List<Visit> visits;
 
         /// <summary>
         /// Initializes visits to everything in DB
@@ -30,6 +30,16 @@ namespace Clinic.Controller
         public List<Visit> GetAllVisits()
         {
             return this.visits;
+        }
+
+        public List<Visit> RefreshVisits()
+        {
+            this.visits = this.visitDAL.GetAllVisits();
+            return this.visits;
+        }
+        public Visit GetVisitByID(int id)
+        {
+            return this.visitDAL.GetVisitByID(id);
         }
         /// <summary>
         /// Searches the list and returns only the values that match

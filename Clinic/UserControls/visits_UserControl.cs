@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Clinic.Controller;
+using Clinic.Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Clinic.Controller;
-using Clinic.Model;
+using Clinic.View;
 
 namespace Clinic.UserControls
 {
@@ -27,10 +24,13 @@ namespace Clinic.UserControls
         public visits_UserControl()
         {
             InitializeComponent();
+            this.visitDataGridView.CellContentClick += VisitDataGridView_CellContentClick;
             this.PopulateDoctorComboBox();
             this.PopulateNurseComboBox();
             this.PopulateDataGridView(this.visitController.GetAllVisits());
         }
+
+
 
         private void PopulateDataGridView(List<Visit> visits)
         {
@@ -125,6 +125,29 @@ namespace Clinic.UserControls
         private void BtReset_Click(object sender, EventArgs e)
         {
             this.Reset();
+        }
+
+        private void VisitDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                try {
+                    int id = int.Parse(this.visitDataGridView.Rows[e.RowIndex].Cells["VisitID"].Value.ToString());
+                    Visit oldVisit = this.visitController.GetVisitByID(id);
+                    this.ParentForm.Enabled = false;
+                    AddEditVisit addEditVisit = new AddEditVisit(oldVisit);
+                    DialogResult result = addEditVisit.ShowDialog();
+                    this.ParentForm.Enabled = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
         }
     }
 }

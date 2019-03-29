@@ -48,7 +48,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.DTPVisitStart = new System.Windows.Forms.DateTimePicker();
             this.DTPAppointmentEnd = new System.Windows.Forms.DateTimePicker();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.VisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppointmentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VisitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +55,8 @@
             this.DoctorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NurseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Symptoms = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EditButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             fullNameLabel = new System.Windows.Forms.Label();
             fullNameLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
@@ -164,7 +165,8 @@
             this.PatientName,
             this.DoctorName,
             this.NurseName,
-            this.Symptoms});
+            this.Symptoms,
+            this.EditButton});
             this.tableLayoutPanel1.SetColumnSpan(this.visitDataGridView, 4);
             this.visitDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.visitDataGridView.Location = new System.Drawing.Point(3, 151);
@@ -330,10 +332,6 @@
             this.DTPAppointmentEnd.Size = new System.Drawing.Size(415, 20);
             this.DTPAppointmentEnd.TabIndex = 17;
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
             // VisitID
             // 
             this.VisitID.HeaderText = "Visit ID";
@@ -388,6 +386,20 @@
             this.Symptoms.Name = "Symptoms";
             this.Symptoms.ReadOnly = true;
             // 
+            // EditButton
+            // 
+            this.EditButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.EditButton.HeaderText = "Edit";
+            this.EditButton.Name = "EditButton";
+            this.EditButton.ReadOnly = true;
+            this.EditButton.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.EditButton.Text = "Edit";
+            this.EditButton.Width = 31;
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
+            // 
             // visits_UserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -402,6 +414,8 @@
             this.ResumeLayout(false);
 
         }
+
+      
 
         #endregion
 
@@ -431,5 +445,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoctorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn NurseName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Symptoms;
+        private System.Windows.Forms.DataGridViewButtonColumn EditButton;
     }
 }

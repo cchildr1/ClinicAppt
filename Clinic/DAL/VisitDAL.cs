@@ -113,5 +113,47 @@ namespace Clinic.DAL
             }
             return visits;
         }
+
+        /// <summary>
+        /// Returns a visit specified by it's ID
+        /// </summary>
+        /// <param name="id">visit id</param>
+        /// <returns></returns>
+        public Visit GetVisitByID(int id)
+        {
+            AppointmentDAL appointmentDAL = new AppointmentDAL();
+            Visit visit = new Visit();
+            string selectStatement = "SELECT * FROM visit WHERE id = @visitID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@visitID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            visit.VisitId = (int)reader["id"];
+                            visit.DateTime = (DateTime)reader["visit_datetime"];
+                            visit.Weight = (decimal)reader["weight"];
+                            visit.BpSystolic = (int)reader["bp_systolic"];
+                            visit.BpDiastolic = (int)reader["bp_diastolic"];
+                            visit.BodyTemperature = (decimal)reader["body_temp"];
+                            visit.Pulse = (int)reader["pulse"];
+                            visit.Symptoms = reader["symptoms"].ToString();
+                            visit.Info = reader["checkup_info"].ToString();
+                            visit.Nurse = NurseDAL.GetNurseByID((int)reader["nurse_id"]);
+                            visit.Appointment = appointmentDAL.GetAppointmentByID((int)reader["appointment_id"]);
+                            visit.InitialDiagnosis = reader["initial_diagnosis"].ToString();
+                            visit.FinalDiagnosis = reader["final_diagnosis"].ToString();
+
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return visit;
+        }
     }
 }
