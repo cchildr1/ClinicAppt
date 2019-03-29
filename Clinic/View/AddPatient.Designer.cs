@@ -82,18 +82,18 @@
             this.AddPatientBase_TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.AddPatientBase_TableLayoutPanel.Name = "AddPatientBase_TableLayoutPanel";
             this.AddPatientBase_TableLayoutPanel.RowCount = 11;
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.77193F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.523809F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.270677F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.598039F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.633907F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.88452F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.125307F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.599508F));
-            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.60442F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.322176F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.485356F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.322176F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.276151F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.276151F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.1046F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.694561F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.694561F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.82427F));
             this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.AddPatientBase_TableLayoutPanel.Size = new System.Drawing.Size(395, 450);
+            this.AddPatientBase_TableLayoutPanel.Size = new System.Drawing.Size(395, 520);
             this.AddPatientBase_TableLayoutPanel.TabIndex = 0;
             // 
             // firstname_label
@@ -109,7 +109,7 @@
             // lastname_lbl
             // 
             this.lastname_lbl.AutoSize = true;
-            this.lastname_lbl.Location = new System.Drawing.Point(5, 41);
+            this.lastname_lbl.Location = new System.Drawing.Point(5, 40);
             this.lastname_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.lastname_lbl.Name = "lastname_lbl";
             this.lastname_lbl.Size = new System.Drawing.Size(58, 13);
@@ -119,7 +119,7 @@
             // dateOfBirth_LBL
             // 
             this.dateOfBirth_LBL.AutoSize = true;
-            this.dateOfBirth_LBL.Location = new System.Drawing.Point(5, 80);
+            this.dateOfBirth_LBL.Location = new System.Drawing.Point(5, 71);
             this.dateOfBirth_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.dateOfBirth_LBL.Name = "dateOfBirth_LBL";
             this.dateOfBirth_LBL.Size = new System.Drawing.Size(68, 13);
@@ -129,7 +129,7 @@
             // SSN_Label
             // 
             this.SSN_Label.AutoSize = true;
-            this.SSN_Label.Location = new System.Drawing.Point(5, 113);
+            this.SSN_Label.Location = new System.Drawing.Point(5, 106);
             this.SSN_Label.Margin = new System.Windows.Forms.Padding(5);
             this.SSN_Label.Name = "SSN_Label";
             this.SSN_Label.Size = new System.Drawing.Size(29, 13);
@@ -139,7 +139,7 @@
             // gender_LBL
             // 
             this.gender_LBL.AutoSize = true;
-            this.gender_LBL.Location = new System.Drawing.Point(5, 144);
+            this.gender_LBL.Location = new System.Drawing.Point(5, 136);
             this.gender_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.gender_LBL.Name = "gender_LBL";
             this.gender_LBL.Size = new System.Drawing.Size(42, 13);
@@ -149,7 +149,7 @@
             // streetAddress_LBL
             // 
             this.streetAddress_LBL.AutoSize = true;
-            this.streetAddress_LBL.Location = new System.Drawing.Point(5, 171);
+            this.streetAddress_LBL.Location = new System.Drawing.Point(5, 166);
             this.streetAddress_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.streetAddress_LBL.Name = "streetAddress_LBL";
             this.streetAddress_LBL.Size = new System.Drawing.Size(76, 13);
@@ -159,7 +159,7 @@
             // phone_number_LBL
             // 
             this.phone_number_LBL.AutoSize = true;
-            this.phone_number_LBL.Location = new System.Drawing.Point(5, 256);
+            this.phone_number_LBL.Location = new System.Drawing.Point(5, 286);
             this.phone_number_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.phone_number_LBL.Name = "phone_number_LBL";
             this.phone_number_LBL.Size = new System.Drawing.Size(38, 13);
@@ -169,7 +169,7 @@
             // zipcode_lbl
             // 
             this.zipcode_lbl.AutoSize = true;
-            this.zipcode_lbl.Location = new System.Drawing.Point(5, 285);
+            this.zipcode_lbl.Location = new System.Drawing.Point(5, 318);
             this.zipcode_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.zipcode_lbl.Name = "zipcode_lbl";
             this.zipcode_lbl.Size = new System.Drawing.Size(46, 13);
@@ -179,14 +179,15 @@
             // gender_ComboBox
             // 
             this.gender_ComboBox.FormattingEnabled = true;
-            this.gender_ComboBox.Location = new System.Drawing.Point(200, 142);
+            this.gender_ComboBox.Location = new System.Drawing.Point(200, 134);
             this.gender_ComboBox.Name = "gender_ComboBox";
             this.gender_ComboBox.Size = new System.Drawing.Size(121, 21);
             this.gender_ComboBox.TabIndex = 5;
+            this.gender_ComboBox.SelectionChangeCommitted += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // dateOfBirth_DateTimePicker
             // 
-            this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(200, 78);
+            this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(200, 69);
             this.dateOfBirth_DateTimePicker.Name = "dateOfBirth_DateTimePicker";
             this.dateOfBirth_DateTimePicker.Size = new System.Drawing.Size(192, 20);
             this.dateOfBirth_DateTimePicker.TabIndex = 9;
@@ -194,32 +195,36 @@
             // 
             // phoneNumber_textbox
             // 
-            this.phoneNumber_textbox.Location = new System.Drawing.Point(200, 254);
+            this.phoneNumber_textbox.Location = new System.Drawing.Point(200, 284);
             this.phoneNumber_textbox.MaxLength = 15;
             this.phoneNumber_textbox.Name = "phoneNumber_textbox";
             this.phoneNumber_textbox.Size = new System.Drawing.Size(100, 20);
             this.phoneNumber_textbox.TabIndex = 7;
+            this.phoneNumber_textbox.TextChanged += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // zipcode_textbox
             // 
-            this.zipcode_textbox.Location = new System.Drawing.Point(200, 283);
+            this.zipcode_textbox.Location = new System.Drawing.Point(200, 316);
             this.zipcode_textbox.Name = "zipcode_textbox";
             this.zipcode_textbox.Size = new System.Drawing.Size(100, 20);
             this.zipcode_textbox.TabIndex = 8;
+            this.zipcode_textbox.TextChanged += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // ssn_textbox
             // 
-            this.ssn_textbox.Location = new System.Drawing.Point(200, 111);
+            this.ssn_textbox.Location = new System.Drawing.Point(200, 104);
             this.ssn_textbox.Name = "ssn_textbox";
             this.ssn_textbox.Size = new System.Drawing.Size(100, 20);
             this.ssn_textbox.TabIndex = 4;
+            this.ssn_textbox.TextChanged += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // lastname_textbox
             // 
-            this.lastname_textbox.Location = new System.Drawing.Point(200, 39);
+            this.lastname_textbox.Location = new System.Drawing.Point(200, 38);
             this.lastname_textbox.Name = "lastname_textbox";
             this.lastname_textbox.Size = new System.Drawing.Size(100, 20);
             this.lastname_textbox.TabIndex = 2;
+            this.lastname_textbox.TextChanged += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // firstname_textbox
             // 
@@ -227,19 +232,21 @@
             this.firstname_textbox.Name = "firstname_textbox";
             this.firstname_textbox.Size = new System.Drawing.Size(100, 20);
             this.firstname_textbox.TabIndex = 1;
+            this.firstname_textbox.TextChanged += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // streetAddress_textbox
             // 
             this.streetAddress_textbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.streetAddress_textbox.Location = new System.Drawing.Point(200, 169);
+            this.streetAddress_textbox.Location = new System.Drawing.Point(200, 164);
             this.streetAddress_textbox.Multiline = true;
             this.streetAddress_textbox.Name = "streetAddress_textbox";
-            this.streetAddress_textbox.Size = new System.Drawing.Size(192, 79);
+            this.streetAddress_textbox.Size = new System.Drawing.Size(192, 114);
             this.streetAddress_textbox.TabIndex = 6;
+            this.streetAddress_textbox.TextChanged += new System.EventHandler(this.Reset_Patient_ErrorMessages);
             // 
             // addPatientDialog
             // 
-            this.addPatientDialog.Location = new System.Drawing.Point(3, 418);
+            this.addPatientDialog.Location = new System.Drawing.Point(3, 489);
             this.addPatientDialog.Name = "addPatientDialog";
             this.addPatientDialog.Size = new System.Drawing.Size(75, 23);
             this.addPatientDialog.TabIndex = 10;
@@ -250,11 +257,11 @@
             // errorMessage_lbl
             // 
             this.errorMessage_lbl.AutoSize = true;
-            this.errorMessage_lbl.Location = new System.Drawing.Point(3, 315);
+            this.AddPatientBase_TableLayoutPanel.SetColumnSpan(this.errorMessage_lbl, 2);
+            this.errorMessage_lbl.Location = new System.Drawing.Point(3, 345);
             this.errorMessage_lbl.Name = "errorMessage_lbl";
-            this.errorMessage_lbl.Size = new System.Drawing.Size(35, 13);
+            this.errorMessage_lbl.Size = new System.Drawing.Size(0, 13);
             this.errorMessage_lbl.TabIndex = 12;
-            this.errorMessage_lbl.Text = "label1";
             // 
             // cancel_reset_buttons_tableLayoutPanel
             // 
@@ -263,11 +270,11 @@
             this.cancel_reset_buttons_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.cancel_reset_buttons_tableLayoutPanel.Controls.Add(this.cancel_button, 1, 0);
             this.cancel_reset_buttons_tableLayoutPanel.Controls.Add(this.reset_button, 0, 0);
-            this.cancel_reset_buttons_tableLayoutPanel.Location = new System.Drawing.Point(200, 418);
+            this.cancel_reset_buttons_tableLayoutPanel.Location = new System.Drawing.Point(200, 489);
             this.cancel_reset_buttons_tableLayoutPanel.Name = "cancel_reset_buttons_tableLayoutPanel";
             this.cancel_reset_buttons_tableLayoutPanel.RowCount = 1;
             this.cancel_reset_buttons_tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cancel_reset_buttons_tableLayoutPanel.Size = new System.Drawing.Size(192, 29);
+            this.cancel_reset_buttons_tableLayoutPanel.Size = new System.Drawing.Size(192, 28);
             this.cancel_reset_buttons_tableLayoutPanel.TabIndex = 13;
             // 
             // cancel_button
@@ -275,7 +282,7 @@
             this.cancel_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancel_button.Location = new System.Drawing.Point(99, 3);
             this.cancel_button.Name = "cancel_button";
-            this.cancel_button.Size = new System.Drawing.Size(75, 23);
+            this.cancel_button.Size = new System.Drawing.Size(75, 22);
             this.cancel_button.TabIndex = 11;
             this.cancel_button.Text = "Cancel";
             this.cancel_button.UseVisualStyleBackColor = true;
@@ -284,7 +291,7 @@
             // 
             this.reset_button.Location = new System.Drawing.Point(3, 3);
             this.reset_button.Name = "reset_button";
-            this.reset_button.Size = new System.Drawing.Size(75, 23);
+            this.reset_button.Size = new System.Drawing.Size(75, 22);
             this.reset_button.TabIndex = 12;
             this.reset_button.Text = "Reset Patient";
             this.reset_button.UseVisualStyleBackColor = true;
@@ -294,7 +301,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 450);
+            this.ClientSize = new System.Drawing.Size(395, 520);
             this.Controls.Add(this.AddPatientBase_TableLayoutPanel);
             this.Name = "AddPatient";
             this.Text = "Add Patient";

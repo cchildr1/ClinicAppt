@@ -67,9 +67,27 @@ namespace Clinic.DAL
             }
         }
 
-        internal bool IsValidZipcode(string zipcode)
+        public bool IsValidZipcode(string zipcode)
         {
-            throw new NotImplementedException();
+            bool validZipcide = false;
+            string selectStatement = "SELECT COUNT(*) FROM zipcode WHERE zipcode = @zipcode;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@zipcode", @zipcode);
+                    Int32 count = Convert.ToInt32(selectCommand.ExecuteScalar());
+
+                    if (count > 0)
+                    {
+                        validZipcide = true;
+                    }
+
+                    connection.Close();
+                    return validZipcide;
+                }
+            }
         }
     }
 }

@@ -65,6 +65,13 @@ namespace Clinic.View
                 this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
+            if (this.ssn_textbox.Text == "" || !int.TryParse(this.ssn_textbox.Text, out int parsedValue) || this.IsValidSSN_WithoutDashes(this.ssn_textbox.Text))
+            {
+                errors = true;
+                this.errorMessage += "SSN must be only numbers no dashes or spaces \n";
+                this.SSN_Label.ForeColor = System.Drawing.Color.Red;
+            }
+
             if (this.gender_ComboBox.SelectedIndex < 0)
             {
                 errors = true;
@@ -78,18 +85,29 @@ namespace Clinic.View
                 this.errorMessage += "Must enter a street address \n";
                 this.streetAddress_LBL.ForeColor = System.Drawing.Color.Red;
             }
-            if (this.ssn_textbox.Text == "" || !int.TryParse(this.ssn_textbox.Text, out int parsedValue) || this.IsValidSSN_WithoutDashes(this.ssn_textbox.Text))
+
+            if (!this.IsPhoneNumber(this.phoneNumber_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "SSN must be only numbers no dashes or spaces \n";
-                this.SSN_Label.ForeColor = System.Drawing.Color.Red;
+                this.errorMessage += "Must enter a valid phone number\n";
+                this.phone_number_LBL.ForeColor = System.Drawing.Color.Red;
             }
-            if (this.)
-            { }
+
+            if (!this.ValidZipcode(this.zipcode_textbox.Text))
+            {
+                errors = true;
+                this.errorMessage += "Zipcode must be a valid 5 digit entry \n";
+                this.zipcode_lbl.ForeColor = System.Drawing.Color.Red;
+            }
 
             this.errorMessage_lbl.Text = this.errorMessage;
             this.errorMessage_lbl.ForeColor = System.Drawing.Color.Red;
             return errors;
+        }
+
+        private bool IsPhoneNumber(string number)
+        {
+            return Regex.Match(number, @"^(\+[0-9]{9})$").Success;
         }
 
         private bool ValidZipcode(string zipcode)
@@ -128,6 +146,7 @@ namespace Clinic.View
         private void dateOfBirth_DateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             this.selected_DOB = true;
+            this.Reset_Patient_ErrorMessages(sender, e);
         }
     }
 }
