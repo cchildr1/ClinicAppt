@@ -44,6 +44,7 @@ namespace Clinic.View
         private bool ErrorCheck()
         {
             bool errors = false;
+            this.errorMessage = "";
             if (this.firstname_textbox.Text == "")
             {
                 errors = true;
@@ -65,10 +66,10 @@ namespace Clinic.View
                 this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
-            if (this.ssn_textbox.Text == "" || !int.TryParse(this.ssn_textbox.Text, out int parsedValue) || this.IsValidSSN_WithoutDashes(this.ssn_textbox.Text))
+            if (!this.IsValidSSN(this.ssn_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "SSN must be only numbers no dashes or spaces \n";
+                this.errorMessage += "Must have valid 9# SSN \n";
                 this.SSN_Label.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -107,7 +108,7 @@ namespace Clinic.View
 
         private bool IsPhoneNumber(string number)
         {
-            return Regex.Match(number, @"^(\+[0-9]{9})$").Success;
+            return Regex.IsMatch(number, @"^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$");
         }
 
         private bool ValidZipcode(string zipcode)
@@ -116,10 +117,11 @@ namespace Clinic.View
             return zipcodeController.IsValidZipCode(zipcode);
         }
 
-        private bool IsValidSSN_WithoutDashes(string ssn)
+        private bool IsValidSSN(string ssn)
         {
-            return Regex.IsMatch(ssn, @"^\d{9}$");
+            return Regex.IsMatch(ssn, @"^(?:\d{9}|\d{3}-\d{2}-\d{4})$");
         }
+
 
         private void Reset_ErrorMessages()
         {
@@ -138,9 +140,7 @@ namespace Clinic.View
 
         private void Reset_Patient_ErrorMessages(object sender, EventArgs e)
         {
-            this.Reset_ErrorMessages();
-            this.selected_DOB = false;
-            this.dateOfBirth_DateTimePicker.Value = DateTime.Now;
+            this.Reset_ErrorMessages();  
         }
 
         private void dateOfBirth_DateTimePicker_ValueChanged(object sender, EventArgs e)

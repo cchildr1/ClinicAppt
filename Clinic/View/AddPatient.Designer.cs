@@ -93,6 +93,7 @@
             this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.82427F));
             this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.AddPatientBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.AddPatientBase_TableLayoutPanel.Size = new System.Drawing.Size(395, 520);
             this.AddPatientBase_TableLayoutPanel.TabIndex = 0;
             // 
@@ -187,6 +188,8 @@
             // 
             // dateOfBirth_DateTimePicker
             // 
+            this.dateOfBirth_DateTimePicker.AllowDrop = true;
+            this.dateOfBirth_DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateOfBirth_DateTimePicker.Location = new System.Drawing.Point(200, 69);
             this.dateOfBirth_DateTimePicker.Name = "dateOfBirth_DateTimePicker";
             this.dateOfBirth_DateTimePicker.Size = new System.Drawing.Size(192, 20);
