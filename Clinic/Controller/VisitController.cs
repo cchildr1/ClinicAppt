@@ -14,10 +14,21 @@ namespace Clinic.Controller
     public class VisitController
     {
         private VisitDAL visitDAL = new VisitDAL();
+        private List<Visit> visits;
+
+        public VisitController()
+        {
+            this.visits = this.visitDAL.GetAllVisits();
+        }
 
         public List<Visit> GetAllVisits()
         {
-            return this.visitDAL.GetAllVisits();
+            return this.visits;
+        }
+
+        public List<Visit> SearchVisits(int doctorID)
+        {
+            return visits.FindAll(V => V.Appointment.Doctor.DoctorId.Equals(doctorID));
         }
     }
 }
