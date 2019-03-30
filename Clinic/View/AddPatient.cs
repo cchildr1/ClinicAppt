@@ -43,16 +43,19 @@ namespace Clinic.View
                     ZipcodeController zipcodeController = new ZipcodeController();
                     patient.FirstName = this.firstname_textbox.Text;
                     patient.LastName = this.lastname_textbox.Text;
-                    patient.Phone = this.phoneNumber_textbox.Text;
-                    patient.SocialSecurityNumber = this.ssn_textbox.Text;
+                    patient.Phone = "1234567890";// this.phoneNumber_textbox.Text;
+                    patient.SocialSecurityNumber = "123456789";
                     patient.Zipcode = this.zipcode_textbox.Text;
                     patient.State = zipcodeController.GetStateFromZipcode(patient.Zipcode);
                     patient.City = zipcodeController.GetCityFromZipcode(patient.Zipcode);
                     patient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
-                    patient.Gender = (string)this.gender_ComboBox.SelectedValue;
+                    patient.Gender = "Female" ;
                     patient.StreetAddress = this.streetAddress_textbox.Text;
                     PatientController patientController = new PatientController();
                     patientController.AddPatient(patient);
+
+                    this.DialogResult = DialogResult.Yes;
+                    this.Close();
                 }
                 catch (Exception)
                 {
