@@ -1,6 +1,6 @@
 ﻿namespace Clinic.View
 {
-    partial class AddEditVisit
+    partial class EditVisit
     {
         /// <summary>
         /// Required designer variable.

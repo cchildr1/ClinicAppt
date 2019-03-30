@@ -15,19 +15,21 @@ namespace Clinic.View
     /// <summary>
     /// Form for editing and creating a visit.
     /// </summary>
-    public partial class AddEditVisit : Form
+    public partial class EditVisit : Form
     {
-        private NurseController nurseController = new NurseController();
-        private VisitController visitController = new VisitController();
-        private Form mainForm;
+        private NurseController nurseController;
+        private VisitController visitController;
         private Visit oldVisit;
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="visit">visit to add to form</param>
-        public AddEditVisit(Visit visit)
+        public EditVisit(Visit visit)
         {
             InitializeComponent();
+            this.nurseController = new NurseController();
+            this.visitController = new VisitController();
             if (visit != null)
             {
                 this.oldVisit = visit;
