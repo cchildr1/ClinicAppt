@@ -138,7 +138,7 @@ namespace Clinic.UserControls
                     int id = int.Parse(this.visitDataGridView.Rows[e.RowIndex].Cells["VisitID"].Value.ToString());
                     Visit oldVisit = this.visitController.GetVisitByID(id);
                     this.ParentForm.Enabled = false;
-                    EditVisit addEditVisit = new EditVisit(oldVisit);
+                    AddEditVisit addEditVisit = new AddEditVisit(oldVisit);
                     DialogResult result = addEditVisit.ShowDialog();
                     this.ParentForm.Enabled = true;
                     this.ResetDataGridView();

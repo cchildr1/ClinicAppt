@@ -15,21 +15,28 @@ namespace Clinic.View
     /// <summary>
     /// Form for editing and creating a visit.
     /// </summary>
-    public partial class EditVisit : Form
+    public partial class AddEditVisit : Form
     {
         private NurseController nurseController;
         private VisitController visitController;
         private Visit oldVisit;
+        private bool update;
 
+
+        public AddEditVisit()
+        {
+
+        }
         /// <summary>
-        /// Constructor
+        /// Constructor for existing visit, populates form with pre-existing visit information
         /// </summary>
         /// <param name="visit">visit to add to form</param>
-        public EditVisit(Visit visit)
+        public AddEditVisit(Visit visit)
         {
             InitializeComponent();
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
+            this.update = true;
             if (visit != null)
             {
                 this.oldVisit = visit;
@@ -60,6 +67,7 @@ namespace Clinic.View
             this.NurseComboBox.SelectedValue = this.oldVisit.Nurse.NurseID;
         }
 
+
         private void btOK_Click(object sender, EventArgs e)
         {
             Visit newVisit = new Visit
@@ -83,15 +91,19 @@ namespace Clinic.View
                 InitialDiagnosis = initialDiagnosisTextBox.Text,
                 FinalDiagnosis = finalDiagnosisTextBox.Text
             };
+            if (this.update)
+            {
+                if (this.visitController.EditVisit(oldVisit, newVisit))
+                {
+                    MessageBox.Show("Visit updated.");
+                }
+                else
+                {
+                    MessageBox.Show("Update failed");
+                }
+            }
 
-            if (this.visitController.EditVisit(oldVisit, newVisit))
-            {
-                MessageBox.Show("Visit updated.");
-            }
-            else
-            {
-                MessageBox.Show("Update failed");
-            }
+
             this.Dispose();
         }
 

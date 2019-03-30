@@ -28,14 +28,47 @@ namespace Clinic.UserControls
         /// </summary>
         public void SetUpAppointment_DataGridView()
         {
-            this.appointments_datagridview.ColumnCount = 4;
+            this.appointments_datagridview.ColumnCount = 5;
             this.appointments_datagridview.ColumnHeadersVisible = true;
-            this.appointments_datagridview.Columns[0].Name = "Date";
-            this.appointments_datagridview.Columns[1].Name ="Reason For Visit";
-            this.appointments_datagridview.Columns[2].Name ="Doctor";
-            this.appointments_datagridview.Columns[3].Name = "Patient";
+            this.appointments_datagridview.Columns[0].Name = "AppointmentID";
+            this.appointments_datagridview.Columns[0].Visible = false;
+            this.appointments_datagridview.Columns[1].Name = "Date";
+            this.appointments_datagridview.Columns[2].Name ="Reason For Visit";
+            this.appointments_datagridview.Columns[3].Name ="Doctor";
+            this.appointments_datagridview.Columns[4].Name = "Patient";
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "AddEditVisit";
+            buttonColumn.Text = "Add/Edit Visit";
+            buttonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.appointments_datagridview.Columns.Add(buttonColumn);
+            this.appointments_datagridview.CellContentClick += Appointments_datagridview_CellContentClick;
         }
 
+        private void Appointments_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                try
+                {
+                    int id = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
+                    // add code here to determine if a visit exists or not
+
+                    //this.parentform.enabled = false;
+                    //addeditvisit addeditvisit = new addeditvisit(oldvisit);
+                    //dialogresult result = addeditvisit.showdialog();
+                    //this.parentform.enabled = true;
+                    MessageBox.Show("Appointment ID: " + id);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
         /// <summary>
         /// Fills the DataGridView with all Appointments Date, reason for visit, Doctor's name and Patient's name
         /// </summary>
@@ -52,6 +85,7 @@ namespace Clinic.UserControls
                     for (int count =0; count< appointments.Count;  count++) {
                         appointment = appointments[count];
                         string[] rowAdded = new string[] {
+                            appointment.AppointmentID.ToString(),
                             appointment.Scheduled_Date.ToString(),
                             appointment.Reason_For_Visit,
                             appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,
