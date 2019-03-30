@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label fullNameLabel1;
-            System.Windows.Forms.Label fullNameLabel;
-            System.Windows.Forms.Label dateTimeLabel;
-            System.Windows.Forms.Label dateTimeLabel1;
+            System.Windows.Forms.Label nurseLabel;
+            System.Windows.Forms.Label visitDateLabel;
+            System.Windows.Forms.Label visitTimeLabel;
             System.Windows.Forms.Label bpSystolicLabel;
             System.Windows.Forms.Label bpDiastolicLabel;
             System.Windows.Forms.Label pulseLabel;
@@ -62,9 +62,9 @@
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             fullNameLabel1 = new System.Windows.Forms.Label();
-            fullNameLabel = new System.Windows.Forms.Label();
-            dateTimeLabel = new System.Windows.Forms.Label();
-            dateTimeLabel1 = new System.Windows.Forms.Label();
+            nurseLabel = new System.Windows.Forms.Label();
+            visitDateLabel = new System.Windows.Forms.Label();
+            visitTimeLabel = new System.Windows.Forms.Label();
             bpSystolicLabel = new System.Windows.Forms.Label();
             bpDiastolicLabel = new System.Windows.Forms.Label();
             pulseLabel = new System.Windows.Forms.Label();
@@ -92,44 +92,44 @@
             fullNameLabel1.Text = "Patient:";
             fullNameLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // fullNameLabel
+            // nurseLabel
             // 
-            fullNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            nurseLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            fullNameLabel.AutoSize = true;
-            fullNameLabel.Location = new System.Drawing.Point(3, 26);
-            fullNameLabel.Name = "fullNameLabel";
-            fullNameLabel.Size = new System.Drawing.Size(83, 27);
-            fullNameLabel.TabIndex = 3;
-            fullNameLabel.Text = "Nurse:";
-            fullNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            nurseLabel.AutoSize = true;
+            nurseLabel.Location = new System.Drawing.Point(3, 26);
+            nurseLabel.Name = "nurseLabel";
+            nurseLabel.Size = new System.Drawing.Size(83, 27);
+            nurseLabel.TabIndex = 3;
+            nurseLabel.Text = "Nurse:";
+            nurseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dateTimeLabel
+            // visitDateLabel
             // 
-            dateTimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            visitDateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dateTimeLabel.AutoSize = true;
-            dateTimeLabel.Location = new System.Drawing.Point(3, 53);
-            dateTimeLabel.Name = "dateTimeLabel";
-            dateTimeLabel.Size = new System.Drawing.Size(83, 26);
-            dateTimeLabel.TabIndex = 4;
-            dateTimeLabel.Text = "Visit Date:";
-            dateTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            visitDateLabel.AutoSize = true;
+            visitDateLabel.Location = new System.Drawing.Point(3, 53);
+            visitDateLabel.Name = "visitDateLabel";
+            visitDateLabel.Size = new System.Drawing.Size(83, 26);
+            visitDateLabel.TabIndex = 4;
+            visitDateLabel.Text = "Visit Date:";
+            visitDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dateTimeLabel1
+            // visitTimeLabel
             // 
-            dateTimeLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            visitTimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dateTimeLabel1.AutoSize = true;
-            dateTimeLabel1.Location = new System.Drawing.Point(298, 53);
-            dateTimeLabel1.Name = "dateTimeLabel1";
-            dateTimeLabel1.Size = new System.Drawing.Size(75, 26);
-            dateTimeLabel1.TabIndex = 6;
-            dateTimeLabel1.Text = "Visit Time:";
-            dateTimeLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            visitTimeLabel.AutoSize = true;
+            visitTimeLabel.Location = new System.Drawing.Point(298, 53);
+            visitTimeLabel.Name = "visitTimeLabel";
+            visitTimeLabel.Size = new System.Drawing.Size(75, 26);
+            visitTimeLabel.TabIndex = 6;
+            visitTimeLabel.Text = "Visit Time:";
+            visitTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bpSystolicLabel
             // 
@@ -271,7 +271,7 @@
             this.patientTextBox.Name = "patientTextBox";
             this.patientTextBox.ReadOnly = true;
             this.patientTextBox.Size = new System.Drawing.Size(200, 20);
-            this.patientTextBox.TabIndex = 3;
+            this.patientTextBox.TabIndex = 1;
             // 
             // visitBindingSource
             // 
@@ -284,7 +284,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(infoLabel, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.infoTextBox, 1, 7);
             this.tableLayoutPanel1.Controls.Add(bodyTemperatureLabel, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.bodyTemperatureTextBox, 1, 5);
@@ -304,16 +303,17 @@
             this.tableLayoutPanel1.Controls.Add(this.bpDiastolicTextBox, 3, 3);
             this.tableLayoutPanel1.Controls.Add(bpSystolicLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.bpSystolicTextBox, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(dateTimeLabel1, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(visitTimeLabel, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.DTPVisitTime, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(dateTimeLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(visitDateLabel, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.DTPVisitDate, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(fullNameLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(nurseLabel, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.NurseComboBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.patientTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(fullNameLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btOK, 2, 10);
             this.tableLayoutPanel1.Controls.Add(this.btCancel, 3, 10);
+            this.tableLayoutPanel1.Controls.Add(infoLabel, 0, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -343,7 +343,7 @@
             this.infoTextBox.Multiline = true;
             this.infoTextBox.Name = "infoTextBox";
             this.infoTextBox.Size = new System.Drawing.Size(529, 68);
-            this.infoTextBox.TabIndex = 29;
+            this.infoTextBox.TabIndex = 12;
             // 
             // bodyTemperatureTextBox
             // 
@@ -352,7 +352,7 @@
             this.bodyTemperatureTextBox.Location = new System.Drawing.Point(92, 134);
             this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
             this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
-            this.bodyTemperatureTextBox.TabIndex = 27;
+            this.bodyTemperatureTextBox.TabIndex = 10;
             // 
             // doctorTextBox
             // 
@@ -361,7 +361,7 @@
             this.doctorTextBox.Name = "doctorTextBox";
             this.doctorTextBox.ReadOnly = true;
             this.doctorTextBox.Size = new System.Drawing.Size(100, 20);
-            this.doctorTextBox.TabIndex = 23;
+            this.doctorTextBox.TabIndex = 3;
             // 
             // finalDiagnosisTextBox
             // 
@@ -374,7 +374,7 @@
             this.finalDiagnosisTextBox.Multiline = true;
             this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
             this.finalDiagnosisTextBox.Size = new System.Drawing.Size(529, 68);
-            this.finalDiagnosisTextBox.TabIndex = 21;
+            this.finalDiagnosisTextBox.TabIndex = 14;
             // 
             // initialDiagnosisTextBox
             // 
@@ -387,7 +387,7 @@
             this.initialDiagnosisTextBox.Multiline = true;
             this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
             this.initialDiagnosisTextBox.Size = new System.Drawing.Size(529, 68);
-            this.initialDiagnosisTextBox.TabIndex = 19;
+            this.initialDiagnosisTextBox.TabIndex = 13;
             // 
             // symptomsTextBox
             // 
@@ -400,7 +400,7 @@
             this.symptomsTextBox.Multiline = true;
             this.symptomsTextBox.Name = "symptomsTextBox";
             this.symptomsTextBox.Size = new System.Drawing.Size(529, 68);
-            this.symptomsTextBox.TabIndex = 17;
+            this.symptomsTextBox.TabIndex = 11;
             // 
             // weightTextBox
             // 
@@ -408,7 +408,7 @@
             this.weightTextBox.Location = new System.Drawing.Point(379, 108);
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.Size = new System.Drawing.Size(100, 20);
-            this.weightTextBox.TabIndex = 15;
+            this.weightTextBox.TabIndex = 8;
             // 
             // pulseTextBox
             // 
@@ -416,7 +416,7 @@
             this.pulseTextBox.Location = new System.Drawing.Point(92, 108);
             this.pulseTextBox.Name = "pulseTextBox";
             this.pulseTextBox.Size = new System.Drawing.Size(100, 20);
-            this.pulseTextBox.TabIndex = 13;
+            this.pulseTextBox.TabIndex = 8;
             // 
             // bpDiastolicTextBox
             // 
@@ -424,7 +424,7 @@
             this.bpDiastolicTextBox.Location = new System.Drawing.Point(379, 82);
             this.bpDiastolicTextBox.Name = "bpDiastolicTextBox";
             this.bpDiastolicTextBox.Size = new System.Drawing.Size(100, 20);
-            this.bpDiastolicTextBox.TabIndex = 11;
+            this.bpDiastolicTextBox.TabIndex = 7;
             // 
             // bpSystolicTextBox
             // 
@@ -432,7 +432,7 @@
             this.bpSystolicTextBox.Location = new System.Drawing.Point(92, 82);
             this.bpSystolicTextBox.Name = "bpSystolicTextBox";
             this.bpSystolicTextBox.Size = new System.Drawing.Size(100, 20);
-            this.bpSystolicTextBox.TabIndex = 9;
+            this.bpSystolicTextBox.TabIndex = 6;
             // 
             // DTPVisitTime
             // 
@@ -441,7 +441,7 @@
             this.DTPVisitTime.Location = new System.Drawing.Point(379, 56);
             this.DTPVisitTime.Name = "DTPVisitTime";
             this.DTPVisitTime.Size = new System.Drawing.Size(200, 20);
-            this.DTPVisitTime.TabIndex = 7;
+            this.DTPVisitTime.TabIndex = 5;
             // 
             // DTPVisitDate
             // 
@@ -450,7 +450,7 @@
             this.DTPVisitDate.Location = new System.Drawing.Point(92, 56);
             this.DTPVisitDate.Name = "DTPVisitDate";
             this.DTPVisitDate.Size = new System.Drawing.Size(200, 20);
-            this.DTPVisitDate.TabIndex = 5;
+            this.DTPVisitDate.TabIndex = 4;
             // 
             // NurseComboBox
             // 
@@ -459,14 +459,14 @@
             this.NurseComboBox.Location = new System.Drawing.Point(92, 29);
             this.NurseComboBox.Name = "NurseComboBox";
             this.NurseComboBox.Size = new System.Drawing.Size(121, 21);
-            this.NurseComboBox.TabIndex = 4;
+            this.NurseComboBox.TabIndex = 2;
             // 
             // btOK
             // 
             this.btOK.Location = new System.Drawing.Point(298, 456);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
-            this.btOK.TabIndex = 24;
+            this.btOK.TabIndex = 15;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Click += new System.EventHandler(this.btOK_Click);
@@ -477,7 +477,7 @@
             this.btCancel.Location = new System.Drawing.Point(379, 456);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
-            this.btCancel.TabIndex = 25;
+            this.btCancel.TabIndex = 16;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
@@ -491,6 +491,7 @@
             this.ClientSize = new System.Drawing.Size(624, 483);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddEditVisit";
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

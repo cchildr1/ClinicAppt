@@ -3,6 +3,7 @@ using Clinic.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace Clinic.View
         private VisitController visitController;
         private Visit oldVisit;
         private bool update;
+        private bool valid;
 
         /// <summary>
         /// Constructor for existing visit, populates form with pre-existing visit information
@@ -76,19 +78,31 @@ namespace Clinic.View
 
         private void btOK_Click(object sender, EventArgs e)
         {
+            this.valid = true;
+            this.ColorReset();
             Visit newVisit = new Visit();
+            
             newVisit.DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay;
-            newVisit.Weight = decimal.Parse(weightTextBox.Text);
-            newVisit.BpSystolic = int.Parse(bpSystolicTextBox.Text);
-            newVisit.BpDiastolic = int.Parse(bpDiastolicTextBox.Text);
-            newVisit.BodyTemperature = decimal.Parse(bodyTemperatureTextBox.Text);
-            newVisit.Pulse = int.Parse(pulseTextBox.Text);
+
+            newVisit.Weight = this.ValidateDecimal(weightTextBox);
+            newVisit.BpSystolic = this.ValidateInt(bpSystolicTextBox);
+            newVisit.BpDiastolic = this.ValidateInt(bpDiastolicTextBox);
+            newVisit.BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox);
+            newVisit.Pulse = this.ValidateInt(pulseTextBox);
             newVisit.Symptoms = symptomsTextBox.Text;
             newVisit.Info = infoTextBox.Text;
-            newVisit.Nurse = new Nurse
+            if (NurseComboBox.SelectedIndex == -1)
             {
-                NurseID = (int)NurseComboBox.SelectedValue
-            };
+                NurseComboBox.BackColor = Color.Red;
+                this.valid = false;
+            } else
+            {
+                newVisit.Nurse = new Nurse
+                {
+                    NurseID = (int)NurseComboBox.SelectedValue
+                };
+            }
+            
             newVisit.Appointment = new Appointment
             {
                 AppointmentID = oldVisit.Appointment.AppointmentID
@@ -96,7 +110,7 @@ namespace Clinic.View
             newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
             newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
         
-            if (this.update)
+            if (this.update && valid)
             {
                 if (this.visitController.EditVisit(oldVisit, newVisit))
                 {
@@ -108,7 +122,7 @@ namespace Clinic.View
                     MessageBox.Show("Update failed");
                     this.DialogResult = DialogResult.Cancel;
                 }
-            } else if (!this.update)
+            } else if (!this.update && valid)
             {
                 if (this.visitController.AddVisit(newVisit) > 0)
                 {
@@ -120,6 +134,10 @@ namespace Clinic.View
                     this.DialogResult = DialogResult.Cancel;
                 }
             }
+            else
+            {
+                return;
+            }
 
 
             this.Dispose();
@@ -129,6 +147,42 @@ namespace Clinic.View
         {
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
+        }
+        
+        private decimal ValidateDecimal(TextBox textbox)
+        {
+            try
+            {
+                return decimal.Parse(textbox.Text);
+            } catch (Exception ex)
+            {
+                textbox.BackColor = Color.Red;
+                this.valid = false;
+                return 0;
+            }
+        }
+
+        private int ValidateInt(TextBox textbox)
+        {
+            try
+            {
+                return int.Parse(textbox.Text);
+            } catch (Exception ex)
+            {
+                textbox.BackColor = Color.Red;
+                this.valid = false;
+                return 0;
+            }
+        }
+
+        private void ColorReset()
+        {
+            weightTextBox.BackColor = SystemColors.Window;
+            bpSystolicTextBox.BackColor = SystemColors.Window;
+            bpDiastolicTextBox.BackColor = SystemColors.Window;
+            bodyTemperatureTextBox.BackColor = SystemColors.Window;
+            pulseTextBox.BackColor = SystemColors.Window;
+            NurseComboBox.BackColor = SystemColors.Window;
         }
     }
 }
