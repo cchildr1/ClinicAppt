@@ -32,9 +32,9 @@ namespace Clinic.DAL
                 throw new ArgumentException("The Visit object has no Appointment specified.");
             }
 
-            string insertStatement = "INSERT visit (id, visit_datetime, weight, bp_systolic, bp_diastolic, body_temp, " +
+            string insertStatement = "INSERT visit (visit_datetime, weight, bp_systolic, bp_diastolic, body_temp, " +
                 "pulse, symptoms, checkup_info, nurse_id, appointment_id, initial_diagnosis, final_diagnosis) " +
-                "VALUES (@id, @visit_datetime, @weight, @bp_systolic, @bp_diastolic, @body_temp, @pulse, " +
+                "VALUES (@visit_datetime, @weight, @bp_systolic, @bp_diastolic, @body_temp, @pulse, " +
                 "@symptoms, @checkup_info, @nurse_id, @appointment_id, @initial_diagnosis, @final_diagnosis)";
 
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -43,8 +43,7 @@ namespace Clinic.DAL
                 {
                     connection.Open();
                     using (SqlCommand insertCommand = new SqlCommand(insertStatement, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@id", visit.VisitId);
+                    { 
                         insertCommand.Parameters.AddWithValue("@visit_datetime", visit.DateTime);
                         insertCommand.Parameters.AddWithValue("@weight", visit.Weight);
                         insertCommand.Parameters.AddWithValue("@bp_systolic", visit.BpSystolic);
@@ -145,6 +144,49 @@ namespace Clinic.DAL
                             visit.Info = reader["checkup_info"].ToString();
                             visit.Nurse = NurseDAL.GetNurseByID((int)reader["nurse_id"]);
                             visit.Appointment = appointmentDAL.GetAppointmentByID((int)reader["appointment_id"]);
+                            visit.InitialDiagnosis = reader["initial_diagnosis"].ToString();
+                            visit.FinalDiagnosis = reader["final_diagnosis"].ToString();
+
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return visit;
+        }
+
+        /// <summary>
+        /// Returns a visit based on the appointment ID
+        /// </summary>
+        /// <param name="id">Appointment id</param>
+        /// <returns>Visit Object</returns>
+        public Visit GetVisitByAppointmentID(int id)
+        {
+            AppointmentDAL appointmentDAL = new AppointmentDAL();
+            Visit visit = new Visit();
+            string selectStatement = "SELECT * FROM visit WHERE appointment_id = @appointmentID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@appointmentID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        visit.Appointment = appointmentDAL.GetAppointmentByID(id);
+                        if (reader.Read())
+                        {
+                            visit.VisitId = (int)reader["id"];
+                            visit.DateTime = (DateTime)reader["visit_datetime"];
+                            visit.Weight = (decimal)reader["weight"];
+                            visit.BpSystolic = (int)reader["bp_systolic"];
+                            visit.BpDiastolic = (int)reader["bp_diastolic"];
+                            visit.BodyTemperature = (decimal)reader["body_temp"];
+                            visit.Pulse = (int)reader["pulse"];
+                            visit.Symptoms = reader["symptoms"].ToString();
+                            visit.Info = reader["checkup_info"].ToString();
+                            visit.Nurse = NurseDAL.GetNurseByID((int)reader["nurse_id"]);
+                            
                             visit.InitialDiagnosis = reader["initial_diagnosis"].ToString();
                             visit.FinalDiagnosis = reader["final_diagnosis"].ToString();
 

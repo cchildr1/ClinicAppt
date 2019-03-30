@@ -13,12 +13,14 @@ namespace Clinic.UserControls
     public partial class appointments_UserControl : System.Windows.Forms.UserControl
     {
         private AppointmentController appointmentController;
+        private VisitController VisitController;
 
         //Sets up the appointment_usercontrol insures that everything has been initialized
         public appointments_UserControl()
         {
             InitializeComponent();
             this.appointmentController = new AppointmentController();
+            this.VisitController = new VisitController();
             this.SetUpAppointment_DataGridView();
             this.GetAppointmentData();
         }
@@ -51,22 +53,22 @@ namespace Clinic.UserControls
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                try
-                {
+                //try
+                //{
                     int id = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
-                    // add code here to determine if a visit exists or not
+                    Visit visit = this.VisitController.GetVisitByAppointmentID(id);
+                    this.ParentForm.Enabled = false;
+                    AddEditVisit addEditVisit = new AddEditVisit(visit);
+                    DialogResult result = addEditVisit.ShowDialog();
+                    this.ParentForm.Enabled = true;
 
-                    //this.parentform.enabled = false;
-                    //addeditvisit addeditvisit = new addeditvisit(oldvisit);
-                    //dialogresult result = addeditvisit.showdialog();
-                    //this.parentform.enabled = true;
-                    MessageBox.Show("Appointment ID: " + id);
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    throw ex;
+                //    //MessageBox.Show(ex.Message.ToString());
+                //}
             }
         }
         /// <summary>

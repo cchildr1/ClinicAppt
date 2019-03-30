@@ -22,11 +22,6 @@ namespace Clinic.View
         private Visit oldVisit;
         private bool update;
 
-
-        public AddEditVisit()
-        {
-
-        }
         /// <summary>
         /// Constructor for existing visit, populates form with pre-existing visit information
         /// </summary>
@@ -37,8 +32,17 @@ namespace Clinic.View
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
             this.update = true;
-            if (visit != null)
+            if (visit.VisitId == 0)
             {
+                this.update = false;
+                this.oldVisit = visit;
+                this.patientTextBox.Text = visit.Appointment.Patient.FullName;
+                this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
+                this.PopulateNurseComboBox();
+            }
+            else
+            {
+                this.update = true;
                 this.oldVisit = visit;
                 this.patientTextBox.Text = visit.Appointment.Patient.FullName;
                 this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
@@ -64,33 +68,38 @@ namespace Clinic.View
             this.NurseComboBox.DataSource = nurses;
             this.NurseComboBox.ValueMember = "NurseID";
             this.NurseComboBox.DisplayMember = "FullName";
-            this.NurseComboBox.SelectedValue = this.oldVisit.Nurse.NurseID;
+            if (this.oldVisit.Nurse != null)
+            {
+                this.NurseComboBox.SelectedValue = this.oldVisit.Nurse.NurseID;
+            } else
+            {
+                this.NurseComboBox.SelectedValue = -1;
+            }
         }
 
 
         private void btOK_Click(object sender, EventArgs e)
         {
-            Visit newVisit = new Visit
+            Visit newVisit = new Visit();
+            newVisit.DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay;
+            newVisit.Weight = decimal.Parse(weightTextBox.Text);
+            newVisit.BpSystolic = int.Parse(bpSystolicTextBox.Text);
+            newVisit.BpDiastolic = int.Parse(bpDiastolicTextBox.Text);
+            newVisit.BodyTemperature = decimal.Parse(bodyTemperatureTextBox.Text);
+            newVisit.Pulse = int.Parse(pulseTextBox.Text);
+            newVisit.Symptoms = symptomsTextBox.Text;
+            newVisit.Info = infoTextBox.Text;
+            newVisit.Nurse = new Nurse
             {
-                DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay,
-                Weight = decimal.Parse(weightTextBox.Text),
-                BpSystolic = int.Parse(bpSystolicTextBox.Text),
-                BpDiastolic = int.Parse(bpDiastolicTextBox.Text),
-                BodyTemperature = decimal.Parse(bodyTemperatureTextBox.Text),
-                Pulse = int.Parse(pulseTextBox.Text),
-                Symptoms = symptomsTextBox.Text,
-                Info = infoTextBox.Text,
-                Nurse = new Nurse
-                {
-                    NurseID = (int)NurseComboBox.SelectedValue
-                },
-                Appointment = new Appointment
-                {
-                    AppointmentID = oldVisit.Appointment.AppointmentID
-                },
-                InitialDiagnosis = initialDiagnosisTextBox.Text,
-                FinalDiagnosis = finalDiagnosisTextBox.Text
+                NurseID = (int)NurseComboBox.SelectedValue
             };
+            newVisit.Appointment = new Appointment
+            {
+                AppointmentID = oldVisit.Appointment.AppointmentID
+            };
+            newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
+            newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
+        
             if (this.update)
             {
                 if (this.visitController.EditVisit(oldVisit, newVisit))
@@ -100,6 +109,15 @@ namespace Clinic.View
                 else
                 {
                     MessageBox.Show("Update failed");
+                }
+            } else if (!this.update)
+            {
+                if (this.visitController.AddVisit(newVisit) > 0)
+                {
+                    MessageBox.Show("Visit added");
+                } else
+                {
+                    MessageBox.Show("Add failed");
                 }
             }
 

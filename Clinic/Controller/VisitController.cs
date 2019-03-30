@@ -86,6 +86,26 @@ namespace Clinic.Controller
             return this.visitDAL.UpdateVisit(oldVisit, newVisit);
         }
 
+        /// <summary>
+        /// Adds a new visit to the DB for the visit object
+        /// </summary>
+        /// <param name="visit">visit object to add</param>
+        /// <returns>int confirming if true or not</returns>
+        public int AddVisit(Visit visit)
+        {
+            return this.visitDAL.AddNewVisit(visit);
+        }
+
+        /// <summary>
+        /// REturns visit from DAL based on appointment id
+        /// </summary>
+        /// <param name="id">appointment id</param>
+        /// <returns>Visit object</returns>
+        public Visit GetVisitByAppointmentID(int id)
+        {
+            return this.visitDAL.GetVisitByAppointmentID(id);
+        }
+
         private List<Visit> SearchByPatient(string patient, List<Visit> visits)
         {
             return visits.FindAll(V => V.Appointment.Patient.FullName.ToLower().Contains(patient.ToLower()));
