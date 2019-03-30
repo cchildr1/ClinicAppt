@@ -114,7 +114,7 @@ namespace Clinic.View
             if (!this.IsPhoneNumber(this.phoneNumber_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must enter a valid phone number ###-###-####\n";
+                this.errorMessage += "Must enter a valid phone number- Only numbers allowed no -or /\n";
                 this.phone_number_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -132,7 +132,7 @@ namespace Clinic.View
 
         private bool IsPhoneNumber(string number)
         {
-            return Regex.IsMatch(number, @"^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$");
+            return Regex.IsMatch(number, @"^\d{10}$");
         }
 
         private bool ValidZipcode(string zipcode)

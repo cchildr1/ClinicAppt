@@ -163,9 +163,9 @@
             this.phone_number_LBL.Location = new System.Drawing.Point(5, 286);
             this.phone_number_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.phone_number_LBL.Name = "phone_number_LBL";
-            this.phone_number_LBL.Size = new System.Drawing.Size(123, 13);
+            this.phone_number_LBL.Size = new System.Drawing.Size(38, 13);
             this.phone_number_LBL.TabIndex = 6;
-            this.phone_number_LBL.Text = "Phone (###-###-####)";
+            this.phone_number_LBL.Text = "Phone";
             // 
             // zipcode_lbl
             // 
