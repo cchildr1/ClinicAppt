@@ -1,8 +1,8 @@
-﻿using System;
-using Clinic.Controller;
-using System.Collections.Generic;
+﻿using Clinic.Controller;
 using Clinic.Model;
 using Clinic.View;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Clinic.UserControls
@@ -13,12 +13,14 @@ namespace Clinic.UserControls
     public partial class appointments_UserControl : System.Windows.Forms.UserControl
     {
         private AppointmentController appointmentController;
+        private VisitController VisitController;
 
         //Sets up the appointment_usercontrol insures that everything has been initialized
         public appointments_UserControl()
         {
             InitializeComponent();
             this.appointmentController = new AppointmentController();
+            this.VisitController = new VisitController();
             this.SetUpAppointment_DataGridView();
             this.GetAppointmentData();
         }
@@ -28,14 +30,47 @@ namespace Clinic.UserControls
         /// </summary>
         public void SetUpAppointment_DataGridView()
         {
-            this.appointments_datagridview.ColumnCount = 4;
+            this.appointments_datagridview.ColumnCount = 5;
             this.appointments_datagridview.ColumnHeadersVisible = true;
-            this.appointments_datagridview.Columns[0].Name = "Date";
-            this.appointments_datagridview.Columns[1].Name ="Reason For Visit";
-            this.appointments_datagridview.Columns[2].Name ="Doctor";
-            this.appointments_datagridview.Columns[3].Name = "Patient";
+            this.appointments_datagridview.Columns[0].Name = "AppointmentID";
+            this.appointments_datagridview.Columns[0].Visible = false;
+            this.appointments_datagridview.Columns[1].Name = "Date";
+            this.appointments_datagridview.Columns[2].Name ="Reason For Visit";
+            this.appointments_datagridview.Columns[3].Name ="Doctor";
+            this.appointments_datagridview.Columns[4].Name = "Patient";
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "AddEditVisit";
+            buttonColumn.Text = "Add/Edit Visit";
+            buttonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.appointments_datagridview.Columns.Add(buttonColumn);
+            this.appointments_datagridview.CellContentClick += Appointments_datagridview_CellContentClick;
         }
 
+        private void Appointments_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                try
+                {
+                    int id = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
+                    Visit visit = this.VisitController.GetVisitByAppointmentID(id);
+                    this.ParentForm.Enabled = false;
+                    AddEditVisit addEditVisit = new AddEditVisit(visit);
+                    DialogResult result = addEditVisit.ShowDialog();
+                    this.ParentForm.Enabled = true;
+
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), ex.GetType().ToString());
+                }
+            }
+        }
+        
         /// <summary>
         /// Fills the DataGridView with all Appointments Date, reason for visit, Doctor's name and Patient's name
         /// </summary>
@@ -52,6 +87,7 @@ namespace Clinic.UserControls
                     for (int count =0; count< appointments.Count;  count++) {
                         appointment = appointments[count];
                         string[] rowAdded = new string[] {
+                            appointment.AppointmentID.ToString(),
                             appointment.Scheduled_Date.ToString(),
                             appointment.Reason_For_Visit,
                             appointment.Doctor.FirstName + " " + appointment.Doctor.LastName,

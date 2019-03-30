@@ -41,6 +41,37 @@ namespace Clinic.DAL
             }
             return nurses;
         }
+        /// <summary>
+        /// Gets a specific nurse by their id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Nurse object</returns>
+        public static Nurse GetNurseByID(int id)
+        {
+            string selectStatement = "SELECT * FROM nurse WHERE id = @NurseID;";
+            Nurse nurse = new Nurse();
+            
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@NurseID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            nurse.NurseID = (int)reader["id"];
+                            nurse.PersonId = (int)reader["person_id"];
+                            PopulatePersonalInformation(nurse);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return nurse;
+        }
+
         private static Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";

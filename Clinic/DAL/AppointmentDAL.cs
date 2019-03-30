@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Clinic.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using Clinic.Model;
 
 namespace Clinic.DAL
 {
@@ -172,6 +172,39 @@ namespace Clinic.DAL
             insertCommand.Parameters.AddWithValue("@id", this.HelperAddAppointment(connection, insertCommand));
 
 
+        }
+
+        /// <summary>
+        /// Returns a populated appointment object for the specified ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Appointment GetAppointmentByID(int id)
+        {
+            Appointment appointment = new Appointment();
+            string selectStatement = "Select id, scheduled_datetime, reason_for_visit, doctor_id, patient_id FROM appointment WHERE id = @id";
+
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@id", id);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        { 
+                            appointment.AppointmentID = (int)reader["id"];
+                            appointment.Scheduled_Date = (DateTime)reader["scheduled_datetime"];
+                            appointment.Reason_For_Visit = reader["reason_for_visit"].ToString();
+                            appointment.Doctor = GetDoctorByID((int)reader["doctor_id"]);
+                            appointment.Patient = GetPatientByID((int)reader["patient_id"]);
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return appointment;
         }
 
         private int HelperAddAppointment(SqlConnection connection, SqlCommand insertCommand)
