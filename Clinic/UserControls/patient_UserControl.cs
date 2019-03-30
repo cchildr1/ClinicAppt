@@ -82,7 +82,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.DataSource = null;
             List<Appointment> appointments = new List<Appointment>();
             appointments = this.appointmentController.GetAppointmentsByPatientID(patientID);
-
+            this.editSelectedPatient_Button.Visible = true;
             if (appointments.Count > 0)
             {
                 Appointment appointment = new Appointment();
@@ -107,11 +107,14 @@ namespace Clinic.UserControls
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.ColumnCount = 0;
             this.dataGridView_Is_Patient = true;
+            this.editSelectedPatient_Button.Visible = false;
         }
 
         private void getAllPatients_Click(object sender, EventArgs e)
         {
+           
             this.patients_datagridview.DataSource = null;
+            this.patients_datagridview.ColumnCount = 0;
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
         }
 
@@ -123,6 +126,11 @@ namespace Clinic.UserControls
             {
                 this.getAllPatients_Click(sender, e);
             }
+        }
+
+        private void editSelectedPatient_Button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
