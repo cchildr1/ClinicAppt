@@ -48,6 +48,7 @@
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.editSelectedPatient_Button = new System.Windows.Forms.Button();
             this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
@@ -74,9 +75,9 @@
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.ResetDataGridView_button, 2, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.getAllPatients, 1, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.addPatient_button, 0, 0);
+            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.editSelectedPatient_Button, 2, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bottomRow_Appointments_TableLayoutPanel.Location = new System.Drawing.Point(3, 357);
             this.bottomRow_Appointments_TableLayoutPanel.Name = "bottomRow_Appointments_TableLayoutPanel";
@@ -87,7 +88,7 @@
             // 
             // ResetDataGridView_button
             // 
-            this.ResetDataGridView_button.Location = new System.Drawing.Point(339, 3);
+            this.ResetDataGridView_button.Location = new System.Drawing.Point(3, 37);
             this.ResetDataGridView_button.Name = "ResetDataGridView_button";
             this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
             this.ResetDataGridView_button.TabIndex = 0;
@@ -148,6 +149,7 @@
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.topRow_Appointment_tableLOP.Controls.Add(this.ResetDataGridView_button, 0, 1);
             this.topRow_Appointment_tableLOP.Controls.Add(this.resetDateOfBirth, 3, 1);
             this.topRow_Appointment_tableLOP.Controls.Add(this.searchPatients_LBL, 0, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.DateOfBirth_datetimePicker, 2, 0);
@@ -283,6 +285,17 @@
             // 
             this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
             // 
+            // editSelectedPatient_Button
+            // 
+            this.editSelectedPatient_Button.Location = new System.Drawing.Point(339, 3);
+            this.editSelectedPatient_Button.Name = "editSelectedPatient_Button";
+            this.editSelectedPatient_Button.Size = new System.Drawing.Size(75, 23);
+            this.editSelectedPatient_Button.TabIndex = 3;
+            this.editSelectedPatient_Button.Text = "Edit Patient";
+            this.editSelectedPatient_Button.UseVisualStyleBackColor = true;
+            this.editSelectedPatient_Button.Visible = false;
+            this.editSelectedPatient_Button.Click += new System.EventHandler(this.editSelectedPatient_Button_Click);
+            // 
             // patient_UserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,5 +338,6 @@
         private System.Windows.Forms.Button ResetDataGridView_button;
         private System.Windows.Forms.Button getAllPatients;
         private System.Windows.Forms.Button addPatient_button;
+        private System.Windows.Forms.Button editSelectedPatient_Button;
     }
 }

@@ -134,11 +134,7 @@ namespace Clinic.View
                 if (this.CheckForDoctorDoubleBook(scheduledDateTime, (int)this.Doctor_ComboBox.SelectedValue))
                 {
                     allFieldsFilled = false;
-                    this.patient_label.Text = "You must select a Patient";
-                    this.patient_label.ForeColor = System.Drawing.Color.Red;
-                    this.doctor_label.Text = "You must select a Doctor";
-                    this.doctor_label.ForeColor = System.Drawing.Color.Red;
-                    this.time_lbl.Text = this.doctor_label.Text + " is unavaiable at this date/time";
+                    this.time_lbl.Text = this.Doctor_ComboBox.Text + " is unavaiable at this date/time";
                     this.time_lbl.ForeColor = System.Drawing.Color.Red;
                 }
             }
@@ -154,6 +150,8 @@ namespace Clinic.View
         private void ResetErrorLabels_ComboBox_Click(object sender, EventArgs e)
         {
             this.doctor_label.Text = "Doctor";
+            this.time_lbl.Text = "Time";
+            this.time_lbl.ForeColor = System.Drawing.Color.Black;
             this.doctor_label.ForeColor = System.Drawing.Color.Black;
             this.patient_label.Text = "Patient";
             this.patient_label.ForeColor = System.Drawing.Color.Black;
