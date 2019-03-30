@@ -93,7 +93,7 @@ namespace Clinic.View
             if (!this.IsValidSSN(this.ssn_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must have valid 9# SSN \n";
+                this.errorMessage += "Must have valid 9# SSN - Only numbers allowed no -or / \n";
                 this.SSN_Label.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -143,7 +143,7 @@ namespace Clinic.View
 
         private bool IsValidSSN(string ssn)
         {
-            return Regex.IsMatch(ssn, @"^(?:\d{9}|\d{3}-\d{2}-\d{4})$");
+            return Regex.IsMatch(ssn, @"^\d{9}$");
         }
 
 
