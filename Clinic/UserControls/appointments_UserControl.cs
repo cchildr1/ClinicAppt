@@ -1,8 +1,8 @@
-﻿using System;
-using Clinic.Controller;
-using System.Collections.Generic;
+﻿using Clinic.Controller;
 using Clinic.Model;
 using Clinic.View;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Clinic.UserControls

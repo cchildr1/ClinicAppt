@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Clinic.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using Clinic.Model;
 
 namespace Clinic.DAL
 {

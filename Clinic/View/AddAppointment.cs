@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using Clinic.Controller;
+﻿using Clinic.Controller;
 using Clinic.Model;
+using System;
+using System.Windows.Forms;
 
 namespace Clinic.View
 {

@@ -33,6 +33,7 @@
             System.Windows.Forms.Label fullNameLabel1;
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.NurseComboBox = new System.Windows.Forms.ComboBox();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DoctorComboBox = new System.Windows.Forms.ComboBox();
             this.visitDataGridView = new System.Windows.Forms.DataGridView();
             this.VisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,12 +57,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.DTPVisitStart = new System.Windows.Forms.DateTimePicker();
             this.DTPAppointmentEnd = new System.Windows.Forms.DateTimePicker();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             fullNameLabel = new System.Windows.Forms.Label();
             fullNameLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // fullNameLabel
@@ -140,6 +140,10 @@
             this.NurseComboBox.Name = "NurseComboBox";
             this.NurseComboBox.Size = new System.Drawing.Size(415, 21);
             this.NurseComboBox.TabIndex = 6;
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
             // 
             // DoctorComboBox
             // 
@@ -396,10 +400,6 @@
             this.DTPAppointmentEnd.Size = new System.Drawing.Size(415, 20);
             this.DTPAppointmentEnd.TabIndex = 17;
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
             // visits_UserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,8 +409,8 @@
             this.Size = new System.Drawing.Size(1091, 492);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
