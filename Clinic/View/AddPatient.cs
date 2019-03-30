@@ -93,7 +93,7 @@ namespace Clinic.View
             if (!this.IsValidSSN(this.ssn_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must have valid 9# SSN - Only numbers allowed no -or / \n";
+                this.errorMessage += "Must have valid 9# SSN - Only numbers allowed\n";
                 this.SSN_Label.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -114,7 +114,7 @@ namespace Clinic.View
             if (!this.IsPhoneNumber(this.phoneNumber_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must enter a valid phone number- Only numbers allowed no -or /\n";
+                this.errorMessage += "Must enter a valid 10 or 11 digit phone number- Only numbers allowed\n";
                 this.phone_number_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -132,7 +132,7 @@ namespace Clinic.View
 
         private bool IsPhoneNumber(string number)
         {
-            return Regex.IsMatch(number, @"^\d{10}$");
+            return Regex.IsMatch(number, @"^\d{10,11}$");
         }
 
         private bool ValidZipcode(string zipcode)
