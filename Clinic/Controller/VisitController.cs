@@ -75,6 +75,12 @@ namespace Clinic.Controller
             
         }
 
+        /// <summary>
+        /// Edits a visit in the database
+        /// </summary>
+        /// <param name="oldVisit">old visit</param>
+        /// <param name="newVisit">new visit</param>
+        /// <returns>true if successful, false otherwise.</returns>
         public bool EditVisit(Visit oldVisit, Visit newVisit)
         {
             return this.visitDAL.UpdateVisit(oldVisit, newVisit);

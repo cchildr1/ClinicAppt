@@ -108,7 +108,7 @@ namespace Clinic.UserControls
         }
 
         private void ResetDataGridView() {
-            this.PopulateDataGridView(this.visitController.GetAllVisits());
+            this.PopulateDataGridView(this.visitController.RefreshVisits());
         }
         private void Reset()
         {
@@ -141,6 +141,7 @@ namespace Clinic.UserControls
                     EditVisit addEditVisit = new EditVisit(oldVisit);
                     DialogResult result = addEditVisit.ShowDialog();
                     this.ParentForm.Enabled = true;
+                    this.ResetDataGridView();
 
                 }
                 catch (Exception ex)
