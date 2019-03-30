@@ -53,8 +53,8 @@ namespace Clinic.UserControls
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                //try
-                //{
+                try
+                {
                     int id = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
                     Visit visit = this.VisitController.GetVisitByAppointmentID(id);
                     this.ParentForm.Enabled = false;
@@ -62,15 +62,15 @@ namespace Clinic.UserControls
                     DialogResult result = addEditVisit.ShowDialog();
                     this.ParentForm.Enabled = true;
 
+                }
 
-                //}
-                //catch (Exception ex)
-                //{
-                //    throw ex;
-                //    //MessageBox.Show(ex.Message.ToString());
-                //}
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), ex.GetType().ToString());
+                }
             }
         }
+        
         /// <summary>
         /// Fills the DataGridView with all Appointments Date, reason for visit, Doctor's name and Patient's name
         /// </summary>
