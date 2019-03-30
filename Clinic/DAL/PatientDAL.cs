@@ -87,6 +87,11 @@ namespace Clinic.DAL
             }
         }
 
+        internal void AddPatient(Patient addedPatient)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Returns a list of Patients equal to the accepted DateTime
         /// </summary>

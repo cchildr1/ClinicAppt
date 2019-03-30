@@ -5,6 +5,7 @@ using Clinic.Controller;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
+
 namespace Clinic.View
 {
     /// <summary>
@@ -37,7 +38,26 @@ namespace Clinic.View
             Patient patient = new Patient();
             if (!this.ErrorCheck())
             {
-
+                try
+                {
+                    ZipcodeController zipcodeController = new ZipcodeController();
+                    patient.FirstName = this.firstname_textbox.Text;
+                    patient.LastName = this.lastname_textbox.Text;
+                    patient.Phone = this.phoneNumber_textbox.Text;
+                    patient.SocialSecurityNumber = this.ssn_textbox.Text;
+                    patient.Zipcode = this.zipcode_textbox.Text;
+                    patient.State = zipcodeController.GetStateFromZipcode(patient.Zipcode);
+                    patient.City = zipcodeController.GetCityFromZipcode(patient.Zipcode);
+                    patient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                    patient.Gender = (string)this.gender_ComboBox.SelectedValue;
+                    patient.StreetAddress = this.streetAddress_textbox.Text;
+                    PatientController patientController = new PatientController();
+                    patientController.AddPatient(patient);
+                }
+                catch (Exception)
+                {
+                    this.ErrorCheck();
+                }
             }
 
         }
