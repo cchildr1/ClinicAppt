@@ -141,7 +141,7 @@ namespace Clinic.View
 
         private void Reset_Patient_ErrorMessages(object sender, EventArgs e)
         {
-            this.Reset_ErrorMessages();  
+            this.Reset_ErrorMessages();
         }
 
         private void dateOfBirth_DateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -149,5 +149,19 @@ namespace Clinic.View
             this.selected_DOB = true;
             this.Reset_Patient_ErrorMessages(sender, e);
         }
+
+        private void Reset_Button_Clicked(object sender, EventArgs e)
+        {
+            this.firstname_textbox.Text = "";
+            this.ssn_textbox.Text = "";
+            this.lastname_textbox.Text = "";
+            this.gender_ComboBox.SelectedIndex = -1;
+            this.streetAddress_textbox.Text = "";
+            this.phoneNumber_textbox.Text = "";
+            this.zipcode_textbox.Text = "";
+            this.dateOfBirth_DateTimePicker.Value = DateTime.Now;
+            this.selected_DOB = false;
+        }
+
     }
 }
