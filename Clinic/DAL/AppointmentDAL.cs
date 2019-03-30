@@ -202,7 +202,8 @@ namespace Clinic.DAL
 
         private Patient GetPatientByID(int patientID)
         {
-            return PatientDAL.GetPatientByID(patientID);
+            PatientDAL patientDAL = new PatientDAL();
+            return patientDAL.GetPatientByID(patientID);
         }
     }
 }

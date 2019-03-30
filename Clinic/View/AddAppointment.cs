@@ -129,15 +129,18 @@ namespace Clinic.View
                 allFieldsFilled = false;
             }
             DateTime scheduledDateTime = this.appointment_time_selector.Value.Date + this.time_Appointment_DateTimePicker.Value.TimeOfDay;
-            if (this.CheckForDoctorDoubleBook(scheduledDateTime, (int)this.Doctor_ComboBox.SelectedValue))
+            if (this.Doctor_ComboBox.SelectedIndex > 0)
             {
-                allFieldsFilled = false;
-                this.patient_label.Text = "You must select a Patient";
-                this.patient_label.ForeColor = System.Drawing.Color.Red;
-                this.doctor_label.Text = "You must select a Doctor";
-                this.doctor_label.ForeColor = System.Drawing.Color.Red;
-                this.time_lbl.Text = "Doctor " + this.doctor_label.Text + " is unavaiable at this date/time";
-                this.time_lbl.ForeColor = System.Drawing.Color.Red;
+                if (this.CheckForDoctorDoubleBook(scheduledDateTime, (int)this.Doctor_ComboBox.SelectedValue))
+                {
+                    allFieldsFilled = false;
+                    this.patient_label.Text = "You must select a Patient";
+                    this.patient_label.ForeColor = System.Drawing.Color.Red;
+                    this.doctor_label.Text = "You must select a Doctor";
+                    this.doctor_label.ForeColor = System.Drawing.Color.Red;
+                    this.time_lbl.Text = "Doctor " + this.doctor_label.Text + " is unavaiable at this date/time";
+                    this.time_lbl.ForeColor = System.Drawing.Color.Red;
+                }
             }
 
             return allFieldsFilled;

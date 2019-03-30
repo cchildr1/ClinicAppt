@@ -138,11 +138,14 @@
             // 
             // appointments_datagridview
             // 
+            this.appointments_datagridview.AllowUserToAddRows = false;
+            this.appointments_datagridview.AllowUserToDeleteRows = false;
             this.appointments_datagridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.appointments_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appointments_datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.appointments_datagridview.Location = new System.Drawing.Point(3, 67);
             this.appointments_datagridview.Name = "appointments_datagridview";
+            this.appointments_datagridview.ReadOnly = true;
             this.appointments_datagridview.Size = new System.Drawing.Size(844, 284);
             this.appointments_datagridview.TabIndex = 3;
             // 
