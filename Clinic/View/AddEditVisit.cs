@@ -80,18 +80,33 @@ namespace Clinic.View
         {
             this.valid = true;
             this.ColorReset();
-            Visit newVisit = new Visit
-            {
-                DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay,
+            Visit newVisit = new Visit();
 
-                Weight = this.ValidateDecimal(weightTextBox),
-                BpSystolic = this.ValidateInt(bpSystolicTextBox),
-                BpDiastolic = this.ValidateInt(bpDiastolicTextBox),
-                BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox),
-                Pulse = this.ValidateInt(pulseTextBox),
-                Symptoms = symptomsTextBox.Text,
-                Info = infoTextBox.Text
-            };
+            newVisit.DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay;
+            if (weightTextBox.Text != "")
+            {
+                newVisit.Weight = this.ValidateDecimal(weightTextBox);
+            }
+            if (bpSystolicTextBox.Text != "")
+            {
+                newVisit.BpSystolic = this.ValidateInt(bpSystolicTextBox);
+            }
+            if (bpDiastolicTextBox.Text != "")
+            {
+                newVisit.BpDiastolic = this.ValidateInt(bpDiastolicTextBox);
+            }
+            if (bodyTemperatureTextBox.Text != "")
+            {
+                newVisit.BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox);
+            }
+            if (pulseTextBox.Text != "")
+            {
+                newVisit.Pulse = this.ValidateInt(pulseTextBox);
+            }
+            
+            newVisit.Symptoms = symptomsTextBox.Text;
+            newVisit.Info = infoTextBox.Text;
+            
             if (NurseComboBox.SelectedIndex == -1)
             {
                 NurseComboBox.BackColor = Color.Red;
