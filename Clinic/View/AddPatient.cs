@@ -49,7 +49,7 @@ namespace Clinic.View
                     patient.State = zipcodeController.GetStateFromZipcode(patient.Zipcode);
                     patient.City = zipcodeController.GetCityFromZipcode(patient.Zipcode);
                     patient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
-                    patient.Gender = "Female" ;
+                    patient.Gender = this.gender_ComboBox.Text;
                     patient.StreetAddress = this.streetAddress_textbox.Text;
                     PatientController patientController = new PatientController();
                     patientController.AddPatient(patient);
