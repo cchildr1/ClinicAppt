@@ -87,9 +87,34 @@ namespace Clinic.DAL
             }
         }
 
-        internal void AddPatient(Patient addedPatient)
+        /// <summary>
+        /// This method will add the accepted Patient to the database
+        /// </summary>
+        /// <param name="addedPatient"></param>
+        public void AddPatient(Patient addedPatient)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlTransaction tran = connection.BeginTransaction())
+                    {
+                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
+                            "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
+                        string insertPatient = "INSERT Patient(personal_information_id)";
+                     
+
+                    }
+                }
+               
+
+                
+            }
+            catch
+            {
+            }
         }
 
         /// <summary>
