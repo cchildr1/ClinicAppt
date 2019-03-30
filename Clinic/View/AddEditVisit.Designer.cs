@@ -455,6 +455,7 @@
             // NurseComboBox
             // 
             this.NurseComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Nurse.FullName", true));
+            this.NurseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NurseComboBox.FormattingEnabled = true;
             this.NurseComboBox.Location = new System.Drawing.Point(92, 29);
             this.NurseComboBox.Name = "NurseComboBox";
