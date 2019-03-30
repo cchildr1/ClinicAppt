@@ -3,6 +3,7 @@ using Clinic.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Clinic.DAL
 {
@@ -84,6 +85,66 @@ namespace Clinic.DAL
                     }
                     return visits;
                 }
+            }
+        }
+
+        /// <summary>
+        /// This method will add the accepted Patient to the database
+        /// </summary>
+        /// <param name="addedPatient"></param>
+        public void AddPatient(Patient addedPatient)
+        {
+            int addedPatient_PersonalInfoID = -1;
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
+                            "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
+
+                        string insertPatient = "INSERT Patient(personal_information_id) VALUES (@personalID)";
+
+                        using (SqlCommand insertPersonCommand = new SqlCommand(insertPerson, connection))
+                        {
+                            insertPersonCommand.Transaction = transaction;
+                            insertPersonCommand.Parameters.AddWithValue("lastName", addedPatient.LastName);
+                            insertPersonCommand.Parameters.AddWithValue("firstName", addedPatient.FirstName);
+                            insertPersonCommand.Parameters.AddWithValue("DOB", addedPatient.DateOfBirth);
+                            insertPersonCommand.Parameters.AddWithValue("SSN", addedPatient.SocialSecurityNumber);
+                            insertPersonCommand.Parameters.AddWithValue("Gender", addedPatient.Gender);
+                            insertPersonCommand.Parameters.AddWithValue("streetAddress", addedPatient.StreetAddress);
+                            insertPersonCommand.Parameters.AddWithValue("phoneNumber", addedPatient.Phone);
+                            insertPersonCommand.Parameters.AddWithValue("Zipcode", addedPatient.Zipcode);
+                            insertPersonCommand.ExecuteNonQuery();
+
+                            string selectStatement = "SELECT IDENT_CURRENT('Person') FROM Person";
+
+                            using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                            {
+                                selectCommand.Transaction = transaction;
+                                addedPatient_PersonalInfoID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                            }
+                        }
+
+                        using (SqlCommand insertPatientCommand = new SqlCommand(insertPatient, connection))
+                        {
+                            insertPatientCommand.Transaction = transaction;
+                            insertPatientCommand.Parameters.AddWithValue("@personalID", addedPatient_PersonalInfoID);
+                            insertPatientCommand.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
 

@@ -78,5 +78,14 @@ namespace Clinic.Controller
             }
             else return this.patientDAL.GetPatientByLastName_Only(lastname);
         }
+
+        /// <summary>
+        /// This method adds the accepted patient to the database
+        /// </summary>
+        /// <param name="addedPatient"></param>
+        public void AddPatient(Patient addedPatient)
+        {
+            this.patientDAL.AddPatient(addedPatient);
+        }
     }
 }

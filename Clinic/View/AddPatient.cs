@@ -5,6 +5,7 @@ using Clinic.Controller;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
+
 namespace Clinic.View
 {
     /// <summary>
@@ -28,7 +29,7 @@ namespace Clinic.View
             this.gender_ComboBox.Items.Add("Male");
             this.gender_ComboBox.Items.Add("Female");
             this.gender_ComboBox.Items.Add("Other");
-            this.gender_ComboBox.Items.Add("I choose not to disclose");
+            this.gender_ComboBox.Items.Add("Rather not say");
             this.gender_ComboBox.SelectedIndex = -1;
         }
 
@@ -37,7 +38,29 @@ namespace Clinic.View
             Patient patient = new Patient();
             if (!this.ErrorCheck())
             {
+                try
+                {
+                    ZipcodeController zipcodeController = new ZipcodeController();
+                    patient.FirstName = this.firstname_textbox.Text;
+                    patient.LastName = this.lastname_textbox.Text;
+                    patient.Phone = this.phoneNumber_textbox.Text;
+                    patient.SocialSecurityNumber = this.ssn_textbox.Text;
+                    patient.Zipcode = this.zipcode_textbox.Text;
+                    patient.State = zipcodeController.GetStateFromZipcode(patient.Zipcode);
+                    patient.City = zipcodeController.GetCityFromZipcode(patient.Zipcode);
+                    patient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                    patient.Gender = this.gender_ComboBox.Text;
+                    patient.StreetAddress = this.streetAddress_textbox.Text;
+                    PatientController patientController = new PatientController();
+                    patientController.AddPatient(patient);
 
+                    this.DialogResult = DialogResult.Yes;
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    this.ErrorCheck();
+                }
             }
 
         }
@@ -70,7 +93,7 @@ namespace Clinic.View
             if (!this.IsValidSSN(this.ssn_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must have valid 9# SSN \n";
+                this.errorMessage += "Must have valid 9# SSN - Only numbers allowed\n";
                 this.SSN_Label.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -91,7 +114,7 @@ namespace Clinic.View
             if (!this.IsPhoneNumber(this.phoneNumber_textbox.Text))
             {
                 errors = true;
-                this.errorMessage += "Must enter a valid phone number ###-###-####\n";
+                this.errorMessage += "Must enter a valid 10 or 11 digit phone number- Only numbers allowed\n";
                 this.phone_number_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
@@ -109,7 +132,7 @@ namespace Clinic.View
 
         private bool IsPhoneNumber(string number)
         {
-            return Regex.IsMatch(number, @"^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$");
+            return Regex.IsMatch(number, @"^\d{10,11}$");
         }
 
         private bool ValidZipcode(string zipcode)
@@ -120,7 +143,7 @@ namespace Clinic.View
 
         private bool IsValidSSN(string ssn)
         {
-            return Regex.IsMatch(ssn, @"^(?:\d{9}|\d{3}-\d{2}-\d{4})$");
+            return Regex.IsMatch(ssn, @"^\d{9}$");
         }
 
 
@@ -141,7 +164,7 @@ namespace Clinic.View
 
         private void Reset_Patient_ErrorMessages(object sender, EventArgs e)
         {
-            this.Reset_ErrorMessages();  
+            this.Reset_ErrorMessages();
         }
 
         private void dateOfBirth_DateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -149,5 +172,19 @@ namespace Clinic.View
             this.selected_DOB = true;
             this.Reset_Patient_ErrorMessages(sender, e);
         }
+
+        private void Reset_Button_Clicked(object sender, EventArgs e)
+        {
+            this.firstname_textbox.Text = "";
+            this.ssn_textbox.Text = "";
+            this.lastname_textbox.Text = "";
+            this.gender_ComboBox.SelectedIndex = -1;
+            this.streetAddress_textbox.Text = "";
+            this.phoneNumber_textbox.Text = "";
+            this.zipcode_textbox.Text = "";
+            this.dateOfBirth_DateTimePicker.Value = DateTime.Now;
+            this.selected_DOB = false;
+        }
+
     }
 }

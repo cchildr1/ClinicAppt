@@ -298,7 +298,7 @@
             this.reset_button.TabIndex = 12;
             this.reset_button.Text = "Reset Patient";
             this.reset_button.UseVisualStyleBackColor = true;
-            this.reset_button.Click += new System.EventHandler(this.Reset_Patient_ErrorMessages);
+            this.reset_button.Click += new System.EventHandler(this.Reset_Button_Clicked);
             // 
             // AddPatient
             // 

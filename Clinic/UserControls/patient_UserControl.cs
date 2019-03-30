@@ -119,6 +119,10 @@ namespace Clinic.UserControls
         {
             AddPatient addPatient = new AddPatient();
             DialogResult result = addPatient.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.getAllPatients_Click(sender, e);
+            }
         }
     }
 }

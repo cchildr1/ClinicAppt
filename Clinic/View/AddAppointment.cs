@@ -138,7 +138,7 @@ namespace Clinic.View
                     this.patient_label.ForeColor = System.Drawing.Color.Red;
                     this.doctor_label.Text = "You must select a Doctor";
                     this.doctor_label.ForeColor = System.Drawing.Color.Red;
-                    this.time_lbl.Text = "Doctor " + this.doctor_label.Text + " is unavaiable at this date/time";
+                    this.time_lbl.Text = this.doctor_label.Text + " is unavaiable at this date/time";
                     this.time_lbl.ForeColor = System.Drawing.Color.Red;
                 }
             }
