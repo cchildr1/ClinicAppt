@@ -37,6 +37,7 @@ namespace Clinic.View
             Patient patient = new Patient();
             if (!this.ErrorCheck())
             {
+
             }
 
         }
