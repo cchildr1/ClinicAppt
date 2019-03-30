@@ -29,7 +29,7 @@ namespace Clinic.View
             this.gender_ComboBox.Items.Add("Male");
             this.gender_ComboBox.Items.Add("Female");
             this.gender_ComboBox.Items.Add("Other");
-            this.gender_ComboBox.Items.Add("I choose not to disclose");
+            this.gender_ComboBox.Items.Add("Rather not say");
             this.gender_ComboBox.SelectedIndex = -1;
         }
 
@@ -43,8 +43,8 @@ namespace Clinic.View
                     ZipcodeController zipcodeController = new ZipcodeController();
                     patient.FirstName = this.firstname_textbox.Text;
                     patient.LastName = this.lastname_textbox.Text;
-                    patient.Phone = "1234567890";// this.phoneNumber_textbox.Text;
-                    patient.SocialSecurityNumber = "123456789";
+                    patient.Phone = this.phoneNumber_textbox.Text;
+                    patient.SocialSecurityNumber = this.ssn_textbox.Text;
                     patient.Zipcode = this.zipcode_textbox.Text;
                     patient.State = zipcodeController.GetStateFromZipcode(patient.Zipcode);
                     patient.City = zipcodeController.GetCityFromZipcode(patient.Zipcode);
