@@ -485,37 +485,6 @@ namespace Clinic.DAL
             return appointments;
         }
 
-        private Person PopulatePersonalInformation(Person person)
-        {
-            string selectStatement = "SELECT * FROM person WHERE id = @personID;";
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(selectStatement, connection))
-                {
-                    command.Parameters.AddWithValue("@personID", person.PersonId);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            person.LastName = reader["last_name"].ToString();
-                            person.FirstName = reader["first_name"].ToString();
-                            person.DateOfBirth = (DateTime)reader["date_of_birth"];
-                            person.SocialSecurityNumber = reader["ssn"].ToString();
-                            person.Gender = reader["gender"].ToString();
-                            person.StreetAddress = reader["street_address"].ToString();
-                            person.Phone = reader["phone"].ToString();
-                            person.Zipcode = reader["zipcode"].ToString();
-                            person.State = zipcodeDAL.GetStateByZipcode(reader["zipcode"].ToString());
-                            person.City = zipcodeDAL.GetCityByZipcode(reader["zipcode"].ToString());
-                        }
-                    }
-                }
-                connection.Close();
-            }
-            return person;
-        }
-
         /// <summary>
         /// Returns a Patient equal to the accepted ID
         /// </summary>
@@ -545,6 +514,44 @@ namespace Clinic.DAL
 
                 return patient;
             }
+        }
+
+        /// *******  Private methods ******* ///
+
+        /// <summary>
+        /// Helper method to populate a Person object's information.
+        /// </summary>
+        /// <param name="person">Input person object without personal info</param>
+        /// <returns>Input person object with personal info</returns>
+        private Person PopulatePersonalInformation(Person person)
+        {
+            string selectStatement = "SELECT * FROM person WHERE id = @personID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", person.PersonId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            person.LastName = reader["last_name"].ToString();
+                            person.FirstName = reader["first_name"].ToString();
+                            person.DateOfBirth = (DateTime)reader["date_of_birth"];
+                            person.SocialSecurityNumber = reader["ssn"].ToString();
+                            person.Gender = reader["gender"].ToString();
+                            person.StreetAddress = reader["street_address"].ToString();
+                            person.Phone = reader["phone"].ToString();
+                            person.Zipcode = reader["zipcode"].ToString();
+                            person.State = zipcodeDAL.GetStateByZipcode(reader["zipcode"].ToString());
+                            person.City = zipcodeDAL.GetCityByZipcode(reader["zipcode"].ToString());
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return person;
         }
     }
 }
