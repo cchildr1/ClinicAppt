@@ -1,5 +1,6 @@
 ﻿using Clinic.Controller;
 using Clinic.Model;
+using Clinic.View;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -112,6 +113,12 @@ namespace Clinic.UserControls
         {
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
+        }
+
+        private void AddPatient_button_Click(object sender, EventArgs e)
+        {
+            AddPatient addPatient = new AddPatient();
+            DialogResult result = addPatient.ShowDialog();
         }
     }
 }
