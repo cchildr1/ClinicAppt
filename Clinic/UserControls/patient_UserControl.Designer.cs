@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.searchPatients_LBL = new System.Windows.Forms.Label();
             this.bottomRow_Appointments_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ResetDataGridView_button = new System.Windows.Forms.Button();
             this.getAllPatients = new System.Windows.Forms.Button();
             this.addPatient_button = new System.Windows.Forms.Button();
+            this.editSelectedPatient_Button = new System.Windows.Forms.Button();
+            this.ResetDataGridView_button = new System.Windows.Forms.Button();
             this.baseAppointment_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.topRow_Appointment_tableLOP = new System.Windows.Forms.TableLayoutPanel();
             this.resetDateOfBirth = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.editSelectedPatient_Button = new System.Windows.Forms.Button();
             this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
@@ -86,16 +86,6 @@
             this.bottomRow_Appointments_TableLayoutPanel.Size = new System.Drawing.Size(844, 40);
             this.bottomRow_Appointments_TableLayoutPanel.TabIndex = 2;
             // 
-            // ResetDataGridView_button
-            // 
-            this.ResetDataGridView_button.Location = new System.Drawing.Point(3, 37);
-            this.ResetDataGridView_button.Name = "ResetDataGridView_button";
-            this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
-            this.ResetDataGridView_button.TabIndex = 0;
-            this.ResetDataGridView_button.Text = "Reset Field";
-            this.ResetDataGridView_button.UseVisualStyleBackColor = true;
-            this.ResetDataGridView_button.Click += new System.EventHandler(this.ResetDataGridView_button_Click);
-            // 
             // getAllPatients
             // 
             this.getAllPatients.Location = new System.Drawing.Point(171, 3);
@@ -115,6 +105,27 @@
             this.addPatient_button.Text = "Add Patient";
             this.addPatient_button.UseVisualStyleBackColor = true;
             this.addPatient_button.Click += new System.EventHandler(this.AddPatient_button_Click);
+            // 
+            // editSelectedPatient_Button
+            // 
+            this.editSelectedPatient_Button.Location = new System.Drawing.Point(339, 3);
+            this.editSelectedPatient_Button.Name = "editSelectedPatient_Button";
+            this.editSelectedPatient_Button.Size = new System.Drawing.Size(75, 23);
+            this.editSelectedPatient_Button.TabIndex = 3;
+            this.editSelectedPatient_Button.Text = "Edit Patient";
+            this.editSelectedPatient_Button.UseVisualStyleBackColor = true;
+            this.editSelectedPatient_Button.Visible = false;
+            this.editSelectedPatient_Button.Click += new System.EventHandler(this.EditSelectedPatient_Button_Click);
+            // 
+            // ResetDataGridView_button
+            // 
+            this.ResetDataGridView_button.Location = new System.Drawing.Point(3, 37);
+            this.ResetDataGridView_button.Name = "ResetDataGridView_button";
+            this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
+            this.ResetDataGridView_button.TabIndex = 0;
+            this.ResetDataGridView_button.Text = "Reset Field";
+            this.ResetDataGridView_button.UseVisualStyleBackColor = true;
+            this.ResetDataGridView_button.Click += new System.EventHandler(this.ResetDataGridView_button_Click);
             // 
             // baseAppointment_TableLayoutPanel
             // 
@@ -284,17 +295,6 @@
             // appointmentBindingSource
             // 
             this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
-            // 
-            // editSelectedPatient_Button
-            // 
-            this.editSelectedPatient_Button.Location = new System.Drawing.Point(339, 3);
-            this.editSelectedPatient_Button.Name = "editSelectedPatient_Button";
-            this.editSelectedPatient_Button.Size = new System.Drawing.Size(75, 23);
-            this.editSelectedPatient_Button.TabIndex = 3;
-            this.editSelectedPatient_Button.Text = "Edit Patient";
-            this.editSelectedPatient_Button.UseVisualStyleBackColor = true;
-            this.editSelectedPatient_Button.Visible = false;
-            this.editSelectedPatient_Button.Click += new System.EventHandler(this.editSelectedPatient_Button_Click);
             // 
             // patient_UserControl
             // 

@@ -17,6 +17,7 @@ namespace Clinic.UserControls
     {
         private bool DOB_ValueChanged = false;
         private bool dataGridView_Is_Patient = true;
+        private int selectedPatientID = -1;
         private PatientController patientController = new PatientController();
         private AppointmentController appointmentController = new AppointmentController();
         public patient_UserControl()
@@ -79,6 +80,7 @@ namespace Clinic.UserControls
 
         public void GetAppointmentData_ForSelectedPatient(int patientID)
         {
+            this.selectedPatientID = patientID;
             this.patients_datagridview.DataSource = null;
             List<Appointment> appointments = new List<Appointment>();
             appointments = this.appointmentController.GetAppointmentsByPatientID(patientID);
@@ -128,9 +130,15 @@ namespace Clinic.UserControls
             }
         }
 
-        private void editSelectedPatient_Button_Click(object sender, EventArgs e)
+        private void EditSelectedPatient_Button_Click(object sender, EventArgs e)
         {
-
+            EditPatient editPatient = new EditPatient();
+            editPatient.PopulateEditpatient_fields(this.patientController.GetPatientByID(this.selectedPatientID));
+            DialogResult result = editPatient.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.getAllPatients_Click(sender, e);
+            }
         }
     }
 }
