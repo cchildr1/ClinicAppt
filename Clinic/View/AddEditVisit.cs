@@ -105,19 +105,23 @@ namespace Clinic.View
                 if (this.visitController.EditVisit(oldVisit, newVisit))
                 {
                     MessageBox.Show("Visit updated.");
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
                     MessageBox.Show("Update failed");
+                    this.DialogResult = DialogResult.Cancel;
                 }
             } else if (!this.update)
             {
                 if (this.visitController.AddVisit(newVisit) > 0)
                 {
                     MessageBox.Show("Visit added");
+                    this.DialogResult = DialogResult.OK;
                 } else
                 {
                     MessageBox.Show("Add failed");
+                    this.DialogResult = DialogResult.Cancel;
                 }
             }
 
@@ -125,5 +129,10 @@ namespace Clinic.View
             this.Dispose();
         }
 
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Dispose();
+        }
     }
 }

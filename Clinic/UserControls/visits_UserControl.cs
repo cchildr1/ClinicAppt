@@ -39,8 +39,8 @@ namespace Clinic.UserControls
                 string[] row =
                 {
                     visit.VisitId.ToString(),
-                    visit.DateTime.ToString(),
                     visit.Appointment.Scheduled_Date.ToString(),
+                    visit.DateTime.ToString(),
                     visit.Appointment.Patient.FullName,
                     visit.Appointment.Doctor.FullName,
                     visit.Nurse.FullName,
@@ -95,6 +95,14 @@ namespace Clinic.UserControls
             {
                 appointmentEnd = this.DTPAppointmentEnd.Value;
             }
+            if (this.DTPVisitStart.Checked)
+            {
+                visitStart = this.DTPVisitStart.Value;
+            }
+            if (this.DTPVisitEnd.Checked)
+            {
+                visitEnd = this.DTPVisitEnd.Value;
+            }
             this.PopulateDataGridView(this.visitController.SearchVisits(
                     doctorID,
                     nurseID, 
@@ -120,6 +128,8 @@ namespace Clinic.UserControls
             this.DTPAppointmentStart.Checked = false;
             this.DTPVisitEnd.Checked = false;
             this.DTPVisitStart.Checked = false;
+            this.DTPVisitStart.Checked = false;
+            this.DTPVisitEnd.Checked = false;
         }
 
         private void BtReset_Click(object sender, EventArgs e)
@@ -141,8 +151,10 @@ namespace Clinic.UserControls
                     AddEditVisit addEditVisit = new AddEditVisit(oldVisit);
                     DialogResult result = addEditVisit.ShowDialog();
                     this.ParentForm.Enabled = true;
-                    this.ResetDataGridView();
-
+                    if (result == DialogResult.OK)
+                    {
+                        this.ResetDataGridView();
+                    }
                 }
                 catch (Exception ex)
                 {

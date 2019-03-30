@@ -123,12 +123,12 @@ namespace Clinic.Controller
 
         private List<Visit> SearchByAppointmentDate(DateTime appointmentStart, DateTime appointmentEnd, List<Visit> visits)
         {
-            return visits.FindAll(V => V.Appointment.Scheduled_Date >= appointmentStart && V.Appointment.Scheduled_Date <= appointmentEnd);
+            return visits.FindAll(V => (V.Appointment.Scheduled_Date.Date >= appointmentStart.Date && V.Appointment.Scheduled_Date.Date <= appointmentEnd.Date));
         }
 
         private List<Visit> SearchByVisitDate(DateTime visitStart, DateTime visitEnd, List<Visit> visits)
         {
-            return visits.FindAll(V => V.DateTime >= visitStart && V.DateTime <= visitEnd);
+            return visits.FindAll(V => V.DateTime.Date >= visitStart.Date && V.DateTime.Date <= visitEnd.Date);
         }
 
     }

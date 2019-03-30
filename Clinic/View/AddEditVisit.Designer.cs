@@ -44,7 +44,10 @@
             System.Windows.Forms.Label bodyTemperatureLabel;
             System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.infoTextBox = new System.Windows.Forms.TextBox();
+            this.bodyTemperatureTextBox = new System.Windows.Forms.TextBox();
             this.doctorTextBox = new System.Windows.Forms.TextBox();
             this.finalDiagnosisTextBox = new System.Windows.Forms.TextBox();
             this.initialDiagnosisTextBox = new System.Windows.Forms.TextBox();
@@ -58,9 +61,6 @@
             this.NurseComboBox = new System.Windows.Forms.ComboBox();
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bodyTemperatureTextBox = new System.Windows.Forms.TextBox();
-            this.infoTextBox = new System.Windows.Forms.TextBox();
             fullNameLabel1 = new System.Windows.Forms.Label();
             fullNameLabel = new System.Windows.Forms.Label();
             dateTimeLabel = new System.Windows.Forms.Label();
@@ -75,8 +75,8 @@
             fullNameLabel2 = new System.Windows.Forms.Label();
             bodyTemperatureLabel = new System.Windows.Forms.Label();
             infoLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // fullNameLabel1
@@ -235,6 +235,32 @@
             fullNameLabel2.Text = "Doctor:";
             fullNameLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // bodyTemperatureLabel
+            // 
+            bodyTemperatureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            bodyTemperatureLabel.AutoSize = true;
+            bodyTemperatureLabel.Location = new System.Drawing.Point(3, 131);
+            bodyTemperatureLabel.Name = "bodyTemperatureLabel";
+            bodyTemperatureLabel.Size = new System.Drawing.Size(83, 26);
+            bodyTemperatureLabel.TabIndex = 26;
+            bodyTemperatureLabel.Text = "Temperature:";
+            bodyTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // infoLabel
+            // 
+            infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            infoLabel.AutoSize = true;
+            infoLabel.Location = new System.Drawing.Point(3, 231);
+            infoLabel.Name = "infoLabel";
+            infoLabel.Size = new System.Drawing.Size(83, 74);
+            infoLabel.TabIndex = 28;
+            infoLabel.Text = "Info:";
+            infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // patientTextBox
             // 
             this.patientTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -246,6 +272,10 @@
             this.patientTextBox.ReadOnly = true;
             this.patientTextBox.Size = new System.Drawing.Size(200, 20);
             this.patientTextBox.TabIndex = 3;
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
             // 
             // tableLayoutPanel1
             // 
@@ -301,6 +331,28 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 483);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // infoTextBox
+            // 
+            this.infoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
+            this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
+            this.infoTextBox.Location = new System.Drawing.Point(92, 234);
+            this.infoTextBox.Multiline = true;
+            this.infoTextBox.Name = "infoTextBox";
+            this.infoTextBox.Size = new System.Drawing.Size(529, 68);
+            this.infoTextBox.TabIndex = 29;
+            // 
+            // bodyTemperatureTextBox
+            // 
+            this.bodyTemperatureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BodyTemperature", true));
+            this.bodyTemperatureTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(92, 134);
+            this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
+            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
+            this.bodyTemperatureTextBox.TabIndex = 27;
             // 
             // doctorTextBox
             // 
@@ -428,58 +480,7 @@
             this.btCancel.TabIndex = 25;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
-            // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
-            // bodyTemperatureLabel
-            // 
-            bodyTemperatureLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            bodyTemperatureLabel.AutoSize = true;
-            bodyTemperatureLabel.Location = new System.Drawing.Point(3, 131);
-            bodyTemperatureLabel.Name = "bodyTemperatureLabel";
-            bodyTemperatureLabel.Size = new System.Drawing.Size(83, 26);
-            bodyTemperatureLabel.TabIndex = 26;
-            bodyTemperatureLabel.Text = "Temperature:";
-            bodyTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // bodyTemperatureTextBox
-            // 
-            this.bodyTemperatureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BodyTemperature", true));
-            this.bodyTemperatureTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(92, 134);
-            this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
-            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
-            this.bodyTemperatureTextBox.TabIndex = 27;
-            // 
-            // infoLabel
-            // 
-            infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            infoLabel.AutoSize = true;
-            infoLabel.Location = new System.Drawing.Point(3, 231);
-            infoLabel.Name = "infoLabel";
-            infoLabel.Size = new System.Drawing.Size(83, 74);
-            infoLabel.TabIndex = 28;
-            infoLabel.Text = "Info:";
-            infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // infoTextBox
-            // 
-            this.infoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
-            this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
-            this.infoTextBox.Location = new System.Drawing.Point(92, 234);
-            this.infoTextBox.Multiline = true;
-            this.infoTextBox.Name = "infoTextBox";
-            this.infoTextBox.Size = new System.Drawing.Size(529, 68);
-            this.infoTextBox.TabIndex = 29;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // AddEditVisit
             // 
@@ -491,9 +492,9 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
             this.Text = "AddEditVisit";
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
