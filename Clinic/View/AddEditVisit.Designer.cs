@@ -469,7 +469,7 @@
             this.btOK.TabIndex = 15;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
-            this.btOK.Click += new System.EventHandler(this.btOK_Click);
+            this.btOK.Click += new System.EventHandler(this.BtOK_Click);
             // 
             // btCancel
             // 
@@ -480,7 +480,7 @@
             this.btCancel.TabIndex = 16;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
-            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
+            this.btCancel.Click += new System.EventHandler(this.BtCancel_Click);
             // 
             // AddEditVisit
             // 

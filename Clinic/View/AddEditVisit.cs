@@ -76,21 +76,22 @@ namespace Clinic.View
         }
 
 
-        private void btOK_Click(object sender, EventArgs e)
+        private void BtOK_Click(object sender, EventArgs e)
         {
             this.valid = true;
             this.ColorReset();
-            Visit newVisit = new Visit();
-            
-            newVisit.DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay;
+            Visit newVisit = new Visit
+            {
+                DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay,
 
-            newVisit.Weight = this.ValidateDecimal(weightTextBox);
-            newVisit.BpSystolic = this.ValidateInt(bpSystolicTextBox);
-            newVisit.BpDiastolic = this.ValidateInt(bpDiastolicTextBox);
-            newVisit.BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox);
-            newVisit.Pulse = this.ValidateInt(pulseTextBox);
-            newVisit.Symptoms = symptomsTextBox.Text;
-            newVisit.Info = infoTextBox.Text;
+                Weight = this.ValidateDecimal(weightTextBox),
+                BpSystolic = this.ValidateInt(bpSystolicTextBox),
+                BpDiastolic = this.ValidateInt(bpDiastolicTextBox),
+                BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox),
+                Pulse = this.ValidateInt(pulseTextBox),
+                Symptoms = symptomsTextBox.Text,
+                Info = infoTextBox.Text
+            };
             if (NurseComboBox.SelectedIndex == -1)
             {
                 NurseComboBox.BackColor = Color.Red;
@@ -143,7 +144,7 @@ namespace Clinic.View
             this.Dispose();
         }
 
-        private void btCancel_Click(object sender, EventArgs e)
+        private void BtCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
@@ -154,7 +155,7 @@ namespace Clinic.View
             try
             {
                 return decimal.Parse(textbox.Text);
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 textbox.BackColor = Color.Red;
                 this.valid = false;
@@ -167,7 +168,7 @@ namespace Clinic.View
             try
             {
                 return int.Parse(textbox.Text);
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 textbox.BackColor = Color.Red;
                 this.valid = false;
