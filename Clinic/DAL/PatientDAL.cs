@@ -563,17 +563,17 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@new_zipcode", newPatient.Zipcode);
 
                         updateCommand.Parameters.AddWithValue("@id", oldPatient.PersonId);
-                        updateCommand.Parameters.AddWithValue("@old_last_name", newPatient.LastName);
-                        updateCommand.Parameters.AddWithValue("@old_first_name", newPatient.FirstName);
-                        updateCommand.Parameters.AddWithValue("@old_date_of_birth", newPatient.DateOfBirth);
+                        updateCommand.Parameters.AddWithValue("@old_last_name", oldPatient.LastName);
+                        updateCommand.Parameters.AddWithValue("@old_first_name", oldPatient.FirstName);
+                        updateCommand.Parameters.AddWithValue("@old_date_of_birth", oldPatient.DateOfBirth);
                         if (newPatient.SocialSecurityNumber == "")
                             updateCommand.Parameters.AddWithValue("@old_ssn", DBNull.Value);
                         else
-                            updateCommand.Parameters.AddWithValue("@old_ssn", newPatient.SocialSecurityNumber);
-                        updateCommand.Parameters.AddWithValue("@old_gender", newPatient.Gender);
-                        updateCommand.Parameters.AddWithValue("@old_street_address", newPatient.StreetAddress);
-                        updateCommand.Parameters.AddWithValue("@old_phone", newPatient.Phone);
-                        updateCommand.Parameters.AddWithValue("@old_zipcode", newPatient.Zipcode);
+                            updateCommand.Parameters.AddWithValue("@old_ssn", oldPatient.SocialSecurityNumber);
+                        updateCommand.Parameters.AddWithValue("@old_gender", oldPatient.Gender);
+                        updateCommand.Parameters.AddWithValue("@old_street_address", oldPatient.StreetAddress);
+                        updateCommand.Parameters.AddWithValue("@old_phone", oldPatient.Phone);
+                        updateCommand.Parameters.AddWithValue("@old_zipcode", oldPatient.Zipcode);
 
                         count = updateCommand.ExecuteNonQuery();
                     }

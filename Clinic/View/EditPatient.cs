@@ -34,8 +34,8 @@ namespace Clinic.View
         /// <param name="patient">acepted Pateient object</param>
         public void PopulateEditpatient_fields(Patient patient) {
             this.oldPatient = patient;
-            this.firstname_textbox.Text = patient.FirstName;
-            this.lastname_textbox.Text = patient.LastName;
+            this.firstname_textbox.Text = this.oldPatient.FirstName;
+            this.lastname_textbox.Text = this.oldPatient.LastName;
             this.dateOfBirth_DateTimePicker.Value = patient.DateOfBirth;
             this.ssn_textbox.Text = patient.SocialSecurityNumber;
             this.gender_ComboBox.Text = patient.Gender;
@@ -70,7 +70,6 @@ namespace Clinic.View
                 else
                 {
                     MessageBox.Show("Patient update failed");
-                    this.DialogResult = DialogResult.Cancel;
                 }
             }          
         }
@@ -158,7 +157,11 @@ namespace Clinic.View
 
         private bool IsValidSSN(string ssn)
         {
-            return Regex.IsMatch(ssn, @"^\d{9}$");
+            if (ssn != "")
+            {
+                return Regex.IsMatch(ssn, @"^\d{9}$");
+            }
+            return true;
         }
 
         private void ValueOfPatientChanged(object sender, System.EventArgs e)
