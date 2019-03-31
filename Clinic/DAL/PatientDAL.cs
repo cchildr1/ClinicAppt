@@ -522,7 +522,7 @@ namespace Clinic.DAL
         /// <param name="oldPatient">The old patient object in the db</param>
         /// <param name="newPatient">The new patient object in the view</param>
         /// <returns></returns>
-        public static bool UpdatePatient(Patient oldPatient, Patient newPatient)
+        public bool UpdatePatient(Patient oldPatient, Patient newPatient)
         {
             string updateStatement = "UPDATE person " +
                 "SET last_name = @new_last_name, " +

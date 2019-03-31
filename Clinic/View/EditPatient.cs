@@ -8,6 +8,7 @@ namespace Clinic.View
     public partial class EditPatient : Form
     {
         Patient oldPatient = new Patient();
+        PatientController patientController = new PatientController();
         string errorMessage = "";
         bool noValueChanged;
         public EditPatient(
@@ -48,7 +49,30 @@ namespace Clinic.View
         {
             if (!ErrorCheck())
             {
-            }
+                Patient editedPatient = new Patient();
+                ZipcodeController zipcodeController = new ZipcodeController();
+                editedPatient.FirstName = this.firstname_textbox.Text;
+                editedPatient.LastName = this.lastname_textbox.Text;
+                editedPatient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                editedPatient.SocialSecurityNumber = this.ssn_textbox.Text;
+                editedPatient.Gender = this.gender_ComboBox.Text;
+                editedPatient.StreetAddress = this.streetAddress_textbox.Text;
+                editedPatient.Zipcode = this.zipcode_textbox.Text;
+                editedPatient.City = zipcodeController.GetCityFromZipcode(editedPatient.Zipcode);
+                editedPatient.State = zipcodeController.GetStateFromZipcode(editedPatient.Zipcode);
+                editedPatient.Phone = this.phoneNumber_textbox.Text;
+
+                if (this.patientController.EditPatient(this.oldPatient, editedPatient))
+                {
+                    MessageBox.Show("Patient updated.");
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Patient update failed");
+                    this.DialogResult = DialogResult.Cancel;
+                }
+            }          
         }
 
         private void Reset_button_Click(object sender, System.EventArgs e)
