@@ -516,6 +516,77 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// Updates a patient object in the database.
+        /// </summary>
+        /// <param name="oldPatient">The old patient object in the db</param>
+        /// <param name="newPatient">The new patient object in the view</param>
+        /// <returns></returns>
+        public static bool UpdatePatient(Patient oldPatient, Patient newPatient)
+        {
+            string updateStatement = "UPDATE person " +
+                "SET last_name = @new_last_name, " +
+                "first_name = @new_first_name, " +
+                "date_of_birth = @new_date_of_birth, " +
+                "ssn = @new_ssn, " +
+                "gender = @new_gender, " +
+                "street_address = @new_street_address, " +
+                "phone = @new_phone, " +
+                "zipcode = @new_zipcode " +
+                "WHERE id = @id AND " +
+                "last_name = @old_last_name AND " +
+                "first_name = @old_first_name AND " +
+                "date_of_birth = @old_date_of_birth AND " +
+                "ssn = @old_ssn AND " +
+                "gender = @old_gender AND " +
+                "street_address = @old_street_address AND " +
+                "phone = @old_phone AND " +
+                "zipcode = @old_zipcode;";
+            int count = 0;
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@new_last_name", newPatient.LastName);
+                        updateCommand.Parameters.AddWithValue("@new_first_name", newPatient.FirstName);
+                        updateCommand.Parameters.AddWithValue("@new_date_of_birth", newPatient.DateOfBirth);
+                        if (newPatient.SocialSecurityNumber == "")
+                            updateCommand.Parameters.AddWithValue("@new_ssn", DBNull.Value);
+                        else
+                            updateCommand.Parameters.AddWithValue("@new_ssn", newPatient.SocialSecurityNumber);
+                        updateCommand.Parameters.AddWithValue("@new_gender", newPatient.Gender);
+                        updateCommand.Parameters.AddWithValue("@new_street_address", newPatient.StreetAddress);
+                        updateCommand.Parameters.AddWithValue("@new_phone", newPatient.Phone);
+                        updateCommand.Parameters.AddWithValue("@new_zipcode", newPatient.Zipcode);
+
+                        updateCommand.Parameters.AddWithValue("@id", oldPatient.PersonId);
+                        updateCommand.Parameters.AddWithValue("@old_last_name", newPatient.LastName);
+                        updateCommand.Parameters.AddWithValue("@old_first_name", newPatient.FirstName);
+                        updateCommand.Parameters.AddWithValue("@old_date_of_birth", newPatient.DateOfBirth);
+                        if (newPatient.SocialSecurityNumber == "")
+                            updateCommand.Parameters.AddWithValue("@old_ssn", DBNull.Value);
+                        else
+                            updateCommand.Parameters.AddWithValue("@old_ssn", newPatient.SocialSecurityNumber);
+                        updateCommand.Parameters.AddWithValue("@old_gender", newPatient.Gender);
+                        updateCommand.Parameters.AddWithValue("@old_street_address", newPatient.StreetAddress);
+                        updateCommand.Parameters.AddWithValue("@old_phone", newPatient.Phone);
+                        updateCommand.Parameters.AddWithValue("@old_zipcode", newPatient.Zipcode);
+
+                        count = updateCommand.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return count > 0;
+        }
+
         /// *******  Private methods ******* ///
 
         /// <summary>
