@@ -49,6 +49,7 @@
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.doubleClickInstructions_LBL = new System.Windows.Forms.Label();
             this.bottomRow_Appointments_TableLayoutPanel.SuspendLayout();
             this.baseAppointment_TableLayoutPanel.SuspendLayout();
             this.topRow_Appointment_tableLOP.SuspendLayout();
@@ -71,10 +72,12 @@
             // 
             // bottomRow_Appointments_TableLayoutPanel
             // 
-            this.bottomRow_Appointments_TableLayoutPanel.ColumnCount = 3;
+            this.bottomRow_Appointments_TableLayoutPanel.ColumnCount = 4;
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.ResetDataGridView_button, 3, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.getAllPatients, 1, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.addPatient_button, 0, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.editSelectedPatient_Button, 2, 0);
@@ -88,7 +91,7 @@
             // 
             // getAllPatients
             // 
-            this.getAllPatients.Location = new System.Drawing.Point(171, 3);
+            this.getAllPatients.Location = new System.Drawing.Point(130, 3);
             this.getAllPatients.Name = "getAllPatients";
             this.getAllPatients.Size = new System.Drawing.Size(91, 23);
             this.getAllPatients.TabIndex = 1;
@@ -108,7 +111,7 @@
             // 
             // editSelectedPatient_Button
             // 
-            this.editSelectedPatient_Button.Location = new System.Drawing.Point(339, 3);
+            this.editSelectedPatient_Button.Location = new System.Drawing.Point(257, 3);
             this.editSelectedPatient_Button.Name = "editSelectedPatient_Button";
             this.editSelectedPatient_Button.Size = new System.Drawing.Size(75, 23);
             this.editSelectedPatient_Button.TabIndex = 3;
@@ -119,7 +122,7 @@
             // 
             // ResetDataGridView_button
             // 
-            this.ResetDataGridView_button.Location = new System.Drawing.Point(3, 37);
+            this.ResetDataGridView_button.Location = new System.Drawing.Point(639, 3);
             this.ResetDataGridView_button.Name = "ResetDataGridView_button";
             this.ResetDataGridView_button.Size = new System.Drawing.Size(75, 23);
             this.ResetDataGridView_button.TabIndex = 0;
@@ -160,7 +163,6 @@
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.topRow_Appointment_tableLOP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.topRow_Appointment_tableLOP.Controls.Add(this.ResetDataGridView_button, 0, 1);
             this.topRow_Appointment_tableLOP.Controls.Add(this.resetDateOfBirth, 3, 1);
             this.topRow_Appointment_tableLOP.Controls.Add(this.searchPatients_LBL, 0, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.DateOfBirth_datetimePicker, 2, 0);
@@ -168,6 +170,7 @@
             this.topRow_Appointment_tableLOP.Controls.Add(this.tableLayoutPanel1, 1, 0);
             this.topRow_Appointment_tableLOP.Controls.Add(this.patientnameLBL_TLP, 1, 1);
             this.topRow_Appointment_tableLOP.Controls.Add(this.dateOfBirth_LBL, 2, 1);
+            this.topRow_Appointment_tableLOP.Controls.Add(this.doubleClickInstructions_LBL, 0, 1);
             this.topRow_Appointment_tableLOP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.topRow_Appointment_tableLOP.Location = new System.Drawing.Point(5, 5);
             this.topRow_Appointment_tableLOP.Margin = new System.Windows.Forms.Padding(5);
@@ -296,6 +299,15 @@
             // 
             this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
             // 
+            // doubleClickInstructions_LBL
+            // 
+            this.doubleClickInstructions_LBL.AutoSize = true;
+            this.doubleClickInstructions_LBL.Location = new System.Drawing.Point(3, 34);
+            this.doubleClickInstructions_LBL.Name = "doubleClickInstructions_LBL";
+            this.doubleClickInstructions_LBL.Size = new System.Drawing.Size(180, 26);
+            this.doubleClickInstructions_LBL.TabIndex = 8;
+            this.doubleClickInstructions_LBL.Text = "Double Click any patient to see thier appointments";
+            // 
             // patient_UserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,5 +351,6 @@
         private System.Windows.Forms.Button getAllPatients;
         private System.Windows.Forms.Button addPatient_button;
         private System.Windows.Forms.Button editSelectedPatient_Button;
+        private System.Windows.Forms.Label doubleClickInstructions_LBL;
     }
 }

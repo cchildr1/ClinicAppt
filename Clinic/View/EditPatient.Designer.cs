@@ -62,6 +62,7 @@
             this.reset_button.TabIndex = 12;
             this.reset_button.Text = "Reset Patient";
             this.reset_button.UseVisualStyleBackColor = true;
+            this.reset_button.Click += new System.EventHandler(this.Reset_button_Click);
             // 
             // firstname_label
             // 
@@ -150,6 +151,7 @@
             this.gender_ComboBox.Name = "gender_ComboBox";
             this.gender_ComboBox.Size = new System.Drawing.Size(121, 21);
             this.gender_ComboBox.TabIndex = 5;
+            this.gender_ComboBox.SelectedIndexChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // dateOfBirth_DateTimePicker
             // 
@@ -159,6 +161,7 @@
             this.dateOfBirth_DateTimePicker.Name = "dateOfBirth_DateTimePicker";
             this.dateOfBirth_DateTimePicker.Size = new System.Drawing.Size(192, 20);
             this.dateOfBirth_DateTimePicker.TabIndex = 9;
+            this.dateOfBirth_DateTimePicker.ValueChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // phoneNumber_textbox
             // 
@@ -167,6 +170,7 @@
             this.phoneNumber_textbox.Name = "phoneNumber_textbox";
             this.phoneNumber_textbox.Size = new System.Drawing.Size(100, 20);
             this.phoneNumber_textbox.TabIndex = 7;
+            this.phoneNumber_textbox.TextChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // zipcode_textbox
             // 
@@ -174,6 +178,7 @@
             this.zipcode_textbox.Name = "zipcode_textbox";
             this.zipcode_textbox.Size = new System.Drawing.Size(100, 20);
             this.zipcode_textbox.TabIndex = 8;
+            this.zipcode_textbox.Validated += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // ssn_textbox
             // 
@@ -181,6 +186,7 @@
             this.ssn_textbox.Name = "ssn_textbox";
             this.ssn_textbox.Size = new System.Drawing.Size(100, 20);
             this.ssn_textbox.TabIndex = 4;
+            this.ssn_textbox.TextChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // lastname_textbox
             // 
@@ -188,6 +194,7 @@
             this.lastname_textbox.Name = "lastname_textbox";
             this.lastname_textbox.Size = new System.Drawing.Size(100, 20);
             this.lastname_textbox.TabIndex = 2;
+            this.lastname_textbox.TextChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // firstname_textbox
             // 
@@ -195,6 +202,7 @@
             this.firstname_textbox.Name = "firstname_textbox";
             this.firstname_textbox.Size = new System.Drawing.Size(100, 20);
             this.firstname_textbox.TabIndex = 1;
+            this.firstname_textbox.TextChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // streetAddress_textbox
             // 
@@ -204,6 +212,7 @@
             this.streetAddress_textbox.Name = "streetAddress_textbox";
             this.streetAddress_textbox.Size = new System.Drawing.Size(192, 114);
             this.streetAddress_textbox.TabIndex = 6;
+            this.streetAddress_textbox.TextChanged += new System.EventHandler(this.ValueOfPatientChanged);
             // 
             // editPatient_button
             // 
@@ -213,6 +222,7 @@
             this.editPatient_button.TabIndex = 10;
             this.editPatient_button.Text = "Edit Patient";
             this.editPatient_button.UseVisualStyleBackColor = true;
+            this.editPatient_button.Click += new System.EventHandler(this.editPatient_button_Click);
             // 
             // errorMessage_lbl
             // 
