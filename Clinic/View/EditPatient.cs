@@ -30,7 +30,7 @@ namespace Clinic.View
         /// <summary>
         /// This method accepts a Patient object and populates all the fields with the values of the accepted patient object
         /// </summary>
-        /// <param name="patient"></param>
+        /// <param name="patient">acepted Pateient object</param>
         public void PopulateEditpatient_fields(Patient patient) {
             this.oldPatient = patient;
             this.firstname_textbox.Text = patient.FirstName;
