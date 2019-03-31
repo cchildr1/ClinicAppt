@@ -143,7 +143,11 @@ namespace Clinic.View
 
         private bool IsValidSSN(string ssn)
         {
-            return Regex.IsMatch(ssn, @"^\d{9}$");
+            if (ssn != "")
+            {
+                return Regex.IsMatch(ssn, @"^\d{9}$");
+            }
+            return true;
         }
 
 
