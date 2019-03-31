@@ -27,7 +27,7 @@ namespace Clinic.UserControls
 
         private void SearchAppointment_button_Click(object sender, EventArgs e)
         {
-            this.patients_datagridview.DataSource = null;
+            this.ResetDataGridView_button_Click(sender, e);
             if (this.DOB_ValueChanged)
             {
                 DateTime selected_DOB = this.DateOfBirth_datetimePicker.Value;
@@ -59,11 +59,12 @@ namespace Clinic.UserControls
             if (this.dataGridView_Is_Patient)
             {   
                 DataGridViewRow selectedRow = this.patients_datagridview.CurrentRow;
-                int selectedRowPatientID = (int)selectedRow.Cells["PatientID"].Value;
+                this.selectedPatientID = (int)selectedRow.Cells["PatientID"].Value;
                 this.patients_datagridview.DataSource = null;
                 this.SetUpDataGridView_ForSelectedPatientAppointment();
-                this.GetAppointmentData_ForSelectedPatient(selectedRowPatientID);
+                this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
                 this.dataGridView_Is_Patient = false;
+              
             }
         }
 
@@ -80,7 +81,6 @@ namespace Clinic.UserControls
 
         public void GetAppointmentData_ForSelectedPatient(int patientID)
         {
-            this.selectedPatientID = patientID;
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.RowCount = 0;
             List<Appointment> appointments = new List<Appointment>();
@@ -111,11 +111,12 @@ namespace Clinic.UserControls
             this.patients_datagridview.ColumnCount = 0;
             this.dataGridView_Is_Patient = true;
             this.editSelectedPatient_Button.Visible = false;
+            this.selectedPatientID = -1;
         }
 
         private void getAllPatients_Click(object sender, EventArgs e)
         {
-           
+            this.ResetDataGridView_button_Click(sender, e);
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.ColumnCount = 0;
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
