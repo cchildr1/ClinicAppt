@@ -17,6 +17,7 @@ namespace Clinic.UserControls
     {
         private bool DOB_ValueChanged = false;
         private bool dataGridView_Is_Patient = true;
+        private int selectedPatientID = -1;
         private PatientController patientController = new PatientController();
         private AppointmentController appointmentController = new AppointmentController();
         public patient_UserControl()
@@ -26,7 +27,7 @@ namespace Clinic.UserControls
 
         private void SearchAppointment_button_Click(object sender, EventArgs e)
         {
-            this.patients_datagridview.DataSource = null;
+            this.ResetDataGridView_button_Click(sender, e);
             if (this.DOB_ValueChanged)
             {
                 DateTime selected_DOB = this.DateOfBirth_datetimePicker.Value;
@@ -58,11 +59,12 @@ namespace Clinic.UserControls
             if (this.dataGridView_Is_Patient)
             {   
                 DataGridViewRow selectedRow = this.patients_datagridview.CurrentRow;
-                int selectedRowPatientID = (int)selectedRow.Cells["PatientID"].Value;
+                this.selectedPatientID = (int)selectedRow.Cells["PatientID"].Value;
                 this.patients_datagridview.DataSource = null;
                 this.SetUpDataGridView_ForSelectedPatientAppointment();
-                this.GetAppointmentData_ForSelectedPatient(selectedRowPatientID);
+                this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
                 this.dataGridView_Is_Patient = false;
+              
             }
         }
 
@@ -80,6 +82,7 @@ namespace Clinic.UserControls
         public void GetAppointmentData_ForSelectedPatient(int patientID)
         {
             this.patients_datagridview.DataSource = null;
+            this.patients_datagridview.RowCount = 0;
             List<Appointment> appointments = new List<Appointment>();
             appointments = this.appointmentController.GetAppointmentsByPatientID(patientID);
             this.editSelectedPatient_Button.Visible = true;
@@ -108,14 +111,16 @@ namespace Clinic.UserControls
             this.patients_datagridview.ColumnCount = 0;
             this.dataGridView_Is_Patient = true;
             this.editSelectedPatient_Button.Visible = false;
+            this.selectedPatientID = -1;
         }
 
         private void getAllPatients_Click(object sender, EventArgs e)
         {
-           
+            this.ResetDataGridView_button_Click(sender, e);
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.ColumnCount = 0;
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
+            this.editSelectedPatient_Button.Visible = false;
         }
 
         private void AddPatient_button_Click(object sender, EventArgs e)
@@ -128,9 +133,16 @@ namespace Clinic.UserControls
             }
         }
 
-        private void editSelectedPatient_Button_Click(object sender, EventArgs e)
+        private void EditSelectedPatient_Button_Click(object sender, EventArgs e)
         {
-
+            EditPatient editPatient = new EditPatient();
+            editPatient.PopulateEditpatient_fields(this.patientController.GetPatientByID(this.selectedPatientID));
+            DialogResult result = editPatient.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
+            }
+            
         }
     }
 }

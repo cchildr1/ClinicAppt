@@ -239,7 +239,7 @@ namespace Clinic.DAL
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
                 {
-        
+
                     command.Parameters.AddWithValue("lastname_clean", @lastname);
                     command.Parameters.AddWithValue("dateOfBirthdate_clean", @dateOfBirth);
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -522,7 +522,7 @@ namespace Clinic.DAL
         /// <param name="oldPatient">The old patient object in the db</param>
         /// <param name="newPatient">The new patient object in the view</param>
         /// <returns></returns>
-        public static bool UpdatePatient(Patient oldPatient, Patient newPatient)
+        public bool UpdatePatient(Patient oldPatient, Patient newPatient)
         {
             string updateStatement = "UPDATE person " +
                 "SET last_name = @new_last_name, " +
@@ -563,17 +563,17 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@new_zipcode", newPatient.Zipcode);
 
                         updateCommand.Parameters.AddWithValue("@id", oldPatient.PersonId);
-                        updateCommand.Parameters.AddWithValue("@old_last_name", newPatient.LastName);
-                        updateCommand.Parameters.AddWithValue("@old_first_name", newPatient.FirstName);
-                        updateCommand.Parameters.AddWithValue("@old_date_of_birth", newPatient.DateOfBirth);
+                        updateCommand.Parameters.AddWithValue("@old_last_name", oldPatient.LastName);
+                        updateCommand.Parameters.AddWithValue("@old_first_name", oldPatient.FirstName);
+                        updateCommand.Parameters.AddWithValue("@old_date_of_birth", oldPatient.DateOfBirth);
                         if (newPatient.SocialSecurityNumber == "")
                             updateCommand.Parameters.AddWithValue("@old_ssn", DBNull.Value);
                         else
-                            updateCommand.Parameters.AddWithValue("@old_ssn", newPatient.SocialSecurityNumber);
-                        updateCommand.Parameters.AddWithValue("@old_gender", newPatient.Gender);
-                        updateCommand.Parameters.AddWithValue("@old_street_address", newPatient.StreetAddress);
-                        updateCommand.Parameters.AddWithValue("@old_phone", newPatient.Phone);
-                        updateCommand.Parameters.AddWithValue("@old_zipcode", newPatient.Zipcode);
+                            updateCommand.Parameters.AddWithValue("@old_ssn", oldPatient.SocialSecurityNumber);
+                        updateCommand.Parameters.AddWithValue("@old_gender", oldPatient.Gender);
+                        updateCommand.Parameters.AddWithValue("@old_street_address", oldPatient.StreetAddress);
+                        updateCommand.Parameters.AddWithValue("@old_phone", oldPatient.Phone);
+                        updateCommand.Parameters.AddWithValue("@old_zipcode", oldPatient.Zipcode);
 
                         count = updateCommand.ExecuteNonQuery();
                     }
