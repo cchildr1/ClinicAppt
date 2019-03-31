@@ -82,6 +82,7 @@ namespace Clinic.UserControls
         {
             this.selectedPatientID = patientID;
             this.patients_datagridview.DataSource = null;
+            this.patients_datagridview.RowCount = 0;
             List<Appointment> appointments = new List<Appointment>();
             appointments = this.appointmentController.GetAppointmentsByPatientID(patientID);
             this.editSelectedPatient_Button.Visible = true;
@@ -118,6 +119,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.ColumnCount = 0;
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
+            this.editSelectedPatient_Button.Visible = false;
         }
 
         private void AddPatient_button_Click(object sender, EventArgs e)
@@ -135,10 +137,11 @@ namespace Clinic.UserControls
             EditPatient editPatient = new EditPatient();
             editPatient.PopulateEditpatient_fields(this.patientController.GetPatientByID(this.selectedPatientID));
             DialogResult result = editPatient.ShowDialog();
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.OK)
             {
-                this.getAllPatients_Click(sender, e);
+                this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
             }
+            
         }
     }
 }
