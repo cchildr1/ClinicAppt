@@ -64,7 +64,7 @@
             this.appointments_tabPage.Location = new System.Drawing.Point(4, 22);
             this.appointments_tabPage.Name = "appointments_tabPage";
             this.appointments_tabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.appointments_tabPage.Size = new System.Drawing.Size(1026, 384);
+            this.appointments_tabPage.Size = new System.Drawing.Size(1124, 517);
             this.appointments_tabPage.TabIndex = 0;
             this.appointments_tabPage.Text = "Appointments";
             this.appointments_tabPage.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.appointments_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.appointments_UserControl1.Location = new System.Drawing.Point(3, 3);
             this.appointments_UserControl1.Name = "appointments_UserControl1";
-            this.appointments_UserControl1.Size = new System.Drawing.Size(1020, 378);
+            this.appointments_UserControl1.Size = new System.Drawing.Size(1118, 511);
             this.appointments_UserControl1.TabIndex = 0;
             // 
             // patients_tabpage
@@ -102,7 +102,7 @@
             this.visitTab.Location = new System.Drawing.Point(4, 22);
             this.visitTab.Name = "visitTab";
             this.visitTab.Padding = new System.Windows.Forms.Padding(3);
-            this.visitTab.Size = new System.Drawing.Size(1026, 384);
+            this.visitTab.Size = new System.Drawing.Size(1124, 517);
             this.visitTab.TabIndex = 2;
             this.visitTab.Text = "Visits";
             this.visitTab.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             this.visits_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.visits_UserControl1.Location = new System.Drawing.Point(3, 3);
             this.visits_UserControl1.Name = "visits_UserControl1";
-            this.visits_UserControl1.Size = new System.Drawing.Size(1020, 378);
+            this.visits_UserControl1.Size = new System.Drawing.Size(1118, 511);
             this.visits_UserControl1.TabIndex = 0;
             // 
             // WelcomeLBL
@@ -164,6 +164,7 @@
             this.ClientSize = new System.Drawing.Size(1138, 578);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainDashboardNurse";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clinic";
             this.mainDashBoardNurse_TabControl.ResumeLayout(false);
             this.appointments_tabPage.ResumeLayout(false);

@@ -195,6 +195,7 @@
             this.ClientSize = new System.Drawing.Size(395, 450);
             this.Controls.Add(this.background_TableLayoutPanel);
             this.Name = "AddAppointment";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Appointment";
             this.background_TableLayoutPanel.ResumeLayout(false);
             this.background_TableLayoutPanel.PerformLayout();
