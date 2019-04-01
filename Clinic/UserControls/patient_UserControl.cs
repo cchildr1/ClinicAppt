@@ -78,6 +78,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns[2].Name = "Reason For Visit";
             this.patients_datagridview.Columns[3].Name = "Doctor";
             this.patients_datagridview.Columns[4].Name = "Patient";
+            this.patients_datagridview.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public void GetAppointmentData_ForSelectedPatient(int patientID)
@@ -152,6 +153,8 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns["PatientID"].Visible = false;
             this.patients_datagridview.Columns["PersonID"].Visible = false;
             this.patients_datagridview.Columns["FullName"].Visible = false;
+            this.patients_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.patients_datagridview.Columns["State"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }
