@@ -48,15 +48,15 @@
             // mainDashBoardNurse_TabControl
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.mainDashBoardNurse_TabControl, 2);
-            this.mainDashBoardNurse_TabControl.Controls.Add(this.appointments_tabPage);
             this.mainDashBoardNurse_TabControl.Controls.Add(this.patients_tabpage);
+            this.mainDashBoardNurse_TabControl.Controls.Add(this.appointments_tabPage);
             this.mainDashBoardNurse_TabControl.Controls.Add(this.visitTab);
             this.mainDashBoardNurse_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainDashBoardNurse_TabControl.Location = new System.Drawing.Point(3, 32);
             this.mainDashBoardNurse_TabControl.Name = "mainDashBoardNurse_TabControl";
             this.mainDashBoardNurse_TabControl.SelectedIndex = 0;
             this.mainDashBoardNurse_TabControl.Size = new System.Drawing.Size(1132, 543);
-            this.mainDashBoardNurse_TabControl.TabIndex = 0;
+            this.mainDashBoardNurse_TabControl.TabIndex = 3;
             // 
             // appointments_tabPage
             // 
@@ -135,7 +135,7 @@
             this.LogOut_Button.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.LogOut_Button.Name = "LogOut_Button";
             this.LogOut_Button.Size = new System.Drawing.Size(75, 23);
-            this.LogOut_Button.TabIndex = 2;
+            this.LogOut_Button.TabIndex = 4;
             this.LogOut_Button.Text = "Log Out";
             this.LogOut_Button.UseVisualStyleBackColor = true;
             this.LogOut_Button.Click += new System.EventHandler(this.LogOut_Button_Click);
