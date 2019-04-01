@@ -76,7 +76,7 @@
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 208F));
+            this.bottomRow_Appointments_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 209F));
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.ResetDataGridView_button, 3, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.getAllPatients, 1, 0);
             this.bottomRow_Appointments_TableLayoutPanel.Controls.Add(this.addPatient_button, 0, 0);
@@ -287,7 +287,7 @@
             this.doubleClickInstructions_LBL.Name = "doubleClickInstructions_LBL";
             this.doubleClickInstructions_LBL.Size = new System.Drawing.Size(180, 26);
             this.doubleClickInstructions_LBL.TabIndex = 8;
-            this.doubleClickInstructions_LBL.Text = "Double Click any patient to see thier appointments";
+            this.doubleClickInstructions_LBL.Text = "Double Click any patient to see their appointments";
             // 
             // patients_datagridview
             // 
