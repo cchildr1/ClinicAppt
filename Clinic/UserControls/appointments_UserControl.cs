@@ -127,7 +127,7 @@ namespace Clinic.UserControls
             EditAppointment editAppointment = new EditAppointment();
             editAppointment.PopulateEditAppointmentFields(appointment);
             DialogResult result = editAppointment.ShowDialog();
-            if (result == DialogResult.Yes)
+            if (result == DialogResult.OK)
             {
                 this.Reset_Button_Click(sender, e);
             }
