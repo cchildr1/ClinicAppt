@@ -39,7 +39,7 @@ namespace Clinic.UserControls
                 this.patients_datagridview.DataSource = this.patientController.PatientByWithoutDOB_Firstname_LastName(this.firstname_textbox.Text, this.lastname_textbox.Text);
                 this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
-
+            this.EditPatientGridView();
         }
 
         private void DateOfBirth_datetimePicker_ValueChanged(object sender, EventArgs e)
@@ -73,10 +73,13 @@ namespace Clinic.UserControls
             this.patients_datagridview.ColumnCount = 5;
             this.patients_datagridview.ColumnHeadersVisible = true;
             this.patients_datagridview.Columns[0].Name = "AppointmentID";
+            this.patients_datagridview.Columns[0].Visible = false;
             this.patients_datagridview.Columns[1].Name = "Date";
             this.patients_datagridview.Columns[2].Name = "Reason For Visit";
             this.patients_datagridview.Columns[3].Name = "Doctor";
             this.patients_datagridview.Columns[4].Name = "Patient";
+            this.patients_datagridview.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
         }
 
         public void GetAppointmentData_ForSelectedPatient(int patientID)
@@ -102,7 +105,9 @@ namespace Clinic.UserControls
                         };
                     this.patients_datagridview.Rows.Add(rowAdded);
                 }
+                this.searchPatients_LBL.Text = "Appointment's for " + appointment.Patient.FirstName + " " + appointment.Patient.LastName;
             }
+           
         }
 
         private void ResetDataGridView_button_Click(object sender, EventArgs e)
@@ -112,6 +117,7 @@ namespace Clinic.UserControls
             this.dataGridView_Is_Patient = true;
             this.editSelectedPatient_Button.Visible = false;
             this.selectedPatientID = -1;
+            this.searchPatients_LBL.Text = "Search Patients";
         }
 
         private void getAllPatients_Click(object sender, EventArgs e)
@@ -121,6 +127,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.ColumnCount = 0;
             this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
             this.editSelectedPatient_Button.Visible = false;
+            this.EditPatientGridView();
         }
 
         private void AddPatient_button_Click(object sender, EventArgs e)
@@ -143,6 +150,15 @@ namespace Clinic.UserControls
                 this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
             }
             
+        }
+
+        private void EditPatientGridView()
+        {
+            this.patients_datagridview.Columns["PatientID"].Visible = false;
+            this.patients_datagridview.Columns["PersonID"].Visible = false;
+            this.patients_datagridview.Columns["FullName"].Visible = false;
+            this.patients_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.patients_datagridview.Columns["State"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

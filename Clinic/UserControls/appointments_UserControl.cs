@@ -41,9 +41,12 @@ namespace Clinic.UserControls
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.Name = "AddEditVisit";
             buttonColumn.Text = "Add/Edit Visit";
-            buttonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            buttonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            buttonColumn.UseColumnTextForButtonValue = true;
             this.appointments_datagridview.Columns.Add(buttonColumn);
             this.appointments_datagridview.CellContentClick += Appointments_datagridview_CellContentClick;
+            this.appointments_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.appointments_datagridview.Columns["Reason For Visit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void Appointments_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -307,6 +307,7 @@
             this.ClientSize = new System.Drawing.Size(395, 520);
             this.Controls.Add(this.AddPatientBase_TableLayoutPanel);
             this.Name = "EditPatient";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditPatient";
             this.cancel_reset_buttons_tableLayoutPanel.ResumeLayout(false);
             this.AddPatientBase_TableLayoutPanel.ResumeLayout(false);
