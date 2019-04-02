@@ -135,7 +135,7 @@ namespace Clinic.UserControls
                 Appointment appointment = this.appointmentController.GetAppointmentByID(appointmentID);
                 EditAppointment editAppointment = new EditAppointment();
                 editAppointment.PopulateEditAppointmentFields(appointment);
-                if (appointment.Scheduled_Date < DateTime.Now)
+                if (!(appointment.Scheduled_Date < DateTime.Now))
                 {
                     DialogResult result = editAppointment.ShowDialog();
                     if (result == DialogResult.OK)
