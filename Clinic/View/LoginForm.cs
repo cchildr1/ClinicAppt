@@ -28,34 +28,40 @@ namespace Clinic
 
         private void Bt_Login_Click(object sender, EventArgs e)
         {
-            Employee employee = this.controller.LoginEmployee(userNameTextBox.Text, passwordMaskedTextBox.Text);
-            if (employee == null)
+            try
             {
-                errorLabel.Text = "Invalid username/password.";
-            }
-            else
-            {
-                if (employee.GetType().ToString() == "Clinic.Model.Nurse")
+                Employee employee = this.controller.LoginEmployee(userNameTextBox.Text, passwordMaskedTextBox.Text);
+                if (employee == null)
                 {
-                    this.Hide();
-                                        
-                    MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
-                    mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
-                    DialogResult result = mainDashboardNurse.ShowDialog();
-
-                    if (result == DialogResult.Cancel)
+                    errorLabel.Text = "Invalid username/password.";
+                }
+                else
+                {
+                    if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                     {
-                        this.Bt_Clear_Click(sender, e);
-                        this.Show();
+                        this.Hide();
+
+                        MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
+                        mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
+                        DialogResult result = mainDashboardNurse.ShowDialog();
+
+                        if (result == DialogResult.Cancel)
+                        {
+                            this.Bt_Clear_Click(sender, e);
+                            this.Show();
+                        }
+                    }
+                    else if (employee.GetType().ToString() == "Clinic.Model.Admin")
+                    {
+                        MessageBox.Show("Welcome Administrator " + employee.FirstName + " " + employee.LastName);
+                        errorLabel.Text = "";
                     }
                 }
-                else if (employee.GetType().ToString() == "Clinic.Model.Admin")
-                {
-                    MessageBox.Show("Welcome Administrator " + employee.FirstName + " " + employee.LastName);
-                    errorLabel.Text = "";
-                }
             }
-       
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DB Issue");
+            }
         }
     }
 }

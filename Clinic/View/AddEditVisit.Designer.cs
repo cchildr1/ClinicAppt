@@ -493,7 +493,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddEditVisit";
+            this.Text = "Add/Edit Visit";
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
