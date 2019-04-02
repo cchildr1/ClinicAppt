@@ -118,5 +118,11 @@ namespace Clinic.UserControls
                 this.Reset_Button_Click(sender, e);
             }
         }
+
+        private void appointments_datagridview_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedAppointment = this.appointments_datagridview.CurrentRow;
+            Appointment selectedAppointment = this.appointmentController.((int)selectedAppointment.Cells["PatientID"].Value);
+        }
     }
 }

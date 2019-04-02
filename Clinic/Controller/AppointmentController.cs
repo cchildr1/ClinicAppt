@@ -22,6 +22,16 @@ namespace Clinic.Controller
         }
 
         /// <summary>
+        /// Returns an appointment object equal to the accepted appointmentID Value
+        /// </summary>
+        /// <param name="appointmentID"></param>
+        /// <returns></returns>
+        public Appointment GetAppointmentByID(int appointmentID)
+        {
+            return this.appointmentDAL.GetAppointmentByID(appointmentID);
+        }
+
+        /// <summary>
         /// Adds an appointent to the database
         /// </summary>
         /// <param name="addedAppointment"> is the added appointment</param>
