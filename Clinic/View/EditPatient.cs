@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Clinic.View
 {
+    /// <summary>
+    /// This is the edit patient class it will allow users to edit patients
+    /// </summary>
     public partial class EditPatient : Form
     {
         Patient oldPatient = new Patient();
