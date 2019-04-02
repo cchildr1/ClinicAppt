@@ -38,12 +38,18 @@ namespace Clinic.UserControls
             this.appointments_datagridview.Columns[2].Name ="Reason For Visit";
             this.appointments_datagridview.Columns[3].Name ="Doctor";
             this.appointments_datagridview.Columns[4].Name = "Patient";
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "AddEditVisit";
-            buttonColumn.Text = "Add/Edit Visit";
-            buttonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            buttonColumn.UseColumnTextForButtonValue = true;
-            this.appointments_datagridview.Columns.Add(buttonColumn);
+            DataGridViewButtonColumn buttonColumnAppointment = new DataGridViewButtonColumn();
+            buttonColumnAppointment.Name = "EditAppointment";
+            buttonColumnAppointment.Text = "Edit Appointment";
+            buttonColumnAppointment.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            buttonColumnAppointment.UseColumnTextForButtonValue = true;
+            DataGridViewButtonColumn buttonColumnVisit = new DataGridViewButtonColumn();
+            buttonColumnVisit.Name = "AddEditVisit";
+            buttonColumnVisit.Text = "Add/Edit Visit";
+            buttonColumnVisit.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            buttonColumnVisit.UseColumnTextForButtonValue = true;
+            this.appointments_datagridview.Columns.Add(buttonColumnAppointment);
+            this.appointments_datagridview.Columns.Add(buttonColumnVisit);
             this.appointments_datagridview.CellContentClick += Appointments_datagridview_CellContentClick;
             this.appointments_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.appointments_datagridview.Columns["Reason For Visit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -52,9 +58,8 @@ namespace Clinic.UserControls
         private void Appointments_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+                e.RowIndex >= 0 && senderGrid.Columns[e.ColumnIndex].ToString() == this.appointments_datagridview.Columns["AddEditVisit"].ToString())
             {
                 try
                 {
@@ -121,15 +126,26 @@ namespace Clinic.UserControls
 
         private void appointments_datagridview_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow selectedAppointment = this.appointments_datagridview.CurrentRow;
-            int appointmentID = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
-            Appointment appointment = this.appointmentController.GetAppointmentByID(appointmentID);
-            EditAppointment editAppointment = new EditAppointment();
-            editAppointment.PopulateEditAppointmentFields(appointment);
-            DialogResult result = editAppointment.ShowDialog();
-            if (result == DialogResult.OK)
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0 && senderGrid.Columns[e.ColumnIndex].ToString() == this.appointments_datagridview.Columns["EditAppointment"].ToString())
             {
-                this.Reset_Button_Click(sender, e);
+                DataGridViewRow selectedAppointment = this.appointments_datagridview.CurrentRow;
+                int appointmentID = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
+                Appointment appointment = this.appointmentController.GetAppointmentByID(appointmentID);
+                EditAppointment editAppointment = new EditAppointment();
+                editAppointment.PopulateEditAppointmentFields(appointment);
+                if (appointment.Scheduled_Date < DateTime.Now)
+                {
+                    DialogResult result = editAppointment.ShowDialog();
+                    if (result == DialogResult.Yes)
+                    {
+                        this.Reset_Button_Click(sender, e);
+                    }
+                } else
+                {
+                    MessageBox.Show("This appointment has passed. Cannot Edit.");
+                }
             }
         }
     }
