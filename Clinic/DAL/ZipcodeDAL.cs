@@ -67,6 +67,11 @@ namespace Clinic.DAL
             }
         }
 
+        /// <summary>
+        /// Validates that the zipcode is in the database.
+        /// </summary>
+        /// <param name="zipcode">String rep of zipcode</param>
+        /// <returns>Y/N if the zipcode is in the database.</returns>
         public bool IsValidZipcode(string zipcode)
         {
             bool validZipcide = false;

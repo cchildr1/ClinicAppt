@@ -82,7 +82,7 @@ namespace Clinic.UserControls
             
         }
 
-        public void GetAppointmentData_ForSelectedPatient(int patientID)
+        private void GetAppointmentData_ForSelectedPatient(int patientID)
         {
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.RowCount = 0;

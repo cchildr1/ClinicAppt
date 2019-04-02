@@ -27,6 +27,10 @@ namespace Clinic.View
            
         }
 
+        /// <summary>
+        /// Sets the logged name for the Nurse
+        /// </summary>
+        /// <param name="name">name of the logged name</param>
         public void setLoggedInName(string name)
         {
             this.WelcomeLBL.Text = "Welcome " + name;
