@@ -122,7 +122,15 @@ namespace Clinic.UserControls
         private void appointments_datagridview_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow selectedAppointment = this.appointments_datagridview.CurrentRow;
-            Appointment selectedAppointment = this.appointmentController.((int)selectedAppointment.Cells["PatientID"].Value);
+            int appointmentID = 5;
+            Appointment appointment = this.appointmentController.GetAppointmentByID(appointmentID);
+            EditAppointment editAppointment = new EditAppointment();
+            editAppointment.PopulateEditAppointmentFields(appointment);
+            DialogResult result = editAppointment.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.Reset_Button_Click(sender, e);
+            }
         }
     }
 }
