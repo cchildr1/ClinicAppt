@@ -143,6 +143,7 @@
             // cancelAddAppointment_button
             // 
             this.cancelAddAppointment_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cancelAddAppointment_button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelAddAppointment_button.Location = new System.Drawing.Point(211, 419);
             this.cancelAddAppointment_button.Name = "cancelAddAppointment_button";
             this.cancelAddAppointment_button.Size = new System.Drawing.Size(75, 23);

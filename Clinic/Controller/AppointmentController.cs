@@ -61,9 +61,15 @@ namespace Clinic.Controller
             return this.appointmentDAL.GetAppointmentsByPatientID(selectedRowPatientID);
         }
 
-       // public bool editAppointment(Appointment oldAppointment, Appointment editedAppointmnet)
-       // {
-        //    return this.appointmentDAL.      
-     //  }
+        /// <summary>
+        /// This method edits the oldAppointment into the editAppointment and insures it has not been previously edited
+        /// </summary>
+        /// <param name="oldAppointment"></param>
+        /// <param name="editAppointment"></param>
+        /// <returns></returns>
+        public bool EditAppointment(Appointment oldAppointment, Appointment editAppointment)
+        {
+            return this.appointmentDAL.UpdateAppointment(oldAppointment, editAppointment);
+        }
     }
 }
