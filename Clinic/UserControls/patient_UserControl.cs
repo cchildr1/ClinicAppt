@@ -79,6 +79,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns[3].Name = "Doctor";
             this.patients_datagridview.Columns[4].Name = "Patient";
             this.patients_datagridview.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
         }
 
         public void GetAppointmentData_ForSelectedPatient(int patientID)
@@ -104,7 +105,9 @@ namespace Clinic.UserControls
                         };
                     this.patients_datagridview.Rows.Add(rowAdded);
                 }
+                this.searchPatients_LBL.Text = "Appointment's for " + appointment.Patient.FirstName + " " + appointment.Patient.LastName;
             }
+           
         }
 
         private void ResetDataGridView_button_Click(object sender, EventArgs e)
@@ -114,6 +117,7 @@ namespace Clinic.UserControls
             this.dataGridView_Is_Patient = true;
             this.editSelectedPatient_Button.Visible = false;
             this.selectedPatientID = -1;
+            this.searchPatients_LBL.Text = "Search Patients";
         }
 
         private void getAllPatients_Click(object sender, EventArgs e)
