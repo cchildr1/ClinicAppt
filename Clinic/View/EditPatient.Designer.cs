@@ -216,6 +216,7 @@
             // 
             // editPatient_button
             // 
+            this.editPatient_button.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.editPatient_button.Location = new System.Drawing.Point(3, 489);
             this.editPatient_button.Name = "editPatient_button";
             this.editPatient_button.Size = new System.Drawing.Size(75, 23);
