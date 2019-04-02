@@ -122,7 +122,7 @@ namespace Clinic.UserControls
         private void appointments_datagridview_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow selectedAppointment = this.appointments_datagridview.CurrentRow;
-            int appointmentID = 5;
+            int appointmentID = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
             Appointment appointment = this.appointmentController.GetAppointmentByID(appointmentID);
             EditAppointment editAppointment = new EditAppointment();
             editAppointment.PopulateEditAppointmentFields(appointment);
