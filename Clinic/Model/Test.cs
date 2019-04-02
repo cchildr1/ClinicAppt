@@ -2,6 +2,9 @@
 
 namespace Clinic.Model
 {
+    /// <summary>
+    /// A test at the clinic.
+    /// </summary>
     public class Test
     {
         //Getters and setters for test values

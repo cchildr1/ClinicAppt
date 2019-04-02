@@ -28,9 +28,9 @@ namespace Clinic.View
         }
 
         /// <summary>
-        /// This method insures that the Welcome label sets the log in name to the same as the passed in value
+        /// Sets the logged name for the Nurse
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">name of the logged name</param>
         public void setLoggedInName(string name)
         {
             this.WelcomeLBL.Text = "Welcome " + name;
@@ -40,6 +40,14 @@ namespace Clinic.View
         {
             this.loggingOut = true;
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!loggingOut)
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }

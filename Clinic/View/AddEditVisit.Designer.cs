@@ -492,7 +492,7 @@
             this.ClientSize = new System.Drawing.Size(624, 483);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddEditVisit";
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

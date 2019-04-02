@@ -80,6 +80,16 @@ namespace Clinic.Controller
         }
 
         /// <summary>
+        /// This method allows users to edit existing patients
+        /// </summary>
+        /// <param name="oldPatient">Accepted old patient to insure patient has not been edited since being selected</param>
+        /// <param name="editedPatient">What the old patient will be edited too</param>
+        public bool EditPatient(Patient oldPatient, Patient editedPatient)
+        {
+            return patientDAL.UpdatePatient(oldPatient, editedPatient);
+        }
+
+        /// <summary>
         /// This method adds the accepted patient to the database
         /// </summary>
         /// <param name="addedPatient"></param>

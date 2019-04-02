@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Clinic.Model;
+﻿using Clinic.Model;
 using Clinic.Controller;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
-
 namespace Clinic.View
 {
-    /// <summary>
-    /// This class will allow users to add patient's to the database
-    /// </summary>
-    public partial class AddPatient : Form
+    public partial class EditPatient : Form
     {
-        private string errorMessage = "";
-        private bool selected_DOB = false;
-        /// <summary>
-        /// Initializes the class and all the prerequsit functions
-        /// </summary>
-        public AddPatient()
+        Patient oldPatient = new Patient();
+        PatientController patientController = new PatientController();
+        string errorMessage = "";
+        bool noValueChanged;
+        public EditPatient(
+            )
         {
             InitializeComponent();
             this.SetUpGender_ComboBox();
@@ -33,36 +27,57 @@ namespace Clinic.View
             this.gender_ComboBox.SelectedIndex = -1;
         }
 
-        private void addPatientDialog_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// This method accepts a Patient object and populates all the fields with the values of the accepted patient object
+        /// </summary>
+        /// <param name="patient">acepted Pateient object</param>
+        public void PopulateEditpatient_fields(Patient patient) {
+            this.oldPatient = patient;
+            this.firstname_textbox.Text = this.oldPatient.FirstName;
+            this.lastname_textbox.Text = this.oldPatient.LastName;
+            this.dateOfBirth_DateTimePicker.Value = patient.DateOfBirth;
+            this.ssn_textbox.Text = patient.SocialSecurityNumber;
+            this.gender_ComboBox.Text = patient.Gender;
+            this.streetAddress_textbox.Text = patient.StreetAddress;
+            this.phoneNumber_textbox.Text = patient.Phone;
+            this.zipcode_textbox.Text = patient.Zipcode;
+            this.noValueChanged = true;
+        }
+
+        private void editPatient_button_Click(object sender, System.EventArgs e)
         {
-            Patient patient = new Patient();
-            if (!this.ErrorCheck())
+            if (!ErrorCheck())
             {
-                try
-                {
-                    ZipcodeController zipcodeController = new ZipcodeController();
-                    patient.FirstName = this.firstname_textbox.Text;
-                    patient.LastName = this.lastname_textbox.Text;
-                    patient.Phone = this.phoneNumber_textbox.Text;
-                    patient.SocialSecurityNumber = this.ssn_textbox.Text;
-                    patient.Zipcode = this.zipcode_textbox.Text;
-                    patient.State = zipcodeController.GetStateFromZipcode(patient.Zipcode);
-                    patient.City = zipcodeController.GetCityFromZipcode(patient.Zipcode);
-                    patient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
-                    patient.Gender = this.gender_ComboBox.Text;
-                    patient.StreetAddress = this.streetAddress_textbox.Text;
-                    PatientController patientController = new PatientController();
-                    patientController.AddPatient(patient);
+                Patient editedPatient = new Patient();
+                ZipcodeController zipcodeController = new ZipcodeController();
+                editedPatient.FirstName = this.firstname_textbox.Text;
+                editedPatient.LastName = this.lastname_textbox.Text;
+                editedPatient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                editedPatient.SocialSecurityNumber = this.ssn_textbox.Text;
+                editedPatient.Gender = this.gender_ComboBox.Text;
+                editedPatient.StreetAddress = this.streetAddress_textbox.Text;
+                editedPatient.Zipcode = this.zipcode_textbox.Text;
+                editedPatient.City = zipcodeController.GetCityFromZipcode(editedPatient.Zipcode);
+                editedPatient.State = zipcodeController.GetStateFromZipcode(editedPatient.Zipcode);
+                editedPatient.Phone = this.phoneNumber_textbox.Text;
 
-                    this.DialogResult = DialogResult.Yes;
-                    this.Close();
-                }
-                catch (Exception)
+                if (this.patientController.EditPatient(this.oldPatient, editedPatient))
                 {
-                    this.ErrorCheck();
+                    MessageBox.Show("Patient updated.");
+                    this.DialogResult = DialogResult.OK;
                 }
-            }
+                else
+                {
+                    MessageBox.Show("Patient update failed");
+                }
+            }          
+        }
 
+        private void Reset_button_Click(object sender, System.EventArgs e)
+        {
+            this.PopulateEditpatient_fields(this.oldPatient);
+            this.ValueOfPatientChanged(sender, e);
         }
 
         private bool ErrorCheck()
@@ -82,19 +97,18 @@ namespace Clinic.View
                 this.errorMessage += "Must Include a last name \n";
                 this.lastname_lbl.ForeColor = System.Drawing.Color.Red;
             }
-
-            if (!this.selected_DOB)
-            {
-                errors = true;
-                this.errorMessage += "Must select a date of birth\n";
-                this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Red;
-            }
-
+                 
             if (!this.IsValidSSN(this.ssn_textbox.Text))
             {
                 errors = true;
                 this.errorMessage += "Must have valid 9# SSN - Only numbers allowed\n";
                 this.SSN_Label.ForeColor = System.Drawing.Color.Red;
+            }
+
+            if (this.noValueChanged)
+            {
+                errors = true;
+                this.errorMessage += "You must change a value to edit the Patient otherwise select the Cancel button\n";
             }
 
             if (this.gender_ComboBox.SelectedIndex < 0)
@@ -150,9 +164,9 @@ namespace Clinic.View
             return true;
         }
 
-
-        private void Reset_ErrorMessages()
+        private void ValueOfPatientChanged(object sender, System.EventArgs e)
         {
+            this.noValueChanged = false;
             this.errorMessage = "";
             this.errorMessage_lbl.Text = this.errorMessage;
             this.firstname_label.ForeColor = System.Drawing.Color.Black;
@@ -163,32 +177,6 @@ namespace Clinic.View
             this.zipcode_lbl.ForeColor = System.Drawing.Color.Black;
             this.SSN_Label.ForeColor = System.Drawing.Color.Black;
             this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Black;
-
         }
-
-        private void Reset_Patient_ErrorMessages(object sender, EventArgs e)
-        {
-            this.Reset_ErrorMessages();
-        }
-
-        private void dateOfBirth_DateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            this.selected_DOB = true;
-            this.Reset_Patient_ErrorMessages(sender, e);
-        }
-
-        private void Reset_Button_Clicked(object sender, EventArgs e)
-        {
-            this.firstname_textbox.Text = "";
-            this.ssn_textbox.Text = "";
-            this.lastname_textbox.Text = "";
-            this.gender_ComboBox.SelectedIndex = -1;
-            this.streetAddress_textbox.Text = "";
-            this.phoneNumber_textbox.Text = "";
-            this.zipcode_textbox.Text = "";
-            this.dateOfBirth_DateTimePicker.Value = DateTime.Now;
-            this.selected_DOB = false;
-        }
-
     }
 }
