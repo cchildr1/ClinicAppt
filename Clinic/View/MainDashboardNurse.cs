@@ -10,6 +10,10 @@ namespace Clinic.View
     public partial class MainDashboardNurse : Form
     {
         private bool loggingOut;
+
+        /// <summary>
+        /// This is the MainDashboard class it will have secitons for everything the nurses need
+        /// </summary>
         public MainDashboardNurse()
         {
             InitializeComponent();
@@ -40,14 +44,6 @@ namespace Clinic.View
         {
             this.loggingOut = true;
             this.DialogResult = DialogResult.Cancel;
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            if (!loggingOut)
-            {
-                Environment.Exit(0);
-            }
         }
     }
 }
