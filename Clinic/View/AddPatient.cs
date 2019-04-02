@@ -15,6 +15,7 @@ namespace Clinic.View
     {
         private string errorMessage = "";
         private bool selected_DOB = false;
+       
         /// <summary>
         /// Initializes the class and all the prerequsit functions
         /// </summary>

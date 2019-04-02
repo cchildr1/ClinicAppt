@@ -22,6 +22,16 @@ namespace Clinic.Controller
         }
 
         /// <summary>
+        /// Returns an appointment object equal to the accepted appointmentID Value
+        /// </summary>
+        /// <param name="appointmentID"></param>
+        /// <returns></returns>
+        public Appointment GetAppointmentByID(int appointmentID)
+        {
+            return this.appointmentDAL.GetAppointmentByID(appointmentID);
+        }
+
+        /// <summary>
         /// Adds an appointent to the database
         /// </summary>
         /// <param name="addedAppointment"> is the added appointment</param>
@@ -49,6 +59,17 @@ namespace Clinic.Controller
         public List<Appointment> GetAppointmentsByPatientID(int selectedRowPatientID)
         {
             return this.appointmentDAL.GetAppointmentsByPatientID(selectedRowPatientID);
+        }
+
+        /// <summary>
+        /// This method edits the oldAppointment into the editAppointment and insures it has not been previously edited
+        /// </summary>
+        /// <param name="oldAppointment"></param>
+        /// <param name="editAppointment"></param>
+        /// <returns></returns>
+        public bool EditAppointment(Appointment oldAppointment, Appointment editAppointment)
+        {
+            return this.appointmentDAL.UpdateAppointment(oldAppointment, editAppointment);
         }
     }
 }

@@ -81,82 +81,91 @@ namespace Clinic.View
             this.valid = true;
             this.ColorReset();
             Visit newVisit = new Visit();
+            try
+            {
+                newVisit.DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay;
+                if (weightTextBox.Text != "")
+                {
+                    newVisit.Weight = this.ValidateDecimal(weightTextBox);
+                }
+                if (bpSystolicTextBox.Text != "")
+                {
+                    newVisit.BpSystolic = this.ValidateInt(bpSystolicTextBox);
+                }
+                if (bpDiastolicTextBox.Text != "")
+                {
+                    newVisit.BpDiastolic = this.ValidateInt(bpDiastolicTextBox);
+                }
+                if (bodyTemperatureTextBox.Text != "")
+                {
+                    newVisit.BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox);
+                }
+                if (pulseTextBox.Text != "")
+                {
+                    newVisit.Pulse = this.ValidateInt(pulseTextBox);
+                }
 
-            newVisit.DateTime = this.DTPVisitDate.Value.Date + this.DTPVisitTime.Value.TimeOfDay;
-            if (weightTextBox.Text != "")
-            {
-                newVisit.Weight = this.ValidateDecimal(weightTextBox);
-            }
-            if (bpSystolicTextBox.Text != "")
-            {
-                newVisit.BpSystolic = this.ValidateInt(bpSystolicTextBox);
-            }
-            if (bpDiastolicTextBox.Text != "")
-            {
-                newVisit.BpDiastolic = this.ValidateInt(bpDiastolicTextBox);
-            }
-            if (bodyTemperatureTextBox.Text != "")
-            {
-                newVisit.BodyTemperature = this.ValidateDecimal(bodyTemperatureTextBox);
-            }
-            if (pulseTextBox.Text != "")
-            {
-                newVisit.Pulse = this.ValidateInt(pulseTextBox);
-            }
-            
-            newVisit.Symptoms = symptomsTextBox.Text;
-            newVisit.Info = infoTextBox.Text;
-            
-            if (NurseComboBox.SelectedIndex == -1)
-            {
-                NurseComboBox.BackColor = Color.Red;
-                this.valid = false;
-            } else
-            {
-                newVisit.Nurse = new Nurse
+                newVisit.Symptoms = symptomsTextBox.Text;
+                newVisit.Info = infoTextBox.Text;
+
+                if (NurseComboBox.SelectedIndex == -1)
                 {
-                    NurseID = (int)NurseComboBox.SelectedValue
-                };
-            }
-            
-            newVisit.Appointment = new Appointment
-            {
-                AppointmentID = oldVisit.Appointment.AppointmentID
-            };
-            newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
-            newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
-        
-            if (this.update && valid)
-            {
-                if (this.visitController.EditVisit(oldVisit, newVisit))
-                {
-                    MessageBox.Show("Visit updated.");
-                    this.DialogResult = DialogResult.OK;
+                    NurseComboBox.BackColor = Color.Red;
+                    this.valid = false;
                 }
                 else
                 {
-                    MessageBox.Show("Update failed");
-                    this.DialogResult = DialogResult.Cancel;
+                    newVisit.Nurse = new Nurse
+                    {
+                        NurseID = (int)NurseComboBox.SelectedValue
+                    };
                 }
-            } else if (!this.update && valid)
-            {
-                if (this.visitController.AddVisit(newVisit) > 0)
+
+                newVisit.Appointment = new Appointment
                 {
-                    MessageBox.Show("Visit added");
-                    this.DialogResult = DialogResult.OK;
-                } else
+                    AppointmentID = oldVisit.Appointment.AppointmentID
+                };
+                newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
+                newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
+
+                if (this.update && valid)
                 {
-                    MessageBox.Show("Add failed");
-                    this.DialogResult = DialogResult.Cancel;
+                    if (this.visitController.EditVisit(oldVisit, newVisit))
+                    {
+                        MessageBox.Show("Visit updated.");
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Update failed");
+                        this.DialogResult = DialogResult.Cancel;
+                    }
                 }
-            }
-            else
-            {
-                return;
-            }
+                else if (!this.update && valid)
+                {
+                    if (this.visitController.AddVisit(newVisit) > 0)
+                    {
+                        MessageBox.Show("Visit added");
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Add failed");
+                        this.DialogResult = DialogResult.Cancel;
+                    }
+                }
+                else
+                {
+                    return;
+                }
 
 
-            this.Dispose();
+                this.Dispose();
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "DB Issue");
+            }
         }
 
         private void BtCancel_Click(object sender, EventArgs e)

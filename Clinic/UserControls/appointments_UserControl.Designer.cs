@@ -73,6 +73,7 @@
             this.appointments_datagridview.ReadOnly = true;
             this.appointments_datagridview.Size = new System.Drawing.Size(844, 335);
             this.appointments_datagridview.TabIndex = 3;
+            this.appointments_datagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.appointments_datagridview_CellContentClick_1);
             // 
             // appointmentBindingSource
             // 
