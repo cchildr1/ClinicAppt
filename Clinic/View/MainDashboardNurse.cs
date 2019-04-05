@@ -1,4 +1,5 @@
 ﻿using Clinic.UserControls;
+using Clinic.Model;
 using System;
 using System.Windows.Forms;
 
@@ -10,13 +11,16 @@ namespace Clinic.View
     public partial class MainDashboardNurse : Form
     {
         private bool loggingOut;
+        public Nurse loggedInNurse { get; set; }
 
         /// <summary>
         /// This is the MainDashboard class it will have secitons for everything the nurses need
         /// </summary>
-        public MainDashboardNurse()
+        public MainDashboardNurse(Nurse loggedInNurse)
         {
             InitializeComponent();
+            this.loggedInNurse = loggedInNurse;
+            this.setLoggedInName();
             this.SetUpUserControls();
             this.loggingOut = false;
         }
@@ -31,13 +35,10 @@ namespace Clinic.View
            
         }
 
-        /// <summary>
-        /// Sets the logged name for the Nurse
-        /// </summary>
-        /// <param name="name">name of the logged name</param>
-        public void setLoggedInName(string name)
+
+        private void setLoggedInName()
         {
-            this.WelcomeLBL.Text = "Welcome " + name;
+            this.WelcomeLBL.Text = "Welcome Nurse " + this.loggedInNurse.FullName;
         }
 
         private void LogOut_Button_Click(object sender, EventArgs e)
