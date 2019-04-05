@@ -34,7 +34,7 @@ namespace Clinic.UserControls
                 this.patients_datagridview.DataSource = this.patientController.PatientByFirst_Last_DOB(this.firstname_textbox.Text, this.lastname_textbox.Text, selected_DOB.Date);
                 this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
-            else 
+            else
             {
                 this.patients_datagridview.DataSource = this.patientController.PatientByWithoutDOB_Firstname_LastName(this.firstname_textbox.Text, this.lastname_textbox.Text);
                 this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
