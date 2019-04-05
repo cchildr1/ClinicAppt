@@ -107,7 +107,7 @@ namespace Clinic.UserControls
                         };
                     this.patients_datagridview.Rows.Add(rowAdded);
                 }
-                this.searchPatients_LBL.Text = "Appointment's for " + appointment.Patient.FirstName + " " + appointment.Patient.LastName;
+                this.searchPatients_LBL.Text = "Appointment(s) for " + appointment.Patient.FirstName + " " + appointment.Patient.LastName;
             }
            
         }
