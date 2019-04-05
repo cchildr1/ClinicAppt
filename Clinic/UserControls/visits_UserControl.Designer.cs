@@ -422,7 +422,6 @@
 
         private System.Windows.Forms.BindingSource visitBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridView visitDataGridView;
         private System.Windows.Forms.ComboBox DoctorComboBox;
         private System.Windows.Forms.Label label1;
