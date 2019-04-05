@@ -30,11 +30,8 @@ namespace Clinic.View
         /// <param name="patient"></param>
         public void SetPatientToAcceptedPatient(Patient patient)
         {
-            this.Patient_ComboBox.DataSource = null;
-            this.Patient_ComboBox.Items.Add(patient);
-            this.Patient_ComboBox.DisplayMember = "FullName";
-            this.Patient_ComboBox.ValueMember = patient.PatientID.ToString();
-            this.Patient_ComboBox.SelectedIndex = 0;
+            this.Patient_ComboBox.Text = patient.FullName;
+            this.Patient_ComboBox.ValueMember = "PatientID";
             this.Patient_ComboBox.Enabled = false;
         }
 
