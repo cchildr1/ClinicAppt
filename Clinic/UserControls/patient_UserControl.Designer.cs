@@ -236,6 +236,7 @@
             this.DateOfBirth_datetimePicker.Name = "DateOfBirth_datetimePicker";
             this.DateOfBirth_datetimePicker.Size = new System.Drawing.Size(153, 20);
             this.DateOfBirth_datetimePicker.TabIndex = 6;
+            this.DateOfBirth_datetimePicker.ValueChanged += new System.EventHandler(this.DateOfBirth_datetimePicker_ValueChanged);
             // 
             // patient_UserControl
             // 
