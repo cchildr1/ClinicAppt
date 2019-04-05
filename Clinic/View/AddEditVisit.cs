@@ -24,7 +24,7 @@ namespace Clinic.View
         /// Constructor for existing visit, populates form with pre-existing visit information
         /// </summary>
         /// <param name="visit">visit to add to form</param>
-        public AddEditVisit(Visit visit)
+        public AddEditVisit(Visit visit, Nurse loggedInNurse)
         {
             InitializeComponent();
             this.nurseController = new NurseController();
@@ -37,6 +37,7 @@ namespace Clinic.View
                 this.patientTextBox.Text = visit.Appointment.Patient.FullName;
                 this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
                 this.PopulateNurseComboBox();
+                this.NurseComboBox.SelectedValue = loggedInNurse.NurseID;
             }
             else
             {
