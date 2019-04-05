@@ -149,6 +149,36 @@ namespace Clinic.DAL
         }
 
         /// <summary>
+        /// Returns true if the accepted SSN value is NOT present in the database
+        /// </summary>
+        /// <param name="ssn"></param>
+        /// <returns></returns>
+        public bool IsSSN_Not_Duplicate(string ssn)
+        {
+            bool valid_SSN = true;
+
+            string selectStatement = "SELECT COUNT(*) FROM patient pat " + 
+                "JOIN person per ON per.id = pat.personal_information_id " +
+                "WHERE per.ssn = @ssn";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@ssn", @ssn);
+                    Int32 count = Convert.ToInt32(selectCommand.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        valid_SSN = false;
+                    }
+                    connection.Close();
+                    return valid_SSN;
+                }
+            }
+          
+        }
+
+        /// <summary>
         /// Returns a list of Patients equal to the accepted DateTime
         /// </summary>
         /// <param name="dateOfBirth">Accepted DateTime value - shorted to just Date</param>
