@@ -33,7 +33,9 @@ namespace Clinic.View
             this.Patient_ComboBox.DataSource = null;
             this.Patient_ComboBox.Items.Add(patient);
             this.Patient_ComboBox.DisplayMember = "FullName";
-            this.Patient_ComboBox.ValueMember = "PatientID";
+            this.Patient_ComboBox.ValueMember = patient.PatientID.ToString();
+            this.Patient_ComboBox.SelectedIndex = 0;
+            this.Patient_ComboBox.Enabled = false;
         }
 
         private void SetUpDoctor_ComboBox()
