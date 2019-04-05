@@ -144,9 +144,17 @@ namespace Clinic.View
 
         private bool IsValidSSN(string ssn)
         {
+            PatientController patientController = new PatientController();
             if (ssn != "")
             {
-                return Regex.IsMatch(ssn, @"^\d{9}$");
+                if (Regex.IsMatch(ssn, @"^\d{9}$"))
+                {
+                    return patientController.IsSSN_Not_Duplicate(ssn);
+                }
+                else
+                {
+                    return false;
+                }
             }
             return true;
         }
