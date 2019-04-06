@@ -26,10 +26,10 @@ namespace Clinic.View
         /// <param name="visit">visit to add to form</param>
         public AddEditVisit(Visit visit, Nurse loggedInNurse)
         {
-            InitializeComponent();
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
             this.update = true;
+            InitializeComponent();
             if (visit.VisitId == 0)
             {
                 this.update = false;
@@ -58,6 +58,7 @@ namespace Clinic.View
                 this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
                 this.infoTextBox.Text = visit.Info;
             }
+            this.FillTestData(visit.VisitId);
         }
 
         private void PopulateNurseComboBox()
@@ -209,6 +210,11 @@ namespace Clinic.View
             bodyTemperatureTextBox.BackColor = SystemColors.Window;
             pulseTextBox.BackColor = SystemColors.Window;
             NurseComboBox.BackColor = SystemColors.Window;
+        }
+
+        private void FillTestData(int visitID)
+        {
+            this.testTableAdapter.Fill(this.cS6232_g3DataSet.test, visitID);
         }
     }
 }
