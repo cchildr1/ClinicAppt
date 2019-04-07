@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.mainDashBoardNurse_TabControl = new System.Windows.Forms.TabControl();
+            this.nurse_tabpage = new System.Windows.Forms.TabPage();
             this.WelcomeLBL = new System.Windows.Forms.Label();
             this.LogOut_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.nurse_tabpage = new System.Windows.Forms.TabPage();
             this.mainDashBoardNurse_TabControl.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +48,15 @@
             this.mainDashBoardNurse_TabControl.SelectedIndex = 0;
             this.mainDashBoardNurse_TabControl.Size = new System.Drawing.Size(1061, 415);
             this.mainDashBoardNurse_TabControl.TabIndex = 3;
+            // 
+            // nurse_tabpage
+            // 
+            this.nurse_tabpage.Location = new System.Drawing.Point(4, 22);
+            this.nurse_tabpage.Name = "nurse_tabpage";
+            this.nurse_tabpage.Size = new System.Drawing.Size(1053, 389);
+            this.nurse_tabpage.TabIndex = 0;
+            this.nurse_tabpage.Text = "Nurses";
+            this.nurse_tabpage.UseVisualStyleBackColor = true;
             // 
             // WelcomeLBL
             // 
@@ -92,15 +101,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1067, 450);
             this.tableLayoutPanel1.TabIndex = 4;
-            // 
-            // nurse_tabpage
-            // 
-            this.nurse_tabpage.Location = new System.Drawing.Point(4, 22);
-            this.nurse_tabpage.Name = "nurse_tabpage";
-            this.nurse_tabpage.Size = new System.Drawing.Size(1053, 389);
-            this.nurse_tabpage.TabIndex = 0;
-            this.nurse_tabpage.Text = "Nurses";
-            this.nurse_tabpage.UseVisualStyleBackColor = true;
             // 
             // MainDashboardAdmin
             // 

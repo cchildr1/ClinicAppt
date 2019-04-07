@@ -67,6 +67,12 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Test.cs" />
     <Compile Include="Model\Visit.cs" />
+    <Compile Include="UserControls\admin_NurseControl_userControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\admin_NurseControl_userControl.Designer.cs">
+      <DependentUpon>admin_NurseControl_userControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\appointments_UserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <Compile Include="View\MainDashboardNurse.Designer.cs">
       <DependentUpon>MainDashboardNurse.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\admin_NurseControl_userControl.resx">
+      <DependentUpon>admin_NurseControl_userControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\appointments_UserControl.resx">
       <DependentUpon>appointments_UserControl.cs</DependentUpon>
     </EmbeddedResource>
