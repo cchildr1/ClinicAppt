@@ -45,12 +45,10 @@
             // 
             // nurse_baseTableLayoutPanel
             // 
-            this.nurse_baseTableLayoutPanel.ColumnCount = 3;
-            this.nurse_baseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1.494565F));
+            this.nurse_baseTableLayoutPanel.ColumnCount = 1;
             this.nurse_baseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.50543F));
-            this.nurse_baseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.nurse_baseTableLayoutPanel.Controls.Add(this.nurse_DataGridView, 1, 1);
-            this.nurse_baseTableLayoutPanel.Controls.Add(this.searchNurse_TableLayoutPanel, 1, 0);
+            this.nurse_baseTableLayoutPanel.Controls.Add(this.nurse_DataGridView, 0, 1);
+            this.nurse_baseTableLayoutPanel.Controls.Add(this.searchNurse_TableLayoutPanel, 0, 0);
             this.nurse_baseTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nurse_baseTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.nurse_baseTableLayoutPanel.Name = "nurse_baseTableLayoutPanel";
@@ -68,10 +66,10 @@
             this.nurse_DataGridView.AllowUserToOrderColumns = true;
             this.nurse_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nurse_DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nurse_DataGridView.Location = new System.Drawing.Point(14, 78);
+            this.nurse_DataGridView.Location = new System.Drawing.Point(3, 78);
             this.nurse_DataGridView.Name = "nurse_DataGridView";
             this.nurse_DataGridView.ReadOnly = true;
-            this.nurse_DataGridView.Size = new System.Drawing.Size(719, 318);
+            this.nurse_DataGridView.Size = new System.Drawing.Size(770, 318);
             this.nurse_DataGridView.TabIndex = 0;
             // 
             // searchNurse_TableLayoutPanel
@@ -90,12 +88,12 @@
             this.searchNurse_TableLayoutPanel.Controls.Add(this.lastName_textbox, 2, 0);
             this.searchNurse_TableLayoutPanel.Controls.Add(this.search_Nurse, 3, 0);
             this.searchNurse_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.searchNurse_TableLayoutPanel.Location = new System.Drawing.Point(14, 3);
+            this.searchNurse_TableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.searchNurse_TableLayoutPanel.Name = "searchNurse_TableLayoutPanel";
             this.searchNurse_TableLayoutPanel.RowCount = 2;
             this.searchNurse_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.searchNurse_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.searchNurse_TableLayoutPanel.Size = new System.Drawing.Size(719, 69);
+            this.searchNurse_TableLayoutPanel.Size = new System.Drawing.Size(770, 69);
             this.searchNurse_TableLayoutPanel.TabIndex = 1;
             this.searchNurse_TableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.searchNurse_TableLayoutPanel_Paint);
             // 
@@ -121,7 +119,7 @@
             // firstName_LBL
             // 
             this.firstName_LBL.AutoSize = true;
-            this.firstName_LBL.Location = new System.Drawing.Point(196, 34);
+            this.firstName_LBL.Location = new System.Drawing.Point(210, 34);
             this.firstName_LBL.Name = "firstName_LBL";
             this.firstName_LBL.Size = new System.Drawing.Size(55, 13);
             this.firstName_LBL.TabIndex = 3;
@@ -130,7 +128,7 @@
             // lastName_lbl
             // 
             this.lastName_lbl.AutoSize = true;
-            this.lastName_lbl.Location = new System.Drawing.Point(327, 34);
+            this.lastName_lbl.Location = new System.Drawing.Point(350, 34);
             this.lastName_lbl.Name = "lastName_lbl";
             this.lastName_lbl.Size = new System.Drawing.Size(56, 13);
             this.lastName_lbl.TabIndex = 4;
@@ -138,21 +136,21 @@
             // 
             // firstName_textbox
             // 
-            this.firstName_textbox.Location = new System.Drawing.Point(196, 3);
+            this.firstName_textbox.Location = new System.Drawing.Point(210, 3);
             this.firstName_textbox.Name = "firstName_textbox";
             this.firstName_textbox.Size = new System.Drawing.Size(100, 20);
             this.firstName_textbox.TabIndex = 5;
             // 
             // lastName_textbox
             // 
-            this.lastName_textbox.Location = new System.Drawing.Point(327, 3);
+            this.lastName_textbox.Location = new System.Drawing.Point(350, 3);
             this.lastName_textbox.Name = "lastName_textbox";
             this.lastName_textbox.Size = new System.Drawing.Size(100, 20);
             this.lastName_textbox.TabIndex = 6;
             // 
             // search_Nurse
             // 
-            this.search_Nurse.Location = new System.Drawing.Point(472, 3);
+            this.search_Nurse.Location = new System.Drawing.Point(505, 3);
             this.search_Nurse.Name = "search_Nurse";
             this.search_Nurse.Size = new System.Drawing.Size(75, 23);
             this.search_Nurse.TabIndex = 7;

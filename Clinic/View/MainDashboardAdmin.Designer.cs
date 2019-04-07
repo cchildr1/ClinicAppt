@@ -33,7 +33,9 @@
             this.WelcomeLBL = new System.Windows.Forms.Label();
             this.LogOut_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.admin_NurseControl_userControl1 = new Clinic.UserControls.admin_NurseControl_userControl();
             this.mainDashBoardNurse_TabControl.SuspendLayout();
+            this.nurse_tabpage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +53,7 @@
             // 
             // nurse_tabpage
             // 
+            this.nurse_tabpage.Controls.Add(this.admin_NurseControl_userControl1);
             this.nurse_tabpage.Location = new System.Drawing.Point(4, 22);
             this.nurse_tabpage.Name = "nurse_tabpage";
             this.nurse_tabpage.Size = new System.Drawing.Size(1053, 389);
@@ -102,6 +105,14 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1067, 450);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
+            // admin_NurseControl_userControl1
+            // 
+            this.admin_NurseControl_userControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.admin_NurseControl_userControl1.Location = new System.Drawing.Point(0, 0);
+            this.admin_NurseControl_userControl1.Name = "admin_NurseControl_userControl1";
+            this.admin_NurseControl_userControl1.Size = new System.Drawing.Size(1053, 389);
+            this.admin_NurseControl_userControl1.TabIndex = 0;
+            // 
             // MainDashboardAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,6 +122,7 @@
             this.Name = "MainDashboardAdmin";
             this.Text = "MainDashboardAdmin";
             this.mainDashBoardNurse_TabControl.ResumeLayout(false);
+            this.nurse_tabpage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Button LogOut_Button;
         private System.Windows.Forms.Label WelcomeLBL;
         private System.Windows.Forms.TabPage nurse_tabpage;
+        private UserControls.admin_NurseControl_userControl admin_NurseControl_userControl1;
     }
 }
