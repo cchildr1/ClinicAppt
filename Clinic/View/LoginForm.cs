@@ -38,7 +38,7 @@ namespace Clinic
                 if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                 {
                     this.Hide();
-                                        
+
                     MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
                     mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
                     DialogResult result = mainDashboardNurse.ShowDialog();
@@ -51,11 +51,19 @@ namespace Clinic
                 }
                 else if (employee.GetType().ToString() == "Clinic.Model.Admin")
                 {
-                    MessageBox.Show("Welcome Administrator " + employee.FirstName + " " + employee.LastName);
-                    errorLabel.Text = "";
+                    this.Hide();
+
+                    MainDashboardAdmin mainDashboardAdmin = new MainDashboardAdmin();
+                    mainDashboardAdmin.SetLoggedInName(employee.FirstName + " " + employee.LastName);
+                    DialogResult result = mainDashboardAdmin.ShowDialog();
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        this.Bt_Clear_Click(sender, e);
+                        this.Show();
+                    }
                 }
             }
-       
         }
     }
 }
