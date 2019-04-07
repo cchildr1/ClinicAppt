@@ -31,11 +31,22 @@ namespace Clinic.Controller
         }
 
         /// <summary>
+        /// Returns a list of all nurses with full names equal to the accepted first and last names
+        /// </summary>
+        /// <param name="text1"></param>
+        /// <param name="text2"></param>
+        /// <returns></returns>
+        public List<Nurse> GetNurseByFullName(string firstname, string lastname)
+        {
+            return this.nurseDAL.GetNurseByFullName(firstname, lastname);
+        }
+
+        /// <summary>
         /// Returns a list of all nurses with a value equal to the accepted firstname
         /// </summary>
         /// <param name="firstname"></param>
         /// <returns></returns>
-        internal object GetNurseByFirstName(string firstname)
+        public List<Nurse> GetNurseByFirstName(string firstname)
         {
             return this.nurseDAL.GetAllNursesByFirstname(firstname);
         }

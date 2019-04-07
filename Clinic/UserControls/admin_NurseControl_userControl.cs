@@ -26,7 +26,9 @@ namespace Clinic.UserControls
         {
             if (this.firstName_textbox.Text != "" && this.lastName_textbox.Text != "")
             {
-                //search by full name
+                this.nurse_DataGridView.DataSource = null;
+                this.nurse_DataGridView.DataSource = this.nurseController.GetNurseByFullName(this.firstName_textbox.Text, this.lastName_textbox.Text);
+                this.PopulateNurseDataGridView_Helper();
             }
             else if (this.firstName_textbox.Text != "")
             {
