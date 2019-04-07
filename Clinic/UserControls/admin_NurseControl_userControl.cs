@@ -21,19 +21,32 @@ namespace Clinic.UserControls
             this.PopulateNurseDataGridView();
         }
 
-        private void searchNurse_TableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void search_Nurse_Click(object sender, EventArgs e)
         {
-
+            if (this.firstName_textbox.Text != "" && this.lastName_textbox.Text != "")
+            {
+                //search by full name
+            }
+            else if (this.firstName_textbox.Text != "")
+            {
+                //search by firstname
+            }
+            else if (this.lastName_textbox.Text != "")
+            {
+                this.nurse_DataGridView.DataSource = null;
+                this.nurse_DataGridView.DataSource = this.nurseController.GetNurseByLastName(this.lastName_textbox.Text);
+                this.PopulateNurseDataGridView_Helper();
+            }
+            else
+            {
+                this.searchDescription_lbl.Text = "You must enter a name to search the nurses";
+                this.searchDescription_lbl.ForeColor = System.Drawing.Color.Red;
+            }
         }
 
-        private void PopulateNurseDataGridView()
+        private void PopulateNurseDataGridView_Helper()
         {
-            this.nurse_DataGridView.DataSource = nurseController.GetAllNurses();
             this.nurse_DataGridView.Columns["NurseID"].Visible = false;
             this.nurse_DataGridView.Columns["EmployeeID"].Visible = false;
             this.nurse_DataGridView.Columns["Username"].Visible = false;
@@ -43,5 +56,18 @@ namespace Clinic.UserControls
             this.nurse_DataGridView.Columns["City"].Visible = false;
             this.nurse_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+        private void PopulateNurseDataGridView()
+        {
+            this.nurse_DataGridView.DataSource = nurseController.GetAllNurses();
+            this.PopulateNurseDataGridView_Helper();
+        }
+
+        private void ResetNurseLabels_toDefault(object sender, EventArgs e)
+        {
+            this.searchDescription_lbl.Text = "Double Click a nurse to see details";
+            this.searchDescription_lbl.ForeColor = System.Drawing.Color.Black;
+        }
+
     }
 }

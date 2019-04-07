@@ -8,13 +8,13 @@ namespace Clinic.DAL
     /// <summary>
     /// Retrieves Nurse information from the database
     /// </summary>
-    public static class NurseDAL
+    public class NurseDAL
     {
         /// <summary>
         /// Retrieves all nurses from the database
         /// </summary>
         /// <returns>List of all nurses</returns>
-        public static List<Nurse> GetAllNurses()
+        public List<Nurse> GetAllNurses()
         {
             string selectStatement = "SELECT * FROM nurse;";
             List<Nurse> nurses = new List<Nurse>();
@@ -41,6 +41,45 @@ namespace Clinic.DAL
             }
             return nurses;
         }
+        
+        /// <summary>
+        /// This method will return a list of all Nurses with a lastname equal the the accepted lastname
+        /// </summary>
+        /// <param name="lastname"></param>
+        /// <returns></returns>
+        public List<Nurse> GetAllNursesByLastname(string lastname)
+        {
+            List<Nurse> nurses = new List<Nurse>();
+            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+                "JOIN person person ON person_id = person.id " +
+               "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("lastname_clean", @lastname);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Nurse nurse = new Nurse
+                            {
+                                NurseID = (int)reader["id"],
+                                PersonId = (int)reader["person_id"]
+                            };
+                            PopulatePersonalInformation(nurse);
+                            nurses.Add(nurse);
+                        }
+
+                    }
+
+                }
+                connection.Close();
+            }
+            return nurses;
+        }
+
         /// <summary>
         /// Gets a specific nurse by their id
         /// </summary>

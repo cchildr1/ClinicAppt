@@ -95,7 +95,6 @@
             this.searchNurse_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.searchNurse_TableLayoutPanel.Size = new System.Drawing.Size(770, 69);
             this.searchNurse_TableLayoutPanel.TabIndex = 1;
-            this.searchNurse_TableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.searchNurse_TableLayoutPanel_Paint);
             // 
             // searchNurse_LBL
             // 
@@ -140,6 +139,7 @@
             this.firstName_textbox.Name = "firstName_textbox";
             this.firstName_textbox.Size = new System.Drawing.Size(100, 20);
             this.firstName_textbox.TabIndex = 5;
+            this.firstName_textbox.Click += new System.EventHandler(this.ResetNurseLabels_toDefault);
             // 
             // lastName_textbox
             // 
@@ -147,6 +147,7 @@
             this.lastName_textbox.Name = "lastName_textbox";
             this.lastName_textbox.Size = new System.Drawing.Size(100, 20);
             this.lastName_textbox.TabIndex = 6;
+            this.lastName_textbox.Click += new System.EventHandler(this.ResetNurseLabels_toDefault);
             // 
             // search_Nurse
             // 

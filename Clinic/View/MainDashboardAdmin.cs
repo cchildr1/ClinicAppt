@@ -23,6 +23,11 @@ namespace Clinic.View
             InitializeComponent();
         }
 
+        private void LogOut_Button_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
+
         /// <summary>
         /// This sets the welcome lbl to welcome + the logged in username
         /// </summary>
