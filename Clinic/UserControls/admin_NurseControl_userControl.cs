@@ -41,7 +41,7 @@ namespace Clinic.UserControls
             this.nurse_DataGridView.Columns["PersonID"].Visible = false;
             this.nurse_DataGridView.Columns["State"].Visible = false;
             this.nurse_DataGridView.Columns["City"].Visible = false;
-            this.nurse_DataGridView.Dock = DockStyle.Fill;
+            this.nurse_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }
 }
