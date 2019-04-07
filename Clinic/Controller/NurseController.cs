@@ -29,5 +29,15 @@ namespace Clinic.Controller
         {
             return this.nurseDAL.GetAllNursesByLastname(lastname);
         }
+
+        /// <summary>
+        /// Returns a list of all nurses with a value equal to the accepted firstname
+        /// </summary>
+        /// <param name="firstname"></param>
+        /// <returns></returns>
+        internal object GetNurseByFirstName(string firstname)
+        {
+            return this.nurseDAL.GetAllNursesByFirstname(firstname);
+        }
     }
 }

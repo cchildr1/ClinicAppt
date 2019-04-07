@@ -41,7 +41,40 @@ namespace Clinic.DAL
             }
             return nurses;
         }
-        
+
+        internal object GetAllNursesByFirstname(string firstname)
+        {
+            List<Nurse> nurses = new List<Nurse>();
+            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+                "JOIN person person ON person_id = person.id " +
+               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean)";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("firstname_clean", @firstname);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Nurse nurse = new Nurse
+                            {
+                                NurseID = (int)reader["id"],
+                                PersonId = (int)reader["person_id"]
+                            };
+                            PopulatePersonalInformation(nurse);
+                            nurses.Add(nurse);
+                        }
+
+                    }
+
+                }
+                connection.Close();
+            }
+            return nurses;
+        }
+
         /// <summary>
         /// This method will return a list of all Nurses with a lastname equal the the accepted lastname
         /// </summary>

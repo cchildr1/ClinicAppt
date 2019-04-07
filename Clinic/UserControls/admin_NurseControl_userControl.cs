@@ -30,7 +30,9 @@ namespace Clinic.UserControls
             }
             else if (this.firstName_textbox.Text != "")
             {
-                //search by firstname
+                this.nurse_DataGridView.DataSource = null;
+                this.nurse_DataGridView.DataSource = this.nurseController.GetNurseByFirstName(this.firstName_textbox.Text);
+                this.PopulateNurseDataGridView_Helper();
             }
             else if (this.lastName_textbox.Text != "")
             {
