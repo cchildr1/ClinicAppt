@@ -220,6 +220,7 @@ namespace Clinic.View
             this.testCodeComboBox.DataSource = this.testController.getAllTestCodes();
             this.testCodeComboBox.DisplayMember = "Code";
             this.testCodeComboBox.ValueMember = "TestCodeID";
+            this.testDataGridView.DataSource = this.testController.getTestsForVisit(this.oldVisit.VisitId);
 
             
         }

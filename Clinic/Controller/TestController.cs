@@ -18,5 +18,10 @@ namespace Clinic.Controller
         {
             return TestDAL.getAllTestCodes();
         }
+
+        public List<Test> getTestsForVisit(int visitID)
+        {
+            return TestDAL.getAllTestsForVisit(visitID);
+        }
     }
 }

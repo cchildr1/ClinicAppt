@@ -9,6 +9,7 @@ namespace Clinic.Model
     {
         //Getters and setters for test values
         public int TestID { get; set; }
+        public int VisitID { get; set; }
         public DateTime DatePerformed { get; set;  }
         public DateTime DateAvailable { get; set; }
         public bool AbnormalResult { get; set; }
@@ -16,5 +17,6 @@ namespace Clinic.Model
         public string Code { get; set; }
         public int TestCodeID { get; set; }
         public string Description { get; set; }
+
     }
 }
