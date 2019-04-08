@@ -50,5 +50,24 @@ namespace Clinic.Controller
         {
             return this.nurseDAL.GetAllNursesByFirstname(firstname);
         }
+
+
+        /// <summary>
+        /// This method returns true if the accepted SSN value is NOT present within the database
+        /// </summary>
+        /// <returns></returns>
+        public bool IsSSN_Not_Duplicate(string ssn)
+        {
+            return this.nurseDAL.IsSSN_Not_Duplicate(ssn);
+        }
+
+        /// <summary>
+        /// This method will enter the accepted Nurse value into the database
+        /// </summary>
+        /// <param name="nurse"></param>
+        public void Addnurse(Nurse addedNurse)
+        {
+            this.nurseDAL.AddNurse(addedNurse);
+        }
     }
 }

@@ -39,9 +39,12 @@
             this.lastName_textbox = new System.Windows.Forms.TextBox();
             this.search_Nurse = new System.Windows.Forms.Button();
             this.resetAdmin_Nurse_btn = new System.Windows.Forms.Button();
+            this.bottomRowTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.addNurse_button = new System.Windows.Forms.Button();
             this.nurse_baseTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nurse_DataGridView)).BeginInit();
             this.searchNurse_TableLayoutPanel.SuspendLayout();
+            this.bottomRowTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // nurse_baseTableLayoutPanel
@@ -50,6 +53,7 @@
             this.nurse_baseTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 98.50543F));
             this.nurse_baseTableLayoutPanel.Controls.Add(this.nurse_DataGridView, 0, 1);
             this.nurse_baseTableLayoutPanel.Controls.Add(this.searchNurse_TableLayoutPanel, 0, 0);
+            this.nurse_baseTableLayoutPanel.Controls.Add(this.bottomRowTableLayoutPanel, 0, 2);
             this.nurse_baseTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nurse_baseTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.nurse_baseTableLayoutPanel.Name = "nurse_baseTableLayoutPanel";
@@ -169,7 +173,36 @@
             this.resetAdmin_Nurse_btn.TabIndex = 8;
             this.resetAdmin_Nurse_btn.Text = "Reset";
             this.resetAdmin_Nurse_btn.UseVisualStyleBackColor = true;
-            this.resetAdmin_Nurse_btn.Click += new System.EventHandler(this.resetAdmin_Nurse_btn_Click);
+            this.resetAdmin_Nurse_btn.Click += new System.EventHandler(this.ResetAdmin_Nurse_btn_Click);
+            // 
+            // bottomRowTableLayoutPanel
+            // 
+            this.bottomRowTableLayoutPanel.ColumnCount = 6;
+            this.bottomRowTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.bottomRowTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.bottomRowTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.bottomRowTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.bottomRowTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.bottomRowTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.bottomRowTableLayoutPanel.Controls.Add(this.addNurse_button, 1, 0);
+            this.bottomRowTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bottomRowTableLayoutPanel.Location = new System.Drawing.Point(3, 402);
+            this.bottomRowTableLayoutPanel.Name = "bottomRowTableLayoutPanel";
+            this.bottomRowTableLayoutPanel.RowCount = 2;
+            this.bottomRowTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.bottomRowTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.bottomRowTableLayoutPanel.Size = new System.Drawing.Size(770, 72);
+            this.bottomRowTableLayoutPanel.TabIndex = 9;
+            // 
+            // addNurse_button
+            // 
+            this.addNurse_button.Location = new System.Drawing.Point(131, 3);
+            this.addNurse_button.Name = "addNurse_button";
+            this.addNurse_button.Size = new System.Drawing.Size(75, 23);
+            this.addNurse_button.TabIndex = 0;
+            this.addNurse_button.Text = "Add Nurse";
+            this.addNurse_button.UseVisualStyleBackColor = true;
+            this.addNurse_button.Click += new System.EventHandler(this.addNurse_button_Click);
             // 
             // admin_NurseControl_userControl
             // 
@@ -182,6 +215,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nurse_DataGridView)).EndInit();
             this.searchNurse_TableLayoutPanel.ResumeLayout(false);
             this.searchNurse_TableLayoutPanel.PerformLayout();
+            this.bottomRowTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -199,5 +233,7 @@
         private System.Windows.Forms.TextBox lastName_textbox;
         private System.Windows.Forms.Button search_Nurse;
         private System.Windows.Forms.Button resetAdmin_Nurse_btn;
+        private System.Windows.Forms.TableLayoutPanel bottomRowTableLayoutPanel;
+        private System.Windows.Forms.Button addNurse_button;
     }
 }

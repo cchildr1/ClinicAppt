@@ -97,5 +97,15 @@ namespace Clinic.Controller
         {
             this.patientDAL.AddPatient(addedPatient);
         }
+
+
+        /// <summary>
+        /// This method returns true if the accepted SSN value is NOT present within the database
+        /// </summary>
+        /// <returns></returns>
+        public bool IsSSN_Not_Duplicate(string ssn)
+        {
+            return this.patientDAL.IsSSN_Not_Duplicate(ssn);
+        }
     }
 }

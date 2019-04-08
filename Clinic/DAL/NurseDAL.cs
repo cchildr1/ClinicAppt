@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Clinic.DAL
 {
@@ -10,6 +11,37 @@ namespace Clinic.DAL
     /// </summary>
     public class NurseDAL
     {
+
+        /// <summary>
+        /// Returns true if the accepted SSN value is NOT present in the database
+        /// </summary>
+        /// <param name="ssn"></param>
+        /// <returns></returns>
+        public bool IsSSN_Not_Duplicate(string ssn)
+        {
+            bool valid_SSN = true;
+
+            string selectStatement = "SELECT COUNT(*) FROM nurse nur " +
+                "JOIN person per ON per.id = nur.person_id " +
+                "WHERE per.ssn = @ssn";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@ssn", @ssn);
+                    Int32 count = Convert.ToInt32(selectCommand.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        valid_SSN = false;
+                    }
+                    connection.Close();
+                    return valid_SSN;
+                }
+            }
+
+        }
+
         /// <summary>
         /// Retrieves all nurses from the database
         /// </summary>
@@ -40,6 +72,64 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return nurses;
+        }
+
+        /// <summary>
+        /// This method adds the accepted nurse to the database
+        /// </summary>
+        /// <param name="nurse"></param>
+        public void AddNurse(Nurse addedNurse)
+        {
+            int addedNurse_PersonalInfoID = -1;
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+                    using (SqlTransaction transaction = connection.BeginTransaction())
+                    {
+                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
+                        "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
+                        string insertNurse = "INSERT Nurse(person_id) VALUES (@personalID)";
+
+                        using (SqlCommand insertPersonCommand = new SqlCommand(insertPerson, connection))
+                            {
+                                insertPersonCommand.Transaction = transaction;
+                                insertPersonCommand.Parameters.AddWithValue("lastName", addedNurse.LastName);
+                                insertPersonCommand.Parameters.AddWithValue("firstName", addedNurse.FirstName);
+                                insertPersonCommand.Parameters.AddWithValue("DOB", addedNurse.DateOfBirth);
+                                insertPersonCommand.Parameters.AddWithValue("SSN", addedNurse.SocialSecurityNumber);
+                                insertPersonCommand.Parameters.AddWithValue("Gender", addedNurse.Gender);
+                                insertPersonCommand.Parameters.AddWithValue("streetAddress", addedNurse.StreetAddress);
+                                insertPersonCommand.Parameters.AddWithValue("phoneNumber", addedNurse.Phone);
+                                insertPersonCommand.Parameters.AddWithValue("Zipcode", addedNurse.Zipcode);
+                                insertPersonCommand.ExecuteNonQuery();
+
+                                string selectStatement = "SELECT IDENT_CURRENT('Person') FROM Person";
+
+                                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                                {
+                                    selectCommand.Transaction = transaction;
+                                    addedNurse_PersonalInfoID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                                }
+                            }
+
+                            using (SqlCommand insertPatientCommand = new SqlCommand(insertNurse, connection))
+                            {
+                                insertPatientCommand.Transaction = transaction;
+                                insertPatientCommand.Parameters.AddWithValue("@personalID", addedNurse_PersonalInfoID);
+                                insertPatientCommand.ExecuteNonQuery();
+                            }
+
+                            transaction.Commit();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
         }
 
         /// <summary>

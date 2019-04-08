@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Controller;
+using Clinic.View;
 using Clinic.Model;
 
 namespace Clinic.UserControls
@@ -73,12 +74,22 @@ namespace Clinic.UserControls
             this.searchDescription_lbl.ForeColor = System.Drawing.Color.Black;
         }
 
-        private void resetAdmin_Nurse_btn_Click(object sender, EventArgs e)
+        private void ResetAdmin_Nurse_btn_Click(object sender, EventArgs e)
         {
             this.ResetNurseLabels_toDefault(sender, e);
             this.PopulateNurseDataGridView();
             this.firstName_textbox.Text = "";
             this.lastName_textbox.Text = "";
+        }
+
+        private void addNurse_button_Click(object sender, EventArgs e)
+        {
+            AddNurse addNurse = new AddNurse();
+            DialogResult result = addNurse.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.ResetAdmin_Nurse_btn_Click(sender, e);
+            }
         }
     }
 }
