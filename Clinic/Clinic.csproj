@@ -51,16 +51,10 @@
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\NurseController.cs" />
     <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\TestController.cs" />
     <Compile Include="Controller\VisitController.cs" />
     <Compile Include="Controller\ZipcodeController.cs" />
-    <Compile Include="DataSets\CS6232_g3DataSet.cs">
-      <DependentUpon>CS6232_g3DataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\CS6232_g3DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CS6232_g3DataSet.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="DAL\TestDAL.cs" />
     <Compile Include="DAL\AppointmentDAL.cs" />
     <Compile Include="DAL\ClinicDBConnection.cs" />
     <Compile Include="DAL\DoctorDAL.cs" />
@@ -179,17 +173,6 @@
     <EmbeddedResource Include="View\MainDashboardNurse.resx">
       <DependentUpon>MainDashboardNurse.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataSets\CS6232_g3DataSet.xsc">
-      <DependentUpon>CS6232_g3DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\CS6232_g3DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CS6232_g3DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataSets\CS6232_g3DataSet.xss">
-      <DependentUpon>CS6232_g3DataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\DataSources\Clinic.Model.Appointment2.datasource" />
     <None Include="Properties\DataSources\Clinic.Model.Employee.datasource" />
     <None Include="Properties\DataSources\Clinic.Model.Visit.datasource" />

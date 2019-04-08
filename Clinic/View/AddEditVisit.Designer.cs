@@ -44,8 +44,8 @@
             System.Windows.Forms.Label bodyTemperatureLabel;
             System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.testDataGridView = new System.Windows.Forms.DataGridView();
             this.infoTextBox = new System.Windows.Forms.TextBox();
             this.bodyTemperatureTextBox = new System.Windows.Forms.TextBox();
             this.doctorTextBox = new System.Windows.Forms.TextBox();
@@ -59,21 +59,21 @@
             this.DTPVisitTime = new System.Windows.Forms.DateTimePicker();
             this.DTPVisitDate = new System.Windows.Forms.DateTimePicker();
             this.NurseComboBox = new System.Windows.Forms.ComboBox();
-            this.btCancel = new System.Windows.Forms.Button();
             this.btOK = new System.Windows.Forms.Button();
+            this.btCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cS6232_g3DataSet = new Clinic.DataSets.CS6232_g3DataSet();
+            this.BtClearTest = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtSubmitTest = new System.Windows.Forms.Button();
             this.testBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.testTableAdapter = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter();
-            this.tableAdapterManager = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager();
-            this.testDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxTestCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxDatePerformed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxDateAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumnAbnormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxVisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTestCodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.TestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCodeComboBox = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateOrdered = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Abnormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Results = new System.Windows.Forms.DataGridViewTextBoxColumn();
             fullNameLabel1 = new System.Windows.Forms.Label();
             nurseLabel = new System.Windows.Forms.Label();
             visitDateLabel = new System.Windows.Forms.Label();
@@ -88,11 +88,11 @@
             fullNameLabel2 = new System.Windows.Forms.Label();
             bodyTemperatureLabel = new System.Windows.Forms.Label();
             infoLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // fullNameLabel1
@@ -207,7 +207,7 @@
             symptomsLabel.AutoSize = true;
             symptomsLabel.Location = new System.Drawing.Point(3, 157);
             symptomsLabel.Name = "symptomsLabel";
-            symptomsLabel.Size = new System.Drawing.Size(83, 38);
+            symptomsLabel.Size = new System.Drawing.Size(83, 39);
             symptomsLabel.TabIndex = 16;
             symptomsLabel.Text = "Symptoms:";
             symptomsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,9 +218,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             initialDiagnosisLabel.AutoSize = true;
-            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 233);
+            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 235);
             initialDiagnosisLabel.Name = "initialDiagnosisLabel";
-            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 38);
+            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 39);
             initialDiagnosisLabel.TabIndex = 18;
             initialDiagnosisLabel.Text = "Initial Diagnosis:";
             initialDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -231,9 +231,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 271);
+            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 274);
             finalDiagnosisLabel.Name = "finalDiagnosisLabel";
-            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 38);
+            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 39);
             finalDiagnosisLabel.TabIndex = 20;
             finalDiagnosisLabel.Text = "Final Diagnosis:";
             finalDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -270,9 +270,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             infoLabel.AutoSize = true;
-            infoLabel.Location = new System.Drawing.Point(3, 195);
+            infoLabel.Location = new System.Drawing.Point(3, 196);
             infoLabel.Name = "infoLabel";
-            infoLabel.Size = new System.Drawing.Size(83, 38);
+            infoLabel.Size = new System.Drawing.Size(83, 39);
             infoLabel.TabIndex = 28;
             infoLabel.Text = "Info:";
             infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,10 +288,6 @@
             this.patientTextBox.ReadOnly = true;
             this.patientTextBox.Size = new System.Drawing.Size(200, 20);
             this.patientTextBox.TabIndex = 1;
-            // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
             // 
             // tableLayoutPanel1
             // 
@@ -332,25 +328,47 @@
             this.tableLayoutPanel1.Controls.Add(this.btCancel, 3, 10);
             this.tableLayoutPanel1.Controls.Add(infoLabel, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 3, 13);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 13;
+            this.tableLayoutPanel1.RowCount = 14;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(838, 510);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(849, 549);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // testDataGridView
+            // 
+            this.testDataGridView.AutoGenerateColumns = false;
+            this.testDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.testDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TestID,
+            this.testCodeComboBox,
+            this.Description,
+            this.DateOrdered,
+            this.DateAvailable,
+            this.Abnormal,
+            this.Results});
+            this.tableLayoutPanel1.SetColumnSpan(this.testDataGridView, 4);
+            this.testDataGridView.DataSource = this.testBindingSource;
+            this.testDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.testDataGridView.Location = new System.Drawing.Point(3, 358);
+            this.testDataGridView.Name = "testDataGridView";
+            this.testDataGridView.Size = new System.Drawing.Size(843, 153);
+            this.testDataGridView.TabIndex = 31;
             // 
             // infoTextBox
             // 
@@ -359,10 +377,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
             this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
-            this.infoTextBox.Location = new System.Drawing.Point(92, 198);
+            this.infoTextBox.Location = new System.Drawing.Point(92, 199);
             this.infoTextBox.Multiline = true;
             this.infoTextBox.Name = "infoTextBox";
-            this.infoTextBox.Size = new System.Drawing.Size(743, 32);
+            this.infoTextBox.Size = new System.Drawing.Size(754, 33);
             this.infoTextBox.TabIndex = 12;
             // 
             // bodyTemperatureTextBox
@@ -390,10 +408,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.finalDiagnosisTextBox, 3);
             this.finalDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "FinalDiagnosis", true));
-            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 274);
+            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 277);
             this.finalDiagnosisTextBox.Multiline = true;
             this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
-            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(743, 32);
+            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(754, 33);
             this.finalDiagnosisTextBox.TabIndex = 14;
             // 
             // initialDiagnosisTextBox
@@ -403,10 +421,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.initialDiagnosisTextBox, 3);
             this.initialDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "InitialDiagnosis", true));
-            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 236);
+            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 238);
             this.initialDiagnosisTextBox.Multiline = true;
             this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
-            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(743, 32);
+            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(754, 33);
             this.initialDiagnosisTextBox.TabIndex = 13;
             // 
             // symptomsTextBox
@@ -419,7 +437,7 @@
             this.symptomsTextBox.Location = new System.Drawing.Point(92, 160);
             this.symptomsTextBox.Multiline = true;
             this.symptomsTextBox.Name = "symptomsTextBox";
-            this.symptomsTextBox.Size = new System.Drawing.Size(743, 32);
+            this.symptomsTextBox.Size = new System.Drawing.Size(754, 33);
             this.symptomsTextBox.TabIndex = 11;
             // 
             // weightTextBox
@@ -482,26 +500,26 @@
             this.NurseComboBox.Size = new System.Drawing.Size(121, 21);
             this.NurseComboBox.TabIndex = 2;
             // 
-            // btCancel
-            // 
-            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(379, 312);
-            this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(75, 23);
-            this.btCancel.TabIndex = 16;
-            this.btCancel.Text = "Cancel";
-            this.btCancel.UseVisualStyleBackColor = true;
-            this.btCancel.Click += new System.EventHandler(this.BtCancel_Click);
-            // 
             // btOK
             // 
-            this.btOK.Location = new System.Drawing.Point(298, 312);
+            this.btOK.Location = new System.Drawing.Point(298, 316);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
             this.btOK.TabIndex = 15;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Click += new System.EventHandler(this.BtOK_Click);
+            // 
+            // btCancel
+            // 
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btCancel.Location = new System.Drawing.Point(379, 316);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(75, 23);
+            this.btCancel.TabIndex = 16;
+            this.btCancel.Text = "Cancel";
+            this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.BtCancel_Click);
             // 
             // label1
             // 
@@ -510,111 +528,92 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 338);
+            this.label1.Location = new System.Drawing.Point(3, 342);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 13);
             this.label1.TabIndex = 29;
             this.label1.Text = "Tests";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cS6232_g3DataSet
+            // BtClearTest
             // 
-            this.cS6232_g3DataSet.DataSetName = "CS6232_g3DataSet";
-            this.cS6232_g3DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.BtClearTest.Location = new System.Drawing.Point(3, 3);
+            this.BtClearTest.Name = "BtClearTest";
+            this.BtClearTest.Size = new System.Drawing.Size(109, 23);
+            this.BtClearTest.TabIndex = 32;
+            this.BtClearTest.Text = "Clear Test Changes";
+            this.BtClearTest.UseVisualStyleBackColor = true;
+            this.BtClearTest.Click += new System.EventHandler(this.BtClearTest_Click);
             // 
-            // testBindingSource
+            // flowLayoutPanel1
             // 
-            this.testBindingSource.DataMember = "test";
-            this.testBindingSource.DataSource = this.cS6232_g3DataSet;
+            this.flowLayoutPanel1.Controls.Add(this.BtClearTest);
+            this.flowLayoutPanel1.Controls.Add(this.BtSubmitTest);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(379, 517);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(467, 29);
+            this.flowLayoutPanel1.TabIndex = 33;
             // 
-            // testTableAdapter
+            // BtSubmitTest
             // 
-            this.testTableAdapter.ClearBeforeFill = true;
+            this.BtSubmitTest.Location = new System.Drawing.Point(118, 3);
+            this.BtSubmitTest.Name = "BtSubmitTest";
+            this.BtSubmitTest.Size = new System.Drawing.Size(117, 23);
+            this.BtSubmitTest.TabIndex = 33;
+            this.BtSubmitTest.Text = "Submit Test Changes";
+            this.BtSubmitTest.UseVisualStyleBackColor = true;
+            this.BtSubmitTest.Click += new System.EventHandler(this.BtSubmitTest_Click);
             // 
-            // tableAdapterManager
+            // visitBindingSource
             // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.UpdateOrder = Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
             // 
-            // testDataGridView
+            // TestID
             // 
-            this.testDataGridView.AutoGenerateColumns = false;
-            this.testDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.testDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxTestCode,
-            this.dataGridViewTextBoxDatePerformed,
-            this.dataGridViewTextBoxDateAvailable,
-            this.dataGridViewCheckBoxColumnAbnormal,
-            this.dataGridViewTextBoxResult,
-            this.dataGridViewTextBoxVisitID,
-            this.dataGridViewTextBoxTestCodeID});
-            this.tableLayoutPanel1.SetColumnSpan(this.testDataGridView, 4);
-            this.testDataGridView.DataSource = this.testBindingSource;
-            this.testDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.testDataGridView.Location = new System.Drawing.Point(3, 354);
-            this.testDataGridView.Name = "testDataGridView";
-            this.testDataGridView.Size = new System.Drawing.Size(832, 153);
-            this.testDataGridView.TabIndex = 31;
+            this.TestID.HeaderText = "TestID";
+            this.TestID.Name = "TestID";
+            this.TestID.Visible = false;
             // 
-            // dataGridViewTextBoxTestCode
+            // testCodeComboBox
             // 
-            this.dataGridViewTextBoxTestCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxTestCode.DataPropertyName = "code";
-            this.dataGridViewTextBoxTestCode.HeaderText = "Test Code";
-            this.dataGridViewTextBoxTestCode.Name = "dataGridViewTextBoxTestCode";
-            this.dataGridViewTextBoxTestCode.Width = 81;
+            this.testCodeComboBox.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.testCodeComboBox.HeaderText = "Test Code";
+            this.testCodeComboBox.Name = "testCodeComboBox";
             // 
-            // dataGridViewTextBoxDatePerformed
+            // Description
             // 
-            this.dataGridViewTextBoxDatePerformed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxDatePerformed.DataPropertyName = "date_performed";
-            this.dataGridViewTextBoxDatePerformed.HeaderText = "Date Performed";
-            this.dataGridViewTextBoxDatePerformed.Name = "dataGridViewTextBoxDatePerformed";
-            this.dataGridViewTextBoxDatePerformed.Width = 97;
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.Width = 85;
             // 
-            // dataGridViewTextBoxDateAvailable
+            // DateOrdered
             // 
-            this.dataGridViewTextBoxDateAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxDateAvailable.DataPropertyName = "date_available";
-            this.dataGridViewTextBoxDateAvailable.HeaderText = "Date Available";
-            this.dataGridViewTextBoxDateAvailable.Name = "dataGridViewTextBoxDateAvailable";
-            this.dataGridViewTextBoxDateAvailable.Width = 93;
+            this.DateOrdered.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.DateOrdered.HeaderText = "Order Date";
+            this.DateOrdered.Name = "DateOrdered";
+            this.DateOrdered.Width = 84;
             // 
-            // dataGridViewCheckBoxColumnAbnormal
+            // DateAvailable
             // 
-            this.dataGridViewCheckBoxColumnAbnormal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewCheckBoxColumnAbnormal.DataPropertyName = "abnormal_result";
-            this.dataGridViewCheckBoxColumnAbnormal.FalseValue = "0";
-            this.dataGridViewCheckBoxColumnAbnormal.HeaderText = "Abnormal?";
-            this.dataGridViewCheckBoxColumnAbnormal.Name = "dataGridViewCheckBoxColumnAbnormal";
-            this.dataGridViewCheckBoxColumnAbnormal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumnAbnormal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxColumnAbnormal.TrueValue = "1";
-            this.dataGridViewCheckBoxColumnAbnormal.Width = 82;
+            this.DateAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.DateAvailable.HeaderText = "Available Date";
+            this.DateAvailable.Name = "DateAvailable";
+            this.DateAvailable.Width = 101;
             // 
-            // dataGridViewTextBoxResult
+            // Abnormal
             // 
-            this.dataGridViewTextBoxResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxResult.DataPropertyName = "result";
-            this.dataGridViewTextBoxResult.HeaderText = "Result";
-            this.dataGridViewTextBoxResult.Name = "dataGridViewTextBoxResult";
+            this.Abnormal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Abnormal.HeaderText = "Abnormal";
+            this.Abnormal.Name = "Abnormal";
+            this.Abnormal.Width = 57;
             // 
-            // dataGridViewTextBoxVisitID
+            // Results
             // 
-            this.dataGridViewTextBoxVisitID.DataPropertyName = "visit_id";
-            this.dataGridViewTextBoxVisitID.HeaderText = "visit_id";
-            this.dataGridViewTextBoxVisitID.Name = "dataGridViewTextBoxVisitID";
-            this.dataGridViewTextBoxVisitID.ReadOnly = true;
-            this.dataGridViewTextBoxVisitID.Visible = false;
-            // 
-            // dataGridViewTextBoxTestCodeID
-            // 
-            this.dataGridViewTextBoxTestCodeID.DataPropertyName = "test_code_id";
-            this.dataGridViewTextBoxTestCodeID.HeaderText = "test_code_id";
-            this.dataGridViewTextBoxTestCodeID.Name = "dataGridViewTextBoxTestCodeID";
-            this.dataGridViewTextBoxTestCodeID.ReadOnly = true;
-            this.dataGridViewTextBoxTestCodeID.Visible = false;
+            this.Results.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Results.HeaderText = "Results";
+            this.Results.Name = "Results";
             // 
             // AddEditVisit
             // 
@@ -622,17 +621,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(838, 510);
+            this.ClientSize = new System.Drawing.Size(849, 549);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Visit";
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -658,17 +657,17 @@
         private System.Windows.Forms.Button btOK;
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Label label1;
-        private DataSets.CS6232_g3DataSet cS6232_g3DataSet;
         private System.Windows.Forms.BindingSource testBindingSource;
-        private DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter testTableAdapter;
-        private DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView testDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTestCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxDatePerformed;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxDateAvailable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumnAbnormal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxResult;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxVisitID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTestCodeID;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button BtClearTest;
+        private System.Windows.Forms.Button BtSubmitTest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestID;
+        private System.Windows.Forms.DataGridViewComboBoxColumn testCodeComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateOrdered;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateAvailable;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Abnormal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Results;
     }
 }

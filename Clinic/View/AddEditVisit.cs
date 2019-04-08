@@ -16,6 +16,7 @@ namespace Clinic.View
     {
         private NurseController nurseController;
         private VisitController visitController;
+        private TestController testController;
         private Visit oldVisit;
         private bool update;
         private bool valid;
@@ -28,6 +29,7 @@ namespace Clinic.View
         {
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
+            this.testController = new TestController();
             this.update = true;
             InitializeComponent();
             if (visit.VisitId == 0)
@@ -58,6 +60,7 @@ namespace Clinic.View
                 this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
                 this.infoTextBox.Text = visit.Info;
             }
+            this.testDataGridView.AutoGenerateColumns = false;
             this.FillTestData(visit.VisitId);
         }
 
@@ -214,7 +217,23 @@ namespace Clinic.View
 
         private void FillTestData(int visitID)
         {
-            this.testTableAdapter.Fill(this.cS6232_g3DataSet.test, visitID);
+            this.testCodeComboBox.DataSource = this.testController.getAllTestCodes();
+            this.testCodeComboBox.DisplayMember = "Code";
+            this.testCodeComboBox.ValueMember = "TestCodeID";
+
+            
         }
+
+        private void BtClearTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtSubmitTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

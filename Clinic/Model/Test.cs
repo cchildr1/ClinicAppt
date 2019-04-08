@@ -14,6 +14,7 @@ namespace Clinic.Model
         public bool AbnormalResult { get; set; }
         public string Result { get; set; }
         public string Code { get; set; }
+        public int TestCodeID { get; set; }
         public string Description { get; set; }
     }
 }
