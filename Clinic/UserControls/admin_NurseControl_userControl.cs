@@ -73,5 +73,12 @@ namespace Clinic.UserControls
             this.searchDescription_lbl.ForeColor = System.Drawing.Color.Black;
         }
 
+        private void resetAdmin_Nurse_btn_Click(object sender, EventArgs e)
+        {
+            this.ResetNurseLabels_toDefault(sender, e);
+            this.PopulateNurseDataGridView();
+            this.firstName_textbox.Text = "";
+            this.lastName_textbox.Text = "";
+        }
     }
 }

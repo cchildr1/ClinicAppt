@@ -38,6 +38,7 @@
             this.firstName_textbox = new System.Windows.Forms.TextBox();
             this.lastName_textbox = new System.Windows.Forms.TextBox();
             this.search_Nurse = new System.Windows.Forms.Button();
+            this.resetAdmin_Nurse_btn = new System.Windows.Forms.Button();
             this.nurse_baseTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nurse_DataGridView)).BeginInit();
             this.searchNurse_TableLayoutPanel.SuspendLayout();
@@ -87,6 +88,7 @@
             this.searchNurse_TableLayoutPanel.Controls.Add(this.firstName_textbox, 1, 0);
             this.searchNurse_TableLayoutPanel.Controls.Add(this.lastName_textbox, 2, 0);
             this.searchNurse_TableLayoutPanel.Controls.Add(this.search_Nurse, 3, 0);
+            this.searchNurse_TableLayoutPanel.Controls.Add(this.resetAdmin_Nurse_btn, 3, 1);
             this.searchNurse_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchNurse_TableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.searchNurse_TableLayoutPanel.Name = "searchNurse_TableLayoutPanel";
@@ -159,6 +161,16 @@
             this.search_Nurse.UseVisualStyleBackColor = true;
             this.search_Nurse.Click += new System.EventHandler(this.search_Nurse_Click);
             // 
+            // resetAdmin_Nurse_btn
+            // 
+            this.resetAdmin_Nurse_btn.Location = new System.Drawing.Point(505, 37);
+            this.resetAdmin_Nurse_btn.Name = "resetAdmin_Nurse_btn";
+            this.resetAdmin_Nurse_btn.Size = new System.Drawing.Size(75, 23);
+            this.resetAdmin_Nurse_btn.TabIndex = 8;
+            this.resetAdmin_Nurse_btn.Text = "Reset";
+            this.resetAdmin_Nurse_btn.UseVisualStyleBackColor = true;
+            this.resetAdmin_Nurse_btn.Click += new System.EventHandler(this.resetAdmin_Nurse_btn_Click);
+            // 
             // admin_NurseControl_userControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,5 +198,6 @@
         private System.Windows.Forms.TextBox firstName_textbox;
         private System.Windows.Forms.TextBox lastName_textbox;
         private System.Windows.Forms.Button search_Nurse;
+        private System.Windows.Forms.Button resetAdmin_Nurse_btn;
     }
 }
