@@ -61,7 +61,7 @@ namespace Clinic.View
                 this.infoTextBox.Text = visit.Info;
             }
             this.testDataGridView.AutoGenerateColumns = false;
-            this.FillTestData(visit.VisitId);
+            this.FillTestData(oldVisit.VisitId);
         }
 
         private void PopulateNurseComboBox()
@@ -215,16 +215,6 @@ namespace Clinic.View
             NurseComboBox.BackColor = SystemColors.Window;
         }
 
-        private void FillTestData(int visitID)
-        {
-            this.testCodeComboBox.DataSource = this.testController.getAllTestCodes();
-            this.testCodeComboBox.DisplayMember = "Code";
-            this.testCodeComboBox.ValueMember = "TestCodeID";
-            this.testDataGridView.DataSource = this.testController.getTestsForVisit(this.oldVisit.VisitId);
-
-            
-        }
-
         private void BtClearTest_Click(object sender, EventArgs e)
         {
 
@@ -235,6 +225,20 @@ namespace Clinic.View
 
         }
 
+        private void FillTestData(int visitID)
+        {
+            this.populateTestCodeComboBox();
+            this.testDataGridView.DataSource = this.testController.getTestsForVisit(visitID);
+
+        }
+
+        private void populateTestCodeComboBox()
+        {
+            foreach (Test test in this.testController.getAllTestCodes())
+            {
+                this.dataGridViewTestCodeComboBox.Items.Add(test.Code);
+            }
+        }
 
     }
 }
