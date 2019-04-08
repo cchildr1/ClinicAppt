@@ -69,5 +69,15 @@ namespace Clinic.Controller
         {
             this.nurseDAL.AddNurse(addedNurse);
         }
+
+        /// <summary>
+        /// Returns the nurse with an Id eqaul to the accepted value
+        /// </summary>
+        /// <param name="selectedNurseID"></param>
+        /// <returns></returns>
+        public Nurse GetNurseById(int selectedNurseID)
+        {
+            return NurseDAL.GetNurseByID(selectedNurseID);
+        }
     }
 }

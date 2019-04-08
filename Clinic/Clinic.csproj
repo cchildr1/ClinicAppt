@@ -103,11 +103,11 @@
     <Compile Include="View\AddEditVisit.Designer.cs">
       <DependentUpon>AddEditVisit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddNurse.cs">
+    <Compile Include="View\Add_Edit_Nurse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddNurse.Designer.cs">
-      <DependentUpon>AddNurse.cs</DependentUpon>
+    <Compile Include="View\Add_Edit_Nurse.Designer.cs">
+      <DependentUpon>Add_Edit_Nurse.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AddPatient.cs">
       <SubType>Form</SubType>
@@ -168,8 +168,8 @@
     <EmbeddedResource Include="View\AddEditVisit.resx">
       <DependentUpon>AddEditVisit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AddNurse.resx">
-      <DependentUpon>AddNurse.cs</DependentUpon>
+    <EmbeddedResource Include="View\Add_Edit_Nurse.resx">
+      <DependentUpon>Add_Edit_Nurse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddPatient.resx">
       <DependentUpon>AddPatient.cs</DependentUpon>

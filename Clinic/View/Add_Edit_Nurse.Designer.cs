@@ -1,6 +1,6 @@
 ﻿namespace Clinic.View
 {
-    partial class AddNurse
+    partial class Add_Edit_Nurse
     {
         /// <summary>
         /// Required designer variable.
@@ -45,7 +45,7 @@
             this.lastname_textbox = new System.Windows.Forms.TextBox();
             this.firstname_textbox = new System.Windows.Forms.TextBox();
             this.streetAddress_textbox = new System.Windows.Forms.TextBox();
-            this.addNurseDialog = new System.Windows.Forms.Button();
+            this.add_editNurse_button = new System.Windows.Forms.Button();
             this.errorMessage_lbl = new System.Windows.Forms.Label();
             this.cancel_reset_buttons_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.cancel_button = new System.Windows.Forms.Button();
@@ -75,7 +75,7 @@
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.lastname_textbox, 1, 1);
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.firstname_textbox, 1, 0);
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.streetAddress_textbox, 1, 5);
-            this.AddNurseBase_TableLayoutPanel.Controls.Add(this.addNurseDialog, 0, 10);
+            this.AddNurseBase_TableLayoutPanel.Controls.Add(this.add_editNurse_button, 0, 10);
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.errorMessage_lbl, 0, 8);
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.cancel_reset_buttons_tableLayoutPanel, 1, 10);
             this.AddNurseBase_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -247,15 +247,15 @@
             this.streetAddress_textbox.TabIndex = 6;
             this.streetAddress_textbox.TextChanged += new System.EventHandler(this.Reset_ErrorMessage);
             // 
-            // addNurseDialog
+            // add_editNurse_button
             // 
-            this.addNurseDialog.Location = new System.Drawing.Point(3, 450);
-            this.addNurseDialog.Name = "addNurseDialog";
-            this.addNurseDialog.Size = new System.Drawing.Size(75, 23);
-            this.addNurseDialog.TabIndex = 10;
-            this.addNurseDialog.Text = "Add Nurse";
-            this.addNurseDialog.UseVisualStyleBackColor = true;
-            this.addNurseDialog.Click += new System.EventHandler(this.addNurseDialog_Click);
+            this.add_editNurse_button.Location = new System.Drawing.Point(3, 450);
+            this.add_editNurse_button.Name = "add_editNurse_button";
+            this.add_editNurse_button.Size = new System.Drawing.Size(75, 23);
+            this.add_editNurse_button.TabIndex = 10;
+            this.add_editNurse_button.Text = "Add Nurse";
+            this.add_editNurse_button.UseVisualStyleBackColor = true;
+            this.add_editNurse_button.Click += new System.EventHandler(this.addNurseDialog_Click);
             // 
             // errorMessage_lbl
             // 
@@ -300,14 +300,14 @@
             this.reset_button.UseVisualStyleBackColor = true;
             this.reset_button.Click += new System.EventHandler(this.reset_button_Click);
             // 
-            // AddNurse
+            // Add_Edit_Nurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 485);
             this.Controls.Add(this.AddNurseBase_TableLayoutPanel);
-            this.Name = "AddNurse";
-            this.Text = "AddNurse";
+            this.Name = "Add_Edit_Nurse";
+            this.Text = "Nurse";
             this.AddNurseBase_TableLayoutPanel.ResumeLayout(false);
             this.AddNurseBase_TableLayoutPanel.PerformLayout();
             this.cancel_reset_buttons_tableLayoutPanel.ResumeLayout(false);
@@ -334,7 +334,7 @@
         private System.Windows.Forms.TextBox lastname_textbox;
         private System.Windows.Forms.TextBox firstname_textbox;
         private System.Windows.Forms.TextBox streetAddress_textbox;
-        private System.Windows.Forms.Button addNurseDialog;
+        private System.Windows.Forms.Button add_editNurse_button;
         private System.Windows.Forms.Label errorMessage_lbl;
         private System.Windows.Forms.TableLayoutPanel cancel_reset_buttons_tableLayoutPanel;
         private System.Windows.Forms.Button cancel_button;

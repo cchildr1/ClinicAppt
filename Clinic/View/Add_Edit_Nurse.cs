@@ -10,19 +10,43 @@ namespace Clinic.View
     /// <summary>
     /// This class allows administrators to add nurses to the database
     /// </summary>
-    public partial class AddNurse : Form
+    public partial class Add_Edit_Nurse : Form
     {
         NurseController nurseController = new NurseController();
-          private string errorMessage = "";
+        private bool isEditingNurse = false;
+        private Nurse editedNurse;
+        private string errorMessage = "";
         private bool selected_DOB = false;
         /// <summary>
         /// This is the constuctor it initalizes the AddNurse dialog
         /// </summary>
-        public AddNurse()
+        public Add_Edit_Nurse()
         {
             InitializeComponent();
             this.SetUpGender_ComboBox();
         }
+
+
+        /// <summary>
+        /// Calling this method sets up the view to edit the accepted Nurse value
+        /// </summary>
+        /// <param name="editedNurse"></param>
+        public void SetUp_ForEditNurse(Nurse editedNurse)
+        {
+            this.editedNurse = editedNurse;
+            this.isEditingNurse = true;
+            this.add_editNurse_button.Text = "Edit Nurse";
+            this.firstname_textbox.Text = editedNurse.FirstName;
+            this.lastname_textbox.Text = editedNurse.LastName;
+            this.phoneNumber_textbox.Text = editedNurse.Phone;
+            this.ssn_textbox.Text = editedNurse.SocialSecurityNumber;
+            this.streetAddress_textbox.Text = editedNurse.StreetAddress;
+            this.zipcode_textbox.Text = editedNurse.Zipcode;
+            this.gender_ComboBox.Text = editedNurse.Gender;
+        }
+
+
+
         private void SetUpGender_ComboBox()
         {
             this.gender_ComboBox.Items.Add("Male");
@@ -35,12 +59,19 @@ namespace Clinic.View
 
         private void reset_button_Click(object sender, EventArgs e)
         {
-            this.firstname_textbox.Text = "";
-            this.lastname_textbox.Text = "";
-            this.phoneNumber_textbox.Text = "";
-            this.ssn_textbox.Text = "";
-            this.streetAddress_textbox.Text = "";
-            this.zipcode_textbox.Text = "";
+            if (!isEditingNurse)
+            {
+                this.firstname_textbox.Text = "";
+                this.lastname_textbox.Text = "";
+                this.phoneNumber_textbox.Text = "";
+                this.ssn_textbox.Text = "";
+                this.streetAddress_textbox.Text = "";
+                this.zipcode_textbox.Text = "";
+            }
+            else {
+                this.SetUp_ForEditNurse(this.editedNurse);
+            }
+
             this.Reset_ErrorMessage(sender, e);
         }
 

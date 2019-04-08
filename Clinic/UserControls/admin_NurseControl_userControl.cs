@@ -84,8 +84,21 @@ namespace Clinic.UserControls
 
         private void addNurse_button_Click(object sender, EventArgs e)
         {
-            AddNurse addNurse = new AddNurse();
+            Add_Edit_Nurse addNurse = new Add_Edit_Nurse();
             DialogResult result = addNurse.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.ResetAdmin_Nurse_btn_Click(sender, e);
+            }
+        }
+
+        private void nurse_DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = this.nurse_DataGridView.CurrentRow;
+            int selectedNurseID = (int) selectedRow.Cells["NurseID"].Value;
+            Add_Edit_Nurse editNurse = new Add_Edit_Nurse();
+            editNurse.SetUp_ForEditNurse(this.nurseController.GetNurseById(selectedNurseID));
+            DialogResult result = editNurse.ShowDialog();
             if (result == DialogResult.Yes)
             {
                 this.ResetAdmin_Nurse_btn_Click(sender, e);

@@ -42,7 +42,7 @@ namespace Clinic.DAL
 
         }
 
-        /// <summary>
+        /// <summary> 
         /// Retrieves all nurses from the database
         /// </summary>
         /// <returns>List of all nurses</returns>

@@ -76,6 +76,7 @@
             this.nurse_DataGridView.ReadOnly = true;
             this.nurse_DataGridView.Size = new System.Drawing.Size(770, 318);
             this.nurse_DataGridView.TabIndex = 0;
+            this.nurse_DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.nurse_DataGridView_CellContentClick);
             // 
             // searchNurse_TableLayoutPanel
             // 
