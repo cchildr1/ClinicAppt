@@ -18,5 +18,9 @@ namespace Clinic.Model
         public string Code { get; set; }
         public string Description { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0}", Code);
+        }
     }
 }

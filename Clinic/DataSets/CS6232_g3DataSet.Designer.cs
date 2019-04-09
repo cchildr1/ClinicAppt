@@ -293,8 +293,6 @@ namespace Clinic.DataSets {
             
             private global::System.Data.DataColumn columncode;
             
-            private global::System.Data.DataColumn columndescription;
-            
             private global::System.Data.DataColumn columnid;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -388,14 +386,6 @@ namespace Clinic.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn descriptionColumn {
-                get {
-                    return this.columndescription;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn idColumn {
                 get {
                     return this.columnid;
@@ -439,7 +429,7 @@ namespace Clinic.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public testRow AddtestRow(int visit_id, System.DateTime date_performed, System.DateTime date_available, int test_code_id, byte abnormal_result, string result, string code, string description) {
+            public testRow AddtestRow(int visit_id, System.DateTime date_performed, System.DateTime date_available, int test_code_id, byte abnormal_result, string result, string code) {
                 testRow rowtestRow = ((testRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         visit_id,
@@ -449,7 +439,6 @@ namespace Clinic.DataSets {
                         abnormal_result,
                         result,
                         code,
-                        description,
                         null};
                 rowtestRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtestRow);
@@ -488,7 +477,6 @@ namespace Clinic.DataSets {
                 this.columnabnormal_result = base.Columns["abnormal_result"];
                 this.columnresult = base.Columns["result"];
                 this.columncode = base.Columns["code"];
-                this.columndescription = base.Columns["description"];
                 this.columnid = base.Columns["id"];
             }
             
@@ -509,8 +497,6 @@ namespace Clinic.DataSets {
                 base.Columns.Add(this.columnresult);
                 this.columncode = new global::System.Data.DataColumn("code", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncode);
-                this.columndescription = new global::System.Data.DataColumn("description", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndescription);
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -524,8 +510,6 @@ namespace Clinic.DataSets {
                 this.columnresult.MaxLength = 500;
                 this.columncode.AllowDBNull = false;
                 this.columncode.MaxLength = 5;
-                this.columndescription.AllowDBNull = false;
-                this.columndescription.MaxLength = 50;
                 this.columnid.AutoIncrement = true;
                 this.columnid.AutoIncrementSeed = -1;
                 this.columnid.AutoIncrementStep = -1;
@@ -766,17 +750,6 @@ namespace Clinic.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string description {
-                get {
-                    return ((string)(this[this.tabletest.descriptionColumn]));
-                }
-                set {
-                    this[this.tabletest.descriptionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int id {
                 get {
                     return ((int)(this[this.tabletest.idColumn]));
@@ -989,7 +962,6 @@ namespace Clinic.DataSets.CS6232_g3DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("abnormal_result", "abnormal_result");
             tableMapping.ColumnMappings.Add("result", "result");
             tableMapping.ColumnMappings.Add("code", "code");
-            tableMapping.ColumnMappings.Add("description", "description");
             tableMapping.ColumnMappings.Add("id", "id");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -1007,10 +979,9 @@ namespace Clinic.DataSets.CS6232_g3DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        t.id, tc.code, t.date_performed, t.date_available, t.abnormal_result, t.result, tc.description, t.visit_id, t.test_code_id
-FROM            test AS t INNER JOIN
-                         test_code AS tc ON t.test_code_id = tc.id
-WHERE        (t.visit_id = @visitid)";
+            this._commandCollection[0].CommandText = "SELECT t.id, tc.code, t.date_performed, t.date_available, t.abnormal_result, t.re" +
+                "sult, t.visit_id, t.test_code_id\r\nFROM     test AS t INNER JOIN\r\n               " +
+                "   test_code AS tc ON t.test_code_id = tc.id\r\nWHERE  (t.visit_id = @visitid)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@visitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "visit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

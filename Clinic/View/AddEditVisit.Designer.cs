@@ -44,8 +44,17 @@
             System.Windows.Forms.Label bodyTemperatureLabel;
             System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.testDataGridView = new System.Windows.Forms.DataGridView();
+            this.code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxDatePerformed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxDateAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumnAbnormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxVisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxTestCodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cS6232_g3DataSet = new Clinic.DataSets.CS6232_g3DataSet();
             this.infoTextBox = new System.Windows.Forms.TextBox();
@@ -64,20 +73,14 @@
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.testTableAdapter = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter();
-            this.tableAdapterManager = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtClearChanges = new System.Windows.Forms.Button();
             this.BtSubmitChanges = new System.Windows.Forms.Button();
-            this.dataGridViewComboBoxTestCode = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxDatePerformed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxDateAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumnAbnormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxVisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTestCodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.CBInsertTestCode = new System.Windows.Forms.ComboBox();
+            this.BTInsertTest = new System.Windows.Forms.Button();
+            this.testTableAdapter = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter();
+            this.tableAdapterManager = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager();
             fullNameLabel1 = new System.Windows.Forms.Label();
             nurseLabel = new System.Windows.Forms.Label();
             visitDateLabel = new System.Windows.Forms.Label();
@@ -92,12 +95,13 @@
             fullNameLabel2 = new System.Windows.Forms.Label();
             bodyTemperatureLabel = new System.Windows.Forms.Label();
             infoLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // fullNameLabel1
@@ -106,9 +110,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             fullNameLabel1.AutoSize = true;
-            fullNameLabel1.Location = new System.Drawing.Point(3, 0);
+            fullNameLabel1.Location = new System.Drawing.Point(4, 0);
+            fullNameLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             fullNameLabel1.Name = "fullNameLabel1";
-            fullNameLabel1.Size = new System.Drawing.Size(83, 26);
+            fullNameLabel1.Size = new System.Drawing.Size(110, 30);
             fullNameLabel1.TabIndex = 2;
             fullNameLabel1.Text = "Patient:";
             fullNameLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -119,9 +124,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             nurseLabel.AutoSize = true;
-            nurseLabel.Location = new System.Drawing.Point(3, 26);
+            nurseLabel.Location = new System.Drawing.Point(4, 30);
+            nurseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             nurseLabel.Name = "nurseLabel";
-            nurseLabel.Size = new System.Drawing.Size(83, 27);
+            nurseLabel.Size = new System.Drawing.Size(110, 32);
             nurseLabel.TabIndex = 3;
             nurseLabel.Text = "Nurse:";
             nurseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,9 +138,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             visitDateLabel.AutoSize = true;
-            visitDateLabel.Location = new System.Drawing.Point(3, 53);
+            visitDateLabel.Location = new System.Drawing.Point(4, 62);
+            visitDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             visitDateLabel.Name = "visitDateLabel";
-            visitDateLabel.Size = new System.Drawing.Size(83, 26);
+            visitDateLabel.Size = new System.Drawing.Size(110, 30);
             visitDateLabel.TabIndex = 4;
             visitDateLabel.Text = "Visit Date:";
             visitDateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,9 +152,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             visitTimeLabel.AutoSize = true;
-            visitTimeLabel.Location = new System.Drawing.Point(298, 53);
+            visitTimeLabel.Location = new System.Drawing.Point(395, 62);
+            visitTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             visitTimeLabel.Name = "visitTimeLabel";
-            visitTimeLabel.Size = new System.Drawing.Size(75, 26);
+            visitTimeLabel.Size = new System.Drawing.Size(100, 30);
             visitTimeLabel.TabIndex = 6;
             visitTimeLabel.Text = "Visit Time:";
             visitTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,9 +166,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             bpSystolicLabel.AutoSize = true;
-            bpSystolicLabel.Location = new System.Drawing.Point(3, 79);
+            bpSystolicLabel.Location = new System.Drawing.Point(4, 92);
+            bpSystolicLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             bpSystolicLabel.Name = "bpSystolicLabel";
-            bpSystolicLabel.Size = new System.Drawing.Size(83, 26);
+            bpSystolicLabel.Size = new System.Drawing.Size(110, 30);
             bpSystolicLabel.TabIndex = 8;
             bpSystolicLabel.Text = "Systolic:";
             bpSystolicLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,9 +180,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             bpDiastolicLabel.AutoSize = true;
-            bpDiastolicLabel.Location = new System.Drawing.Point(298, 79);
+            bpDiastolicLabel.Location = new System.Drawing.Point(395, 92);
+            bpDiastolicLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             bpDiastolicLabel.Name = "bpDiastolicLabel";
-            bpDiastolicLabel.Size = new System.Drawing.Size(75, 26);
+            bpDiastolicLabel.Size = new System.Drawing.Size(100, 30);
             bpDiastolicLabel.TabIndex = 10;
             bpDiastolicLabel.Text = "Diastolic:";
             bpDiastolicLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -184,9 +194,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             pulseLabel.AutoSize = true;
-            pulseLabel.Location = new System.Drawing.Point(3, 105);
+            pulseLabel.Location = new System.Drawing.Point(4, 122);
+            pulseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             pulseLabel.Name = "pulseLabel";
-            pulseLabel.Size = new System.Drawing.Size(83, 26);
+            pulseLabel.Size = new System.Drawing.Size(110, 30);
             pulseLabel.TabIndex = 12;
             pulseLabel.Text = "Pulse:";
             pulseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -197,9 +208,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             weightLabel.AutoSize = true;
-            weightLabel.Location = new System.Drawing.Point(298, 105);
+            weightLabel.Location = new System.Drawing.Point(395, 122);
+            weightLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             weightLabel.Name = "weightLabel";
-            weightLabel.Size = new System.Drawing.Size(75, 26);
+            weightLabel.Size = new System.Drawing.Size(100, 30);
             weightLabel.TabIndex = 14;
             weightLabel.Text = "Weight:";
             weightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -210,9 +222,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             symptomsLabel.AutoSize = true;
-            symptomsLabel.Location = new System.Drawing.Point(3, 157);
+            symptomsLabel.Location = new System.Drawing.Point(4, 182);
+            symptomsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             symptomsLabel.Name = "symptomsLabel";
-            symptomsLabel.Size = new System.Drawing.Size(83, 36);
+            symptomsLabel.Size = new System.Drawing.Size(110, 46);
             symptomsLabel.TabIndex = 16;
             symptomsLabel.Text = "Symptoms:";
             symptomsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -223,9 +236,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             initialDiagnosisLabel.AutoSize = true;
-            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 229);
+            initialDiagnosisLabel.Location = new System.Drawing.Point(4, 274);
+            initialDiagnosisLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             initialDiagnosisLabel.Name = "initialDiagnosisLabel";
-            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 36);
+            initialDiagnosisLabel.Size = new System.Drawing.Size(110, 46);
             initialDiagnosisLabel.TabIndex = 18;
             initialDiagnosisLabel.Text = "Initial Diagnosis:";
             initialDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,9 +250,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 265);
+            finalDiagnosisLabel.Location = new System.Drawing.Point(4, 320);
+            finalDiagnosisLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             finalDiagnosisLabel.Name = "finalDiagnosisLabel";
-            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 36);
+            finalDiagnosisLabel.Size = new System.Drawing.Size(110, 46);
             finalDiagnosisLabel.TabIndex = 20;
             finalDiagnosisLabel.Text = "Final Diagnosis:";
             finalDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -249,9 +264,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             fullNameLabel2.AutoSize = true;
-            fullNameLabel2.Location = new System.Drawing.Point(298, 26);
+            fullNameLabel2.Location = new System.Drawing.Point(395, 30);
+            fullNameLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             fullNameLabel2.Name = "fullNameLabel2";
-            fullNameLabel2.Size = new System.Drawing.Size(75, 27);
+            fullNameLabel2.Size = new System.Drawing.Size(100, 32);
             fullNameLabel2.TabIndex = 22;
             fullNameLabel2.Text = "Doctor:";
             fullNameLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,9 +278,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             bodyTemperatureLabel.AutoSize = true;
-            bodyTemperatureLabel.Location = new System.Drawing.Point(3, 131);
+            bodyTemperatureLabel.Location = new System.Drawing.Point(4, 152);
+            bodyTemperatureLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             bodyTemperatureLabel.Name = "bodyTemperatureLabel";
-            bodyTemperatureLabel.Size = new System.Drawing.Size(83, 26);
+            bodyTemperatureLabel.Size = new System.Drawing.Size(110, 30);
             bodyTemperatureLabel.TabIndex = 26;
             bodyTemperatureLabel.Text = "Temperature:";
             bodyTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -275,9 +292,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             infoLabel.AutoSize = true;
-            infoLabel.Location = new System.Drawing.Point(3, 193);
+            infoLabel.Location = new System.Drawing.Point(4, 228);
+            infoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             infoLabel.Name = "infoLabel";
-            infoLabel.Size = new System.Drawing.Size(83, 36);
+            infoLabel.Size = new System.Drawing.Size(110, 46);
             infoLabel.TabIndex = 28;
             infoLabel.Text = "Info:";
             infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,11 +306,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.patientTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Appointment.Patient.FullName", true));
-            this.patientTextBox.Location = new System.Drawing.Point(92, 3);
+            this.patientTextBox.Location = new System.Drawing.Point(122, 4);
+            this.patientTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.patientTextBox.Name = "patientTextBox";
             this.patientTextBox.ReadOnly = true;
-            this.patientTextBox.Size = new System.Drawing.Size(200, 20);
+            this.patientTextBox.Size = new System.Drawing.Size(265, 22);
             this.patientTextBox.TabIndex = 1;
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
             // 
             // tableLayoutPanel1
             // 
@@ -334,8 +357,10 @@
             this.tableLayoutPanel1.Controls.Add(infoLabel, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 2, 13);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 3, 11);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 14;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -352,7 +377,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(838, 523);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1119, 667);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // testDataGridView
@@ -360,7 +385,7 @@
             this.testDataGridView.AutoGenerateColumns = false;
             this.testDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.testDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewComboBoxTestCode,
+            this.code,
             this.dataGridViewTextBoxDatePerformed,
             this.dataGridViewTextBoxDateAvailable,
             this.dataGridViewCheckBoxColumnAbnormal,
@@ -371,238 +396,18 @@
             this.tableLayoutPanel1.SetColumnSpan(this.testDataGridView, 4);
             this.testDataGridView.DataSource = this.testBindingSource;
             this.testDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.testDataGridView.Location = new System.Drawing.Point(3, 346);
+            this.testDataGridView.Location = new System.Drawing.Point(4, 448);
+            this.testDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.testDataGridView.Name = "testDataGridView";
-            this.testDataGridView.Size = new System.Drawing.Size(832, 141);
+            this.testDataGridView.Size = new System.Drawing.Size(1147, 176);
             this.testDataGridView.TabIndex = 31;
             // 
-            // testBindingSource
+            // code
             // 
-            this.testBindingSource.DataMember = "test";
-            this.testBindingSource.DataSource = this.cS6232_g3DataSet;
-            // 
-            // cS6232_g3DataSet
-            // 
-            this.cS6232_g3DataSet.DataSetName = "CS6232_g3DataSet";
-            this.cS6232_g3DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // infoTextBox
-            // 
-            this.infoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
-            this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
-            this.infoTextBox.Location = new System.Drawing.Point(92, 196);
-            this.infoTextBox.Multiline = true;
-            this.infoTextBox.Name = "infoTextBox";
-            this.infoTextBox.Size = new System.Drawing.Size(743, 30);
-            this.infoTextBox.TabIndex = 12;
-            // 
-            // bodyTemperatureTextBox
-            // 
-            this.bodyTemperatureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BodyTemperature", true));
-            this.bodyTemperatureTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(92, 134);
-            this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
-            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
-            this.bodyTemperatureTextBox.TabIndex = 10;
-            // 
-            // doctorTextBox
-            // 
-            this.doctorTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Appointment.Doctor.FullName", true));
-            this.doctorTextBox.Location = new System.Drawing.Point(379, 29);
-            this.doctorTextBox.Name = "doctorTextBox";
-            this.doctorTextBox.ReadOnly = true;
-            this.doctorTextBox.Size = new System.Drawing.Size(100, 20);
-            this.doctorTextBox.TabIndex = 3;
-            // 
-            // finalDiagnosisTextBox
-            // 
-            this.finalDiagnosisTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.finalDiagnosisTextBox, 3);
-            this.finalDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "FinalDiagnosis", true));
-            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 268);
-            this.finalDiagnosisTextBox.Multiline = true;
-            this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
-            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(743, 30);
-            this.finalDiagnosisTextBox.TabIndex = 14;
-            // 
-            // initialDiagnosisTextBox
-            // 
-            this.initialDiagnosisTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.initialDiagnosisTextBox, 3);
-            this.initialDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "InitialDiagnosis", true));
-            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 232);
-            this.initialDiagnosisTextBox.Multiline = true;
-            this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
-            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(743, 30);
-            this.initialDiagnosisTextBox.TabIndex = 13;
-            // 
-            // symptomsTextBox
-            // 
-            this.symptomsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.symptomsTextBox, 3);
-            this.symptomsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
-            this.symptomsTextBox.Location = new System.Drawing.Point(92, 160);
-            this.symptomsTextBox.Multiline = true;
-            this.symptomsTextBox.Name = "symptomsTextBox";
-            this.symptomsTextBox.Size = new System.Drawing.Size(743, 30);
-            this.symptomsTextBox.TabIndex = 11;
-            // 
-            // weightTextBox
-            // 
-            this.weightTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Weight", true));
-            this.weightTextBox.Location = new System.Drawing.Point(379, 108);
-            this.weightTextBox.Name = "weightTextBox";
-            this.weightTextBox.Size = new System.Drawing.Size(100, 20);
-            this.weightTextBox.TabIndex = 8;
-            // 
-            // pulseTextBox
-            // 
-            this.pulseTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Pulse", true));
-            this.pulseTextBox.Location = new System.Drawing.Point(92, 108);
-            this.pulseTextBox.Name = "pulseTextBox";
-            this.pulseTextBox.Size = new System.Drawing.Size(100, 20);
-            this.pulseTextBox.TabIndex = 8;
-            // 
-            // bpDiastolicTextBox
-            // 
-            this.bpDiastolicTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BpDiastolic", true));
-            this.bpDiastolicTextBox.Location = new System.Drawing.Point(379, 82);
-            this.bpDiastolicTextBox.Name = "bpDiastolicTextBox";
-            this.bpDiastolicTextBox.Size = new System.Drawing.Size(100, 20);
-            this.bpDiastolicTextBox.TabIndex = 7;
-            // 
-            // bpSystolicTextBox
-            // 
-            this.bpSystolicTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BpSystolic", true));
-            this.bpSystolicTextBox.Location = new System.Drawing.Point(92, 82);
-            this.bpSystolicTextBox.Name = "bpSystolicTextBox";
-            this.bpSystolicTextBox.Size = new System.Drawing.Size(100, 20);
-            this.bpSystolicTextBox.TabIndex = 6;
-            // 
-            // DTPVisitTime
-            // 
-            this.DTPVisitTime.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitBindingSource, "DateTime", true));
-            this.DTPVisitTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.DTPVisitTime.Location = new System.Drawing.Point(379, 56);
-            this.DTPVisitTime.Name = "DTPVisitTime";
-            this.DTPVisitTime.Size = new System.Drawing.Size(200, 20);
-            this.DTPVisitTime.TabIndex = 5;
-            // 
-            // DTPVisitDate
-            // 
-            this.DTPVisitDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitBindingSource, "DateTime", true));
-            this.DTPVisitDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPVisitDate.Location = new System.Drawing.Point(92, 56);
-            this.DTPVisitDate.Name = "DTPVisitDate";
-            this.DTPVisitDate.Size = new System.Drawing.Size(200, 20);
-            this.DTPVisitDate.TabIndex = 4;
-            // 
-            // NurseComboBox
-            // 
-            this.NurseComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Nurse.FullName", true));
-            this.NurseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.NurseComboBox.FormattingEnabled = true;
-            this.NurseComboBox.Location = new System.Drawing.Point(92, 29);
-            this.NurseComboBox.Name = "NurseComboBox";
-            this.NurseComboBox.Size = new System.Drawing.Size(121, 21);
-            this.NurseComboBox.TabIndex = 2;
-            // 
-            // btOK
-            // 
-            this.btOK.Location = new System.Drawing.Point(298, 304);
-            this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(75, 23);
-            this.btOK.TabIndex = 15;
-            this.btOK.Text = "OK";
-            this.btOK.UseVisualStyleBackColor = true;
-            this.btOK.Click += new System.EventHandler(this.BtOK_Click);
-            // 
-            // btCancel
-            // 
-            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(379, 304);
-            this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(75, 23);
-            this.btCancel.TabIndex = 16;
-            this.btCancel.Text = "Cancel";
-            this.btCancel.UseVisualStyleBackColor = true;
-            this.btCancel.Click += new System.EventHandler(this.BtCancel_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 330);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Tests";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // testTableAdapter
-            // 
-            this.testTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.UpdateOrder = Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
-            this.flowLayoutPanel1.Controls.Add(this.BtClearChanges);
-            this.flowLayoutPanel1.Controls.Add(this.BtSubmitChanges);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(298, 493);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(537, 27);
-            this.flowLayoutPanel1.TabIndex = 32;
-            // 
-            // BtClearChanges
-            // 
-            this.BtClearChanges.Location = new System.Drawing.Point(3, 3);
-            this.BtClearChanges.Name = "BtClearChanges";
-            this.BtClearChanges.Size = new System.Drawing.Size(123, 23);
-            this.BtClearChanges.TabIndex = 0;
-            this.BtClearChanges.Text = "Clear Test Changes";
-            this.BtClearChanges.UseVisualStyleBackColor = true;
-            // 
-            // BtSubmitChanges
-            // 
-            this.BtSubmitChanges.Location = new System.Drawing.Point(132, 3);
-            this.BtSubmitChanges.Name = "BtSubmitChanges";
-            this.BtSubmitChanges.Size = new System.Drawing.Size(138, 23);
-            this.BtSubmitChanges.TabIndex = 1;
-            this.BtSubmitChanges.Text = "Submit Test Changes";
-            this.BtSubmitChanges.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewComboBoxTestCode
-            // 
-            this.dataGridViewComboBoxTestCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewComboBoxTestCode.DataPropertyName = "test_code_id";
-            this.dataGridViewComboBoxTestCode.HeaderText = "Test Code";
-            this.dataGridViewComboBoxTestCode.Name = "dataGridViewComboBoxTestCode";
-            this.dataGridViewComboBoxTestCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewComboBoxTestCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewComboBoxTestCode.Width = 81;
+            this.code.DataPropertyName = "code";
+            this.code.HeaderText = "Test Code";
+            this.code.Name = "code";
+            this.code.ReadOnly = true;
             // 
             // dataGridViewTextBoxDatePerformed
             // 
@@ -610,7 +415,7 @@
             this.dataGridViewTextBoxDatePerformed.DataPropertyName = "date_performed";
             this.dataGridViewTextBoxDatePerformed.HeaderText = "Date Performed";
             this.dataGridViewTextBoxDatePerformed.Name = "dataGridViewTextBoxDatePerformed";
-            this.dataGridViewTextBoxDatePerformed.Width = 97;
+            this.dataGridViewTextBoxDatePerformed.Width = 126;
             // 
             // dataGridViewTextBoxDateAvailable
             // 
@@ -618,7 +423,7 @@
             this.dataGridViewTextBoxDateAvailable.DataPropertyName = "date_available";
             this.dataGridViewTextBoxDateAvailable.HeaderText = "Date Available";
             this.dataGridViewTextBoxDateAvailable.Name = "dataGridViewTextBoxDateAvailable";
-            this.dataGridViewTextBoxDateAvailable.Width = 93;
+            this.dataGridViewTextBoxDateAvailable.Width = 118;
             // 
             // dataGridViewCheckBoxColumnAbnormal
             // 
@@ -630,7 +435,7 @@
             this.dataGridViewCheckBoxColumnAbnormal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewCheckBoxColumnAbnormal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewCheckBoxColumnAbnormal.TrueValue = "1";
-            this.dataGridViewCheckBoxColumnAbnormal.Width = 82;
+            this.dataGridViewCheckBoxColumnAbnormal.Width = 105;
             // 
             // dataGridViewTextBoxResult
             // 
@@ -663,24 +468,289 @@
             this.id.ReadOnly = true;
             this.id.Visible = false;
             // 
+            // testBindingSource
+            // 
+            this.testBindingSource.DataMember = "test";
+            this.testBindingSource.DataSource = this.cS6232_g3DataSet;
+            // 
+            // cS6232_g3DataSet
+            // 
+            this.cS6232_g3DataSet.DataSetName = "CS6232_g3DataSet";
+            this.cS6232_g3DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // infoTextBox
+            // 
+            this.infoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
+            this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
+            this.infoTextBox.Location = new System.Drawing.Point(122, 232);
+            this.infoTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.infoTextBox.Multiline = true;
+            this.infoTextBox.Name = "infoTextBox";
+            this.infoTextBox.Size = new System.Drawing.Size(1029, 38);
+            this.infoTextBox.TabIndex = 12;
+            // 
+            // bodyTemperatureTextBox
+            // 
+            this.bodyTemperatureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BodyTemperature", true));
+            this.bodyTemperatureTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bodyTemperatureTextBox.Location = new System.Drawing.Point(122, 156);
+            this.bodyTemperatureTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
+            this.bodyTemperatureTextBox.Size = new System.Drawing.Size(265, 22);
+            this.bodyTemperatureTextBox.TabIndex = 10;
+            // 
+            // doctorTextBox
+            // 
+            this.doctorTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Appointment.Doctor.FullName", true));
+            this.doctorTextBox.Location = new System.Drawing.Point(503, 34);
+            this.doctorTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.doctorTextBox.Name = "doctorTextBox";
+            this.doctorTextBox.ReadOnly = true;
+            this.doctorTextBox.Size = new System.Drawing.Size(132, 22);
+            this.doctorTextBox.TabIndex = 3;
+            // 
+            // finalDiagnosisTextBox
+            // 
+            this.finalDiagnosisTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.finalDiagnosisTextBox, 3);
+            this.finalDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "FinalDiagnosis", true));
+            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(122, 324);
+            this.finalDiagnosisTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.finalDiagnosisTextBox.Multiline = true;
+            this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
+            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(1029, 38);
+            this.finalDiagnosisTextBox.TabIndex = 14;
+            // 
+            // initialDiagnosisTextBox
+            // 
+            this.initialDiagnosisTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.initialDiagnosisTextBox, 3);
+            this.initialDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "InitialDiagnosis", true));
+            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(122, 278);
+            this.initialDiagnosisTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.initialDiagnosisTextBox.Multiline = true;
+            this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
+            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(1029, 38);
+            this.initialDiagnosisTextBox.TabIndex = 13;
+            // 
+            // symptomsTextBox
+            // 
+            this.symptomsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.symptomsTextBox, 3);
+            this.symptomsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
+            this.symptomsTextBox.Location = new System.Drawing.Point(122, 186);
+            this.symptomsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.symptomsTextBox.Multiline = true;
+            this.symptomsTextBox.Name = "symptomsTextBox";
+            this.symptomsTextBox.Size = new System.Drawing.Size(1029, 38);
+            this.symptomsTextBox.TabIndex = 11;
+            // 
+            // weightTextBox
+            // 
+            this.weightTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Weight", true));
+            this.weightTextBox.Location = new System.Drawing.Point(503, 126);
+            this.weightTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.weightTextBox.Name = "weightTextBox";
+            this.weightTextBox.Size = new System.Drawing.Size(132, 22);
+            this.weightTextBox.TabIndex = 8;
+            // 
+            // pulseTextBox
+            // 
+            this.pulseTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Pulse", true));
+            this.pulseTextBox.Location = new System.Drawing.Point(122, 126);
+            this.pulseTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pulseTextBox.Name = "pulseTextBox";
+            this.pulseTextBox.Size = new System.Drawing.Size(132, 22);
+            this.pulseTextBox.TabIndex = 8;
+            // 
+            // bpDiastolicTextBox
+            // 
+            this.bpDiastolicTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BpDiastolic", true));
+            this.bpDiastolicTextBox.Location = new System.Drawing.Point(503, 96);
+            this.bpDiastolicTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bpDiastolicTextBox.Name = "bpDiastolicTextBox";
+            this.bpDiastolicTextBox.Size = new System.Drawing.Size(132, 22);
+            this.bpDiastolicTextBox.TabIndex = 7;
+            // 
+            // bpSystolicTextBox
+            // 
+            this.bpSystolicTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BpSystolic", true));
+            this.bpSystolicTextBox.Location = new System.Drawing.Point(122, 96);
+            this.bpSystolicTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bpSystolicTextBox.Name = "bpSystolicTextBox";
+            this.bpSystolicTextBox.Size = new System.Drawing.Size(132, 22);
+            this.bpSystolicTextBox.TabIndex = 6;
+            // 
+            // DTPVisitTime
+            // 
+            this.DTPVisitTime.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitBindingSource, "DateTime", true));
+            this.DTPVisitTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.DTPVisitTime.Location = new System.Drawing.Point(503, 66);
+            this.DTPVisitTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DTPVisitTime.Name = "DTPVisitTime";
+            this.DTPVisitTime.Size = new System.Drawing.Size(265, 22);
+            this.DTPVisitTime.TabIndex = 5;
+            // 
+            // DTPVisitDate
+            // 
+            this.DTPVisitDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.visitBindingSource, "DateTime", true));
+            this.DTPVisitDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPVisitDate.Location = new System.Drawing.Point(122, 66);
+            this.DTPVisitDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DTPVisitDate.Name = "DTPVisitDate";
+            this.DTPVisitDate.Size = new System.Drawing.Size(265, 22);
+            this.DTPVisitDate.TabIndex = 4;
+            // 
+            // NurseComboBox
+            // 
+            this.NurseComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Nurse.FullName", true));
+            this.NurseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.NurseComboBox.FormattingEnabled = true;
+            this.NurseComboBox.Location = new System.Drawing.Point(122, 34);
+            this.NurseComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NurseComboBox.Name = "NurseComboBox";
+            this.NurseComboBox.Size = new System.Drawing.Size(160, 24);
+            this.NurseComboBox.TabIndex = 2;
+            // 
+            // btOK
+            // 
+            this.btOK.Location = new System.Drawing.Point(395, 370);
+            this.btOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(100, 28);
+            this.btOK.TabIndex = 15;
+            this.btOK.Text = "OK";
+            this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.BtOK_Click);
+            // 
+            // btCancel
+            // 
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btCancel.Location = new System.Drawing.Point(503, 370);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(100, 28);
+            this.btCancel.TabIndex = 16;
+            this.btCancel.Text = "Cancel";
+            this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.BtCancel_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 402);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 42);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Tests";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Controls.Add(this.BtClearChanges);
+            this.flowLayoutPanel1.Controls.Add(this.BtSubmitChanges);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(395, 632);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(756, 31);
+            this.flowLayoutPanel1.TabIndex = 32;
+            // 
+            // BtClearChanges
+            // 
+            this.BtClearChanges.Location = new System.Drawing.Point(4, 4);
+            this.BtClearChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtClearChanges.Name = "BtClearChanges";
+            this.BtClearChanges.Size = new System.Drawing.Size(164, 28);
+            this.BtClearChanges.TabIndex = 0;
+            this.BtClearChanges.Text = "Clear Test Changes";
+            this.BtClearChanges.UseVisualStyleBackColor = true;
+            // 
+            // BtSubmitChanges
+            // 
+            this.BtSubmitChanges.Location = new System.Drawing.Point(176, 4);
+            this.BtSubmitChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtSubmitChanges.Name = "BtSubmitChanges";
+            this.BtSubmitChanges.Size = new System.Drawing.Size(184, 28);
+            this.BtSubmitChanges.TabIndex = 1;
+            this.BtSubmitChanges.Text = "Submit Test Changes";
+            this.BtSubmitChanges.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.CBInsertTestCode);
+            this.flowLayoutPanel2.Controls.Add(this.BTInsertTest);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(503, 406);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(451, 34);
+            this.flowLayoutPanel2.TabIndex = 34;
+            // 
+            // CBInsertTestCode
+            // 
+            this.CBInsertTestCode.FormattingEnabled = true;
+            this.CBInsertTestCode.Location = new System.Drawing.Point(4, 4);
+            this.CBInsertTestCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CBInsertTestCode.Name = "CBInsertTestCode";
+            this.CBInsertTestCode.Size = new System.Drawing.Size(160, 24);
+            this.CBInsertTestCode.TabIndex = 33;
+            // 
+            // BTInsertTest
+            // 
+            this.BTInsertTest.Location = new System.Drawing.Point(172, 4);
+            this.BTInsertTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BTInsertTest.Name = "BTInsertTest";
+            this.BTInsertTest.Size = new System.Drawing.Size(100, 28);
+            this.BTInsertTest.TabIndex = 34;
+            this.BTInsertTest.Text = "Insert Test";
+            this.BTInsertTest.UseVisualStyleBackColor = true;
+            this.BTInsertTest.Click += new System.EventHandler(this.BTInsertTest_Click);
+            // 
+            // testTableAdapter
+            // 
+            this.testTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.UpdateOrder = Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // AddEditVisit
             // 
             this.AcceptButton = this.btOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(838, 523);
+            this.ClientSize = new System.Drawing.Size(1119, 667);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AddEditVisit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Visit";
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -714,7 +784,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button BtClearChanges;
         private System.Windows.Forms.Button BtSubmitChanges;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxTestCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn code;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxDatePerformed;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxDateAvailable;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumnAbnormal;
@@ -722,5 +792,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxVisitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTestCodeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.ComboBox CBInsertTestCode;
+        private System.Windows.Forms.Button BTInsertTest;
     }
 }

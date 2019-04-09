@@ -1,4 +1,5 @@
 ﻿using Clinic.Controller;
+using Clinic.DataSets;
 using Clinic.Model;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,7 @@ namespace Clinic.View
                 this.infoTextBox.Text = visit.Info;
             }
             this.FillTestData(visit.VisitId);
+            this.FillInsertTestComboBox();
         }
 
         private void PopulateNurseComboBox()
@@ -219,5 +221,27 @@ namespace Clinic.View
             this.testTableAdapter.Fill(this.cS6232_g3DataSet.test, visitID);
         }
 
+        private void FillInsertTestComboBox()
+        {
+            this.CBInsertTestCode.DisplayMember = "Code";
+            foreach(Test test in this.testController.GetAllTestCodes())
+            {
+                this.CBInsertTestCode.Items.Add(test);
+            }
+        }
+
+        private void BTInsertTest_Click(object sender, EventArgs e)
+        {
+            Test selectedTest = this.CBInsertTestCode.SelectedItem as Test;
+            if (selectedTest != null)
+            {
+                CS6232_g3DataSet.testRow testRow = this.cS6232_g3DataSet.test.NewtestRow();
+                testRow.test_code_id = selectedTest.TestCodeID;
+                testRow.code = selectedTest.Code;
+                testRow.date_performed = DateTime.Now.Date;
+                testRow.visit_id = oldVisit.VisitId;
+                this.cS6232_g3DataSet.test.AddtestRow(testRow);
+            }           
+        }
     }
 }
