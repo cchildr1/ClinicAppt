@@ -243,5 +243,15 @@ namespace Clinic.View
                 this.cS6232_g3DataSet.test.AddtestRow(testRow);
             }           
         }
+
+        private void BtClearChanges_Click(object sender, EventArgs e)
+        {
+            this.cS6232_g3DataSet.RejectChanges();
+        }
+
+        private void BtSubmitChanges_Click(object sender, EventArgs e)
+        {
+            this.cS6232_g3DataSet.AcceptChanges();
+        }
     }
 }
