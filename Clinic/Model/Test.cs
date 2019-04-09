@@ -16,7 +16,6 @@ namespace Clinic.Model
         public string Result { get; set; }
         public int TestCodeID { get; set; }
         public string Code { get; set; }
-        public int TestCodeID { get; set; }
         public string Description { get; set; }
 
     }
