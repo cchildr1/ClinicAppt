@@ -295,6 +295,8 @@ namespace Clinic.DataSets {
             
             private global::System.Data.DataColumn columndescription;
             
+            private global::System.Data.DataColumn columnid;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public testDataTable() {
@@ -394,6 +396,14 @@ namespace Clinic.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +449,8 @@ namespace Clinic.DataSets {
                         abnormal_result,
                         result,
                         code,
-                        description};
+                        description,
+                        null};
                 rowtestRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtestRow);
                 return rowtestRow;
@@ -478,6 +489,7 @@ namespace Clinic.DataSets {
                 this.columnresult = base.Columns["result"];
                 this.columncode = base.Columns["code"];
                 this.columndescription = base.Columns["description"];
+                this.columnid = base.Columns["id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -499,9 +511,13 @@ namespace Clinic.DataSets {
                 base.Columns.Add(this.columncode);
                 this.columndescription = new global::System.Data.DataColumn("description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescription);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnvisit_id,
                                 this.columntest_code_id}, true));
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnid}, false));
                 this.columnvisit_id.AllowDBNull = false;
                 this.columndate_performed.AllowDBNull = false;
                 this.columntest_code_id.AllowDBNull = false;
@@ -510,6 +526,12 @@ namespace Clinic.DataSets {
                 this.columncode.MaxLength = 5;
                 this.columndescription.AllowDBNull = false;
                 this.columndescription.MaxLength = 50;
+                this.columnid.AutoIncrement = true;
+                this.columnid.AutoIncrementSeed = -1;
+                this.columnid.AutoIncrementStep = -1;
+                this.columnid.AllowDBNull = false;
+                this.columnid.ReadOnly = true;
+                this.columnid.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -755,6 +777,17 @@ namespace Clinic.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int id {
+                get {
+                    return ((int)(this[this.tabletest.idColumn]));
+                }
+                set {
+                    this[this.tabletest.idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isdate_availableNull() {
                 return this.IsNull(this.tabletest.date_availableColumn);
             }
@@ -957,6 +990,7 @@ namespace Clinic.DataSets.CS6232_g3DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("result", "result");
             tableMapping.ColumnMappings.Add("code", "code");
             tableMapping.ColumnMappings.Add("description", "description");
+            tableMapping.ColumnMappings.Add("id", "id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -973,10 +1007,10 @@ namespace Clinic.DataSets.CS6232_g3DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        tc.code, t.date_performed, t.date_available, t.abnormal_result, t.result, tc.description, t.visit_id, t.test_code_id
+            this._commandCollection[0].CommandText = @"SELECT        t.id, tc.code, t.date_performed, t.date_available, t.abnormal_result, t.result, tc.description, t.visit_id, t.test_code_id
 FROM            test AS t INNER JOIN
                          test_code AS tc ON t.test_code_id = tc.id
-WHERE t.visit_id = @visitid";
+WHERE        (t.visit_id = @visitid)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@visitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "visit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
