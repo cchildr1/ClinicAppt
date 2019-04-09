@@ -279,6 +279,77 @@ namespace Clinic.DAL
             return nurse;
         }
 
+        /// <summary>
+        /// Updates a nurse object in the database.
+        /// </summary>
+        /// <param name="oldNurse">The old nurse object in the db</param>
+        /// <param name="updatedNurse">The new nurse object in the view</param>
+        /// <returns></returns>
+        public bool UpdateNurse(Nurse updatedNurse, Nurse oldNurse)
+        {
+            string updateStatement = "UPDATE person " +
+                "SET last_name = @new_last_name, " +
+                "first_name = @new_first_name, " +
+                "date_of_birth = @new_date_of_birth, " +
+                "ssn = @new_ssn, " +
+                "gender = @new_gender, " +
+                "street_address = @new_street_address, " +
+                "phone = @new_phone, " +
+                "zipcode = @new_zipcode " +
+                "WHERE id = @id AND " +
+                "last_name = @old_last_name AND " +
+                "first_name = @old_first_name AND " +
+                "date_of_birth = @old_date_of_birth AND " +
+                "ssn = @old_ssn AND " +
+                "gender = @old_gender AND " +
+                "street_address = @old_street_address AND " +
+                "phone = @old_phone AND " +
+                "zipcode = @old_zipcode;";
+            int count = 0;
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@new_last_name", updatedNurse.LastName);
+                        updateCommand.Parameters.AddWithValue("@new_first_name", updatedNurse.FirstName);
+                        updateCommand.Parameters.AddWithValue("@new_date_of_birth", updatedNurse.DateOfBirth);
+                        if (updatedNurse.SocialSecurityNumber == "")
+                            updateCommand.Parameters.AddWithValue("@new_ssn", DBNull.Value);
+                        else
+                            updateCommand.Parameters.AddWithValue("@new_ssn", updatedNurse.SocialSecurityNumber);
+                        updateCommand.Parameters.AddWithValue("@new_gender", updatedNurse.Gender);
+                        updateCommand.Parameters.AddWithValue("@new_street_address", updatedNurse.StreetAddress);
+                        updateCommand.Parameters.AddWithValue("@new_phone", updatedNurse.Phone);
+                        updateCommand.Parameters.AddWithValue("@new_zipcode", updatedNurse.Zipcode);
+
+                        updateCommand.Parameters.AddWithValue("@id", oldNurse.PersonId);
+                        updateCommand.Parameters.AddWithValue("@old_last_name", oldNurse.LastName);
+                        updateCommand.Parameters.AddWithValue("@old_first_name", oldNurse.FirstName);
+                        updateCommand.Parameters.AddWithValue("@old_date_of_birth", oldNurse.DateOfBirth);
+                        if (updatedNurse.SocialSecurityNumber == "")
+                            updateCommand.Parameters.AddWithValue("@old_ssn", DBNull.Value);
+                        else
+                            updateCommand.Parameters.AddWithValue("@old_ssn", oldNurse.SocialSecurityNumber);
+                        updateCommand.Parameters.AddWithValue("@old_gender", oldNurse.Gender);
+                        updateCommand.Parameters.AddWithValue("@old_street_address", oldNurse.StreetAddress);
+                        updateCommand.Parameters.AddWithValue("@old_phone", oldNurse.Phone);
+                        updateCommand.Parameters.AddWithValue("@old_zipcode", oldNurse.Zipcode);
+
+                        count = updateCommand.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return count > 0;
+        }
+
         private static Person PopulatePersonalInformation(Person person)
         {
             string selectStatement = "SELECT * FROM person WHERE id = @personID;";

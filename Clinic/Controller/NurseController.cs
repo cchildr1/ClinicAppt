@@ -79,5 +79,17 @@ namespace Clinic.Controller
         {
             return NurseDAL.GetNurseByID(selectedNurseID);
         }
+
+        ////
+        /// <summary>
+        /// This method updates the editedNurse to the nurse value 
+        /// and insures that the old nurse was not edited by a different user in the interum
+        /// </summary>
+        /// <param name="nurse">new nurse values</param>
+        /// <param name="editedNurse">old nurse value</param>
+        public bool updateNurse(Nurse nurse, Nurse editedNurse)
+        {
+            return this.nurseDAL.UpdateNurse(nurse, editedNurse);
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Clinic.View
         private Nurse editedNurse;
         private string errorMessage = "";
         private bool selected_DOB = false;
+        private bool ssn_numberChanged = false;
         /// <summary>
         /// This is the constuctor it initalizes the AddNurse dialog
         /// </summary>
@@ -43,6 +44,8 @@ namespace Clinic.View
             this.streetAddress_textbox.Text = editedNurse.StreetAddress;
             this.zipcode_textbox.Text = editedNurse.Zipcode;
             this.gender_ComboBox.Text = editedNurse.Gender;
+            this.selected_DOB = true;
+            this.ssn_numberChanged = false;
         }
 
 
@@ -95,6 +98,12 @@ namespace Clinic.View
             this.Reset_ErrorMessage(sender , e);
         }
 
+        private void ssn_valueChanged(object sender, EventArgs e)
+        {
+            this.ssn_numberChanged = true;
+            this.Reset_ErrorMessage(sender, e);
+        }
+
         private bool ErrorCheck()
         {
             bool errors = false;
@@ -120,7 +129,7 @@ namespace Clinic.View
                 this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Red;
             }
 
-            if (!this.IsValidSSN(this.ssn_textbox.Text))
+            if (!this.IsValidSSN(this.ssn_textbox.Text) && this.ssn_numberChanged)
             {
                 errors = true;
             }
@@ -176,7 +185,7 @@ namespace Clinic.View
                 if (Regex.IsMatch(ssn, @"^\d{9}$"))
                 {
                     bool duplicateSSN = this.nurseController.IsSSN_Not_Duplicate(ssn);
-                    if (!duplicateSSN)
+                    if (!duplicateSSN && this.ssn_numberChanged)
                     {
                         this.errorMessage += "Invalid SSN - SSN already present within the database\n";
                         this.SSN_Label.ForeColor = System.Drawing.Color.Red;
@@ -195,32 +204,47 @@ namespace Clinic.View
 
         private void addNurseDialog_Click(object sender, EventArgs e)
         {
-            Nurse addedNurse = new Nurse();
-            if (!this.ErrorCheck())
-            {
-                try
+            ZipcodeController zipcodeController = new ZipcodeController();
+            Nurse nurse = new Nurse();
+                if (!this.ErrorCheck())
                 {
-                    ZipcodeController zipcodeController = new ZipcodeController();
-                    addedNurse.FirstName = this.firstname_textbox.Text;
-                    addedNurse.LastName = this.lastname_textbox.Text;
-                    addedNurse.Phone = this.phoneNumber_textbox.Text;
-                    addedNurse.SocialSecurityNumber = this.ssn_textbox.Text;
-                    addedNurse.Zipcode = this.zipcode_textbox.Text;
-                    addedNurse.State = zipcodeController.GetStateFromZipcode(addedNurse.Zipcode);
-                    addedNurse.City = zipcodeController.GetCityFromZipcode(addedNurse.Zipcode);
-                    addedNurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
-                    addedNurse.Gender = this.gender_ComboBox.Text;
-                    addedNurse.StreetAddress = this.streetAddress_textbox.Text;
-                    this.nurseController.Addnurse(addedNurse);
-
-                    this.DialogResult = DialogResult.Yes;
-                    this.Close();
+                    try
+                    {
+                        nurse.FirstName = this.firstname_textbox.Text;
+                        nurse.LastName = this.lastname_textbox.Text;
+                        nurse.Phone = this.phoneNumber_textbox.Text;
+                        nurse.SocialSecurityNumber = this.ssn_textbox.Text;
+                        nurse.Zipcode = this.zipcode_textbox.Text;
+                        nurse.State = zipcodeController.GetStateFromZipcode(nurse.Zipcode);
+                        nurse.City = zipcodeController.GetCityFromZipcode(nurse.Zipcode);
+                        nurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                        nurse.Gender = this.gender_ComboBox.Text;
+                        nurse.StreetAddress = this.streetAddress_textbox.Text;
+                    if (this.isEditingNurse)
+                    {
+                        if (this.nurseController.updateNurse(nurse, this.editedNurse))
+                        {
+                            MessageBox.Show("Nurse updated.");
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nurse update failed");
+                        }            
+                    }
+                    else
+                    {
+                        this.nurseController.Addnurse(nurse);
+                    }
+                        this.DialogResult = DialogResult.Yes;
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        this.ErrorCheck();
+                    }
                 }
-                catch (Exception)
-                {
-                    this.ErrorCheck();
-                }
-            }
+            
         }
     }
 }

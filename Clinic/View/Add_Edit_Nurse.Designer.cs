@@ -219,7 +219,7 @@
             this.ssn_textbox.Name = "ssn_textbox";
             this.ssn_textbox.Size = new System.Drawing.Size(100, 20);
             this.ssn_textbox.TabIndex = 4;
-            this.ssn_textbox.TextChanged += new System.EventHandler(this.Reset_ErrorMessage);
+            this.ssn_textbox.TextChanged += new System.EventHandler(this.ssn_valueChanged);
             // 
             // lastname_textbox
             // 
