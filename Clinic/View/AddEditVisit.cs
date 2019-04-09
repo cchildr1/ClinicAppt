@@ -251,7 +251,10 @@ namespace Clinic.View
 
         private void BtSubmitChanges_Click(object sender, EventArgs e)
         {
-            this.cS6232_g3DataSet.AcceptChanges();
+            
         }
-    }
+
+        private void 
+
+     }
 }
