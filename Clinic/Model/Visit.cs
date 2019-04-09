@@ -22,6 +22,5 @@ namespace Clinic.Model
         public Appointment Appointment { get; set; }
         public string InitialDiagnosis { get; set; }
         public string FinalDiagnosis { get; set; }
-        public List<Test> Tests { get; set; }
     }
 }
