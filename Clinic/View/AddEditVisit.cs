@@ -16,6 +16,7 @@ namespace Clinic.View
     {
         private NurseController nurseController;
         private VisitController visitController;
+        private TestController testController;
         private Visit oldVisit;
         private bool update;
         private bool valid;
@@ -28,6 +29,7 @@ namespace Clinic.View
         {
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
+            this.testController = new TestController();
             this.update = true;
             InitializeComponent();
             if (visit.VisitId == 0)
@@ -216,5 +218,6 @@ namespace Clinic.View
         {
             this.testTableAdapter.Fill(this.cS6232_g3DataSet.test, visitID);
         }
+
     }
 }
