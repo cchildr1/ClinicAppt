@@ -251,10 +251,55 @@ namespace Clinic.View
 
         private void BtSubmitChanges_Click(object sender, EventArgs e)
         {
-            
+            this.ProcessInsertChanges(this.cS6232_g3DataSet);
+            MessageBox.Show("Tests updated.");
         }
 
-        private void 
-
+        private void ProcessInsertChanges(DataSet data)
+        {
+            DataTable table = data.Tables[0].GetChanges(DataRowState.Added);
+            if (table.Rows != null)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    byte? abnormalResult;
+                    if (row["abnormal_result"].ToString() == "1")
+                    {
+                        abnormalResult = 1;
+                    } else
+                    {
+                        abnormalResult = 0;
+                    }
+                    String datePerformedString;
+                    if (row["date_performed"].ToString() == "")
+                    {
+                        datePerformedString = null;
+                    } else
+                    {
+                        datePerformedString = Convert.ToDateTime(row["date_performed"].ToString()).ToString("yyyy-MM-dd");
+                    }
+                    String dateAvailableString;
+                    if (row["date_available"].ToString() == "")
+                    {
+                        dateAvailableString = null;
+                    } else
+                    {
+                        dateAvailableString = Convert.ToDateTime(row["date_available"].ToString()).ToString("yyyy-MM-dd");
+                    }
+                    try
+                    {
+                        this.testTableAdapter.InsertQuery((int)row["visit_id"],
+                            datePerformedString,
+                            dateAvailableString,
+                            (int)row["test_code_id"],
+                            abnormalResult,
+                            row["result"].ToString());
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Entries not updated.");
+                    }
+                }
+            }
+        }
      }
 }

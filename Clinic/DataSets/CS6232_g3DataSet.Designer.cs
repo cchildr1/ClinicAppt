@@ -447,10 +447,9 @@ namespace Clinic.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public testRow FindByvisit_idtest_code_id(int visit_id, int test_code_id) {
+            public testRow FindByid(int id) {
                 return ((testRow)(this.Rows.Find(new object[] {
-                            visit_id,
-                            test_code_id})));
+                            id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -499,11 +498,8 @@ namespace Clinic.DataSets {
                 base.Columns.Add(this.columncode);
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnvisit_id,
-                                this.columntest_code_id}, true));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
-                                this.columnid}, false));
+                                this.columnid}, true));
                 this.columnvisit_id.AllowDBNull = false;
                 this.columndate_performed.AllowDBNull = false;
                 this.columntest_code_id.AllowDBNull = false;
@@ -979,9 +975,10 @@ namespace Clinic.DataSets.CS6232_g3DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT t.id, tc.code, t.date_performed, t.date_available, t.abnormal_result, t.re" +
-                "sult, t.visit_id, t.test_code_id\r\nFROM     test AS t INNER JOIN\r\n               " +
-                "   test_code AS tc ON t.test_code_id = tc.id\r\nWHERE  (t.visit_id = @visitid)";
+            this._commandCollection[0].CommandText = @"SELECT        t.id, tc.code, t.date_performed, t.date_available, t.abnormal_result, t.result, t.visit_id, t.test_code_id
+FROM            test AS t INNER JOIN
+                         test_code AS tc ON t.test_code_id = tc.id
+WHERE        (t.visit_id = @visitid)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@visitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "visit_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
