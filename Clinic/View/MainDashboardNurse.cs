@@ -9,7 +9,7 @@ namespace Clinic.View
     /// </summary>
     public partial class MainDashboardNurse : Form
     {
-        private bool loggingOut;
+        //private bool loggingOut;
 
         /// <summary>
         /// This is the MainDashboard class it will have secitons for everything the nurses need
@@ -18,7 +18,7 @@ namespace Clinic.View
         {
             InitializeComponent();
             this.SetUpUserControls();
-            this.loggingOut = false;
+            //this.loggingOut = false;
         }
 
         private void SetUpUserControls()
@@ -42,7 +42,7 @@ namespace Clinic.View
 
         private void LogOut_Button_Click(object sender, EventArgs e)
         {
-            this.loggingOut = true;
+            //this.loggingOut = true;
             this.DialogResult = DialogResult.Cancel;
         }
     }
