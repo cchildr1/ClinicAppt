@@ -252,13 +252,39 @@ namespace Clinic.View
         private void BtSubmitChanges_Click(object sender, EventArgs e)
         {
             this.ProcessInsertChanges(this.cS6232_g3DataSet);
+            this.ProcessUpdateChanges(this.cS6232_g3DataSet);
+            this.cS6232_g3DataSet.AcceptChanges();
             MessageBox.Show("Tests updated.");
+        }
+
+        private void ProcessUpdateChanges(DataSet data)
+        {
+            DataTable table = data.Tables[0].GetChanges(DataRowState.Modified);
+            if (table != null)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    try
+                    {
+                        this.testTableAdapter.UpdateQuery((int)row["visit_id"],
+                            this.validateDateString(row["date_performed"].ToString()),
+                            this.validateDateString(row["date_available"].ToString()),
+                            (int)row["test_code_id"],
+                            this.validateAbnormalResult(row["abnormal_result"].ToString()), 
+                            row["result"].ToString(),
+                            (int)row["id"]);
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Entries not updated.");
+                    }
+                }
+            }
         }
 
         private void ProcessInsertChanges(DataSet data)
         {
             DataTable table = data.Tables[0].GetChanges(DataRowState.Added);
-            if (table.Rows != null)
+            if (table != null)
             {
                 foreach (DataRow row in table.Rows)
                 {
