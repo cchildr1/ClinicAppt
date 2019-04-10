@@ -262,37 +262,13 @@ namespace Clinic.View
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    byte? abnormalResult;
-                    if (row["abnormal_result"].ToString() == "1")
-                    {
-                        abnormalResult = 1;
-                    } else
-                    {
-                        abnormalResult = 0;
-                    }
-                    String datePerformedString;
-                    if (row["date_performed"].ToString() == "")
-                    {
-                        datePerformedString = null;
-                    } else
-                    {
-                        datePerformedString = Convert.ToDateTime(row["date_performed"].ToString()).ToString("yyyy-MM-dd");
-                    }
-                    String dateAvailableString;
-                    if (row["date_available"].ToString() == "")
-                    {
-                        dateAvailableString = null;
-                    } else
-                    {
-                        dateAvailableString = Convert.ToDateTime(row["date_available"].ToString()).ToString("yyyy-MM-dd");
-                    }
                     try
                     {
                         this.testTableAdapter.InsertQuery((int)row["visit_id"],
-                            datePerformedString,
-                            dateAvailableString,
+                            this.validateDateString(row["date_performed"].ToString()),
+                            this.validateDateString(row["date_available"].ToString()),
                             (int)row["test_code_id"],
-                            abnormalResult,
+                            this.validateAbnormalResult(row["abnormal_result"].ToString()),
                             row["result"].ToString());
                     } catch (Exception ex)
                     {
@@ -301,5 +277,33 @@ namespace Clinic.View
                 }
             }
         }
-     }
+
+        private byte? validateAbnormalResult(string value)
+        {
+            byte? abnormalResult;
+            if (value == "1")
+            {
+                abnormalResult = 1;
+            }
+            else
+            {
+                abnormalResult = 0;
+            }
+            return abnormalResult;
+        }
+
+        private string validateDateString(String dateString)
+        {
+            String vString;
+            if (dateString == "")
+            {
+                vString = null;
+            }
+            else
+            {
+                vString = Convert.ToDateTime(dateString).ToString("yyyy-MM-dd");
+            }
+            return vString;
+        }
+    }
 }
