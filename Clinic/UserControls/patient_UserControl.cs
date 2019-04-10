@@ -34,7 +34,7 @@ namespace Clinic.UserControls
                 this.patients_datagridview.DataSource = this.patientController.PatientByFirst_Last_DOB(this.firstname_textbox.Text, this.lastname_textbox.Text, selected_DOB.Date);
                 this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
-            else 
+            else
             {
                 this.patients_datagridview.DataSource = this.patientController.PatientByWithoutDOB_Firstname_LastName(this.firstname_textbox.Text, this.lastname_textbox.Text);
                 this.patients_datagridview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -79,6 +79,8 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns[3].Name = "Doctor";
             this.patients_datagridview.Columns[4].Name = "Patient";
             this.patients_datagridview.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.editSelectedPatient_Button.Visible = true;
+            this.AddAppointment_BTN.Visible = true;
             
         }
 
@@ -88,7 +90,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.RowCount = 0;
             List<Appointment> appointments = new List<Appointment>();
             appointments = this.appointmentController.GetAppointmentsByPatientID(patientID);
-            this.editSelectedPatient_Button.Visible = true;
+           
             if (appointments.Count > 0)
             {
                 Appointment appointment = new Appointment();
@@ -105,7 +107,7 @@ namespace Clinic.UserControls
                         };
                     this.patients_datagridview.Rows.Add(rowAdded);
                 }
-                this.searchPatients_LBL.Text = "Appointment's for " + appointment.Patient.FirstName + " " + appointment.Patient.LastName;
+                this.searchPatients_LBL.Text = "Appointment(s) for " + appointment.Patient.FirstName + " " + appointment.Patient.LastName;
             }
            
         }
@@ -116,6 +118,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.ColumnCount = 0;
             this.dataGridView_Is_Patient = true;
             this.editSelectedPatient_Button.Visible = false;
+            this.AddAppointment_BTN.Visible = false;
             this.selectedPatientID = -1;
             this.searchPatients_LBL.Text = "Search Patients";
         }
@@ -159,6 +162,17 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns["FullName"].Visible = false;
             this.patients_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.patients_datagridview.Columns["State"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+
+        private void AddAppointment_BTN_Click(object sender, EventArgs e)
+        {
+            AddAppointment addAppointment = new AddAppointment();
+            addAppointment.SetPatientToAcceptedPatient(this.patientController.GetPatientByID(this.selectedPatientID));
+            DialogResult result = addAppointment.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+               this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
+            }
         }
     }
 }

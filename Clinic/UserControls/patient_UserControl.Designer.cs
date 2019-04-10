@@ -34,7 +34,6 @@
             this.addPatient_button = new System.Windows.Forms.Button();
             this.editSelectedPatient_Button = new System.Windows.Forms.Button();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
-            this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.doubleClickInstructions_LBL = new System.Windows.Forms.Label();
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.lastname_LBL = new System.Windows.Forms.Label();
@@ -46,9 +45,11 @@
             this.resetDateOfBirth = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.DateOfBirth_datetimePicker = new System.Windows.Forms.DateTimePicker();
+            this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.AddAppointment_BTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.patients_datagridview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ResetDataGridView_button
@@ -65,7 +66,7 @@
             // 
             this.getAllPatients.Location = new System.Drawing.Point(252, 374);
             this.getAllPatients.Name = "getAllPatients";
-            this.getAllPatients.Size = new System.Drawing.Size(91, 23);
+            this.getAllPatients.Size = new System.Drawing.Size(94, 23);
             this.getAllPatients.TabIndex = 1;
             this.getAllPatients.Text = "Get All Patients";
             this.getAllPatients.UseVisualStyleBackColor = true;
@@ -107,10 +108,6 @@
             this.patients_datagridview.Size = new System.Drawing.Size(844, 306);
             this.patients_datagridview.TabIndex = 3;
             this.patients_datagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patients_datagridview_CellContentClick);
-            // 
-            // appointmentBindingSource
-            // 
-            this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
             // 
             // doubleClickInstructions_LBL
             // 
@@ -204,7 +201,6 @@
             this.tableLayoutPanel2.Controls.Add(this.ResetDataGridView_button, 4, 3);
             this.tableLayoutPanel2.Controls.Add(this.resetDateOfBirth, 4, 1);
             this.tableLayoutPanel2.Controls.Add(this.editSelectedPatient_Button, 2, 3);
-            this.tableLayoutPanel2.Controls.Add(this.getAllPatients, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.patients_datagridview, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.addPatient_button, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.DateOfBirth_datetimePicker, 3, 0);
@@ -216,6 +212,8 @@
             this.tableLayoutPanel2.Controls.Add(this.firstname_textbox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.searchPatients_LBL, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateOfBirth_LBL, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.AddAppointment_BTN, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.getAllPatients, 1, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -236,6 +234,22 @@
             this.DateOfBirth_datetimePicker.Name = "DateOfBirth_datetimePicker";
             this.DateOfBirth_datetimePicker.Size = new System.Drawing.Size(153, 20);
             this.DateOfBirth_datetimePicker.TabIndex = 6;
+            this.DateOfBirth_datetimePicker.ValueChanged += new System.EventHandler(this.DateOfBirth_datetimePicker_ValueChanged);
+            // 
+            // appointmentBindingSource
+            // 
+            this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
+            // 
+            // AddAppointment_BTN
+            // 
+            this.AddAppointment_BTN.Location = new System.Drawing.Point(452, 374);
+            this.AddAppointment_BTN.Name = "AddAppointment_BTN";
+            this.AddAppointment_BTN.Size = new System.Drawing.Size(107, 23);
+            this.AddAppointment_BTN.TabIndex = 9;
+            this.AddAppointment_BTN.Text = "Add Appointment";
+            this.AddAppointment_BTN.UseVisualStyleBackColor = true;
+            this.AddAppointment_BTN.Visible = false;
+            this.AddAppointment_BTN.Click += new System.EventHandler(this.AddAppointment_BTN_Click);
             // 
             // patient_UserControl
             // 
@@ -245,9 +259,9 @@
             this.Name = "patient_UserControl";
             this.Size = new System.Drawing.Size(850, 400);
             ((System.ComponentModel.ISupportInitialize)(this.patients_datagridview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -271,5 +285,6 @@
         private System.Windows.Forms.TextBox firstname_textbox;
         private System.Windows.Forms.Label searchPatients_LBL;
         private System.Windows.Forms.Label dateOfBirth_LBL;
+        private System.Windows.Forms.Button AddAppointment_BTN;
     }
 }
