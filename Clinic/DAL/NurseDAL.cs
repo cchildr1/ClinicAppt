@@ -251,7 +251,7 @@ namespace Clinic.DAL
         /// <summary>
         /// Gets a specific nurse by their id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">is the id used to select the nurse</param>
         /// <returns>Nurse object</returns>
         public static Nurse GetNurseByID(int id)
         {
