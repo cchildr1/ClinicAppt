@@ -21,6 +21,7 @@ namespace Clinic.View
         private Visit oldVisit;
         private bool update;
         private bool valid;
+        private List<int> rowsToDelete;
 
         /// <summary>
         /// Constructor for existing visit, populates form with pre-existing visit information
@@ -31,7 +32,7 @@ namespace Clinic.View
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
             this.testController = new TestController();
-            this.update = true;
+            this.rowsToDelete = new List<int>();
             InitializeComponent();
             if (visit.VisitId == 0)
             {
@@ -63,6 +64,7 @@ namespace Clinic.View
             }
             this.FillTestData(visit.VisitId);
             this.FillInsertTestComboBox();
+            this.DeleteRowButton.Text = "Delete";
         }
 
         private void PopulateNurseComboBox()
@@ -253,6 +255,7 @@ namespace Clinic.View
         {
             this.ProcessInsertChanges(this.cS6232_g3DataSet);
             this.ProcessUpdateChanges(this.cS6232_g3DataSet);
+            this.ProcessDeleteChanges(this.cS6232_g3DataSet);
             this.cS6232_g3DataSet.AcceptChanges();
             MessageBox.Show("Tests updated.");
         }
@@ -303,6 +306,26 @@ namespace Clinic.View
                 }
             }
         }
+        
+        private void ProcessDeleteChanges(DataSet data)
+        {
+            DataTable table = data.Tables[0].GetChanges(DataRowState.Deleted);
+            if (table != null)
+            {
+                
+                foreach (int id in this.rowsToDelete)
+                {
+                    try
+                    {
+                        this.testTableAdapter.DeleteQuery(id);
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Entries not updated.");
+                    }
+                }
+                this.rowsToDelete.Clear();
+            }
+        }
 
         private byte? validateAbnormalResult(string value)
         {
@@ -330,6 +353,19 @@ namespace Clinic.View
                 vString = Convert.ToDateTime(dateString).ToString("yyyy-MM-dd");
             }
             return vString;
+        }
+
+        private void testDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            
+            if (senderGrid.Columns[e.ColumnIndex].ToString() == senderGrid.Columns["DeleteRowButton"].ToString() &&
+                e.RowIndex >= 0)
+            {
+                DataRow row = this.cS6232_g3DataSet.Tables[0].Rows[e.RowIndex];
+                this.rowsToDelete.Add((int)row["id"]);
+                row.Delete();
+            }
         }
     }
 }
