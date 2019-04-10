@@ -24,6 +24,17 @@ namespace Clinic.View
             this.SetUp_DateTimePicker();
         }
 
+        /// <summary>
+        /// This method will set the PatientCombo box value to the accepted patient. It will not allow a change to another patient
+        /// </summary>
+        /// <param name="patient"></param>
+        public void SetPatientToAcceptedPatient(Patient patient)
+        {
+            this.Patient_ComboBox.Text = patient.FullName;
+            this.Patient_ComboBox.ValueMember = "PatientID";
+            this.Patient_ComboBox.Enabled = false;
+        }
+
         private void SetUpDoctor_ComboBox()
         {
             this.Doctor_ComboBox.DataSource = this.doctorController.GetAllDoctors();
