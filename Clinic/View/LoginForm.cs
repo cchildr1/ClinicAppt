@@ -38,9 +38,9 @@ namespace Clinic
                 if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                 {
                     this.Hide();
-
-                    MainDashboardNurse mainDashboardNurse = new MainDashboardNurse();
-                    mainDashboardNurse.setLoggedInName(employee.FirstName + " " + employee.LastName);
+                    Nurse loggedInNurse = (Nurse)employee;
+                    MainDashboardNurse mainDashboardNurse = new MainDashboardNurse(loggedInNurse);
+                    
                     DialogResult result = mainDashboardNurse.ShowDialog();
 
                     if (result == DialogResult.Cancel)

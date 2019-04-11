@@ -38,16 +38,7 @@ namespace Clinic.DAL
                         {
                             if (reader["nurse_id"] != DBNull.Value && reader["admin_id"] == DBNull.Value)
                             {
-                                employee = new Nurse
-                                {
-                                    EmployeeID = (int)reader["employee_id"],
-                                    UserName = reader["username"].ToString(),
-                                    Password = reader["password"].ToString(),
-                                    FirstName = reader["first_name"].ToString(),
-                                    LastName = reader["last_name"].ToString(),
-                                    NurseID = (int)reader["nurse_id"]
-                                    
-                                };
+                                employee = NurseDAL.GetNurseByID((int)reader["nurse_id"]);
                                 return employee;
                             }
                             else if (reader["admin_id"] != DBNull.Value && reader["nurse_id"] == DBNull.Value)

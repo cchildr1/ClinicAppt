@@ -1,4 +1,5 @@
 ﻿using Clinic.Controller;
+using Clinic.DataSets;
 using Clinic.Model;
 using System;
 using System.Collections.Generic;
@@ -16,20 +17,23 @@ namespace Clinic.View
     {
         private NurseController nurseController;
         private VisitController visitController;
+        private TestController testController;
         private Visit oldVisit;
         private bool update;
         private bool valid;
+        private List<int> rowsToDelete;
 
         /// <summary>
         /// Constructor for existing visit, populates form with pre-existing visit information
         /// </summary>
         /// <param name="visit">visit to add to form</param>
-        public AddEditVisit(Visit visit)
+        public AddEditVisit(Visit visit, Nurse loggedInNurse)
         {
-            InitializeComponent();
             this.nurseController = new NurseController();
             this.visitController = new VisitController();
-            this.update = true;
+            this.testController = new TestController();
+            this.rowsToDelete = new List<int>();
+            InitializeComponent();
             if (visit.VisitId == 0)
             {
                 this.update = false;
@@ -37,6 +41,7 @@ namespace Clinic.View
                 this.patientTextBox.Text = visit.Appointment.Patient.FullName;
                 this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
                 this.PopulateNurseComboBox();
+                this.NurseComboBox.SelectedValue = loggedInNurse.NurseID;
             }
             else
             {
@@ -57,6 +62,9 @@ namespace Clinic.View
                 this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
                 this.infoTextBox.Text = visit.Info;
             }
+            this.FillTestData(visit.VisitId);
+            this.FillInsertTestComboBox();
+            this.DeleteRowButton.Text = "Delete";
         }
 
         private void PopulateNurseComboBox()
@@ -208,6 +216,156 @@ namespace Clinic.View
             bodyTemperatureTextBox.BackColor = SystemColors.Window;
             pulseTextBox.BackColor = SystemColors.Window;
             NurseComboBox.BackColor = SystemColors.Window;
+        }
+
+        private void FillTestData(int visitID)
+        {
+            this.testTableAdapter.Fill(this.cS6232_g3DataSet.test, visitID);
+        }
+
+        private void FillInsertTestComboBox()
+        {
+            this.CBInsertTestCode.DisplayMember = "Code";
+            foreach(Test test in this.testController.GetAllTestCodes())
+            {
+                this.CBInsertTestCode.Items.Add(test);
+            }
+        }
+
+        private void BTInsertTest_Click(object sender, EventArgs e)
+        {
+            Test selectedTest = this.CBInsertTestCode.SelectedItem as Test;
+            if (selectedTest != null)
+            {
+                CS6232_g3DataSet.testRow testRow = this.cS6232_g3DataSet.test.NewtestRow();
+                testRow.test_code_id = selectedTest.TestCodeID;
+                testRow.code = selectedTest.Code;
+                testRow.date_performed = DateTime.Now.Date;
+                testRow.visit_id = oldVisit.VisitId;
+                this.cS6232_g3DataSet.test.AddtestRow(testRow);
+            }           
+        }
+
+        private void BtClearChanges_Click(object sender, EventArgs e)
+        {
+            this.cS6232_g3DataSet.RejectChanges();
+        }
+
+        private void BtSubmitChanges_Click(object sender, EventArgs e)
+        {
+            this.ProcessInsertChanges(this.cS6232_g3DataSet);
+            this.ProcessUpdateChanges(this.cS6232_g3DataSet);
+            this.ProcessDeleteChanges(this.cS6232_g3DataSet);
+            this.cS6232_g3DataSet.AcceptChanges();
+            MessageBox.Show("Tests updated.");
+        }
+
+        private void ProcessUpdateChanges(DataSet data)
+        {
+            DataTable table = data.Tables[0].GetChanges(DataRowState.Modified);
+            if (table != null)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    try
+                    {
+                        this.testTableAdapter.UpdateQuery((int)row["visit_id"],
+                            this.validateDateString(row["date_performed"].ToString()),
+                            this.validateDateString(row["date_available"].ToString()),
+                            (int)row["test_code_id"],
+                            this.validateAbnormalResult(row["abnormal_result"].ToString()), 
+                            row["result"].ToString(),
+                            (int)row["id"]);
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Entries not updated.");
+                    }
+                }
+            }
+        }
+
+        private void ProcessInsertChanges(DataSet data)
+        {
+            DataTable table = data.Tables[0].GetChanges(DataRowState.Added);
+            if (table != null)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    try
+                    {
+                        this.testTableAdapter.InsertQuery((int)row["visit_id"],
+                            this.validateDateString(row["date_performed"].ToString()),
+                            this.validateDateString(row["date_available"].ToString()),
+                            (int)row["test_code_id"],
+                            this.validateAbnormalResult(row["abnormal_result"].ToString()),
+                            row["result"].ToString());
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Entries not updated.");
+                    }
+                }
+            }
+        }
+        
+        private void ProcessDeleteChanges(DataSet data)
+        {
+            DataTable table = data.Tables[0].GetChanges(DataRowState.Deleted);
+            if (table != null)
+            {
+                
+                foreach (int id in this.rowsToDelete)
+                {
+                    try
+                    {
+                        this.testTableAdapter.DeleteQuery(id);
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Entries not updated.");
+                    }
+                }
+                this.rowsToDelete.Clear();
+            }
+        }
+
+        private byte? validateAbnormalResult(string value)
+        {
+            byte? abnormalResult;
+            if (value == "1")
+            {
+                abnormalResult = 1;
+            }
+            else
+            {
+                abnormalResult = 0;
+            }
+            return abnormalResult;
+        }
+
+        private string validateDateString(String dateString)
+        {
+            String vString;
+            if (dateString == "")
+            {
+                vString = null;
+            }
+            else
+            {
+                vString = Convert.ToDateTime(dateString).ToString("yyyy-MM-dd");
+            }
+            return vString;
+        }
+
+        private void testDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            
+            if (senderGrid.Columns[e.ColumnIndex].ToString() == senderGrid.Columns["DeleteRowButton"].ToString() &&
+                e.RowIndex >= 0)
+            {
+                DataRow row = this.cS6232_g3DataSet.Tables[0].Rows[e.RowIndex];
+                this.rowsToDelete.Add((int)row["id"]);
+                row.Delete();
+            }
         }
     }
 }

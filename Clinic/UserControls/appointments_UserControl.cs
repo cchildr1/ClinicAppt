@@ -65,8 +65,10 @@ namespace Clinic.UserControls
                 {
                     int id = int.Parse(this.appointments_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
                     Visit visit = this.VisitController.GetVisitByAppointmentID(id);
+
                     this.ParentForm.Enabled = false;
-                    AddEditVisit addEditVisit = new AddEditVisit(visit);
+                    MainDashboardNurse parent = (MainDashboardNurse)this.ParentForm;
+                    AddEditVisit addEditVisit = new AddEditVisit(visit, parent.loggedInNurse);
                     DialogResult result = addEditVisit.ShowDialog();
                     this.ParentForm.Enabled = true;
 
