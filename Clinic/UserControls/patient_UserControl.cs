@@ -93,7 +93,7 @@ namespace Clinic.UserControls
 
         private void SetUpDataGridView_ForSelectedPatientAppointment()
         {
-            this.patients_datagridview.ColumnCount = 6;
+            this.patients_datagridview.ColumnCount = 5;
             this.patients_datagridview.ColumnHeadersVisible = true;
             this.patients_datagridview.Columns[0].Name = "AppointmentID";
             this.patients_datagridview.Columns[0].Visible = false;
