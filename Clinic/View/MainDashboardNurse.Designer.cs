@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.mainDashBoardNurse_TabControl = new System.Windows.Forms.TabControl();
+            this.patients_tabpage = new System.Windows.Forms.TabPage();
+            this.patient_UserControl1 = new Clinic.UserControls.patient_UserControl();
+            this.appointments_tabPage = new System.Windows.Forms.TabPage();
+            this.appointments_UserControl1 = new Clinic.UserControls.appointments_UserControl();
+            this.visitTab = new System.Windows.Forms.TabPage();
+            this.visits_UserControl1 = new Clinic.UserControls.visits_UserControl();
             this.WelcomeLBL = new System.Windows.Forms.Label();
             this.LogOut_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.visits_UserControl1 = new Clinic.UserControls.visits_UserControl();
-            this.visitTab = new System.Windows.Forms.TabPage();
-            this.appointments_UserControl1 = new Clinic.UserControls.appointments_UserControl();
-            this.appointments_tabPage = new System.Windows.Forms.TabPage();
-            this.patient_UserControl1 = new Clinic.UserControls.patient_UserControl();
-            this.patients_tabpage = new System.Windows.Forms.TabPage();
             this.mainDashBoardNurse_TabControl.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.visitTab.SuspendLayout();
-            this.appointments_tabPage.SuspendLayout();
             this.patients_tabpage.SuspendLayout();
+            this.appointments_tabPage.SuspendLayout();
+            this.visitTab.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainDashBoardNurse_TabControl
@@ -58,6 +58,69 @@
             this.mainDashBoardNurse_TabControl.SelectedIndex = 0;
             this.mainDashBoardNurse_TabControl.Size = new System.Drawing.Size(1132, 543);
             this.mainDashBoardNurse_TabControl.TabIndex = 3;
+            // 
+            // patients_tabpage
+            // 
+            this.patients_tabpage.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.patients_tabpage.Controls.Add(this.patient_UserControl1);
+            this.patients_tabpage.Location = new System.Drawing.Point(4, 22);
+            this.patients_tabpage.Name = "patients_tabpage";
+            this.patients_tabpage.Padding = new System.Windows.Forms.Padding(3);
+            this.patients_tabpage.Size = new System.Drawing.Size(1124, 517);
+            this.patients_tabpage.TabIndex = 1;
+            this.patients_tabpage.Text = "Patients";
+            this.patients_tabpage.UseVisualStyleBackColor = true;
+            // 
+            // patient_UserControl1
+            // 
+            this.patient_UserControl1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.patient_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.patient_UserControl1.Location = new System.Drawing.Point(3, 3);
+            this.patient_UserControl1.Name = "patient_UserControl1";
+            this.patient_UserControl1.Size = new System.Drawing.Size(1118, 511);
+            this.patient_UserControl1.TabIndex = 0;
+            // 
+            // appointments_tabPage
+            // 
+            this.appointments_tabPage.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.appointments_tabPage.Controls.Add(this.appointments_UserControl1);
+            this.appointments_tabPage.Location = new System.Drawing.Point(4, 22);
+            this.appointments_tabPage.Name = "appointments_tabPage";
+            this.appointments_tabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.appointments_tabPage.Size = new System.Drawing.Size(1124, 517);
+            this.appointments_tabPage.TabIndex = 0;
+            this.appointments_tabPage.Text = "Appointments";
+            this.appointments_tabPage.UseVisualStyleBackColor = true;
+            // 
+            // appointments_UserControl1
+            // 
+            this.appointments_UserControl1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.appointments_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.appointments_UserControl1.Location = new System.Drawing.Point(3, 3);
+            this.appointments_UserControl1.Name = "appointments_UserControl1";
+            this.appointments_UserControl1.Size = new System.Drawing.Size(1118, 511);
+            this.appointments_UserControl1.TabIndex = 0;
+            // 
+            // visitTab
+            // 
+            this.visitTab.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.visitTab.Controls.Add(this.visits_UserControl1);
+            this.visitTab.Location = new System.Drawing.Point(4, 22);
+            this.visitTab.Name = "visitTab";
+            this.visitTab.Padding = new System.Windows.Forms.Padding(3);
+            this.visitTab.Size = new System.Drawing.Size(1124, 517);
+            this.visitTab.TabIndex = 2;
+            this.visitTab.Text = "Search Visits";
+            this.visitTab.UseVisualStyleBackColor = true;
+            // 
+            // visits_UserControl1
+            // 
+            this.visits_UserControl1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
+            this.visits_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.visits_UserControl1.Location = new System.Drawing.Point(3, 3);
+            this.visits_UserControl1.Name = "visits_UserControl1";
+            this.visits_UserControl1.Size = new System.Drawing.Size(1118, 511);
+            this.visits_UserControl1.TabIndex = 0;
             // 
             // WelcomeLBL
             // 
@@ -104,69 +167,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1138, 578);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // visits_UserControl1
-            // 
-            this.visits_UserControl1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.visits_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.visits_UserControl1.Location = new System.Drawing.Point(3, 3);
-            this.visits_UserControl1.Name = "visits_UserControl1";
-            this.visits_UserControl1.Size = new System.Drawing.Size(1118, 511);
-            this.visits_UserControl1.TabIndex = 0;
-            // 
-            // visitTab
-            // 
-            this.visitTab.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.visitTab.Controls.Add(this.visits_UserControl1);
-            this.visitTab.Location = new System.Drawing.Point(4, 22);
-            this.visitTab.Name = "visitTab";
-            this.visitTab.Padding = new System.Windows.Forms.Padding(3);
-            this.visitTab.Size = new System.Drawing.Size(1124, 517);
-            this.visitTab.TabIndex = 2;
-            this.visitTab.Text = "Visits";
-            this.visitTab.UseVisualStyleBackColor = true;
-            // 
-            // appointments_UserControl1
-            // 
-            this.appointments_UserControl1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.appointments_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.appointments_UserControl1.Location = new System.Drawing.Point(3, 3);
-            this.appointments_UserControl1.Name = "appointments_UserControl1";
-            this.appointments_UserControl1.Size = new System.Drawing.Size(1118, 511);
-            this.appointments_UserControl1.TabIndex = 0;
-            // 
-            // appointments_tabPage
-            // 
-            this.appointments_tabPage.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.appointments_tabPage.Controls.Add(this.appointments_UserControl1);
-            this.appointments_tabPage.Location = new System.Drawing.Point(4, 22);
-            this.appointments_tabPage.Name = "appointments_tabPage";
-            this.appointments_tabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.appointments_tabPage.Size = new System.Drawing.Size(1124, 517);
-            this.appointments_tabPage.TabIndex = 0;
-            this.appointments_tabPage.Text = "Appointments";
-            this.appointments_tabPage.UseVisualStyleBackColor = true;
-            // 
-            // patient_UserControl1
-            // 
-            this.patient_UserControl1.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.patient_UserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patient_UserControl1.Location = new System.Drawing.Point(3, 3);
-            this.patient_UserControl1.Name = "patient_UserControl1";
-            this.patient_UserControl1.Size = new System.Drawing.Size(1118, 511);
-            this.patient_UserControl1.TabIndex = 0;
-            // 
-            // patients_tabpage
-            // 
-            this.patients_tabpage.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
-            this.patients_tabpage.Controls.Add(this.patient_UserControl1);
-            this.patients_tabpage.Location = new System.Drawing.Point(4, 22);
-            this.patients_tabpage.Name = "patients_tabpage";
-            this.patients_tabpage.Padding = new System.Windows.Forms.Padding(3);
-            this.patients_tabpage.Size = new System.Drawing.Size(1124, 517);
-            this.patients_tabpage.TabIndex = 1;
-            this.patients_tabpage.Text = "Patients";
-            this.patients_tabpage.UseVisualStyleBackColor = true;
-            // 
             // MainDashboardNurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,11 +177,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clinic";
             this.mainDashBoardNurse_TabControl.ResumeLayout(false);
+            this.patients_tabpage.ResumeLayout(false);
+            this.appointments_tabPage.ResumeLayout(false);
+            this.visitTab.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.visitTab.ResumeLayout(false);
-            this.appointments_tabPage.ResumeLayout(false);
-            this.patients_tabpage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

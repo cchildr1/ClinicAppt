@@ -20,6 +20,7 @@ namespace Clinic.UserControls
         private int selectedPatientID = -1;
         private PatientController patientController = new PatientController();
         private AppointmentController appointmentController = new AppointmentController();
+        private VisitController visitController = new VisitController();
         public patient_UserControl()
         {
             InitializeComponent();
@@ -56,7 +57,29 @@ namespace Clinic.UserControls
 
         private void patients_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dataGridView_Is_Patient)
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0 && senderGrid.Columns[e.ColumnIndex].ToString() == this.patients_datagridview.Columns["AddEditVisit"].ToString())
+            {
+                try
+                {
+                    int id = int.Parse(this.patients_datagridview.Rows[e.RowIndex].Cells["AppointmentID"].Value.ToString());
+                    Visit visit = this.visitController.GetVisitByAppointmentID(id);
+
+                    this.ParentForm.Enabled = false;
+                    MainDashboardNurse parent = (MainDashboardNurse)this.ParentForm;
+                    AddEditVisit addEditVisit = new AddEditVisit(visit, parent.loggedInNurse);
+                    DialogResult result = addEditVisit.ShowDialog();
+                    this.ParentForm.Enabled = true;
+
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(), ex.GetType().ToString());
+                }
+            }
+                if (this.dataGridView_Is_Patient)
             {   
                 DataGridViewRow selectedRow = this.patients_datagridview.CurrentRow;
                 this.selectedPatientID = (int)selectedRow.Cells["PatientID"].Value;
@@ -78,6 +101,12 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns[2].Name = "Reason For Visit";
             this.patients_datagridview.Columns[3].Name = "Doctor";
             this.patients_datagridview.Columns[4].Name = "Patient";
+            DataGridViewButtonColumn addEditColumn = new DataGridViewButtonColumn();
+            addEditColumn.Name = "AddEditVisit";
+            addEditColumn.Text = "Add/Edit Visit";
+            addEditColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            addEditColumn.UseColumnTextForButtonValue = true;
+            this.patients_datagridview.Columns.Add(addEditColumn);
             this.patients_datagridview.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             this.editSelectedPatient_Button.Visible = true;
             this.AddAppointment_BTN.Visible = true;
