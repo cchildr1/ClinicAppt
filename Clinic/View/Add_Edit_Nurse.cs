@@ -8,7 +8,7 @@ using Clinic.Model;
 namespace Clinic.View
 {
     /// <summary>
-    /// This class allows administrators to add nurses to the database
+    /// This class allows administrators to add nurses to the database.
     /// </summary>
     public partial class Add_Edit_Nurse : Form
     {
