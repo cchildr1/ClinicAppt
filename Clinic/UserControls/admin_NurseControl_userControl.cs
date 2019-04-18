@@ -27,21 +27,15 @@ namespace Clinic.UserControls
         {
             if (this.firstName_textbox.Text != "" && this.lastName_textbox.Text != "")
             {
-                this.nurse_DataGridView.DataSource = null;
-                this.nurse_DataGridView.DataSource = this.nurseController.GetNurseByFullName(this.firstName_textbox.Text, this.lastName_textbox.Text);
-                this.PopulateNurseDataGridView_Helper();
+                this.PopulateNurse_FullName_dataGridView(this.firstName_textbox.Text, this.lastName_textbox.Text);
             }
             else if (this.firstName_textbox.Text != "")
             {
-                this.nurse_DataGridView.DataSource = null;
-                this.nurse_DataGridView.DataSource = this.nurseController.GetNurseByFirstName(this.firstName_textbox.Text);
-                this.PopulateNurseDataGridView_Helper();
+                this.PopulateNurse_FirstName_dataGridView(this.firstName_textbox.Text); 
             }
             else if (this.lastName_textbox.Text != "")
             {
-                this.nurse_DataGridView.DataSource = null;
-                this.nurse_DataGridView.DataSource = this.nurseController.GetNurseByLastName(this.lastName_textbox.Text);
-                this.PopulateNurseDataGridView_Helper();
+                this.PopulateNurse_LastName_dataGridView(this.lastName_textbox.Text);
             }
             else
             {
@@ -52,27 +46,109 @@ namespace Clinic.UserControls
 
    
 
-        private void PopulateNurseDataGridView()
+        private void PopulateNurseDataGridView_Helper()
         {
-            this.nurse_DataGridView.DataSource = nurseController.GetAllNurses();
-            this.PopulateNurseDataGridView_Helper();
-        }
-     private void PopulateNurseDataGridView_Helper()
-        {
-            int length = this.nurse_DataGridView.RowCount;
-            this.nurse_DataGridView.Columns["NurseID"].Visible = false;
-            this.nurse_DataGridView.Columns["EmployeeID"].Visible = false;
-            this.nurse_DataGridView.Columns["Username"].Visible = false;
-            this.nurse_DataGridView.Columns["Password"].Visible = false;
-            this.nurse_DataGridView.Columns["PersonID"].Visible = false;
-            this.nurse_DataGridView.Columns["State"].Visible = false;
-            this.nurse_DataGridView.Columns["City"].Visible = false;
-            this.SetNurseActiveValuesToReadable(length);
+            this.nurse_DataGridView.DataSource = null;
+            this.nurse_DataGridView.ColumnCount = 0;
+            this.nurse_DataGridView.ColumnCount = 9;
+            this.nurse_DataGridView.ColumnHeadersVisible = true;
+            this.nurse_DataGridView.Columns[0].Name = "First name";
+            this.nurse_DataGridView.Columns[1].Name = "Last name";
+            this.nurse_DataGridView.Columns[2].Name = "Date of birth";
+            this.nurse_DataGridView.Columns[3].Name = "Social Securty";
+            this.nurse_DataGridView.Columns[4].Name = "Gender";
+            this.nurse_DataGridView.Columns[5].Name = "Address";
+            this.nurse_DataGridView.Columns[6].Name = "Phone";
+            this.nurse_DataGridView.Columns[7].Name = "Zipcode";
+            this.nurse_DataGridView.Columns[8].Name = "Active";
             this.nurse_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void SetNurseActiveValuesToReadable(int length)
-        {   
+         private void PopulateNurseDataGridView()
+         {
+            this.PopulateNurseDataGridView_Helper();
+            List<Nurse> nurses = new List<Nurse>();
+            nurses = nurseController.GetAllNurses();
+
+            if (nurses.Count > 0) {
+                Nurse nurse = new Nurse();
+                for (int count = 0; count < nurses.Count; count++) {
+                    nurse = nurses[count];
+                    string[] rowAdded = this.AddRowHelper(nurse);
+                    this.nurse_DataGridView.Rows.Add(rowAdded);
+                }
+            }
+        }
+
+        private void PopulateNurse_LastName_dataGridView(string lastName)
+        {
+            this.PopulateNurseDataGridView_Helper();
+            List<Nurse> nurses = new List<Nurse>();
+            nurses = nurseController.GetNurseByLastName(lastName);
+
+            if (nurses.Count > 0)
+            {
+                Nurse nurse = new Nurse();
+                for (int count = 0; count < nurses.Count; count++)
+                {
+                    nurse = nurses[count];
+                    string[] rowAdded = this.AddRowHelper(nurse);
+                    this.nurse_DataGridView.Rows.Add(rowAdded);
+                }
+            }
+        }
+
+        private void PopulateNurse_FirstName_dataGridView(string firstName)
+        {
+            this.PopulateNurseDataGridView_Helper();
+            List<Nurse> nurses = new List<Nurse>();
+            nurses = nurseController.GetNurseByFirstName(firstName);
+
+            if (nurses.Count > 0)
+            {
+                Nurse nurse = new Nurse();
+                for (int count = 0; count < nurses.Count; count++)
+                {
+                    nurse = nurses[count];
+                    string[] rowAdded = this.AddRowHelper(nurse);
+                    this.nurse_DataGridView.Rows.Add(rowAdded);
+                }
+            }
+        }
+
+        private void PopulateNurse_FullName_dataGridView(string firstname, string lastname)
+        {
+            this.PopulateNurseDataGridView_Helper();
+            List<Nurse> nurses = new List<Nurse>();
+            nurses = nurseController.GetNurseByFullName(firstname, lastname);
+
+            if (nurses.Count > 0)
+            {
+                Nurse nurse = new Nurse();
+                for (int count = 0; count < nurses.Count; count++)
+                {
+                    nurse = nurses[count];
+                    string[] rowAdded = this.AddRowHelper(nurse);
+                    this.nurse_DataGridView.Rows.Add(rowAdded);
+                }
+            }
+        }
+
+
+        private string[] AddRowHelper(Nurse nurse)
+        {
+            string[] rowAdded = new string[] {
+                        nurse.FirstName,
+                        nurse.LastName,
+                        nurse.DateOfBirth.ToShortDateString(),
+                        nurse.SocialSecurityNumber.ToString(),
+                        nurse.Gender,
+                        nurse.StreetAddress,
+                        nurse.Phone,
+                        nurse.Zipcode,
+                        nurse.Active.ToString()
+                    };
+            return rowAdded;
         }
 
         private void ResetNurseLabels_toDefault(object sender, EventArgs e)
