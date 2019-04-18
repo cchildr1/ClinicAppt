@@ -51,7 +51,8 @@ namespace Clinic.DAL
                                     Password = reader["password"].ToString(),
                                     FirstName = reader["first_name"].ToString(),
                                     LastName = reader["last_name"].ToString(),
-                                    AdminID = (int)reader["admin_id"]
+                                    AdminID = (int)reader["admin_id"],
+                                    Active = (bool)reader["active"]
                                 };
                                 return employee;
                             }
