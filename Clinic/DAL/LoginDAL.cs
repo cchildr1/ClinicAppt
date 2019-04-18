@@ -1,6 +1,7 @@
 ﻿using Clinic.Model;
 using System;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Clinic.DAL
 {
@@ -18,7 +19,7 @@ namespace Clinic.DAL
         public static Employee LoginEmployee(string username, string password)
         {
             string selectStatement = "SELECT u.id as employee_id, u.username, u.password, " +
-                "u.person_id, n.id as nurse_id, a.id as admin_id, phi.first_name, phi.last_name " +
+                "u.person_id, n.id as nurse_id, a.id as admin_id, phi.first_name, phi.last_name, activeUser " +
                 "FROM users u " +
                 "LEFT JOIN nurse n ON u.person_id = n.person_id " +
                 "LEFT JOIN administrator a ON u.person_id = a.person_id " +
@@ -52,7 +53,7 @@ namespace Clinic.DAL
                                     FirstName = reader["first_name"].ToString(),
                                     LastName = reader["last_name"].ToString(),
                                     AdminID = (int)reader["admin_id"],
-                                    Active = (bool)reader["active"]
+                                    Active = (byte)reader["activeUser"]
                                 };
                                 return employee;
                             }

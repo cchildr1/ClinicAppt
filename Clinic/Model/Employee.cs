@@ -1,4 +1,6 @@
-﻿namespace Clinic.Model
+﻿using System.Data.SqlTypes;
+
+namespace Clinic.Model
 {
     /// <summary>
     /// Represents an employee that can log into the system.
@@ -10,7 +12,7 @@
         public int EmployeeID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public bool Active { get; set; }
+        public byte Active { get; set; }
 
     }
 }

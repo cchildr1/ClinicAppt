@@ -65,6 +65,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
+                            PopulateEmployeeInfo(nurse);
                             nurses.Add(nurse);
                         }
                     }
@@ -161,6 +162,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
+                            PopulateEmployeeInfo(nurse);
                             nurses.Add(nurse);
                         }
 
@@ -199,6 +201,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
+                            PopulateEmployeeInfo(nurse);
                             nurses.Add(nurse);
                         }
 
@@ -237,6 +240,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
+                            PopulateEmployeeInfo(nurse);
                             nurses.Add(nurse);
                         }
 
@@ -271,6 +275,7 @@ namespace Clinic.DAL
                             nurse.NurseID = (int)reader["id"];
                             nurse.PersonId = (int)reader["person_id"];
                             PopulatePersonalInformation(nurse);
+                            PopulateEmployeeInfo(nurse);
                         }
                     }
                 }
@@ -295,7 +300,8 @@ namespace Clinic.DAL
                 "gender = @new_gender, " +
                 "street_address = @new_street_address, " +
                 "phone = @new_phone, " +
-                "zipcode = @new_zipcode " +
+                "zipcode = @new_zipcode, " +
+                "activeUser = @new_activeUser "+
                 "WHERE id = @id AND " +
                 "last_name = @old_last_name AND " +
                 "first_name = @old_first_name AND " +
@@ -304,7 +310,8 @@ namespace Clinic.DAL
                 "gender = @old_gender AND " +
                 "street_address = @old_street_address AND " +
                 "phone = @old_phone AND " +
-                "zipcode = @old_zipcode;";
+                "zipcode = @old_zipcode "+
+                "activeUser = @old_activeUser; " ;
             int count = 0;
             try
             {
@@ -324,6 +331,7 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@new_street_address", updatedNurse.StreetAddress);
                         updateCommand.Parameters.AddWithValue("@new_phone", updatedNurse.Phone);
                         updateCommand.Parameters.AddWithValue("@new_zipcode", updatedNurse.Zipcode);
+                        updateCommand.Parameters.AddWithValue("@new_activeUser", updatedNurse.Active);
 
                         updateCommand.Parameters.AddWithValue("@id", oldNurse.PersonId);
                         updateCommand.Parameters.AddWithValue("@old_last_name", oldNurse.LastName);
@@ -337,6 +345,7 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@old_street_address", oldNurse.StreetAddress);
                         updateCommand.Parameters.AddWithValue("@old_phone", oldNurse.Phone);
                         updateCommand.Parameters.AddWithValue("@old_zipcode", oldNurse.Zipcode);
+                        updateCommand.Parameters.AddWithValue("@old_activeUser", oldNurse.Active);
 
                         count = updateCommand.ExecuteNonQuery();
                     }
@@ -348,6 +357,28 @@ namespace Clinic.DAL
                 throw ex;
             }
             return count > 0;
+        }
+
+        private static Employee PopulateEmployeeInfo(Employee employee)
+        {
+            string selectStatement = "SELECT activeUser FROM users WHERE id = @personID;";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@personID", employee.PersonId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            employee.Active = (byte)reader["activeUser"];
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return employee;
         }
 
         private static Person PopulatePersonalInformation(Person person)
