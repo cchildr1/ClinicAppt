@@ -50,8 +50,16 @@ namespace Clinic.UserControls
             }
         }
 
-        private void PopulateNurseDataGridView_Helper()
+   
+
+        private void PopulateNurseDataGridView()
         {
+            this.nurse_DataGridView.DataSource = nurseController.GetAllNurses();
+            this.PopulateNurseDataGridView_Helper();
+        }
+     private void PopulateNurseDataGridView_Helper()
+        {
+            int length = this.nurse_DataGridView.RowCount;
             this.nurse_DataGridView.Columns["NurseID"].Visible = false;
             this.nurse_DataGridView.Columns["EmployeeID"].Visible = false;
             this.nurse_DataGridView.Columns["Username"].Visible = false;
@@ -59,13 +67,12 @@ namespace Clinic.UserControls
             this.nurse_DataGridView.Columns["PersonID"].Visible = false;
             this.nurse_DataGridView.Columns["State"].Visible = false;
             this.nurse_DataGridView.Columns["City"].Visible = false;
+            this.SetNurseActiveValuesToReadable(length);
             this.nurse_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void PopulateNurseDataGridView()
-        {
-            this.nurse_DataGridView.DataSource = nurseController.GetAllNurses();
-            this.PopulateNurseDataGridView_Helper();
+        private void SetNurseActiveValuesToReadable(int length)
+        {   
         }
 
         private void ResetNurseLabels_toDefault(object sender, EventArgs e)

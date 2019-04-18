@@ -372,7 +372,8 @@ namespace Clinic.DAL
                     {
                         while (reader.Read())
                         {
-                            employee.Active = (byte)reader["activeUser"];
+                            byte temp = (byte)reader["activeUser"];
+                            employee.Active = Convert.ToBoolean(temp);
                         }
                     }
                 }
