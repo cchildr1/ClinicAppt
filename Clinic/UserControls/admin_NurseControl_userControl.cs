@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Controller;
 using Clinic.View;
@@ -146,9 +140,17 @@ namespace Clinic.UserControls
                         nurse.StreetAddress,
                         nurse.Phone,
                         nurse.Zipcode,
-                        nurse.StatusID.ToString()
+                        this.GetStatusDescription(nurse.StatusID)
                     };
             return rowAdded;
+        }
+
+        private string GetStatusDescription(int statusID)
+        {
+            StatusController statusController = new StatusController();
+            Status status = statusController.GetStatusByID(statusID);
+            return status.StatusDescription;
+
         }
 
         private void ResetNurseLabels_toDefault(object sender, EventArgs e)

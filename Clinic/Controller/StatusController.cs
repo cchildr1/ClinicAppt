@@ -20,5 +20,15 @@ namespace Clinic.Controller
         {
             return this.statusDAL.GetAllStatusTypes();
         }
+
+        /// <summary>
+        /// Returns the Status equal to the accepted Status ID
+        /// </summary>
+        /// <param name="statusID"></param>
+        /// <returns></returns>
+        public Status GetStatusByID(int statusID)
+        {
+            return this.statusDAL.GetStatusByID(statusID);
+        }
     }
 }

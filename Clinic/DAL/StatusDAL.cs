@@ -41,5 +41,34 @@ namespace Clinic.DAL
             }
             return statuses;
         }
+
+        /// <summary>
+        /// This method returns the status equal to the accepted status
+        /// </summary>
+        /// <param name="statusID"></param>
+        /// <returns></returns>
+        public Status GetStatusByID(int statusID)
+        {
+            Status status = new Status();
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                string selectStatement = "SELECT id, status FROM status_code WHERE id = @statusID";
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("statusID", statusID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            status.StatusDescription = reader["status"].ToString();
+                            status.StatusID = (int)reader["id"];
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return status;
+        }
     }
 }
