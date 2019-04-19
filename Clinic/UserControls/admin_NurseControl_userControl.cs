@@ -44,7 +44,7 @@ namespace Clinic.UserControls
         {
             this.nurse_DataGridView.DataSource = null;
             this.nurse_DataGridView.ColumnCount = 0;
-            this.nurse_DataGridView.ColumnCount = 9;
+            this.nurse_DataGridView.ColumnCount = 10;
             this.nurse_DataGridView.ColumnHeadersVisible = true;
             this.nurse_DataGridView.Columns[0].Name = "First name";
             this.nurse_DataGridView.Columns[1].Name = "Last name";
@@ -55,6 +55,8 @@ namespace Clinic.UserControls
             this.nurse_DataGridView.Columns[6].Name = "Phone";
             this.nurse_DataGridView.Columns[7].Name = "Zipcode";
             this.nurse_DataGridView.Columns[8].Name = "Active";
+            this.nurse_DataGridView.Columns[9].Name = "NurseID";
+            this.nurse_DataGridView.Columns[9].Visible = false;
             this.nurse_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -140,7 +142,8 @@ namespace Clinic.UserControls
                         nurse.StreetAddress,
                         nurse.Phone,
                         nurse.Zipcode,
-                        this.GetStatusDescription(nurse.StatusID)
+                        this.GetStatusDescription(nurse.StatusID),
+                        nurse.NurseID.ToString()
                     };
             return rowAdded;
         }
@@ -180,7 +183,7 @@ namespace Clinic.UserControls
         private void nurse_DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow selectedRow = this.nurse_DataGridView.CurrentRow;
-            int selectedNurseID = (int) selectedRow.Cells["NurseID"].Value;
+            int selectedNurseID = int.Parse(selectedRow.Cells["NurseID"].Value.ToString());
             Add_Edit_Nurse editNurse = new Add_Edit_Nurse();
             editNurse.SetUp_ForEditNurse(this.nurseController.GetNurseById(selectedNurseID));
             DialogResult result = editNurse.ShowDialog();
