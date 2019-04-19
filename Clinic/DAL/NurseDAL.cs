@@ -62,7 +62,8 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
 
@@ -89,8 +90,8 @@ namespace Clinic.DAL
                     connection.Open();
                     using (SqlTransaction transaction = connection.BeginTransaction())
                     {
-                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
-                        "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
+                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode, status_id)" +
+                        "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode, @status_id)";
                         string insertNurse = "INSERT Nurse(person_id) VALUES (@personalID)";
 
                         using (SqlCommand insertPersonCommand = new SqlCommand(insertPerson, connection))
@@ -104,6 +105,7 @@ namespace Clinic.DAL
                                 insertPersonCommand.Parameters.AddWithValue("streetAddress", addedNurse.StreetAddress);
                                 insertPersonCommand.Parameters.AddWithValue("phoneNumber", addedNurse.Phone);
                                 insertPersonCommand.Parameters.AddWithValue("Zipcode", addedNurse.Zipcode);
+                                insertPersonCommand.Parameters.AddWithValue("status_id", addedNurse.StatusID);
                                 insertPersonCommand.ExecuteNonQuery();
 
                                 string selectStatement = "SELECT IDENT_CURRENT('Person') FROM Person";
@@ -142,7 +144,7 @@ namespace Clinic.DAL
         public List<Nurse> GetNurseByFullName(string firstname, string lastname)
         {
             List<Nurse> nurses = new List<Nurse>();
-            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+            string selectStatement = "SELECT nurse.id, person_id, status_id FROM nurse " +
                 "JOIN person person ON person_id = person.id " +
                "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND  last_name = @lastname_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -159,7 +161,8 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
 
@@ -182,7 +185,7 @@ namespace Clinic.DAL
         public List<Nurse> GetAllNursesByFirstname(string firstname)
         {
             List<Nurse> nurses = new List<Nurse>();
-            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+            string selectStatement = "SELECT nurse.id, person_id, status_id  FROM nurse " +
                 "JOIN person person ON person_id = person.id " +
                "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -198,7 +201,8 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
 
@@ -221,7 +225,7 @@ namespace Clinic.DAL
         public List<Nurse> GetAllNursesByLastname(string lastname)
         {
             List<Nurse> nurses = new List<Nurse>();
-            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+            string selectStatement = "SELECT nurse.id, person_id, status_id  FROM nurse " +
                 "JOIN person person ON person_id = person.id " +
                "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -237,7 +241,8 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
 
@@ -274,6 +279,7 @@ namespace Clinic.DAL
                         {
                             nurse.NurseID = (int)reader["id"];
                             nurse.PersonId = (int)reader["person_id"];
+                            nurse.StatusID = (int)reader["status_id"];
                             PopulatePersonalInformation(nurse);
 
                         }
@@ -354,29 +360,6 @@ namespace Clinic.DAL
                 throw ex;
             }
             return count > 0;
-        }
-
-        private static Employee PopulateEmployeeInfo(Employee employee)
-        {
-            string selectStatement = "SELECT activeUser FROM users WHERE id = @personID;";
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(selectStatement, connection))
-                {
-                    command.Parameters.AddWithValue("@personID", employee.PersonId);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            byte temp = (byte)reader["activeUser"];
-                            employee.Active = Convert.ToBoolean(temp);
-                        }
-                    }
-                }
-                connection.Close();
-            }
-            return employee;
         }
 
         private static Person PopulatePersonalInformation(Person person)

@@ -146,7 +146,7 @@ namespace Clinic.UserControls
                         nurse.StreetAddress,
                         nurse.Phone,
                         nurse.Zipcode,
-                        nurse.Active.ToString()
+                        nurse.StatusID.ToString()
                     };
             return rowAdded;
         }
