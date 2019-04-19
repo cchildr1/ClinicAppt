@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Clinic.Controller;
@@ -25,6 +26,7 @@ namespace Clinic.View
         {
             InitializeComponent();
             this.SetUpGender_ComboBox();
+            this.SetUpStatus_ComboBox();
         }
 
 
@@ -57,6 +59,15 @@ namespace Clinic.View
             this.gender_ComboBox.Items.Add("Other");
             this.gender_ComboBox.Items.Add("Rather not say");
             this.gender_ComboBox.SelectedIndex = -1;
+        }
+
+        private void SetUpStatus_ComboBox()
+        {
+            StatusController statusController = new StatusController();
+            List<Status> statuses = statusController.GetAllStatusTypes();
+            this.nurseStatus_comboBox.DataSource = statuses;
+            this.nurseStatus_comboBox.DisplayMember = "StatusDescription";
+            this.nurseStatus_comboBox.ValueMember = "StatusID";
         }
 
 
