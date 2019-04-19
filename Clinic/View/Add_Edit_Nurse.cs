@@ -47,7 +47,8 @@ namespace Clinic.View
             this.streetAddress_textbox.Text = editedNurse.StreetAddress;
             this.zipcode_textbox.Text = editedNurse.Zipcode;
             this.gender_ComboBox.Text = editedNurse.Gender;
-            this.nurseStatus_comboBox.SelectedIndex = 1; //this.statusController.GetStatusByID(editedNurse.StatusID).StatusDescription;
+            this.gender_ComboBox.Enabled = false;
+            this.nurseStatus_comboBox.SelectedIndex = editedNurse.StatusID; 
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
         }
