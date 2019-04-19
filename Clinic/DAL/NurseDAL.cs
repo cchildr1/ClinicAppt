@@ -65,7 +65,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
-                            PopulateEmployeeInfo(nurse);
+
                             nurses.Add(nurse);
                         }
                     }
@@ -162,7 +162,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
-                            PopulateEmployeeInfo(nurse);
+
                             nurses.Add(nurse);
                         }
 
@@ -201,7 +201,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
-                            PopulateEmployeeInfo(nurse);
+
                             nurses.Add(nurse);
                         }
 
@@ -240,7 +240,7 @@ namespace Clinic.DAL
                                 PersonId = (int)reader["person_id"]
                             };
                             PopulatePersonalInformation(nurse);
-                            PopulateEmployeeInfo(nurse);
+
                             nurses.Add(nurse);
                         }
 
@@ -275,7 +275,7 @@ namespace Clinic.DAL
                             nurse.NurseID = (int)reader["id"];
                             nurse.PersonId = (int)reader["person_id"];
                             PopulatePersonalInformation(nurse);
-                            PopulateEmployeeInfo(nurse);
+
                         }
                     }
                 }
@@ -300,8 +300,8 @@ namespace Clinic.DAL
                 "gender = @new_gender, " +
                 "street_address = @new_street_address, " +
                 "phone = @new_phone, " +
-                "zipcode = @new_zipcode, " +
-                "activeUser = @new_activeUser "+
+                "zipcode = @new_zipcode " +
+
                 "WHERE id = @id AND " +
                 "last_name = @old_last_name AND " +
                 "first_name = @old_first_name AND " +
@@ -310,8 +310,7 @@ namespace Clinic.DAL
                 "gender = @old_gender AND " +
                 "street_address = @old_street_address AND " +
                 "phone = @old_phone AND " +
-                "zipcode = @old_zipcode "+
-                "activeUser = @old_activeUser; " ;
+                "zipcode = @old_zipcode " ;
             int count = 0;
             try
             {
@@ -331,8 +330,7 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@new_street_address", updatedNurse.StreetAddress);
                         updateCommand.Parameters.AddWithValue("@new_phone", updatedNurse.Phone);
                         updateCommand.Parameters.AddWithValue("@new_zipcode", updatedNurse.Zipcode);
-                        updateCommand.Parameters.AddWithValue("@new_activeUser", updatedNurse.Active);
-
+                        
                         updateCommand.Parameters.AddWithValue("@id", oldNurse.PersonId);
                         updateCommand.Parameters.AddWithValue("@old_last_name", oldNurse.LastName);
                         updateCommand.Parameters.AddWithValue("@old_first_name", oldNurse.FirstName);
@@ -345,8 +343,7 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@old_street_address", oldNurse.StreetAddress);
                         updateCommand.Parameters.AddWithValue("@old_phone", oldNurse.Phone);
                         updateCommand.Parameters.AddWithValue("@old_zipcode", oldNurse.Zipcode);
-                        updateCommand.Parameters.AddWithValue("@old_activeUser", oldNurse.Active);
-
+                        
                         count = updateCommand.ExecuteNonQuery();
                     }
                     connection.Close();
