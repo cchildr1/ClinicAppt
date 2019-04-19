@@ -231,6 +231,7 @@ namespace Clinic.View
                         nurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
                         nurse.Gender = this.gender_ComboBox.Text;
                         nurse.StreetAddress = this.streetAddress_textbox.Text;
+                        nurse.StatusID = (int)this.nurseStatus_comboBox.SelectedValue;
                     if (this.isEditingNurse)
                     {
                         if (this.nurseController.updateNurse(nurse, this.editedNurse))

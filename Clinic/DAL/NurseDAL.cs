@@ -90,9 +90,9 @@ namespace Clinic.DAL
                     connection.Open();
                     using (SqlTransaction transaction = connection.BeginTransaction())
                     {
-                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode, status_id)" +
-                        "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode, @status_id)";
-                        string insertNurse = "INSERT Nurse(person_id) VALUES (@personalID)";
+                        string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
+                        "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
+                        string insertNurse = "INSERT Nurse(person_id, status_id) VALUES (@personalID, @status_id)";
 
                         using (SqlCommand insertPersonCommand = new SqlCommand(insertPerson, connection))
                             {
@@ -105,7 +105,7 @@ namespace Clinic.DAL
                                 insertPersonCommand.Parameters.AddWithValue("streetAddress", addedNurse.StreetAddress);
                                 insertPersonCommand.Parameters.AddWithValue("phoneNumber", addedNurse.Phone);
                                 insertPersonCommand.Parameters.AddWithValue("Zipcode", addedNurse.Zipcode);
-                                insertPersonCommand.Parameters.AddWithValue("status_id", addedNurse.StatusID);
+                 
                                 insertPersonCommand.ExecuteNonQuery();
 
                                 string selectStatement = "SELECT IDENT_CURRENT('Person') FROM Person";
@@ -117,11 +117,12 @@ namespace Clinic.DAL
                                 }
                             }
 
-                            using (SqlCommand insertPatientCommand = new SqlCommand(insertNurse, connection))
+                            using (SqlCommand insertNurseCommand = new SqlCommand(insertNurse, connection))
                             {
-                                insertPatientCommand.Transaction = transaction;
-                                insertPatientCommand.Parameters.AddWithValue("@personalID", addedNurse_PersonalInfoID);
-                                insertPatientCommand.ExecuteNonQuery();
+                                insertNurseCommand.Transaction = transaction;
+                                insertNurseCommand.Parameters.AddWithValue("@personalID", addedNurse_PersonalInfoID);
+                                insertNurseCommand.Parameters.AddWithValue("status_id", addedNurse.StatusID);
+                                insertNurseCommand.ExecuteNonQuery();
                             }
 
                             transaction.Commit();
