@@ -13,6 +13,7 @@ namespace Clinic.View
     /// </summary>
     public partial class Add_Edit_Nurse : Form
     {
+        StatusController statusController = new StatusController();
         NurseController nurseController = new NurseController();
         private bool isEditingNurse = false;
         private Nurse editedNurse;
@@ -46,6 +47,7 @@ namespace Clinic.View
             this.streetAddress_textbox.Text = editedNurse.StreetAddress;
             this.zipcode_textbox.Text = editedNurse.Zipcode;
             this.gender_ComboBox.Text = editedNurse.Gender;
+            this.nurseStatus_comboBox.SelectedIndex = 1; //this.statusController.GetStatusByID(editedNurse.StatusID).StatusDescription;
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
         }
@@ -63,7 +65,6 @@ namespace Clinic.View
 
         private void SetUpStatus_ComboBox()
         {
-            StatusController statusController = new StatusController();
             List<Status> statuses = statusController.GetAllStatusTypes();
             this.nurseStatus_comboBox.DataSource = statuses;
             this.nurseStatus_comboBox.DisplayMember = "StatusDescription";
