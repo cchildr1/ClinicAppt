@@ -77,6 +77,67 @@ namespace Clinic.DAL
         }
 
         /// <summary>
+        /// This method returns status description equal to the accepted ID
+        /// </summary>
+        /// <returns></returns>
+        public string GetStatusByID(int statusID)
+        {
+            string status_description = "";
+            string selectStatement = "Select status FROM status_code " +
+                "WHERE id = @statusID";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("statusID", statusID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                           
+                            {
+                                status_description = reader["status"].ToString();                               
+                            };
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return status_description;
+        }
+
+        /// <summary>
+        /// This method will change the accpted nurse status to the value memeber
+        /// </summary>
+        /// <param name="valueMember"></param>
+        public void ChangeStatus(int nurseID, int valueMember)
+        {
+            string updateStatus = "UPDATE nurse " +
+                "SET status_id = @valuemember " +
+                "WHERE id = @nurseID";
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatus, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@valuemember", valueMember);
+                        updateCommand.Parameters.AddWithValue("@nurseID", nurseID);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+    
+
+        /// <summary>
         /// This method adds the accepted nurse to the database
         /// </summary>
         /// <param name="nurse"></param>

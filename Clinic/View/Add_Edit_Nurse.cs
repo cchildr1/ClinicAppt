@@ -47,8 +47,8 @@ namespace Clinic.View
             this.streetAddress_textbox.Text = editedNurse.StreetAddress;
             this.zipcode_textbox.Text = editedNurse.Zipcode;
             this.gender_ComboBox.Text = editedNurse.Gender;
+            this.nurseStatus_comboBox.Text = this.statusController.GetStatusByID(editedNurse.StatusID).StatusDescription;
             this.gender_ComboBox.Enabled = false;
-            //this.nurseStatus_comboBox.SelectedIndex = this.statusController.GetStatusByID(editedNurse.StatusID).StatusDescription;
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
         }
@@ -205,7 +205,7 @@ namespace Clinic.View
                     }
                     return duplicateSSN;
                 }
-                else
+                else if(this.ssn_numberChanged)
                 {
                     this.errorMessage += "Must have valid 9# SSN - Only numbers allowed\n";
                     this.SSN_Label.ForeColor = System.Drawing.Color.Red;
@@ -219,6 +219,8 @@ namespace Clinic.View
         {
             ZipcodeController zipcodeController = new ZipcodeController();
             Nurse nurse = new Nurse();
+            int nurseStatus;
+
                 if (!this.ErrorCheck())
                 {
                     try
@@ -234,22 +236,25 @@ namespace Clinic.View
                         nurse.Gender = this.gender_ComboBox.Text;
                         nurse.StreetAddress = this.streetAddress_textbox.Text;
                         nurse.StatusID = (int)this.nurseStatus_comboBox.SelectedValue;
-                    if (this.isEditingNurse)
-                    {
-                        if (this.nurseController.updateNurse(nurse, this.editedNurse))
+                        nurseStatus = nurse.StatusID;
+                        if (this.isEditingNurse)
                         {
-                            MessageBox.Show("Nurse updated.");
-                            this.DialogResult = DialogResult.OK;
+                            if (this.nurseController.updateNurse(nurse, this.editedNurse))
+                            {
+                                this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
+                                MessageBox.Show("Nurse updated.");
+                                this.DialogResult = DialogResult.OK;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nurse update failed");
+                            }            
                         }
                         else
                         {
-                            MessageBox.Show("Nurse update failed");
-                        }            
-                    }
-                    else
-                    {
-                        this.nurseController.Addnurse(nurse);
-                    }
+                            this.nurseController.Addnurse(nurse);
+                            this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
+                        }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
                     }
@@ -259,6 +264,11 @@ namespace Clinic.View
                     }
                 }
             
+        }
+
+        private void testbutton1_Click(object sender, EventArgs e)
+        {
+            this.nurseController.ChangeStatus(this.editedNurse.NurseID, this.nurseStatus_comboBox.SelectedIndex);
         }
     }
 }
