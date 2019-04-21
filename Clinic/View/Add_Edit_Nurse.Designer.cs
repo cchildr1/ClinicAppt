@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.AddNurseBase_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.nurseStatus_comboBox = new System.Windows.Forms.ComboBox();
+            this.status_lbl = new System.Windows.Forms.Label();
             this.firstname_label = new System.Windows.Forms.Label();
             this.lastname_lbl = new System.Windows.Forms.Label();
             this.dateOfBirth_LBL = new System.Windows.Forms.Label();
@@ -46,12 +48,10 @@
             this.firstname_textbox = new System.Windows.Forms.TextBox();
             this.streetAddress_textbox = new System.Windows.Forms.TextBox();
             this.add_editNurse_button = new System.Windows.Forms.Button();
-            this.errorMessage_lbl = new System.Windows.Forms.Label();
             this.cancel_reset_buttons_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.cancel_button = new System.Windows.Forms.Button();
             this.reset_button = new System.Windows.Forms.Button();
-            this.status_lbl = new System.Windows.Forms.Label();
-            this.nurseStatus_comboBox = new System.Windows.Forms.ComboBox();
+            this.errorMessage_lbl = new System.Windows.Forms.Label();
             this.AddNurseBase_TableLayoutPanel.SuspendLayout();
             this.cancel_reset_buttons_tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +100,24 @@
             this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.AddNurseBase_TableLayoutPanel.Size = new System.Drawing.Size(418, 485);
             this.AddNurseBase_TableLayoutPanel.TabIndex = 1;
+            // 
+            // nurseStatus_comboBox
+            // 
+            this.nurseStatus_comboBox.FormattingEnabled = true;
+            this.nurseStatus_comboBox.Location = new System.Drawing.Point(212, 254);
+            this.nurseStatus_comboBox.Name = "nurseStatus_comboBox";
+            this.nurseStatus_comboBox.Size = new System.Drawing.Size(121, 21);
+            this.nurseStatus_comboBox.TabIndex = 15;
+            // 
+            // status_lbl
+            // 
+            this.status_lbl.AutoSize = true;
+            this.status_lbl.Location = new System.Drawing.Point(5, 256);
+            this.status_lbl.Margin = new System.Windows.Forms.Padding(5);
+            this.status_lbl.Name = "status_lbl";
+            this.status_lbl.Size = new System.Drawing.Size(68, 13);
+            this.status_lbl.TabIndex = 14;
+            this.status_lbl.Text = "Nurse Status";
             // 
             // firstname_label
             // 
@@ -261,15 +279,6 @@
             this.add_editNurse_button.UseVisualStyleBackColor = true;
             this.add_editNurse_button.Click += new System.EventHandler(this.addNurseDialog_Click);
             // 
-            // errorMessage_lbl
-            // 
-            this.errorMessage_lbl.AutoSize = true;
-            this.AddNurseBase_TableLayoutPanel.SetColumnSpan(this.errorMessage_lbl, 2);
-            this.errorMessage_lbl.Location = new System.Drawing.Point(3, 288);
-            this.errorMessage_lbl.Name = "errorMessage_lbl";
-            this.errorMessage_lbl.Size = new System.Drawing.Size(0, 13);
-            this.errorMessage_lbl.TabIndex = 12;
-            // 
             // cancel_reset_buttons_tableLayoutPanel
             // 
             this.cancel_reset_buttons_tableLayoutPanel.ColumnCount = 2;
@@ -304,23 +313,14 @@
             this.reset_button.UseVisualStyleBackColor = true;
             this.reset_button.Click += new System.EventHandler(this.reset_button_Click);
             // 
-            // status_lbl
+            // errorMessage_lbl
             // 
-            this.status_lbl.AutoSize = true;
-            this.status_lbl.Location = new System.Drawing.Point(5, 256);
-            this.status_lbl.Margin = new System.Windows.Forms.Padding(5);
-            this.status_lbl.Name = "status_lbl";
-            this.status_lbl.Size = new System.Drawing.Size(68, 13);
-            this.status_lbl.TabIndex = 14;
-            this.status_lbl.Text = "Nurse Status";
-            // 
-            // nurseStatus_comboBox
-            // 
-            this.nurseStatus_comboBox.FormattingEnabled = true;
-            this.nurseStatus_comboBox.Location = new System.Drawing.Point(212, 254);
-            this.nurseStatus_comboBox.Name = "nurseStatus_comboBox";
-            this.nurseStatus_comboBox.Size = new System.Drawing.Size(121, 21);
-            this.nurseStatus_comboBox.TabIndex = 15;
+            this.errorMessage_lbl.AutoSize = true;
+            this.AddNurseBase_TableLayoutPanel.SetColumnSpan(this.errorMessage_lbl, 2);
+            this.errorMessage_lbl.Location = new System.Drawing.Point(3, 288);
+            this.errorMessage_lbl.Name = "errorMessage_lbl";
+            this.errorMessage_lbl.Size = new System.Drawing.Size(0, 13);
+            this.errorMessage_lbl.TabIndex = 12;
             // 
             // Add_Edit_Nurse
             // 
