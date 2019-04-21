@@ -52,7 +52,6 @@
             this.cancel_button = new System.Windows.Forms.Button();
             this.reset_button = new System.Windows.Forms.Button();
             this.errorMessage_lbl = new System.Windows.Forms.Label();
-            this.testbutton1 = new System.Windows.Forms.Button();
             this.AddNurseBase_TableLayoutPanel.SuspendLayout();
             this.cancel_reset_buttons_tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +82,6 @@
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.add_editNurse_button, 0, 10);
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.cancel_reset_buttons_tableLayoutPanel, 1, 10);
             this.AddNurseBase_TableLayoutPanel.Controls.Add(this.errorMessage_lbl, 1, 9);
-            this.AddNurseBase_TableLayoutPanel.Controls.Add(this.testbutton1, 0, 9);
             this.AddNurseBase_TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddNurseBase_TableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.AddNurseBase_TableLayoutPanel.Name = "AddNurseBase_TableLayoutPanel";
@@ -97,8 +95,8 @@
             this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.940397F));
             this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9F));
             this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.33333F));
-            this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 161F));
             this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.AddNurseBase_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.AddNurseBase_TableLayoutPanel.Size = new System.Drawing.Size(418, 485);
@@ -320,20 +318,10 @@
             // 
             this.errorMessage_lbl.AutoSize = true;
             this.AddNurseBase_TableLayoutPanel.SetColumnSpan(this.errorMessage_lbl, 2);
-            this.errorMessage_lbl.Location = new System.Drawing.Point(3, 306);
+            this.errorMessage_lbl.Location = new System.Drawing.Point(3, 288);
             this.errorMessage_lbl.Name = "errorMessage_lbl";
             this.errorMessage_lbl.Size = new System.Drawing.Size(0, 13);
             this.errorMessage_lbl.TabIndex = 12;
-            // 
-            // testbutton1
-            // 
-            this.testbutton1.Location = new System.Drawing.Point(3, 283);
-            this.testbutton1.Name = "testbutton1";
-            this.testbutton1.Size = new System.Drawing.Size(75, 20);
-            this.testbutton1.TabIndex = 16;
-            this.testbutton1.Text = "button1";
-            this.testbutton1.UseVisualStyleBackColor = true;
-            this.testbutton1.Click += new System.EventHandler(this.testbutton1_Click);
             // 
             // Add_Edit_Nurse
             // 
@@ -376,6 +364,5 @@
         private System.Windows.Forms.Button reset_button;
         private System.Windows.Forms.ComboBox nurseStatus_comboBox;
         private System.Windows.Forms.Label status_lbl;
-        private System.Windows.Forms.Button testbutton1;
     }
 }

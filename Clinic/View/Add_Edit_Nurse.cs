@@ -221,54 +221,48 @@ namespace Clinic.View
             Nurse nurse = new Nurse();
             int nurseStatus;
 
-                if (!this.ErrorCheck())
+            if (!this.ErrorCheck())
+            {
+                try
                 {
-                    try
+                    nurse.FirstName = this.firstname_textbox.Text;
+                    nurse.LastName = this.lastname_textbox.Text;
+                    nurse.Phone = this.phoneNumber_textbox.Text;
+                    nurse.SocialSecurityNumber = this.ssn_textbox.Text;
+                    nurse.Zipcode = this.zipcode_textbox.Text;
+                    nurse.State = zipcodeController.GetStateFromZipcode(nurse.Zipcode);
+                    nurse.City = zipcodeController.GetCityFromZipcode(nurse.Zipcode);
+                    nurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                    nurse.Gender = this.gender_ComboBox.Text;
+                    nurse.StreetAddress = this.streetAddress_textbox.Text;
+                    nurse.StatusID = (int)this.nurseStatus_comboBox.SelectedValue;
+                    nurseStatus = nurse.StatusID;
+                    if (this.isEditingNurse)
                     {
-                        nurse.FirstName = this.firstname_textbox.Text;
-                        nurse.LastName = this.lastname_textbox.Text;
-                        nurse.Phone = this.phoneNumber_textbox.Text;
-                        nurse.SocialSecurityNumber = this.ssn_textbox.Text;
-                        nurse.Zipcode = this.zipcode_textbox.Text;
-                        nurse.State = zipcodeController.GetStateFromZipcode(nurse.Zipcode);
-                        nurse.City = zipcodeController.GetCityFromZipcode(nurse.Zipcode);
-                        nurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
-                        nurse.Gender = this.gender_ComboBox.Text;
-                        nurse.StreetAddress = this.streetAddress_textbox.Text;
-                        nurse.StatusID = (int)this.nurseStatus_comboBox.SelectedValue;
-                        nurseStatus = nurse.StatusID;
-                        if (this.isEditingNurse)
+                        if (this.nurseController.updateNurse(nurse, this.editedNurse))
                         {
-                            if (this.nurseController.updateNurse(nurse, this.editedNurse))
-                            {
-                                this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
-                                MessageBox.Show("Nurse updated.");
-                                this.DialogResult = DialogResult.OK;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Nurse update failed");
-                            }            
+                            this.nurseController.ChangeStatus(this.editedNurse.NurseID, nurseStatus);
+                            MessageBox.Show("Nurse updated.");
+                            this.DialogResult = DialogResult.OK;
                         }
                         else
                         {
-                            this.nurseController.Addnurse(nurse);
-                            this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
-                        }
+                            MessageBox.Show("Nurse update failed");
+                        }            
+                    }
+                    else
+                    {
+                        this.nurseController.Addnurse(nurse);
+                        this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
+                    }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
-                    }
-                    catch (Exception)
-                    {
-                        this.ErrorCheck();
-                    }
                 }
-            
-        }
-
-        private void testbutton1_Click(object sender, EventArgs e)
-        {
-            this.nurseController.ChangeStatus(this.editedNurse.NurseID, this.nurseStatus_comboBox.SelectedIndex);
+                catch (Exception)
+                {
+                    this.ErrorCheck();
+                }
+            }            
         }
     }
 }
