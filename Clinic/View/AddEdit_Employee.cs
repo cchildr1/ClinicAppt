@@ -25,6 +25,7 @@ namespace Clinic.View
 
         bool isEditingEmployee = false;
         Employee editedEmployee;
+        Employee addedEmployee;
         EmployeeController employeeController = new EmployeeController();
         public AddEdit_Employee()
         {
@@ -44,23 +45,32 @@ namespace Clinic.View
 
         public void SetUpFormFor_New_Employee(Employee employee)
         {
-            this.editedEmployee = employee;
+            this.addedEmployee = employee;
         }
 
         private void Edit_info_button_Click(object sender, EventArgs e)
         {
-            if (!this.ErrorsPresentCheck() && this.isEditingEmployee)
-            {
-                if (this.employeeController.EditEmployeeInfo(this.SetUpdated_employee(), this.editedEmployee))
+            if (!this.ErrorsPresentCheck()) {
+                if (this.isEditingEmployee)
                 {
-                   MessageBox.Show("Employee updated.");
-                   this.ReturnedEmployee = this.SetUpdated_employee();
-                   this.DialogResult = DialogResult.Yes;
+                    if (this.employeeController.EditEmployeeInfo(this.SetUpdated_employee(), this.editedEmployee))
+                    {
+                        MessageBox.Show("Employee updated.");
+                        this.ReturnedEmployee = this.SetUpdated_employee();
+                        this.DialogResult = DialogResult.Yes;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Employee update failed " + this.editedEmployee.EmployeeID.ToString() + " personal-> " + this.editedEmployee.PersonId.ToString() + " username " + this.editedEmployee.UserName.ToString());
+                    }
                 }
                 else
                 {
-                   MessageBox.Show("Employee update failed " + this.editedEmployee.EmployeeID.ToString() + " personal-> " +this.editedEmployee.PersonId.ToString() + " username " + this.editedEmployee.UserName.ToString());                    
+                    this.addedEmployee.UserName = this.username_textbox.Text;
+                    this.addedEmployee.Password = this.password_textbox.Text;
+                    this.employeeController.AddEmployeeInfo(this.addedEmployee);
                 }
+
             }
         }
 

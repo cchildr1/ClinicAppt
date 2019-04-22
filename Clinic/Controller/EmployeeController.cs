@@ -35,5 +35,14 @@ namespace Clinic.Controller
         {
             return this.employeeDAL.GetEmployeeIDBy_PersonID(personID);
         }
+
+        /// <summary>
+        /// This method adds a employee to the database
+        /// </summary>
+        /// <param name="addedEmployee"></param>
+        public void AddEmployeeInfo(Employee addedEmployee)
+        {
+            this.employeeDAL.AddEmployee(addedEmployee);
+        }
     }
 }

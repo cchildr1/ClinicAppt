@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Clinic.Model;
 
 namespace Clinic.DAL
@@ -27,7 +28,7 @@ namespace Clinic.DAL
                     update.Parameters.AddWithValue("@new_username", edited_employee.UserName);
                     //     update.Parameters.AddWithValue("new_password", edited_employee.Password);
                     update.Parameters.AddWithValue("@old_username", old_employee.UserName);
-                                                                            //     update.Parameters.AddWithValue("old_password", old_employee.Password);
+                    //     update.Parameters.AddWithValue("old_password", old_employee.Password);
                     update.Parameters.AddWithValue("@old_id", old_employee.EmployeeID);
                     update.Parameters.AddWithValue("@old_personID", old_employee.PersonId);
 
@@ -36,6 +37,32 @@ namespace Clinic.DAL
                     return count > 0;
                 }
             }
+        }
+
+        public void AddEmployee(Employee addedEmployee)
+        {
+            string addEmployee = "INSERT users (id, username, password, person_id) " +
+                "VALUES (@id, @username, @password, @person_id)";
+
+            try
+            {
+                SqlConnection connection =ClinicDBConnection.GetConnection();
+                connection.Open();
+                using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
+                {
+                    insertCommand.Parameters.AddWithValue("id", addedEmployee.EmployeeID);
+                    insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
+                    insertCommand.Parameters.AddWithValue("password", addedEmployee.Password);
+                    insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
+
+                    insertCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+
         }
 
         /// <summary>
