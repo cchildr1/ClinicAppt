@@ -367,5 +367,25 @@ namespace Clinic.View
                 row.Delete();
             }
         }
+
+        private void ToggleControlLock()
+        {
+            this.bodyTemperatureTextBox.Enabled = !this.bodyTemperatureTextBox.Enabled;
+            this.NurseComboBox.Enabled = !this.NurseComboBox.Enabled;
+            this.DTPVisitDate.Enabled = !this.DTPVisitDate.Enabled;
+            this.DTPVisitTime.Enabled = !this.DTPVisitTime.Enabled;
+            this.bpSystolicTextBox.Enabled = !this.bpSystolicTextBox.Enabled;
+            this.bpDiastolicTextBox.Enabled = !this.bpDiastolicTextBox.Enabled;
+            this.pulseTextBox.Enabled = !this.pulseTextBox.Enabled;
+            this.weightTextBox.Enabled = !this.weightTextBox.Enabled;
+            this.bodyTemperatureTextBox.Enabled = !this.bodyTemperatureTextBox.Enabled;
+            this.symptomsTextBox.Enabled = !this.symptomsTextBox.Enabled;
+            this.initialDiagnosisTextBox.Enabled = !this.initialDiagnosisTextBox.Enabled;
+            this.infoTextBox.Enabled = !this.infoTextBox.Enabled;
+            this.finalDiagnosisTextBox.Enabled = !this.finalDiagnosisTextBox.Enabled;
+            this.CBInsertTestCode.Enabled = !this.CBInsertTestCode.Enabled;
+            this.BTInsertTest.Enabled = !this.BTInsertTest.Enabled;
+            this.BtSubmitChanges.Enabled = !this.BtSubmitChanges.Enabled;
+        }
     }
 }
