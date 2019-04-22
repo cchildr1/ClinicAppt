@@ -28,10 +28,10 @@ namespace Clinic.View
         /// <summary>
         /// This form is called when a nurse is edited to allow the admin to see/change values
         /// </summary>
-        public void SetUpFormToEditEmployee(Employee editedEmployee)
+        public void SetUpFormToEditEmployee(Nurse editedEmployee)
         {
             this.username_textbox.Text = editedEmployee.UserName;
-            this.password_textbox.Text = editedEmployee.Password;
+            //this.password_textbox.Text = pass;// editedEmployee.Password;
         }
 
         private void Edit_info_button_Click(object sender, EventArgs e)

@@ -44,7 +44,7 @@ namespace Clinic.UserControls
         {
             this.nurse_DataGridView.DataSource = null;
             this.nurse_DataGridView.ColumnCount = 0;
-            this.nurse_DataGridView.ColumnCount = 10;
+            this.nurse_DataGridView.ColumnCount = 12;
             this.nurse_DataGridView.ColumnHeadersVisible = true;
             this.nurse_DataGridView.Columns[0].Name = "First name";
             this.nurse_DataGridView.Columns[1].Name = "Last name";
@@ -56,7 +56,11 @@ namespace Clinic.UserControls
             this.nurse_DataGridView.Columns[7].Name = "Zipcode";
             this.nurse_DataGridView.Columns[8].Name = "Active";
             this.nurse_DataGridView.Columns[9].Name = "NurseID";
+            this.nurse_DataGridView.Columns[10].Name = "UserName";
+            this.nurse_DataGridView.Columns[11].Name = "Password";
             this.nurse_DataGridView.Columns[9].Visible = false;
+         //   this.nurse_DataGridView.Columns[10].Visible = false;
+         //   this.nurse_DataGridView.Columns[11].Visible = false;
             this.nurse_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -143,7 +147,9 @@ namespace Clinic.UserControls
                         nurse.Phone,
                         nurse.Zipcode,
                         this.GetStatusDescription(nurse.StatusID),
-                        nurse.NurseID.ToString()
+                        nurse.NurseID.ToString(),
+                        nurse.UserName,
+                        nurse.Password
                     };
             return rowAdded;
         }
