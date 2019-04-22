@@ -33,13 +33,13 @@
             this.password = new System.Windows.Forms.Label();
             this.password_Confirmation_LBL = new System.Windows.Forms.Label();
             this.username_textbox = new System.Windows.Forms.TextBox();
-            this.password_textbox = new System.Windows.Forms.TextBox();
-            this.password_conformation_textbox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Edit_info_button = new System.Windows.Forms.Button();
             this.reset_button = new System.Windows.Forms.Button();
             this.cancel_button = new System.Windows.Forms.Button();
             this.errorMessage_lbl = new System.Windows.Forms.Label();
+            this.passwordMasked_textbox = new System.Windows.Forms.MaskedTextBox();
+            this.passwordMasked_confirmation_textbox = new System.Windows.Forms.MaskedTextBox();
             this.addEdit_employee_BASE_tablelayoutpanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,8 +49,7 @@
             this.addEdit_employee_BASE_tablelayoutpanel.ColumnCount = 2;
             this.addEdit_employee_BASE_tablelayoutpanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.addEdit_employee_BASE_tablelayoutpanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.password_conformation_textbox, 1, 2);
-            this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.password_textbox, 1, 1);
+            this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.passwordMasked_confirmation_textbox, 1, 2);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.username_lbl, 0, 0);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.password, 0, 1);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.password_Confirmation_LBL, 0, 2);
@@ -58,6 +57,7 @@
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.tableLayoutPanel1, 0, 4);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.cancel_button, 1, 4);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.errorMessage_lbl, 0, 3);
+            this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.passwordMasked_textbox, 1, 1);
             this.addEdit_employee_BASE_tablelayoutpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addEdit_employee_BASE_tablelayoutpanel.Location = new System.Drawing.Point(0, 0);
             this.addEdit_employee_BASE_tablelayoutpanel.Name = "addEdit_employee_BASE_tablelayoutpanel";
@@ -108,24 +108,6 @@
             this.username_textbox.Size = new System.Drawing.Size(133, 20);
             this.username_textbox.TabIndex = 3;
             this.username_textbox.Click += new System.EventHandler(this.ResetErrorMessage);
-            // 
-            // password_textbox
-            // 
-            this.password_textbox.Location = new System.Drawing.Point(162, 80);
-            this.password_textbox.Margin = new System.Windows.Forms.Padding(5);
-            this.password_textbox.Name = "password_textbox";
-            this.password_textbox.Size = new System.Drawing.Size(133, 20);
-            this.password_textbox.TabIndex = 4;
-            this.password_textbox.Click += new System.EventHandler(this.ResetErrorMessage);
-            // 
-            // password_conformation_textbox
-            // 
-            this.password_conformation_textbox.Location = new System.Drawing.Point(162, 155);
-            this.password_conformation_textbox.Margin = new System.Windows.Forms.Padding(5);
-            this.password_conformation_textbox.Name = "password_conformation_textbox";
-            this.password_conformation_textbox.Size = new System.Drawing.Size(133, 20);
-            this.password_conformation_textbox.TabIndex = 5;
-            this.password_conformation_textbox.Click += new System.EventHandler(this.ResetErrorMessage);
             // 
             // tableLayoutPanel1
             // 
@@ -180,6 +162,22 @@
             this.errorMessage_lbl.Size = new System.Drawing.Size(0, 13);
             this.errorMessage_lbl.TabIndex = 8;
             // 
+            // passwordMasked_textbox
+            // 
+            this.passwordMasked_textbox.Location = new System.Drawing.Point(160, 78);
+            this.passwordMasked_textbox.Name = "passwordMasked_textbox";
+            this.passwordMasked_textbox.Size = new System.Drawing.Size(135, 20);
+            this.passwordMasked_textbox.TabIndex = 9;
+            this.passwordMasked_textbox.UseSystemPasswordChar = true;
+            // 
+            // passwordMasked_confirmation_textbox
+            // 
+            this.passwordMasked_confirmation_textbox.Location = new System.Drawing.Point(160, 153);
+            this.passwordMasked_confirmation_textbox.Name = "passwordMasked_confirmation_textbox";
+            this.passwordMasked_confirmation_textbox.Size = new System.Drawing.Size(135, 20);
+            this.passwordMasked_confirmation_textbox.TabIndex = 10;
+            this.passwordMasked_confirmation_textbox.UseSystemPasswordChar = true;
+            // 
             // AddEdit_Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,13 +199,13 @@
         private System.Windows.Forms.Label username_lbl;
         private System.Windows.Forms.Label password;
         private System.Windows.Forms.Label password_Confirmation_LBL;
-        private System.Windows.Forms.TextBox password_conformation_textbox;
-        private System.Windows.Forms.TextBox password_textbox;
         private System.Windows.Forms.TextBox username_textbox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button Edit_info_button;
         private System.Windows.Forms.Button reset_button;
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.Label errorMessage_lbl;
+        private System.Windows.Forms.MaskedTextBox passwordMasked_confirmation_textbox;
+        private System.Windows.Forms.MaskedTextBox passwordMasked_textbox;
     }
 }

@@ -66,7 +66,7 @@ namespace Clinic.View
                 else
                 {
                     this.addedEmployee.UserName = this.username_textbox.Text;
-                    this.addedEmployee.Password = this.password_textbox.Text;
+                    this.addedEmployee.Password = this.passwordMasked_textbox.Text;
                     this.employeeController.AddEmployeeInfo(this.addedEmployee);
                 }
 
@@ -77,14 +77,14 @@ namespace Clinic.View
         {
             bool errorsPresent = false;
 
-            if (this.username_textbox.Text == "" || this.password_conformation_textbox.Text == "" || this.password_textbox.Text == "")
+            if (this.username_textbox.Text == "" || this.passwordMasked_confirmation_textbox.Text == "" || this.passwordMasked_textbox.Text == "")
             {
                 errorsPresent = true;
                 this.errorMessage_lbl.Text = "Must fill all values";
                 this.errorMessage_lbl.Visible = true;
                 this.errorMessage_lbl.ForeColor = Color.Red;
             }
-            else if (this.password_conformation_textbox.Text != this.password_textbox.Text)
+            else if (this.passwordMasked_confirmation_textbox.Text != this.passwordMasked_textbox.Text)
             {
                 errorsPresent = true;
                 this.errorMessage_lbl.Text = "Password and password confirmation are not equal";
@@ -101,7 +101,7 @@ namespace Clinic.View
             updatedEmployee.EmployeeID = this.editedEmployee.EmployeeID;
             updatedEmployee.PersonId = this.editedEmployee.PersonId;
             updatedEmployee.UserName = this.username_textbox.Text;
-            updatedEmployee.Password = this.password_textbox.Text;
+            updatedEmployee.Password = this.passwordMasked_textbox.Text;
             return updatedEmployee;
         }
 
@@ -117,8 +117,8 @@ namespace Clinic.View
                 this.username_textbox.Text = "";
 
             }
-            this.password_conformation_textbox.Text = "";
-            this.password_textbox.Text = "";
+            this.passwordMasked_confirmation_textbox.Text = "";
+            this.passwordMasked_textbox.Text = "";
             this.ResetErrorMessage(sender,e);
         }
 
