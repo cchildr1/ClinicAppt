@@ -47,16 +47,16 @@
             this.lastname_textbox = new System.Windows.Forms.TextBox();
             this.firstname_textbox = new System.Windows.Forms.TextBox();
             this.streetAddress_textbox = new System.Windows.Forms.TextBox();
+            this.addEditButton_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.add_editNurse_button = new System.Windows.Forms.Button();
+            this.creditentals_button = new System.Windows.Forms.Button();
             this.errorMessage_lbl = new System.Windows.Forms.Label();
+            this.cancel_reset_buttons_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.reset_button = new System.Windows.Forms.Button();
             this.cancel_button = new System.Windows.Forms.Button();
-            this.cancel_reset_buttons_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.add_editNurse_button = new System.Windows.Forms.Button();
-            this.addEditButton_tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.creditentals_button = new System.Windows.Forms.Button();
             this.AddNurseBase_TableLayoutPanel.SuspendLayout();
-            this.cancel_reset_buttons_tableLayoutPanel.SuspendLayout();
             this.addEditButton_tableLayoutPanel.SuspendLayout();
+            this.cancel_reset_buttons_tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddNurseBase_TableLayoutPanel
@@ -273,6 +273,41 @@
             this.streetAddress_textbox.TabIndex = 6;
             this.streetAddress_textbox.TextChanged += new System.EventHandler(this.Reset_ErrorMessage);
             // 
+            // addEditButton_tableLayoutPanel
+            // 
+            this.addEditButton_tableLayoutPanel.ColumnCount = 2;
+            this.addEditButton_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.87192F));
+            this.addEditButton_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.12808F));
+            this.addEditButton_tableLayoutPanel.Controls.Add(this.add_editNurse_button, 0, 0);
+            this.addEditButton_tableLayoutPanel.Controls.Add(this.creditentals_button, 1, 0);
+            this.addEditButton_tableLayoutPanel.Location = new System.Drawing.Point(3, 452);
+            this.addEditButton_tableLayoutPanel.Name = "addEditButton_tableLayoutPanel";
+            this.addEditButton_tableLayoutPanel.RowCount = 1;
+            this.addEditButton_tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.addEditButton_tableLayoutPanel.Size = new System.Drawing.Size(203, 30);
+            this.addEditButton_tableLayoutPanel.TabIndex = 16;
+            // 
+            // add_editNurse_button
+            // 
+            this.add_editNurse_button.Location = new System.Drawing.Point(3, 3);
+            this.add_editNurse_button.Name = "add_editNurse_button";
+            this.add_editNurse_button.Size = new System.Drawing.Size(75, 23);
+            this.add_editNurse_button.TabIndex = 10;
+            this.add_editNurse_button.Text = "Add Nurse";
+            this.add_editNurse_button.UseVisualStyleBackColor = true;
+            this.add_editNurse_button.Click += new System.EventHandler(this.addNurseDialog_Click);
+            // 
+            // creditentals_button
+            // 
+            this.creditentals_button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.creditentals_button.Location = new System.Drawing.Point(88, 3);
+            this.creditentals_button.Name = "creditentals_button";
+            this.creditentals_button.Size = new System.Drawing.Size(112, 24);
+            this.creditentals_button.TabIndex = 11;
+            this.creditentals_button.Text = "Edit Creditientals";
+            this.creditentals_button.UseVisualStyleBackColor = true;
+            this.creditentals_button.Click += new System.EventHandler(this.creditentals_button_Click);
+            // 
             // errorMessage_lbl
             // 
             this.errorMessage_lbl.AutoSize = true;
@@ -281,6 +316,20 @@
             this.errorMessage_lbl.Name = "errorMessage_lbl";
             this.errorMessage_lbl.Size = new System.Drawing.Size(0, 10);
             this.errorMessage_lbl.TabIndex = 12;
+            // 
+            // cancel_reset_buttons_tableLayoutPanel
+            // 
+            this.cancel_reset_buttons_tableLayoutPanel.ColumnCount = 2;
+            this.cancel_reset_buttons_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cancel_reset_buttons_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cancel_reset_buttons_tableLayoutPanel.Controls.Add(this.reset_button, 0, 0);
+            this.cancel_reset_buttons_tableLayoutPanel.Controls.Add(this.cancel_button, 1, 0);
+            this.cancel_reset_buttons_tableLayoutPanel.Location = new System.Drawing.Point(212, 452);
+            this.cancel_reset_buttons_tableLayoutPanel.Name = "cancel_reset_buttons_tableLayoutPanel";
+            this.cancel_reset_buttons_tableLayoutPanel.RowCount = 1;
+            this.cancel_reset_buttons_tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.cancel_reset_buttons_tableLayoutPanel.Size = new System.Drawing.Size(192, 28);
+            this.cancel_reset_buttons_tableLayoutPanel.TabIndex = 13;
             // 
             // reset_button
             // 
@@ -302,55 +351,6 @@
             this.cancel_button.Text = "Cancel";
             this.cancel_button.UseVisualStyleBackColor = true;
             // 
-            // cancel_reset_buttons_tableLayoutPanel
-            // 
-            this.cancel_reset_buttons_tableLayoutPanel.ColumnCount = 2;
-            this.cancel_reset_buttons_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cancel_reset_buttons_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cancel_reset_buttons_tableLayoutPanel.Controls.Add(this.reset_button, 0, 0);
-            this.cancel_reset_buttons_tableLayoutPanel.Controls.Add(this.cancel_button, 1, 0);
-            this.cancel_reset_buttons_tableLayoutPanel.Location = new System.Drawing.Point(212, 452);
-            this.cancel_reset_buttons_tableLayoutPanel.Name = "cancel_reset_buttons_tableLayoutPanel";
-            this.cancel_reset_buttons_tableLayoutPanel.RowCount = 1;
-            this.cancel_reset_buttons_tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cancel_reset_buttons_tableLayoutPanel.Size = new System.Drawing.Size(192, 28);
-            this.cancel_reset_buttons_tableLayoutPanel.TabIndex = 13;
-            // 
-            // add_editNurse_button
-            // 
-            this.add_editNurse_button.Location = new System.Drawing.Point(3, 3);
-            this.add_editNurse_button.Name = "add_editNurse_button";
-            this.add_editNurse_button.Size = new System.Drawing.Size(75, 23);
-            this.add_editNurse_button.TabIndex = 10;
-            this.add_editNurse_button.Text = "Add Nurse";
-            this.add_editNurse_button.UseVisualStyleBackColor = true;
-            this.add_editNurse_button.Click += new System.EventHandler(this.addNurseDialog_Click);
-            // 
-            // addEditButton_tableLayoutPanel
-            // 
-            this.addEditButton_tableLayoutPanel.ColumnCount = 2;
-            this.addEditButton_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.87192F));
-            this.addEditButton_tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.12808F));
-            this.addEditButton_tableLayoutPanel.Controls.Add(this.add_editNurse_button, 0, 0);
-            this.addEditButton_tableLayoutPanel.Controls.Add(this.creditentals_button, 1, 0);
-            this.addEditButton_tableLayoutPanel.Location = new System.Drawing.Point(3, 452);
-            this.addEditButton_tableLayoutPanel.Name = "addEditButton_tableLayoutPanel";
-            this.addEditButton_tableLayoutPanel.RowCount = 1;
-            this.addEditButton_tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.addEditButton_tableLayoutPanel.Size = new System.Drawing.Size(203, 30);
-            this.addEditButton_tableLayoutPanel.TabIndex = 16;
-            // 
-            // creditentals_button
-            // 
-            this.creditentals_button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.creditentals_button.Location = new System.Drawing.Point(88, 3);
-            this.creditentals_button.Name = "creditentals_button";
-            this.creditentals_button.Size = new System.Drawing.Size(112, 24);
-            this.creditentals_button.TabIndex = 11;
-            this.creditentals_button.Text = "Edit Creditientals";
-            this.creditentals_button.UseVisualStyleBackColor = true;
-            this.creditentals_button.Click += new System.EventHandler(this.creditentals_button_Click);
-            // 
             // Add_Edit_Nurse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,8 +361,8 @@
             this.Text = "Nurse";
             this.AddNurseBase_TableLayoutPanel.ResumeLayout(false);
             this.AddNurseBase_TableLayoutPanel.PerformLayout();
-            this.cancel_reset_buttons_tableLayoutPanel.ResumeLayout(false);
             this.addEditButton_tableLayoutPanel.ResumeLayout(false);
+            this.cancel_reset_buttons_tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

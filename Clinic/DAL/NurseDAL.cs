@@ -50,7 +50,7 @@ namespace Clinic.DAL
         /// <returns>Nurse object</returns>
         public static Nurse GetNurseByID(int id)
         {
-            string selectStatement = "SELECT n.*, username, password " +
+            string selectStatement = "SELECT n.*, username, password, u.id " +
                 "FROM users AS u " +
                 "JOIN nurse AS n ON n.person_id = u.person_id " +
                 "WHERE n.id = @NurseID;";
@@ -70,6 +70,7 @@ namespace Clinic.DAL
                             nurse.PersonId = (int)reader["person_id"];
                             nurse.StatusID = (int)reader["status_id"];
                             nurse.UserName = reader["username"].ToString();
+                     //       nurse.EmployeeID = (int)reader["u.id"];
                             PopulatePersonalInformation(nurse);
 
                         }
@@ -86,7 +87,7 @@ namespace Clinic.DAL
         /// <returns>List of all nurses</returns>
         public List<Nurse> GetAllNurses()
         {
-            string selectStatement = "SELECT n.*, username, password " +
+            string selectStatement = "SELECT n.*, username, password, u.id " +
                 "FROM users AS u " +
                 "JOIN nurse AS n ON n.person_id = u.person_id;";
             List<Nurse> nurses = new List<Nurse>();
@@ -104,7 +105,8 @@ namespace Clinic.DAL
                                 NurseID = (int)reader["id"],
                                 PersonId = (int)reader["person_id"],
                                 StatusID = (int)reader["status_id"],
-                                UserName = reader["username"].ToString()
+                                UserName = reader["username"].ToString(),
+                           //     EmployeeID = (int)reader["users.id"]
                             };
                             PopulatePersonalInformation(nurse);
 
@@ -139,7 +141,7 @@ namespace Clinic.DAL
                            
                             {
                                 status_description = reader["status"].ToString();                               
-                            };
+                            }
                         }
                     }
                 }

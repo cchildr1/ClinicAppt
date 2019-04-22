@@ -14,9 +14,26 @@ namespace Clinic.Controller
     public class EmployeeController
     {
         EmployeeDAL employeeDAL = new EmployeeDAL();
-        public bool EditEmployeeInfo(Employee editedEmployee)
+
+        /// <summary>
+        /// returns true if the employee is successfully updated
+        /// </summary>
+        /// <param name="editedEmployee"></param>
+        /// <param name="old_employee"></param>
+        /// <returns></returns>
+        public bool EditEmployeeInfo(Employee editedEmployee, Employee old_employee)
         {
-            return this.employeeDAL.EditEmployeeInfo();
+            return this.employeeDAL.EditEmployeeInfo(editedEmployee, old_employee);
+        }
+
+        /// <summary>
+        /// This method returns the employee id eqaul to the personID
+        /// </summary>
+        /// <param name="personID"></param>
+        /// <returns></returns>
+        public int GetEmployeeIDBy_PersonID(int personID)
+        {
+            return this.employeeDAL.GetEmployeeIDBy_PersonID(personID);
         }
     }
 }
