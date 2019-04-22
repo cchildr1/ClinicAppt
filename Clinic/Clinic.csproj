@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\NurseController.cs" />
     <Compile Include="Controller\PatientController.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Controller\TestController.cs" />
     <Compile Include="Controller\VisitController.cs" />
     <Compile Include="Controller\ZipcodeController.cs" />
+    <Compile Include="DAL\EmployeeDAL.cs" />
     <Compile Include="DAL\StatusDAL.cs" />
     <Compile Include="DAL\TestDAL.cs" />
     <Compile Include="DataSets\CS6232_g3DataSet.cs">

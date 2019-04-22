@@ -20,6 +20,7 @@ namespace Clinic.View
     /// </summary>
     public partial class AddEdit_Employee : Form
     {
+
         bool isEditingEmployee = false;
         Employee editedEmployee;
         public AddEdit_Employee()
@@ -28,7 +29,7 @@ namespace Clinic.View
         }
 
         /// <summary>
-        /// This form is called when a nurse is edited to allow the admin to see/change values
+        /// This form is called to EDIT a employee and the admin can to see/change values
         /// </summary>
         public void SetUpFormToEditEmployee(Nurse editedEmployee)
         {
@@ -38,10 +39,17 @@ namespace Clinic.View
             //this.password_textbox.Text = pass;// editedEmployee.Password;
         }
 
+        public void SetUpFormFor_New_Employee(Employee employee)
+        {
+            this.editedEmployee = employee;
+        }
+
         private void Edit_info_button_Click(object sender, EventArgs e)
         {
             if (!this.ErrorsPresentCheck())
-            { }
+            {
+                
+            }
         }
 
         private bool ErrorsPresentCheck()

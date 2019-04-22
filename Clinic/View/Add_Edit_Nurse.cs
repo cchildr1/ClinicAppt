@@ -257,6 +257,8 @@ namespace Clinic.View
                     {
                         this.nurseController.Addnurse(nurse);
                         this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
+                        this.Add_employee_info(nurse);
+                        
                     }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
@@ -275,7 +277,15 @@ namespace Clinic.View
             {
                 edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
             }
+
             DialogResult result = edit_Employee.ShowDialog();
+        }
+
+        private void Add_employee_info(Employee employee)
+        {
+            AddEdit_Employee add_Employee = new AddEdit_Employee();
+            add_Employee.SetUpFormFor_New_Employee(employee);
+            DialogResult result = add_Employee.ShowDialog();
         }
     }
 }
