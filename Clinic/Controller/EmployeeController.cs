@@ -27,13 +27,13 @@ namespace Clinic.Controller
         }
 
         /// <summary>
-        /// This method returns the employee id eqaul to the personID
+        /// This method returns the employee eqaul to the personID
         /// </summary>
         /// <param name="personID"></param>
         /// <returns></returns>
-        public int GetEmployeeIDBy_PersonID(int personID)
+        public Employee GetEmployeeBy_PersonID(int personID)
         {
-            return this.employeeDAL.GetEmployeeIDBy_PersonID(personID);
+            return this.employeeDAL.GetEmployeeBy_PersonID(personID);
         }
 
         /// <summary>

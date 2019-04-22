@@ -38,8 +38,7 @@ namespace Clinic.View
         public void SetUpFormToEditEmployee(Nurse employee)
         {
             this.username_textbox.Text = employee.UserName;
-            this.editedEmployee = employee;
-            this.editedEmployee.EmployeeID = this.employeeController.GetEmployeeIDBy_PersonID(employee.PersonId);
+            this.editedEmployee = this.employeeController.GetEmployeeBy_PersonID(employee.PersonId);
             this.isEditingEmployee = true;
         }
 
