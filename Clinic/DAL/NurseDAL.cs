@@ -184,8 +184,9 @@ namespace Clinic.DAL
         /// This method adds the accepted nurse to the database
         /// </summary>
         /// <param name="nurse"></param>
-        public void AddNurse(Nurse addedNurse)
+        public Nurse AddNurse(Nurse addedNurse)
         {
+            Nurse returnedNurse = new Nurse();
             int addedNurse_PersonalInfoID = -1;
             try
             {
@@ -228,8 +229,10 @@ namespace Clinic.DAL
                                 insertNurseCommand.Parameters.AddWithValue("status_id", addedNurse.StatusID);
                                 insertNurseCommand.ExecuteNonQuery();
                             }
-
+                       
                             transaction.Commit();
+
+                            addedNurse.PersonId = addedNurse_PersonalInfoID;
                         }
 
                     }
@@ -238,6 +241,7 @@ namespace Clinic.DAL
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
+            return addedNurse;
         }
 
         /// <summary>

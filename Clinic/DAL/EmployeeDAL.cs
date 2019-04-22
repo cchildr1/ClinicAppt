@@ -38,29 +38,40 @@ namespace Clinic.DAL
                 }
             }
         }
-
+        //CREATING AN EMPLOYEE WHERE DID THE EMPLOYEE ID COMEFROM????????
         public void AddEmployee(Employee addedEmployee)
         {
-            string addEmployee = "INSERT users (id, username, password, person_id) " +
-                "VALUES (@id, @username, @password, @person_id)";
+            int employeeID = -1;
+            string addEmployee = "INSERT users ( username, password, person_id) " +
+                "VALUES (@username, @password, @person_id) ";
+
+            string employeeIDStatement = "SELECT IDENT_CURRENT('users') FROM users";
 
             try
             {
-                SqlConnection connection =ClinicDBConnection.GetConnection();
+                SqlConnection connection = ClinicDBConnection.GetConnection();
                 connection.Open();
-                using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
-                {
-                    insertCommand.Parameters.AddWithValue("id", addedEmployee.EmployeeID);
-                    insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
-                    insertCommand.Parameters.AddWithValue("password", addedEmployee.Password);
-                    insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
+        //        using (SqlTransaction transaction = connection.BeginTransaction())
+        //        {
+                    using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
+                    {
+                        insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
+                        insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes(addedEmployee.Password));
+                        insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
 
-                    insertCommand.ExecuteNonQuery();
+                        insertCommand.ExecuteNonQuery();
+
+                        using (SqlCommand selectCommand = new SqlCommand(employeeIDStatement, connection))
+                        {
+                //            selectCommand.Transaction = transaction;
+                            employeeID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                        }
+                    }
                 }
-            }
+       //     }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Error " + addedEmployee.PersonId.ToString(), MessageBoxButtons.OK);
             }
 
         }

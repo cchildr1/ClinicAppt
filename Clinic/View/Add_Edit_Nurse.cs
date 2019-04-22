@@ -254,10 +254,11 @@ namespace Clinic.View
                         }            
                     }
                     else
-                    {
-                        this.nurseController.Addnurse(nurse);
+                    {                 
+                        Nurse addedNurse = this.nurseController.Addnurse(nurse);
                         this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
-                        this.Add_employee_info(nurse);
+                        MessageBox.Show("Nurse updated failed" + addedNurse.PersonId.ToString() );
+                        this.Add_employee_info(addedNurse);
                         
                     }
                         this.DialogResult = DialogResult.Yes;
