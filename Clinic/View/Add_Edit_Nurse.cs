@@ -279,6 +279,16 @@ namespace Clinic.View
             }
 
             DialogResult result = edit_Employee.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                Employee employee = edit_Employee.ReturnedEmployee;
+                this.editedNurse.EmployeeID = employee.EmployeeID;
+                this.editedNurse.UserName = employee.UserName;
+                this.editedNurse.Password = employee.Password;
+                this.editedNurse.PersonId = employee.PersonId;
+                this.Refresh(); 
+                this.SetUp_ForEditNurse(this.editedNurse);
+            }
         }
 
         private void Add_employee_info(Employee employee)
@@ -286,6 +296,11 @@ namespace Clinic.View
             AddEdit_Employee add_Employee = new AddEdit_Employee();
             add_Employee.SetUpFormFor_New_Employee(employee);
             DialogResult result = add_Employee.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Yes;
+                this.Close();
+            }
         }
     }
 }

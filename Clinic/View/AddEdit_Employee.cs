@@ -20,6 +20,8 @@ namespace Clinic.View
     /// </summary>
     public partial class AddEdit_Employee : Form
     {
+        //This employee will be returned to the Add_Edit_Nurse page to insure that 
+        public Employee ReturnedEmployee { get; set; }
 
         bool isEditingEmployee = false;
         Employee editedEmployee;
@@ -38,7 +40,6 @@ namespace Clinic.View
             this.editedEmployee = employee;
             this.editedEmployee.EmployeeID = this.employeeController.GetEmployeeIDBy_PersonID(employee.PersonId);
             this.isEditingEmployee = true;
-            //this.password_textbox.Text = pass;// editedEmployee.Password;
         }
 
         public void SetUpFormFor_New_Employee(Employee employee)
@@ -53,7 +54,8 @@ namespace Clinic.View
                 if (this.employeeController.EditEmployeeInfo(this.SetUpdated_employee(), this.editedEmployee))
                 {
                    MessageBox.Show("Employee updated.");
-                   this.DialogResult = DialogResult.OK;
+                   this.ReturnedEmployee = this.SetUpdated_employee();
+                   this.DialogResult = DialogResult.Yes;
                 }
                 else
                 {
