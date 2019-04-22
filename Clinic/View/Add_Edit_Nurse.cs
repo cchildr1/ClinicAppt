@@ -29,6 +29,7 @@ namespace Clinic.View
             InitializeComponent();
             this.SetUpGender_ComboBox();
             this.SetUpStatus_ComboBox();
+            this.creditentals_button.Visible = false;
         }
 
 
@@ -52,6 +53,7 @@ namespace Clinic.View
             this.gender_ComboBox.Enabled = false;
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
+            this.creditentals_button.Visible = true;
         }
 
 
