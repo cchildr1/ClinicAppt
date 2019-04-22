@@ -271,7 +271,10 @@ namespace Clinic.View
         private void creditentals_button_Click(object sender, EventArgs e)
         {
             AddEdit_Employee edit_Employee = new AddEdit_Employee();
-            edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
+            if (this.editedNurse.UserName != null)
+            {
+                edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
+            }
             DialogResult result = edit_Employee.ShowDialog();
         }
     }
