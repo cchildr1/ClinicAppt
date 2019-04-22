@@ -84,6 +84,13 @@ namespace Clinic.View
                 this.errorMessage_lbl.Visible = true;
                 this.errorMessage_lbl.ForeColor = Color.Red;
             }
+            else if (this.password_conformation_textbox.Text != this.password_textbox.Text)
+            {
+                errorsPresent = true;
+                this.errorMessage_lbl.Text = "Password and password confirmation are not equal";
+                this.errorMessage_lbl.Visible = true;
+                this.errorMessage_lbl.ForeColor = Color.Red;
+            }
             
             return errorsPresent;
         }

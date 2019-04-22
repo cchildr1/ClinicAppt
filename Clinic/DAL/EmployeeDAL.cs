@@ -14,8 +14,8 @@ namespace Clinic.DAL
         public bool EditEmployeeInfo(Employee edited_employee, Employee old_employee)
         {
             string updateStatement = "UPDATE users " +
-                "SET username = @new_username " +
-              //  "password = @new_password " +
+                "SET username = @new_username, " +
+                "password = @new_password " +
                 "WHERE username = @old_username AND " +
            //     "password = @old_password AND " +
                 "id = @old_id AND " +
@@ -26,7 +26,7 @@ namespace Clinic.DAL
                 using (SqlCommand update = new SqlCommand(updateStatement, connection))
                 {
                     update.Parameters.AddWithValue("@new_username", edited_employee.UserName);
-                    //     update.Parameters.AddWithValue("new_password", edited_employee.Password);
+                    update.Parameters.AddWithValue("new_password", Encoding.Default.GetBytes("qwerty")); //edited_employee.Password); CHANGED PASSWORDS STILL WORK AS TEST
                     update.Parameters.AddWithValue("@old_username", old_employee.UserName);
                     //     update.Parameters.AddWithValue("old_password", old_employee.Password);
                     update.Parameters.AddWithValue("@old_id", old_employee.EmployeeID);
@@ -58,7 +58,7 @@ namespace Clinic.DAL
                     using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
                     {
                         insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
-                    insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes("qwerty"));//addedEmployee.Password));
+                    insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes("qwerty"));//addedEmployee.Password)); New users Password is still 'test' WHY
                         insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
 
                         insertCommand.ExecuteNonQuery();
