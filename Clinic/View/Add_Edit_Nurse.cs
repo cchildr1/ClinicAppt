@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Clinic.Controller;
 using Clinic.Model;
+using Clinic.View;
 
 
 namespace Clinic.View
@@ -263,6 +264,13 @@ namespace Clinic.View
                     this.ErrorCheck();
                 }
             }            
+        }
+
+        private void creditentals_button_Click(object sender, EventArgs e)
+        {
+            AddEdit_Employee edit_Employee = new AddEdit_Employee();
+            edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
+            DialogResult result = edit_Employee.ShowDialog();
         }
     }
 }
