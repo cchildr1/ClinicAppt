@@ -42,6 +42,7 @@ namespace Clinic.View
             this.dateOfBirth_DateTimePicker.Value = patient.DateOfBirth;
             this.ssn_textbox.Text = patient.SocialSecurityNumber;
             this.gender_ComboBox.Text = patient.Gender;
+            this.gender_ComboBox.Enabled = false;
             this.streetAddress_textbox.Text = patient.StreetAddress;
             this.phoneNumber_textbox.Text = patient.Phone;
             this.zipcode_textbox.Text = patient.Zipcode;

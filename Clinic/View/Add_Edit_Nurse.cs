@@ -44,6 +44,7 @@ namespace Clinic.View
             this.streetAddress_textbox.Text = editedNurse.StreetAddress;
             this.zipcode_textbox.Text = editedNurse.Zipcode;
             this.gender_ComboBox.Text = editedNurse.Gender;
+            this.gender_ComboBox.Enabled = false;
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
         }
