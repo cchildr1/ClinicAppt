@@ -71,6 +71,7 @@
             this.nurse_DataGridView.AllowUserToOrderColumns = true;
             this.nurse_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nurse_DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nurse_DataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.nurse_DataGridView.Location = new System.Drawing.Point(3, 78);
             this.nurse_DataGridView.Name = "nurse_DataGridView";
             this.nurse_DataGridView.ReadOnly = true;
