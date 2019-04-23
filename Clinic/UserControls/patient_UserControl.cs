@@ -43,15 +43,12 @@ namespace Clinic.UserControls
             this.EditPatientGridView();
         }
 
-        private void DateOfBirth_datetimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            this.DOB_ValueChanged = true;
-        }
-
-        private void ResetDateOfBirth_Click(object sender, EventArgs e)
+        private void ResetSearchButton_Click(object sender, EventArgs e)
         {
             this.DateOfBirth_datetimePicker.Value = DateTime.Now;
             this.DOB_ValueChanged = false;
+            this.lastname_textbox.Text = "";
+            this.firstname_textbox.Text = "";
           
         }
 
@@ -112,7 +109,7 @@ namespace Clinic.UserControls
             this.AddAppointment_BTN.Visible = true;
             
         }
-
+    
         private void GetAppointmentData_ForSelectedPatient(int patientID)
         {
             this.patients_datagridview.DataSource = null;
@@ -150,6 +147,7 @@ namespace Clinic.UserControls
             this.AddAppointment_BTN.Visible = false;
             this.selectedPatientID = -1;
             this.searchPatients_LBL.Text = "Search Patients";
+         
         }
 
         private void getAllPatients_Click(object sender, EventArgs e)
@@ -201,6 +199,24 @@ namespace Clinic.UserControls
             if (result == DialogResult.Yes)
             {
                this.GetAppointmentData_ForSelectedPatient(this.selectedPatientID);
+            }
+        }
+
+        private void ShowHideDateTimePicker_button_Click(object sender, EventArgs e)
+        {
+            if (this.DOB_ValueChanged == false)
+            {
+                this.DateOfBirth_datetimePicker.Value = DateTime.Now;
+                this.DateOfBirth_datetimePicker.Visible = true;
+                this.DOB_ValueChanged = true;
+                this.ShowHideDateTimePicker_button.Text = "Remove Date from search";
+            }
+            else
+            {
+                this.DateOfBirth_datetimePicker.Value = DateTime.Now;
+                this.DateOfBirth_datetimePicker.Visible = false;
+                this.DOB_ValueChanged = false;
+                this.ShowHideDateTimePicker_button.Text = "Add Date to search";
             }
         }
     }
