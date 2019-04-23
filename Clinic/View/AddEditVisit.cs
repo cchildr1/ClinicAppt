@@ -62,6 +62,10 @@ namespace Clinic.View
                 this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
                 this.infoTextBox.Text = visit.Info;
             }
+            if (visit.FinalDiagnosis != "")
+            {
+                this.ToggleControlLock();
+            }
             this.FillTestData(visit.VisitId);
             this.FillInsertTestComboBox();
             this.DeleteRowButton.Text = "Delete";
@@ -178,6 +182,7 @@ namespace Clinic.View
 
         private void BtCancel_Click(object sender, EventArgs e)
         {
+            this.ToggleControlLock();
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
         }
@@ -378,7 +383,6 @@ namespace Clinic.View
             this.bpDiastolicTextBox.Enabled = !this.bpDiastolicTextBox.Enabled;
             this.pulseTextBox.Enabled = !this.pulseTextBox.Enabled;
             this.weightTextBox.Enabled = !this.weightTextBox.Enabled;
-            this.bodyTemperatureTextBox.Enabled = !this.bodyTemperatureTextBox.Enabled;
             this.symptomsTextBox.Enabled = !this.symptomsTextBox.Enabled;
             this.initialDiagnosisTextBox.Enabled = !this.initialDiagnosisTextBox.Enabled;
             this.infoTextBox.Enabled = !this.infoTextBox.Enabled;
@@ -386,6 +390,7 @@ namespace Clinic.View
             this.CBInsertTestCode.Enabled = !this.CBInsertTestCode.Enabled;
             this.BTInsertTest.Enabled = !this.BTInsertTest.Enabled;
             this.BtSubmitChanges.Enabled = !this.BtSubmitChanges.Enabled;
+            this.btOK.Enabled = !this.btOK.Enabled;
         }
     }
 }
