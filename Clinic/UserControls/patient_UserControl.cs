@@ -46,9 +46,10 @@ namespace Clinic.UserControls
         private void ResetSearchButton_Click(object sender, EventArgs e)
         {
             this.DateOfBirth_datetimePicker.Value = DateTime.Now;
-            this.DOB_ValueChanged = false;
+            this.DOB_ValueChanged = true;
             this.lastname_textbox.Text = "";
             this.firstname_textbox.Text = "";
+            this.ShowHideDateTimePicker_button_Click(sender, e);
           
         }
 
