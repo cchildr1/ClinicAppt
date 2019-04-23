@@ -10,7 +10,6 @@ namespace Clinic.View
     /// </summary>
     public partial class MainDashboardNurse : Form
     {
-        private bool loggingOut;
         public Nurse loggedInNurse { get; set; }
 
         /// <summary>
@@ -43,7 +42,6 @@ namespace Clinic.View
 
         private void LogOut_Button_Click(object sender, EventArgs e)
         {
-            //this.loggingOut = true;
             this.DialogResult = DialogResult.Cancel;
         }
     }

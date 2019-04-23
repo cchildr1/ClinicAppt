@@ -62,9 +62,11 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
+
                             nurses.Add(nurse);
                         }
                     }
@@ -73,6 +75,67 @@ namespace Clinic.DAL
             }
             return nurses;
         }
+
+        /// <summary>
+        /// This method returns status description equal to the accepted ID
+        /// </summary>
+        /// <returns></returns>
+        public string GetStatusByID(int statusID)
+        {
+            string status_description = "";
+            string selectStatement = "Select status FROM status_code " +
+                "WHERE id = @statusID";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("statusID", statusID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                           
+                            {
+                                status_description = reader["status"].ToString();                               
+                            };
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return status_description;
+        }
+
+        /// <summary>
+        /// This method will change the accpted nurse status to the value memeber
+        /// </summary>
+        /// <param name="valueMember"></param>
+        public void ChangeStatus(int nurseID, int valueMember)
+        {
+            string updateStatus = "UPDATE nurse " +
+                "SET status_id = @valuemember " +
+                "WHERE id = @nurseID";
+            try
+            {
+                using (SqlConnection connection = ClinicDBConnection.GetConnection())
+                {
+                    connection.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatus, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@valuemember", valueMember);
+                        updateCommand.Parameters.AddWithValue("@nurseID", nurseID);
+                        updateCommand.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+    
 
         /// <summary>
         /// This method adds the accepted nurse to the database
@@ -90,7 +153,7 @@ namespace Clinic.DAL
                     {
                         string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
                         "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
-                        string insertNurse = "INSERT Nurse(person_id) VALUES (@personalID)";
+                        string insertNurse = "INSERT Nurse(person_id, status_id) VALUES (@personalID, @status_id)";
 
                         using (SqlCommand insertPersonCommand = new SqlCommand(insertPerson, connection))
                             {
@@ -103,6 +166,7 @@ namespace Clinic.DAL
                                 insertPersonCommand.Parameters.AddWithValue("streetAddress", addedNurse.StreetAddress);
                                 insertPersonCommand.Parameters.AddWithValue("phoneNumber", addedNurse.Phone);
                                 insertPersonCommand.Parameters.AddWithValue("Zipcode", addedNurse.Zipcode);
+                 
                                 insertPersonCommand.ExecuteNonQuery();
 
                                 string selectStatement = "SELECT IDENT_CURRENT('Person') FROM Person";
@@ -114,11 +178,12 @@ namespace Clinic.DAL
                                 }
                             }
 
-                            using (SqlCommand insertPatientCommand = new SqlCommand(insertNurse, connection))
+                            using (SqlCommand insertNurseCommand = new SqlCommand(insertNurse, connection))
                             {
-                                insertPatientCommand.Transaction = transaction;
-                                insertPatientCommand.Parameters.AddWithValue("@personalID", addedNurse_PersonalInfoID);
-                                insertPatientCommand.ExecuteNonQuery();
+                                insertNurseCommand.Transaction = transaction;
+                                insertNurseCommand.Parameters.AddWithValue("@personalID", addedNurse_PersonalInfoID);
+                                insertNurseCommand.Parameters.AddWithValue("status_id", addedNurse.StatusID);
+                                insertNurseCommand.ExecuteNonQuery();
                             }
 
                             transaction.Commit();
@@ -141,7 +206,7 @@ namespace Clinic.DAL
         public List<Nurse> GetNurseByFullName(string firstname, string lastname)
         {
             List<Nurse> nurses = new List<Nurse>();
-            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+            string selectStatement = "SELECT nurse.id, person_id, status_id FROM nurse " +
                 "JOIN person person ON person_id = person.id " +
                "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND  last_name = @lastname_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -158,9 +223,11 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
+
                             nurses.Add(nurse);
                         }
 
@@ -180,7 +247,7 @@ namespace Clinic.DAL
         public List<Nurse> GetAllNursesByFirstname(string firstname)
         {
             List<Nurse> nurses = new List<Nurse>();
-            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+            string selectStatement = "SELECT nurse.id, person_id, status_id  FROM nurse " +
                 "JOIN person person ON person_id = person.id " +
                "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -196,9 +263,11 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
+
                             nurses.Add(nurse);
                         }
 
@@ -218,7 +287,7 @@ namespace Clinic.DAL
         public List<Nurse> GetAllNursesByLastname(string lastname)
         {
             List<Nurse> nurses = new List<Nurse>();
-            string selectStatement = "SELECT nurse.id, person_id FROM nurse " +
+            string selectStatement = "SELECT nurse.id, person_id, status_id  FROM nurse " +
                 "JOIN person person ON person_id = person.id " +
                "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean)";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
@@ -234,9 +303,11 @@ namespace Clinic.DAL
                             Nurse nurse = new Nurse
                             {
                                 NurseID = (int)reader["id"],
-                                PersonId = (int)reader["person_id"]
+                                PersonId = (int)reader["person_id"],
+                                StatusID = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(nurse);
+
                             nurses.Add(nurse);
                         }
 
@@ -270,7 +341,9 @@ namespace Clinic.DAL
                         {
                             nurse.NurseID = (int)reader["id"];
                             nurse.PersonId = (int)reader["person_id"];
+                            nurse.StatusID = (int)reader["status_id"];
                             PopulatePersonalInformation(nurse);
+
                         }
                     }
                 }
@@ -296,6 +369,7 @@ namespace Clinic.DAL
                 "street_address = @new_street_address, " +
                 "phone = @new_phone, " +
                 "zipcode = @new_zipcode " +
+
                 "WHERE id = @id AND " +
                 "last_name = @old_last_name AND " +
                 "first_name = @old_first_name AND " +
@@ -304,7 +378,7 @@ namespace Clinic.DAL
                 "gender = @old_gender AND " +
                 "street_address = @old_street_address AND " +
                 "phone = @old_phone AND " +
-                "zipcode = @old_zipcode;";
+                "zipcode = @old_zipcode " ;
             int count = 0;
             try
             {
@@ -324,7 +398,7 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@new_street_address", updatedNurse.StreetAddress);
                         updateCommand.Parameters.AddWithValue("@new_phone", updatedNurse.Phone);
                         updateCommand.Parameters.AddWithValue("@new_zipcode", updatedNurse.Zipcode);
-
+                        
                         updateCommand.Parameters.AddWithValue("@id", oldNurse.PersonId);
                         updateCommand.Parameters.AddWithValue("@old_last_name", oldNurse.LastName);
                         updateCommand.Parameters.AddWithValue("@old_first_name", oldNurse.FirstName);
@@ -337,7 +411,7 @@ namespace Clinic.DAL
                         updateCommand.Parameters.AddWithValue("@old_street_address", oldNurse.StreetAddress);
                         updateCommand.Parameters.AddWithValue("@old_phone", oldNurse.Phone);
                         updateCommand.Parameters.AddWithValue("@old_zipcode", oldNurse.Zipcode);
-
+                        
                         count = updateCommand.ExecuteNonQuery();
                     }
                     connection.Close();
