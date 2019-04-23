@@ -65,6 +65,7 @@ namespace Clinic.View
             if (visit.FinalDiagnosis != "")
             {
                 this.ToggleControlLock();
+                MessageBox.Show("A final diagnosis has been entered. You cannot edit this visit.");
             }
             this.FillTestData(visit.VisitId);
             this.FillInsertTestComboBox();
@@ -391,6 +392,7 @@ namespace Clinic.View
             this.BTInsertTest.Enabled = !this.BTInsertTest.Enabled;
             this.BtSubmitChanges.Enabled = !this.BtSubmitChanges.Enabled;
             this.btOK.Enabled = !this.btOK.Enabled;
+            this.testDataGridView.Enabled = !this.testDataGridView.Enabled;
         }
     }
 }
