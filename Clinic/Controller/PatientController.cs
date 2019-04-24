@@ -107,5 +107,13 @@ namespace Clinic.Controller
         {
             return this.patientDAL.IsSSN_Not_Duplicate(ssn);
         }
+
+        /// <summary>
+        /// This method deactivates the Patent equal to the accepted patient ID
+        /// </summary>
+        public void DeactivePatient(int patientID)
+        {
+            this.patientDAL.DeactivatePatient(patientID);
+        }
     }
 }

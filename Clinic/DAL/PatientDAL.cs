@@ -537,6 +537,7 @@ namespace Clinic.DAL
                         {
                             patient.PatientID = (int)reader["id"];
                             patient.PersonId = (int)reader["personal_information_id"];
+                            patient.Status = (int)reader["status_id"];
                         }
                         PopulatePersonalInformation(patient);
                     }
@@ -655,6 +656,24 @@ namespace Clinic.DAL
                 connection.Close();
             }
             return person;
+        }
+
+
+        public void DeactivatePatient(int patientID)
+        {
+            string deactivatePatient = "UPDATE patient " +
+                "SET status_id = 0 " +
+                "WHERE id = @patientID";
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(deactivatePatient, connection)) 
+                {
+                    command.Parameters.AddWithValue("@patientID", patientID);
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
         }
     }
 }

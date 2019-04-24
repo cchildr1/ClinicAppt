@@ -14,11 +14,12 @@ namespace Clinic.View
         PatientController patientController = new PatientController();
         string errorMessage = "";
         bool noValueChanged;
-        public EditPatient(
-            )
+
+        public EditPatient()
         {
             InitializeComponent();
             this.SetUpGender_ComboBox();
+            this.errorMessage_lbl.Visible = true;
         }
 
         private void SetUpGender_ComboBox()
@@ -70,7 +71,7 @@ namespace Clinic.View
                 editedPatient.City = zipcodeController.GetCityFromZipcode(editedPatient.Zipcode);
                 editedPatient.State = zipcodeController.GetStateFromZipcode(editedPatient.Zipcode);
                 editedPatient.Phone = this.phoneNumber_textbox.Text;
-
+               
                 if (this.patientController.EditPatient(this.oldPatient, editedPatient))
                 {
                     MessageBox.Show("Patient updated.");
@@ -190,7 +191,7 @@ namespace Clinic.View
 
         private void MakePatientInactive_button_Click(object sender, System.EventArgs e)
         {
-            
+            this.patientController.DeactivePatient(11);
         }
     }
 }
