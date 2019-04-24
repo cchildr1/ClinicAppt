@@ -102,7 +102,7 @@ namespace Clinic.UserControls
 
             if (nurses.Count > 0)
             {
-                Nurse nurse = new Nurse();
+                Nurse nurse = new Nurse(); 
                 for (int count = 0; count < nurses.Count; count++)
                 {
                     nurse = nurses[count];
@@ -143,7 +143,7 @@ namespace Clinic.UserControls
                         nurse.Phone,
                         nurse.Zipcode,
                         this.GetStatusDescription(nurse.StatusID),
-                        nurse.NurseID.ToString()
+                        nurse.NurseID.ToString(),
                     };
             return rowAdded;
         }

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Controller\AppointmentController.cs" />
     <Compile Include="Controller\DoctorController.cs" />
+    <Compile Include="Controller\EmployeeController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\NurseController.cs" />
     <Compile Include="Controller\PatientController.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Controller\TestController.cs" />
     <Compile Include="Controller\VisitController.cs" />
     <Compile Include="Controller\ZipcodeController.cs" />
+    <Compile Include="DAL\EmployeeDAL.cs" />
     <Compile Include="DAL\StatusDAL.cs" />
     <Compile Include="DAL\TestDAL.cs" />
     <Compile Include="DataSets\CS6232_g3DataSet.cs">
@@ -116,6 +118,12 @@
     <Compile Include="View\AddEditVisit.Designer.cs">
       <DependentUpon>AddEditVisit.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AddEdit_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddEdit_Employee.Designer.cs">
+      <DependentUpon>AddEdit_Employee.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Add_Edit_Nurse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,12 +147,6 @@
     </Compile>
     <Compile Include="View\EditPatient.Designer.cs">
       <DependentUpon>EditPatient.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
@@ -187,6 +189,9 @@
     <EmbeddedResource Include="View\AddEditVisit.resx">
       <DependentUpon>AddEditVisit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\AddEdit_Employee.resx">
+      <DependentUpon>AddEdit_Employee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Add_Edit_Nurse.resx">
       <DependentUpon>Add_Edit_Nurse.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,9 +203,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditPatient.resx">
       <DependentUpon>EditPatient.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

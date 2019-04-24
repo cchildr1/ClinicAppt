@@ -35,13 +35,13 @@
             this.bt_Login = new System.Windows.Forms.Button();
             this.bt_Clear = new System.Windows.Forms.Button();
             this.userNameTextBox = new System.Windows.Forms.TextBox();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.passwordMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             userNameLabel = new System.Windows.Forms.Label();
             passwordLabel1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // userNameLabel
@@ -110,10 +110,6 @@
             this.userNameTextBox.Size = new System.Drawing.Size(124, 20);
             this.userNameTextBox.TabIndex = 1;
             // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(Clinic.Model.Employee);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -140,6 +136,7 @@
             // 
             // passwordMaskedTextBox
             // 
+            this.passwordMaskedTextBox.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.passwordMaskedTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Password", true));
             this.passwordMaskedTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.passwordMaskedTextBox.Location = new System.Drawing.Point(84, 29);
@@ -147,6 +144,10 @@
             this.passwordMaskedTextBox.Size = new System.Drawing.Size(124, 20);
             this.passwordMaskedTextBox.TabIndex = 2;
             this.passwordMaskedTextBox.UseSystemPasswordChar = true;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(Clinic.Model.Employee);
             // 
             // LoginForm
             // 
@@ -157,9 +158,9 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
