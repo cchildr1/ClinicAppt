@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Clinic.Controller;
 using Clinic.Model;
+using Clinic.View;
 
 
 namespace Clinic.View
@@ -29,6 +30,7 @@ namespace Clinic.View
             InitializeComponent();
             this.SetUpGender_ComboBox();
             this.SetUpStatus_ComboBox();
+            this.creditentals_button.Visible = false;
         }
 
 
@@ -52,6 +54,7 @@ namespace Clinic.View
             this.gender_ComboBox.Enabled = false;
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
+            this.creditentals_button.Visible = true;
         }
 
 
@@ -252,9 +255,10 @@ namespace Clinic.View
                         }            
                     }
                     else
-                    {
-                        this.nurseController.Addnurse(nurse);
+                    {                 
+                        Nurse addedNurse = this.nurseController.Addnurse(nurse);
                         this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
+                        this.Add_employee_info(addedNurse);                           
                     }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
@@ -264,6 +268,39 @@ namespace Clinic.View
                     this.ErrorCheck();
                 }
             }            
+        }
+
+        private void creditentals_button_Click(object sender, EventArgs e)
+        {
+            AddEdit_Employee edit_Employee = new AddEdit_Employee();
+            if (this.editedNurse.UserName != null)
+            {
+                edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
+            }
+
+            DialogResult result = edit_Employee.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                Employee employee = edit_Employee.ReturnedEmployee;
+                this.editedNurse.EmployeeID = employee.EmployeeID;
+                this.editedNurse.UserName = employee.UserName;
+                this.editedNurse.Password = employee.Password;
+                this.editedNurse.PersonId = employee.PersonId;
+                this.Refresh(); 
+                this.SetUp_ForEditNurse(this.editedNurse);
+            }
+        }
+
+        private void Add_employee_info(Employee employee)
+        {
+            AddEdit_Employee add_Employee = new AddEdit_Employee();
+            add_Employee.SetUpFormFor_New_Employee(employee);
+            DialogResult result = add_Employee.ShowDialog();
+            if (result == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Yes;
+                this.Close();
+            }
         }
     }
 }

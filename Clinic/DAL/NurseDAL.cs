@@ -42,13 +42,54 @@ namespace Clinic.DAL
 
         }
 
+
+        /// <summary>
+        /// Gets a specific nurse by their id
+        /// </summary>
+        /// <param name="id">is the id used to select the nurse</param>
+        /// <returns>Nurse object</returns>
+        public static Nurse GetNurseByID(int id)
+        {
+            string selectStatement = "SELECT n.*, username, password, u.id " +
+                "FROM users AS u " +
+                "JOIN nurse AS n ON n.person_id = u.person_id " +
+                "WHERE n.id = @NurseID;";
+            Nurse nurse = new Nurse();
+
+            using (SqlConnection connection = ClinicDBConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@NurseID", id);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            nurse.NurseID = (int)reader["id"];
+                            nurse.PersonId = (int)reader["person_id"];
+                            nurse.StatusID = (int)reader["status_id"];
+                            nurse.UserName = reader["username"].ToString();
+                     //       nurse.EmployeeID = (int)reader["u.id"];
+                            PopulatePersonalInformation(nurse);
+
+                        }
+                    }
+                }
+                connection.Close();
+            }
+            return nurse;
+        }
+
         /// <summary> 
         /// Retrieves all nurses from the database
         /// </summary>
         /// <returns>List of all nurses</returns>
         public List<Nurse> GetAllNurses()
         {
-            string selectStatement = "SELECT * FROM nurse;";
+            string selectStatement = "SELECT n.*, username, password, u.id " +
+                "FROM users AS u " +
+                "JOIN nurse AS n ON n.person_id = u.person_id;";
             List<Nurse> nurses = new List<Nurse>();
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
@@ -63,7 +104,9 @@ namespace Clinic.DAL
                             {
                                 NurseID = (int)reader["id"],
                                 PersonId = (int)reader["person_id"],
-                                StatusID = (int)reader["status_id"]
+                                StatusID = (int)reader["status_id"],
+                                UserName = reader["username"].ToString(),
+                           //     EmployeeID = (int)reader["users.id"]
                             };
                             PopulatePersonalInformation(nurse);
 
@@ -98,7 +141,7 @@ namespace Clinic.DAL
                            
                             {
                                 status_description = reader["status"].ToString();                               
-                            };
+                            }
                         }
                     }
                 }
@@ -141,8 +184,9 @@ namespace Clinic.DAL
         /// This method adds the accepted nurse to the database
         /// </summary>
         /// <param name="nurse"></param>
-        public void AddNurse(Nurse addedNurse)
+        public Nurse AddNurse(Nurse addedNurse)
         {
+            Nurse returnedNurse = new Nurse();
             int addedNurse_PersonalInfoID = -1;
             try
             {
@@ -185,8 +229,10 @@ namespace Clinic.DAL
                                 insertNurseCommand.Parameters.AddWithValue("status_id", addedNurse.StatusID);
                                 insertNurseCommand.ExecuteNonQuery();
                             }
-
+                       
                             transaction.Commit();
+
+                            addedNurse.PersonId = addedNurse_PersonalInfoID;
                         }
 
                     }
@@ -195,6 +241,7 @@ namespace Clinic.DAL
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
+            return addedNurse;
         }
 
         /// <summary>
@@ -319,38 +366,6 @@ namespace Clinic.DAL
             return nurses;
         }
 
-        /// <summary>
-        /// Gets a specific nurse by their id
-        /// </summary>
-        /// <param name="id">is the id used to select the nurse</param>
-        /// <returns>Nurse object</returns>
-        public static Nurse GetNurseByID(int id)
-        {
-            string selectStatement = "SELECT * FROM nurse WHERE id = @NurseID;";
-            Nurse nurse = new Nurse();
-            
-            using (SqlConnection connection = ClinicDBConnection.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(selectStatement, connection))
-                {
-                    command.Parameters.AddWithValue("@NurseID", id);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            nurse.NurseID = (int)reader["id"];
-                            nurse.PersonId = (int)reader["person_id"];
-                            nurse.StatusID = (int)reader["status_id"];
-                            PopulatePersonalInformation(nurse);
-
-                        }
-                    }
-                }
-                connection.Close();
-            }
-            return nurse;
-        }
 
         /// <summary>
         /// Updates a nurse object in the database.
