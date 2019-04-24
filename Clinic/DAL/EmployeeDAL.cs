@@ -31,7 +31,6 @@ namespace Clinic.DAL
                     //     update.Parameters.AddWithValue("old_password", old_employee.Password);
                     update.Parameters.AddWithValue("@old_id", old_employee.EmployeeID);
                     update.Parameters.AddWithValue("@old_personID", old_employee.PersonId);
-
                     int count = update.ExecuteNonQuery();
                     connection.Close();
                     return count > 0;
