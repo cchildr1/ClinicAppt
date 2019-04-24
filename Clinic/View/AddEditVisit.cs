@@ -140,8 +140,8 @@ namespace Clinic.View
                 };
                 newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
                 newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
-
-                if (this.update && valid)
+                this.ValidateRequiredFields();
+                if (this.update && this.valid)
                 {
                     if (this.visitController.EditVisit(oldVisit, newVisit))
                     {
@@ -154,7 +154,7 @@ namespace Clinic.View
                         this.DialogResult = DialogResult.Cancel;
                     }
                 }
-                else if (!this.update && valid)
+                else if (!this.update && this.valid)
                 {
                     if (this.visitController.AddVisit(newVisit) > 0)
                     {
@@ -212,6 +212,27 @@ namespace Clinic.View
                 this.valid = false;
                 return 0;
             }
+        }
+
+        private void ValidateTextPresent(TextBox textbox)
+        {
+            if (textbox.Text == "")
+            {
+                textbox.BackColor = Color.Red;
+                this.valid = false;
+            }
+        }
+
+        private void ValidateRequiredFields()
+        {
+            this.ValidateTextPresent(bpSystolicTextBox);
+            this.ValidateTextPresent(bpDiastolicTextBox);
+            this.ValidateTextPresent(pulseTextBox);
+            this.ValidateTextPresent(weightTextBox);
+            this.ValidateTextPresent(bodyTemperatureTextBox);
+            this.ValidateTextPresent(symptomsTextBox);
+            this.ValidateTextPresent(infoTextBox);
+            this.ValidateTextPresent(initialDiagnosisTextBox);
         }
 
         private void ColorReset()
