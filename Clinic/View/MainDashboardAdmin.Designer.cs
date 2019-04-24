@@ -30,13 +30,16 @@
         {
             this.mainDashBoardNurse_TabControl = new System.Windows.Forms.TabControl();
             this.nurse_tabpage = new System.Windows.Forms.TabPage();
+            this.admin_NurseControl_userControl1 = new Clinic.UserControls.admin_NurseControl_userControl();
             this.WelcomeLBL = new System.Windows.Forms.Label();
             this.LogOut_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.admin_NurseControl_userControl1 = new Clinic.UserControls.admin_NurseControl_userControl();
+            this.tabPageReport = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.mainDashBoardNurse_TabControl.SuspendLayout();
             this.nurse_tabpage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabPageReport.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainDashBoardNurse_TabControl
@@ -44,6 +47,7 @@
             this.mainDashBoardNurse_TabControl.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
             this.tableLayoutPanel1.SetColumnSpan(this.mainDashBoardNurse_TabControl, 2);
             this.mainDashBoardNurse_TabControl.Controls.Add(this.nurse_tabpage);
+            this.mainDashBoardNurse_TabControl.Controls.Add(this.tabPageReport);
             this.mainDashBoardNurse_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainDashBoardNurse_TabControl.Location = new System.Drawing.Point(3, 32);
             this.mainDashBoardNurse_TabControl.Name = "mainDashBoardNurse_TabControl";
@@ -60,6 +64,14 @@
             this.nurse_tabpage.TabIndex = 0;
             this.nurse_tabpage.Text = "Nurses";
             this.nurse_tabpage.UseVisualStyleBackColor = true;
+            // 
+            // admin_NurseControl_userControl1
+            // 
+            this.admin_NurseControl_userControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.admin_NurseControl_userControl1.Location = new System.Drawing.Point(0, 0);
+            this.admin_NurseControl_userControl1.Name = "admin_NurseControl_userControl1";
+            this.admin_NurseControl_userControl1.Size = new System.Drawing.Size(1053, 389);
+            this.admin_NurseControl_userControl1.TabIndex = 0;
             // 
             // WelcomeLBL
             // 
@@ -106,13 +118,30 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1067, 450);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // admin_NurseControl_userControl1
+            // tabPageReport
             // 
-            this.admin_NurseControl_userControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.admin_NurseControl_userControl1.Location = new System.Drawing.Point(0, 0);
-            this.admin_NurseControl_userControl1.Name = "admin_NurseControl_userControl1";
-            this.admin_NurseControl_userControl1.Size = new System.Drawing.Size(1053, 389);
-            this.admin_NurseControl_userControl1.TabIndex = 0;
+            this.tabPageReport.Controls.Add(this.tableLayoutPanel2);
+            this.tabPageReport.Location = new System.Drawing.Point(4, 22);
+            this.tabPageReport.Name = "tabPageReport";
+            this.tabPageReport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageReport.Size = new System.Drawing.Size(1053, 389);
+            this.tabPageReport.TabIndex = 1;
+            this.tabPageReport.Text = "Reports";
+            this.tabPageReport.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1047, 383);
+            this.tableLayoutPanel2.TabIndex = 0;
             // 
             // MainDashboardAdmin
             // 
@@ -126,6 +155,7 @@
             this.nurse_tabpage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabPageReport.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -138,5 +168,7 @@
         private System.Windows.Forms.Label WelcomeLBL;
         private System.Windows.Forms.TabPage nurse_tabpage;
         private UserControls.admin_NurseControl_userControl admin_NurseControl_userControl1;
+        private System.Windows.Forms.TabPage tabPageReport;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
