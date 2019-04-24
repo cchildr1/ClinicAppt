@@ -30,7 +30,7 @@ namespace Clinic.View
 
         private void SetUpPatient_ComboBox()
         {
-            this.Patient_ComboBox.DataSource = this.patientController.GetAllPatients();
+            this.Patient_ComboBox.DataSource = this.patientController.GetAllPatientsWith_ActiveStatus();
             this.Patient_ComboBox.DisplayMember = "FullName";
             this.Patient_ComboBox.ValueMember = "PatientID";
             this.Patient_ComboBox.SelectedIndex = -1;

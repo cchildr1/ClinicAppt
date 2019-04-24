@@ -189,7 +189,7 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
            "JOIN person person ON personal_information_id = person.id " +
-           "WHERE person.id IN (SELECT id FROM person WHERE date_of_birth = @dateOfBirthdate_clean)";
+           "WHERE person.id IN (SELECT id FROM person WHERE date_of_birth = @dateOfBirthdate_clean) AND status_id = 1;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -225,7 +225,7 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
                "JOIN person person ON personal_information_id = person.id " +
-               "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean)";
+               "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean) AND status_id = 1;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -264,7 +264,8 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
            "JOIN person person ON personal_information_id = person.id " +
-           "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean)";
+           "WHERE person.id IN (SELECT id FROM person WHERE last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean) " +
+           "AND status_id = 1;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -303,7 +304,8 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
            "JOIN person person ON personal_information_id = person.id " +
-           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND date_of_birth = @dateOfBirthdate_clean)";
+           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND date_of_birth = @dateOfBirthdate_clean) " +
+           "AND status_id = 1;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -341,7 +343,8 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
                "JOIN person person ON personal_information_id = person.id " +
-               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean)";
+               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean)" +
+               " AND status_id = 1;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -380,7 +383,8 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
            "JOIN person person ON personal_information_id = person.id " +
-           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean)";
+           "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean AND last_name = @lastname_clean AND date_of_birth = @dateOfBirthdate_clean)" +
+           " AND status_id = 1; ";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -418,7 +422,8 @@ namespace Clinic.DAL
             List<Patient> patients = new List<Patient>();
             string selectStatement = "SELECT patient.id, personal_information_id  FROM patient " +
                "JOIN person person ON personal_information_id = person.id " +
-               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean)";
+               "WHERE person.id IN (SELECT id FROM person WHERE first_name = @firstname_clean)" +
+               " AND status_id = 1; ";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -448,10 +453,11 @@ namespace Clinic.DAL
         /// Gets all patients from DB with personal information populated
         /// </summary>
         /// <returns>List of all patients</returns>
-        public List<Patient> GetAllPatients()
+        public List<Patient> GetAllPatientsWith_ActiveStatus()
         {
             List<Patient> patients = new List<Patient>();
-            string selectStatement = "SELECT * FROM patient;";
+            string selectStatement = "SELECT * FROM patient " +
+                "WHERE status_id = 1;";
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
@@ -464,7 +470,8 @@ namespace Clinic.DAL
                             Patient patient = new Patient
                             {
                                 PatientID = (int)reader["id"],
-                                PersonId = (int)reader["personal_information_id"]
+                                PersonId = (int)reader["personal_information_id"],
+                                Status = (int)reader["status_id"]
                             };
                             PopulatePersonalInformation(patient);
                             patients.Add(patient);
@@ -523,7 +530,7 @@ namespace Clinic.DAL
         /// <returns>returns a patient equal to the accepted patientID</returns>
         public Patient GetPatientByID(int patientID)
         {
-            string selectStatement = "SELECT * FROM patient WHERE id = @patientID;";
+            string selectStatement = "SELECT * FROM patient WHERE id = @patientID AND status_id = 1; ";
             Patient patient = new Patient();
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
@@ -658,7 +665,11 @@ namespace Clinic.DAL
             return person;
         }
 
-
+        /// <summary>
+        /// This method sets the patients status_id equal to 0 or inactive
+        /// equal to the accepted patientID
+        /// </summary>
+        /// <param name="patientID"></param>
         public void DeactivatePatient(int patientID)
         {
             string deactivatePatient = "UPDATE patient " +

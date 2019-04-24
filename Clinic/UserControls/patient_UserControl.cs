@@ -158,7 +158,8 @@ namespace Clinic.UserControls
             this.ResetDataGridView_button_Click(sender, e);
             this.patients_datagridview.DataSource = null;
             this.patients_datagridview.ColumnCount = 0;
-            this.patients_datagridview.DataSource = this.patientController.GetAllPatients();
+
+            this.patients_datagridview.DataSource = this.patientController.GetAllPatientsWith_ActiveStatus();
             this.editSelectedPatient_Button.Visible = false;
             this.EditPatientGridView();
         }

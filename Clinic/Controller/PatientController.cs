@@ -11,14 +11,16 @@ namespace Clinic.Controller
     class PatientController
     {
         PatientDAL patientDAL = new PatientDAL();
+
         /// <summary>
-        /// Returns a list of all Patients
+        /// Returns a list of all Patients with active status
         /// </summary>
         /// <returns>a list of all Patients</returns>
-        public List<Patient> GetAllPatients()
+        public List<Patient> GetAllPatientsWith_ActiveStatus()
         {
-            return this.patientDAL.GetAllPatients();
+            return this.patientDAL.GetAllPatientsWith_ActiveStatus();
         }
+
 
         /// <summary>
         /// Returns Patient equal to paientID
