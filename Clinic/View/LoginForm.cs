@@ -46,7 +46,7 @@ namespace Clinic
                     {
                         this.Hide();
                         MainDashboardNurse mainDashboardNurse = new MainDashboardNurse(loggedInNurse);
-
+                        mainDashboardNurse.StartPosition = FormStartPosition.CenterScreen;
                         DialogResult result = mainDashboardNurse.ShowDialog();
 
                         if (result == DialogResult.Cancel)
@@ -61,6 +61,7 @@ namespace Clinic
                     this.Hide();
 
                     MainDashboardAdmin mainDashboardAdmin = new MainDashboardAdmin();
+                    mainDashboardAdmin.StartPosition = FormStartPosition.CenterScreen;
                     mainDashboardAdmin.SetLoggedInName(employee.FirstName + " " + employee.LastName);
                     DialogResult result = mainDashboardAdmin.ShowDialog();
 
