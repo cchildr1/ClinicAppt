@@ -141,10 +141,16 @@ namespace Clinic.View
                 newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
                 newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
                 this.ValidateRequiredFields();
-                // CHECK FOR FINAL DIAGNOSIS AND OPEN TESTS HERE
+                
                 if (finalDiagnosisTextBox.Text != "")
                 {
+                    if (!this.CheckForOpenTests())
+                    {
+                        MessageBox.Show("You cannot enter a final diagnosis with open tests.", "Open Tests Present");
+                        return;
+                    }
                     DialogResult result = MessageBox.Show("Once a final diagnosis is entered, you can no longer edit this visit. Confirm?", "Final Dignosis Closes Visit", MessageBoxButtons.YesNo);
+
                     if (result == DialogResult.No)
                     {
                         return;
@@ -347,8 +353,7 @@ namespace Clinic.View
         
         private void ProcessDeleteChanges(DataSet data)
         {
-            DataTable table = data.Tables[0].GetChanges(DataRowState.Deleted);
-            if (table != null)
+            if (this.rowsToDelete.Any())
             {
                 
                 foreach (int id in this.rowsToDelete)
@@ -400,11 +405,19 @@ namespace Clinic.View
             if (senderGrid.Columns[e.ColumnIndex].ToString() == senderGrid.Columns["DeleteRowButton"].ToString() &&
                 e.RowIndex >= 0)
             {
-                DataRow row = this.cS6232_g3DataSet.Tables[0].Rows[e.RowIndex];
-                if (row["result"].ToString() == "" && row["date_available"].ToString() == "")
+                try
                 {
-                    this.rowsToDelete.Add((int)row["id"]);
-                    row.Delete();
+                    DataTable table = this.cS6232_g3DataSet.Tables[0];
+                    DataRow row = table.Rows[e.RowIndex];
+                    if (row["result"].ToString() == "" && row["date_available"].ToString() == "")
+                    {
+                        this.rowsToDelete.Add((int)row["id"]);
+                        row.Delete();
+                        table.AcceptChanges();
+                    }
+                } catch (DeletedRowInaccessibleException ex)
+                {
+
                 }
             }
         }
@@ -430,10 +443,18 @@ namespace Clinic.View
             this.testDataGridView.Enabled = !this.testDataGridView.Enabled;
         }
 
-        private void CheckForOpenTests()
+        private bool CheckForOpenTests()
         {
-            DataTable table = this.cS6232_g3DataSet.Tables[0];
+            bool valid = true;
+            foreach(DataRow row in cS6232_g3DataSet.Tables[0].Rows)
+            {
+                if (row["result"].ToString() == "" || row["date_available"].ToString() == "")
+                {
+                    valid = false;
+                }
+            }
             
+            return valid;
         }
     }
 }
