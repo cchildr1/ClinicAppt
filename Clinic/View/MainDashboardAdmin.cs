@@ -43,5 +43,21 @@ namespace Clinic.View
             this.sp_mostPerformedTestDuringDatesTableAdapter.Fill(this.reportData.sp_mostPerformedTestDuringDates, (DateTime)SqlDateTime.MinValue, (DateTime)SqlDateTime.MaxValue);
             this.reportViewer1.RefreshReport();
         }
+
+        private void btGenerateReport_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = (DateTime)SqlDateTime.MinValue;
+            DateTime endDate = (DateTime)SqlDateTime.MaxValue;
+            if (this.DTPStartDate.Checked)
+            {
+                startDate = this.DTPStartDate.Value;
+            }
+            if (this.DTPEndDate.Checked)
+            {
+                endDate = this.DTPEndDate.Value;
+            }
+            this.sp_mostPerformedTestDuringDatesTableAdapter.Fill(this.reportData.sp_mostPerformedTestDuringDates, startDate, endDate);
+            this.reportViewer1.RefreshReport();
+        }
     }
 }

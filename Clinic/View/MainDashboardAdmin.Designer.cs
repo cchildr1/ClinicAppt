@@ -33,7 +33,6 @@
             this.reportData = new Clinic.Reports.ReportData();
             this.mainDashBoardNurse_TabControl = new System.Windows.Forms.TabControl();
             this.nurse_tabpage = new System.Windows.Forms.TabPage();
-            this.admin_NurseControl_userControl1 = new Clinic.UserControls.admin_NurseControl_userControl();
             this.tabPageReport = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.DTPStartDate = new System.Windows.Forms.DateTimePicker();
@@ -45,15 +44,16 @@
             this.WelcomeLBL = new System.Windows.Forms.Label();
             this.LogOut_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.spmostPerformedTestDuringDatesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sp_mostPerformedTestDuringDatesTableAdapter = new Clinic.Reports.ReportDataTableAdapters.sp_mostPerformedTestDuringDatesTableAdapter();
+            this.admin_NurseControl_userControl1 = new Clinic.UserControls.admin_NurseControl_userControl();
+            this.sp_mostPerformedTestDuringDatesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.reportData)).BeginInit();
             this.mainDashBoardNurse_TabControl.SuspendLayout();
             this.nurse_tabpage.SuspendLayout();
             this.tabPageReport.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spmostPerformedTestDuringDatesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sp_mostPerformedTestDuringDatesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportData
@@ -83,14 +83,6 @@
             this.nurse_tabpage.TabIndex = 0;
             this.nurse_tabpage.Text = "Nurses";
             this.nurse_tabpage.UseVisualStyleBackColor = true;
-            // 
-            // admin_NurseControl_userControl1
-            // 
-            this.admin_NurseControl_userControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.admin_NurseControl_userControl1.Location = new System.Drawing.Point(0, 0);
-            this.admin_NurseControl_userControl1.Name = "admin_NurseControl_userControl1";
-            this.admin_NurseControl_userControl1.Size = new System.Drawing.Size(1053, 389);
-            this.admin_NurseControl_userControl1.TabIndex = 0;
             // 
             // tabPageReport
             // 
@@ -128,6 +120,7 @@
             // 
             // DTPStartDate
             // 
+            this.DTPStartDate.Checked = false;
             this.DTPStartDate.Cursor = System.Windows.Forms.Cursors.Default;
             this.DTPStartDate.Location = new System.Drawing.Point(235, 3);
             this.DTPStartDate.Name = "DTPStartDate";
@@ -152,9 +145,9 @@
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportViewer1.DocumentMapWidth = 12;
             reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.spmostPerformedTestDuringDatesBindingSource;
+            reportDataSource1.Value = this.sp_mostPerformedTestDuringDatesBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Clinic.Reports.Report1.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Clinic.Reports.report1.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(3, 58);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
@@ -174,6 +167,7 @@
             // 
             // DTPEndDate
             // 
+            this.DTPEndDate.Checked = false;
             this.DTPEndDate.Location = new System.Drawing.Point(699, 3);
             this.DTPEndDate.Name = "DTPEndDate";
             this.DTPEndDate.ShowCheckBox = true;
@@ -188,6 +182,7 @@
             this.btGenerateReport.TabIndex = 4;
             this.btGenerateReport.Text = "Generate";
             this.btGenerateReport.UseVisualStyleBackColor = true;
+            this.btGenerateReport.Click += new System.EventHandler(this.btGenerateReport_Click);
             // 
             // WelcomeLBL
             // 
@@ -234,14 +229,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1067, 450);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // spmostPerformedTestDuringDatesBindingSource
-            // 
-            this.spmostPerformedTestDuringDatesBindingSource.DataMember = "sp_mostPerformedTestDuringDates";
-            this.spmostPerformedTestDuringDatesBindingSource.DataSource = this.reportData;
-            // 
             // sp_mostPerformedTestDuringDatesTableAdapter
             // 
             this.sp_mostPerformedTestDuringDatesTableAdapter.ClearBeforeFill = true;
+            // 
+            // admin_NurseControl_userControl1
+            // 
+            this.admin_NurseControl_userControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.admin_NurseControl_userControl1.Location = new System.Drawing.Point(0, 0);
+            this.admin_NurseControl_userControl1.Name = "admin_NurseControl_userControl1";
+            this.admin_NurseControl_userControl1.Size = new System.Drawing.Size(1053, 389);
+            this.admin_NurseControl_userControl1.TabIndex = 0;
+            // 
+            // sp_mostPerformedTestDuringDatesBindingSource
+            // 
+            this.sp_mostPerformedTestDuringDatesBindingSource.DataMember = "sp_mostPerformedTestDuringDates";
+            this.sp_mostPerformedTestDuringDatesBindingSource.DataSource = this.reportData;
             // 
             // MainDashboardAdmin
             // 
@@ -260,7 +263,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spmostPerformedTestDuringDatesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sp_mostPerformedTestDuringDatesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,7 +285,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker DTPEndDate;
         private System.Windows.Forms.Button btGenerateReport;
-        private System.Windows.Forms.BindingSource spmostPerformedTestDuringDatesBindingSource;
         private Reports.ReportDataTableAdapters.sp_mostPerformedTestDuringDatesTableAdapter sp_mostPerformedTestDuringDatesTableAdapter;
+        private System.Windows.Forms.BindingSource sp_mostPerformedTestDuringDatesBindingSource;
     }
 }

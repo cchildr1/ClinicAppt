@@ -204,7 +204,7 @@
     <Compile Include="View\MainDashboardNurse.Designer.cs">
       <DependentUpon>MainDashboardNurse.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\report1.rdlc" />
     <EmbeddedResource Include="UserControls\admin_NurseControl_userControl.resx">
       <DependentUpon>admin_NurseControl_userControl.cs</DependentUpon>
     </EmbeddedResource>
