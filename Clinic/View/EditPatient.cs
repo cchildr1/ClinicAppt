@@ -47,6 +47,11 @@ namespace Clinic.View
             this.phoneNumber_textbox.Text = patient.Phone;
             this.zipcode_textbox.Text = patient.Zipcode;
             this.noValueChanged = true;
+            AppointmentController appointmentController = new AppointmentController();
+            if (appointmentController.GetAppointmentsByPatientID(this.oldPatient.PatientID).Count > 0)
+            {
+                this.MakePatientInactive_button.Visible = false;
+            }
         }
 
         private void editPatient_button_Click(object sender, System.EventArgs e)
@@ -181,6 +186,11 @@ namespace Clinic.View
             this.zipcode_lbl.ForeColor = System.Drawing.Color.Black;
             this.SSN_Label.ForeColor = System.Drawing.Color.Black;
             this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void MakePatientInactive_button_Click(object sender, System.EventArgs e)
+        {
+            
         }
     }
 }
