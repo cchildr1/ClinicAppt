@@ -62,7 +62,7 @@ namespace Clinic.View
                 this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
                 this.infoTextBox.Text = visit.Info;
             }
-            if (visit.FinalDiagnosis != "")
+            if (!(visit.FinalDiagnosis == null || visit.FinalDiagnosis == ""))
             {
                 this.ToggleControlLock();
                 MessageBox.Show("A final diagnosis has been entered. You cannot edit this visit.");
