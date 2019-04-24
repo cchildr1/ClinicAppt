@@ -21,6 +21,7 @@ namespace Clinic.View
         private string errorMessage = "";
         private bool selected_DOB = false;
         private bool ssn_numberChanged = false;
+
         /// <summary>
         /// This is the constuctor it initalizes the AddNurse dialog
         /// </summary>

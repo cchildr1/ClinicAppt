@@ -35,18 +35,18 @@
             this.editSelectedPatient_Button = new System.Windows.Forms.Button();
             this.patients_datagridview = new System.Windows.Forms.DataGridView();
             this.doubleClickInstructions_LBL = new System.Windows.Forms.Label();
-            this.dateOfBirth_LBL = new System.Windows.Forms.Label();
             this.lastname_LBL = new System.Windows.Forms.Label();
             this.firstname_lbl = new System.Windows.Forms.Label();
             this.lastname_textbox = new System.Windows.Forms.TextBox();
             this.firstname_textbox = new System.Windows.Forms.TextBox();
             this.searchAppointment_button = new System.Windows.Forms.Button();
             this.searchPatients_LBL = new System.Windows.Forms.Label();
-            this.resetDateOfBirth = new System.Windows.Forms.Button();
+            this.resetSearchButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.DateOfBirth_datetimePicker = new System.Windows.Forms.DateTimePicker();
-            this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AddAppointment_BTN = new System.Windows.Forms.Button();
+            this.ShowHideDateTimePicker_button = new System.Windows.Forms.Button();
+            this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.patients_datagridview)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentBindingSource)).BeginInit();
@@ -118,15 +118,6 @@
             this.doubleClickInstructions_LBL.TabIndex = 8;
             this.doubleClickInstructions_LBL.Text = "Double Click any patient to see their appointments";
             // 
-            // dateOfBirth_LBL
-            // 
-            this.dateOfBirth_LBL.AutoSize = true;
-            this.dateOfBirth_LBL.Location = new System.Drawing.Point(452, 30);
-            this.dateOfBirth_LBL.Name = "dateOfBirth_LBL";
-            this.dateOfBirth_LBL.Size = new System.Drawing.Size(68, 13);
-            this.dateOfBirth_LBL.TabIndex = 5;
-            this.dateOfBirth_LBL.Text = "Date Of Birth";
-            // 
             // lastname_LBL
             // 
             this.lastname_LBL.AutoSize = true;
@@ -180,15 +171,15 @@
             this.searchPatients_LBL.TabIndex = 0;
             this.searchPatients_LBL.Text = "Search Patients";
             // 
-            // resetDateOfBirth
+            // resetSearchButton
             // 
-            this.resetDateOfBirth.Location = new System.Drawing.Point(615, 33);
-            this.resetDateOfBirth.Name = "resetDateOfBirth";
-            this.resetDateOfBirth.Size = new System.Drawing.Size(75, 23);
-            this.resetDateOfBirth.TabIndex = 0;
-            this.resetDateOfBirth.Text = "Reset Date";
-            this.resetDateOfBirth.UseVisualStyleBackColor = true;
-            this.resetDateOfBirth.Click += new System.EventHandler(this.ResetDateOfBirth_Click);
+            this.resetSearchButton.Location = new System.Drawing.Point(615, 33);
+            this.resetSearchButton.Name = "resetSearchButton";
+            this.resetSearchButton.Size = new System.Drawing.Size(99, 23);
+            this.resetSearchButton.TabIndex = 0;
+            this.resetSearchButton.Text = "Reset Search";
+            this.resetSearchButton.UseVisualStyleBackColor = true;
+            this.resetSearchButton.Click += new System.EventHandler(this.ResetSearchButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -199,7 +190,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.ResetDataGridView_button, 4, 3);
-            this.tableLayoutPanel2.Controls.Add(this.resetDateOfBirth, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.resetSearchButton, 4, 1);
             this.tableLayoutPanel2.Controls.Add(this.editSelectedPatient_Button, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.patients_datagridview, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.addPatient_button, 0, 3);
@@ -211,9 +202,9 @@
             this.tableLayoutPanel2.Controls.Add(this.lastname_textbox, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.firstname_textbox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.searchPatients_LBL, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dateOfBirth_LBL, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.AddAppointment_BTN, 3, 3);
             this.tableLayoutPanel2.Controls.Add(this.getAllPatients, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.ShowHideDateTimePicker_button, 3, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -234,11 +225,7 @@
             this.DateOfBirth_datetimePicker.Name = "DateOfBirth_datetimePicker";
             this.DateOfBirth_datetimePicker.Size = new System.Drawing.Size(153, 20);
             this.DateOfBirth_datetimePicker.TabIndex = 6;
-            this.DateOfBirth_datetimePicker.ValueChanged += new System.EventHandler(this.DateOfBirth_datetimePicker_ValueChanged);
-            // 
-            // appointmentBindingSource
-            // 
-            this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
+            this.DateOfBirth_datetimePicker.Visible = false;
             // 
             // AddAppointment_BTN
             // 
@@ -250,6 +237,20 @@
             this.AddAppointment_BTN.UseVisualStyleBackColor = true;
             this.AddAppointment_BTN.Visible = false;
             this.AddAppointment_BTN.Click += new System.EventHandler(this.AddAppointment_BTN_Click);
+            // 
+            // ShowHideDateTimePicker_button
+            // 
+            this.ShowHideDateTimePicker_button.Location = new System.Drawing.Point(452, 33);
+            this.ShowHideDateTimePicker_button.Name = "ShowHideDateTimePicker_button";
+            this.ShowHideDateTimePicker_button.Size = new System.Drawing.Size(115, 23);
+            this.ShowHideDateTimePicker_button.TabIndex = 10;
+            this.ShowHideDateTimePicker_button.Text = "Add Date to search";
+            this.ShowHideDateTimePicker_button.UseVisualStyleBackColor = true;
+            this.ShowHideDateTimePicker_button.Click += new System.EventHandler(this.ShowHideDateTimePicker_button_Click);
+            // 
+            // appointmentBindingSource
+            // 
+            this.appointmentBindingSource.DataSource = typeof(Clinic.Model.Appointment);
             // 
             // patient_UserControl
             // 
@@ -275,7 +276,7 @@
         private System.Windows.Forms.Button addPatient_button;
         private System.Windows.Forms.Button editSelectedPatient_Button;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button resetDateOfBirth;
+        private System.Windows.Forms.Button resetSearchButton;
         private System.Windows.Forms.DateTimePicker DateOfBirth_datetimePicker;
         private System.Windows.Forms.Label doubleClickInstructions_LBL;
         private System.Windows.Forms.Button searchAppointment_button;
@@ -284,7 +285,7 @@
         private System.Windows.Forms.TextBox lastname_textbox;
         private System.Windows.Forms.TextBox firstname_textbox;
         private System.Windows.Forms.Label searchPatients_LBL;
-        private System.Windows.Forms.Label dateOfBirth_LBL;
         private System.Windows.Forms.Button AddAppointment_BTN;
+        private System.Windows.Forms.Button ShowHideDateTimePicker_button;
     }
 }
