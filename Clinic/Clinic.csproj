@@ -106,6 +106,9 @@
     <Compile Include="Model\Status.cs" />
     <Compile Include="Model\Test.cs" />
     <Compile Include="Model\Visit.cs" />
+    <Compile Include="Reports\ReportData.cs">
+      <DependentUpon>ReportData.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ReportData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

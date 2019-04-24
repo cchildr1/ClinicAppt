@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,12 @@ namespace Clinic.View
         public void SetLoggedInName(string welcomeName)
         {
             this.WelcomeLBL.Text = "Welcome " + welcomeName;
+        }
+
+        private void MainDashboardAdmin_Load(object sender, EventArgs e)
+        {
+            this.sp_mostPerformedTestDuringDatesTableAdapter.Fill(this.reportData.sp_mostPerformedTestDuringDates, (DateTime)SqlDateTime.MinValue, (DateTime)SqlDateTime.MaxValue);
+            this.reportViewer1.RefreshReport();
         }
     }
 }

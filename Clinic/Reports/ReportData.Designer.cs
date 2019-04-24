@@ -10,6 +10,9 @@
 
 #pragma warning disable 1591
 
+using System;
+using System.Data.SqlTypes;
+
 namespace Clinic.Reports {
     
     
