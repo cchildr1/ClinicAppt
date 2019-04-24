@@ -8,5 +8,7 @@
     {
         //Getters and setters for Patient value
         public int PatientID { get; set; }
+
+        public int Status { get; set; }
     }
 }

@@ -52,6 +52,7 @@ namespace Clinic.View
                     patient.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
                     patient.Gender = this.gender_ComboBox.Text;
                     patient.StreetAddress = this.streetAddress_textbox.Text;
+                    patient.Status = 1;
                     PatientController patientController = new PatientController();
                     patientController.AddPatient(patient);
 

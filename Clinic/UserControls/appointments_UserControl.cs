@@ -115,7 +115,7 @@ namespace Clinic.UserControls
             this.SetUpAppointment_DataGridView();
             this.GetAppointmentData();
         }
-
+         
         private void appointments_datagridview_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;

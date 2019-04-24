@@ -189,6 +189,7 @@ namespace Clinic.UserControls
             this.patients_datagridview.Columns["PatientID"].Visible = false;
             this.patients_datagridview.Columns["PersonID"].Visible = false;
             this.patients_datagridview.Columns["FullName"].Visible = false;
+            this.patients_datagridview.Columns["Status"].Visible = false;
             this.patients_datagridview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.patients_datagridview.Columns["State"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }

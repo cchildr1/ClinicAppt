@@ -106,7 +106,7 @@ namespace Clinic.DAL
                         string insertPerson = "INSERT PERSON (last_name, first_name, date_of_birth, ssn, gender, street_address, phone, zipcode)" +
                             "VALUES(@lastName, @firstName, @DOB, @SSN, @Gender, @streetAddress, @phoneNumber, @Zipcode)";
 
-                        string insertPatient = "INSERT Patient(personal_information_id) VALUES (@personalID)";
+                        string insertPatient = "INSERT Patient(personal_information_id, status_id) VALUES (@personalID, @Status)";
 
                         using (SqlCommand insertPersonCommand = new SqlCommand(insertPerson, connection))
                         {
@@ -134,6 +134,7 @@ namespace Clinic.DAL
                         {
                             insertPatientCommand.Transaction = transaction;
                             insertPatientCommand.Parameters.AddWithValue("@personalID", addedPatient_PersonalInfoID);
+                            insertPatientCommand.Parameters.AddWithValue("@Status", addedPatient.Status);
                             insertPatientCommand.ExecuteNonQuery();
                         }
 
