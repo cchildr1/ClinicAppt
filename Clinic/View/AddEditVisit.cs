@@ -146,6 +146,7 @@ namespace Clinic.View
                     if (this.visitController.EditVisit(oldVisit, newVisit))
                     {
                         MessageBox.Show("Visit updated.");
+
                         this.DialogResult = DialogResult.OK;
                     }
                     else
