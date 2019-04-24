@@ -116,16 +116,6 @@ namespace Clinic.UserControls
             this.GetAppointmentData();
         }
 
-        private void Create_Appointments_Button_Click(object sender, EventArgs e)
-        {          
-            AddAppointment addAppointment = new AddAppointment();
-            DialogResult result = addAppointment.ShowDialog();
-            if (result == DialogResult.Yes)
-            {
-                this.Reset_Button_Click(sender, e);
-            }
-        }
-
         private void appointments_datagridview_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
