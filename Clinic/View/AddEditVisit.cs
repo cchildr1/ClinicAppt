@@ -141,12 +141,21 @@ namespace Clinic.View
                 newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
                 newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
                 this.ValidateRequiredFields();
+                // CHECK FOR FINAL DIAGNOSIS AND OPEN TESTS HERE
+                if (finalDiagnosisTextBox.Text != "")
+                {
+                    DialogResult result = MessageBox.Show("Once a final diagnosis is entered, you can no longer edit this visit. Confirm?", "Final Dignosis Closes Visit", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
                 if (this.update && this.valid)
                 {
                     if (this.visitController.EditVisit(oldVisit, newVisit))
                     {
+                        this.BtSubmitChanges_Click(sender, e);
                         MessageBox.Show("Visit updated.");
-
                         this.DialogResult = DialogResult.OK;
                     }
                     else
@@ -160,6 +169,7 @@ namespace Clinic.View
                     if (this.visitController.AddVisit(newVisit) > 0)
                     {
                         MessageBox.Show("Visit added");
+                        this.BtSubmitChanges_Click(sender, e);
                         this.DialogResult = DialogResult.OK;
                     }
                     else
@@ -391,8 +401,11 @@ namespace Clinic.View
                 e.RowIndex >= 0)
             {
                 DataRow row = this.cS6232_g3DataSet.Tables[0].Rows[e.RowIndex];
-                this.rowsToDelete.Add((int)row["id"]);
-                row.Delete();
+                if (row["result"].ToString() == "" && row["date_available"].ToString() == "")
+                {
+                    this.rowsToDelete.Add((int)row["id"]);
+                    row.Delete();
+                }
             }
         }
 
@@ -415,6 +428,12 @@ namespace Clinic.View
             this.BtSubmitChanges.Enabled = !this.BtSubmitChanges.Enabled;
             this.btOK.Enabled = !this.btOK.Enabled;
             this.testDataGridView.Enabled = !this.testDataGridView.Enabled;
+        }
+
+        private void CheckForOpenTests()
+        {
+            DataTable table = this.cS6232_g3DataSet.Tables[0];
+            
         }
     }
 }
