@@ -62,22 +62,12 @@ namespace Clinic.Controller
         }
 
         /// <summary>
-        /// Returns the status description equal to the accepted id
-        /// </summary>
-        /// <param name="statusID"></param>
-        /// <returns></returns>
-        public string GetStatusByID(int statusID)
-        {
-            return this.nurseDAL.GetStatusByID(statusID);
-        }
-
-        /// <summary>
         /// This method will enter the accepted Nurse value into the database
         /// </summary>
         /// <param name="nurse"></param>
-        public void Addnurse(Nurse addedNurse)
+        public Nurse Addnurse(Nurse addedNurse)
         {
-            this.nurseDAL.AddNurse(addedNurse);
+           return this.nurseDAL.AddNurse(addedNurse);
         }
 
         /// <summary>
