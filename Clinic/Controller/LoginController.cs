@@ -8,6 +8,7 @@ namespace Clinic.Controller
     /// </summary>
     public class LoginController
     {
+        LoginDAL loginDAL = new LoginDAL();
         /// <summary>
         /// Returns employee if username and password matches entry in DB
         /// </summary>
@@ -16,7 +17,8 @@ namespace Clinic.Controller
         /// <returns>employee if username and password matches, null otherwise</returns>
         public Employee LoginEmployee(string username, string password)
         {
-            return LoginDAL.LoginEmployee(username, password);
+            
+            return loginDAL.LoginEmployee(username, password);
         }
     }
 }

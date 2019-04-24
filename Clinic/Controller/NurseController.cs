@@ -62,6 +62,16 @@ namespace Clinic.Controller
         }
 
         /// <summary>
+        /// Returns the status description equal to the accepted id
+        /// </summary>
+        /// <param name="statusID"></param>
+        /// <returns></returns>
+        public string GetStatusByID(int statusID)
+        {
+            return this.nurseDAL.GetStatusByID(statusID);
+        }
+
+        /// <summary>
         /// This method will enter the accepted Nurse value into the database
         /// </summary>
         /// <param name="nurse"></param>
@@ -90,6 +100,15 @@ namespace Clinic.Controller
         public bool updateNurse(Nurse nurse, Nurse editedNurse)
         {
             return this.nurseDAL.UpdateNurse(nurse, editedNurse);
+        }
+
+        /// <summary>
+        /// This method changes the status of the nurse to the accepted valuemember
+        /// </summary>
+        /// <param name="valueMember"></param>
+        public void ChangeStatus(int nurseID, int valueMember)
+        {
+            this.nurseDAL.ChangeStatus(nurseID, valueMember);
         }
     }
 }

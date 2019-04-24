@@ -1,13 +1,14 @@
 ﻿using Clinic.Model;
 using System;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Clinic.DAL
 {
     /// <summary>
     /// DAL procedures for Logging in a user
     /// </summary>
-    public static class LoginDAL
+    public class LoginDAL
     {
         /// <summary>
         /// Checks to see if employee exists in database by matching username and password
@@ -15,7 +16,7 @@ namespace Clinic.DAL
         /// <param name="username">username as string</param>
         /// <param name="password">password as string</param>
         /// <returns>either nurse or admin object containing the personal information depending on their role</returns>
-        public static Employee LoginEmployee(string username, string password)
+        public Employee LoginEmployee(string username, string password)
         {
             string selectStatement = "SELECT u.id as employee_id, u.username, u.password, " +
                 "u.person_id, n.id as nurse_id, a.id as admin_id, phi.first_name, phi.last_name " +
@@ -51,7 +52,7 @@ namespace Clinic.DAL
                                     Password = reader["password"].ToString(),
                                     FirstName = reader["first_name"].ToString(),
                                     LastName = reader["last_name"].ToString(),
-                                    AdminID = (int)reader["admin_id"]
+                                    AdminID = (int)reader["admin_id"],
                                 };
                                 return employee;
                             }
@@ -69,5 +70,6 @@ namespace Clinic.DAL
                 }
             }
         }
+
     }
 }

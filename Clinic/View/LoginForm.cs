@@ -37,16 +37,23 @@ namespace Clinic
             {
                 if (employee.GetType().ToString() == "Clinic.Model.Nurse")
                 {
-                    this.Hide();
                     Nurse loggedInNurse = (Nurse)employee;
-                    MainDashboardNurse mainDashboardNurse = new MainDashboardNurse(loggedInNurse);
-                    
-                    DialogResult result = mainDashboardNurse.ShowDialog();
-
-                    if (result == DialogResult.Cancel)
+                    if (loggedInNurse.StatusID != 1)
                     {
-                        this.Bt_Clear_Click(sender, e);
-                        this.Show();
+                        errorLabel.Text = "" + loggedInNurse.FullName + " is not active please see admin for help";
+                    }
+                    else
+                    {
+                        this.Hide();
+                        MainDashboardNurse mainDashboardNurse = new MainDashboardNurse(loggedInNurse);
+                        mainDashboardNurse.StartPosition = FormStartPosition.CenterScreen;
+                        DialogResult result = mainDashboardNurse.ShowDialog();
+
+                        if (result == DialogResult.Cancel)
+                        {
+                            this.Bt_Clear_Click(sender, e);
+                            this.Show();
+                        }
                     }
                 }
                 else if (employee.GetType().ToString() == "Clinic.Model.Admin")
@@ -54,6 +61,7 @@ namespace Clinic
                     this.Hide();
 
                     MainDashboardAdmin mainDashboardAdmin = new MainDashboardAdmin();
+                    mainDashboardAdmin.StartPosition = FormStartPosition.CenterScreen;
                     mainDashboardAdmin.SetLoggedInName(employee.FirstName + " " + employee.LastName);
                     DialogResult result = mainDashboardAdmin.ShowDialog();
 

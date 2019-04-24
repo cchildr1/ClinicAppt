@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Clinic.Controller;
@@ -12,12 +13,14 @@ namespace Clinic.View
     /// </summary>
     public partial class Add_Edit_Nurse : Form
     {
+        StatusController statusController = new StatusController();
         NurseController nurseController = new NurseController();
         private bool isEditingNurse = false;
         private Nurse editedNurse;
         private string errorMessage = "";
         private bool selected_DOB = false;
         private bool ssn_numberChanged = false;
+
         /// <summary>
         /// This is the constuctor it initalizes the AddNurse dialog
         /// </summary>
@@ -25,6 +28,7 @@ namespace Clinic.View
         {
             InitializeComponent();
             this.SetUpGender_ComboBox();
+            this.SetUpStatus_ComboBox();
         }
 
 
@@ -44,6 +48,8 @@ namespace Clinic.View
             this.streetAddress_textbox.Text = editedNurse.StreetAddress;
             this.zipcode_textbox.Text = editedNurse.Zipcode;
             this.gender_ComboBox.Text = editedNurse.Gender;
+            this.nurseStatus_comboBox.Text = this.statusController.GetStatusByID(editedNurse.StatusID).StatusDescription;
+            this.gender_ComboBox.Enabled = false;
             this.selected_DOB = true;
             this.ssn_numberChanged = false;
         }
@@ -57,6 +63,14 @@ namespace Clinic.View
             this.gender_ComboBox.Items.Add("Other");
             this.gender_ComboBox.Items.Add("Rather not say");
             this.gender_ComboBox.SelectedIndex = -1;
+        }
+
+        private void SetUpStatus_ComboBox()
+        {
+            List<Status> statuses = statusController.GetAllStatusTypes();
+            this.nurseStatus_comboBox.DataSource = statuses;
+            this.nurseStatus_comboBox.DisplayMember = "StatusDescription";
+            this.nurseStatus_comboBox.ValueMember = "StatusID";
         }
 
 
@@ -192,7 +206,7 @@ namespace Clinic.View
                     }
                     return duplicateSSN;
                 }
-                else
+                else if(this.ssn_numberChanged)
                 {
                     this.errorMessage += "Must have valid 9# SSN - Only numbers allowed\n";
                     this.SSN_Label.ForeColor = System.Drawing.Color.Red;
@@ -206,24 +220,29 @@ namespace Clinic.View
         {
             ZipcodeController zipcodeController = new ZipcodeController();
             Nurse nurse = new Nurse();
-                if (!this.ErrorCheck())
+            int nurseStatus;
+
+            if (!this.ErrorCheck())
+            {
+                try
                 {
-                    try
-                    {
-                        nurse.FirstName = this.firstname_textbox.Text;
-                        nurse.LastName = this.lastname_textbox.Text;
-                        nurse.Phone = this.phoneNumber_textbox.Text;
-                        nurse.SocialSecurityNumber = this.ssn_textbox.Text;
-                        nurse.Zipcode = this.zipcode_textbox.Text;
-                        nurse.State = zipcodeController.GetStateFromZipcode(nurse.Zipcode);
-                        nurse.City = zipcodeController.GetCityFromZipcode(nurse.Zipcode);
-                        nurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
-                        nurse.Gender = this.gender_ComboBox.Text;
-                        nurse.StreetAddress = this.streetAddress_textbox.Text;
+                    nurse.FirstName = this.firstname_textbox.Text;
+                    nurse.LastName = this.lastname_textbox.Text;
+                    nurse.Phone = this.phoneNumber_textbox.Text;
+                    nurse.SocialSecurityNumber = this.ssn_textbox.Text;
+                    nurse.Zipcode = this.zipcode_textbox.Text;
+                    nurse.State = zipcodeController.GetStateFromZipcode(nurse.Zipcode);
+                    nurse.City = zipcodeController.GetCityFromZipcode(nurse.Zipcode);
+                    nurse.DateOfBirth = this.dateOfBirth_DateTimePicker.Value;
+                    nurse.Gender = this.gender_ComboBox.Text;
+                    nurse.StreetAddress = this.streetAddress_textbox.Text;
+                    nurse.StatusID = (int)this.nurseStatus_comboBox.SelectedValue;
+                    nurseStatus = nurse.StatusID;
                     if (this.isEditingNurse)
                     {
                         if (this.nurseController.updateNurse(nurse, this.editedNurse))
                         {
+                            this.nurseController.ChangeStatus(this.editedNurse.NurseID, nurseStatus);
                             MessageBox.Show("Nurse updated.");
                             this.DialogResult = DialogResult.OK;
                         }
@@ -235,16 +254,16 @@ namespace Clinic.View
                     else
                     {
                         this.nurseController.Addnurse(nurse);
+                        this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
                     }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
-                    }
-                    catch (Exception)
-                    {
-                        this.ErrorCheck();
-                    }
                 }
-            
+                catch (Exception)
+                {
+                    this.ErrorCheck();
+                }
+            }            
         }
     }
 }
