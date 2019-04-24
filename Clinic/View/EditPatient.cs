@@ -189,9 +189,12 @@ namespace Clinic.View
             this.dateOfBirth_LBL.ForeColor = System.Drawing.Color.Black;
         }
 
+
+
         private void MakePatientInactive_button_Click(object sender, System.EventArgs e)
         {
-            this.patientController.DeactivePatient(11);
+            this.patientController.DeactivePatient(this.oldPatient.PatientID);
+            this.DialogResult = DialogResult.OK;
         }
     }
 }
