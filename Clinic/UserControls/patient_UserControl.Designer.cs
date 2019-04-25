@@ -46,6 +46,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.DateOfBirth_datetimePicker = new System.Windows.Forms.DateTimePicker();
             this.AddAppointment_BTN = new System.Windows.Forms.Button();
+            this.ShowHideDateTimePicker_button = new System.Windows.Forms.Button();
             this.appointmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.patients_datagridview)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -101,11 +102,11 @@
             this.patients_datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel2.SetColumnSpan(this.patients_datagridview, 5);
             this.patients_datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patients_datagridview.Location = new System.Drawing.Point(3, 62);
+            this.patients_datagridview.Location = new System.Drawing.Point(3, 91);
             this.patients_datagridview.MultiSelect = false;
             this.patients_datagridview.Name = "patients_datagridview";
             this.patients_datagridview.ReadOnly = true;
-            this.patients_datagridview.Size = new System.Drawing.Size(844, 306);
+            this.patients_datagridview.Size = new System.Drawing.Size(844, 277);
             this.patients_datagridview.TabIndex = 3;
             this.patients_datagridview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patients_datagridview_CellContentClick);
             // 
@@ -198,10 +199,10 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.ResetDataGridView_button, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.ResetDataGridView_button, 4, 4);
             this.tableLayoutPanel2.Controls.Add(this.resetDateOfBirth, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.patients_datagridview, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.addPatient_button, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.patients_datagridview, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.addPatient_button, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.DateOfBirth_datetimePicker, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.doubleClickInstructions_LBL, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.searchAppointment_button, 4, 0);
@@ -211,18 +212,19 @@
             this.tableLayoutPanel2.Controls.Add(this.firstname_textbox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.searchPatients_LBL, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dateOfBirth_LBL, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.AddAppointment_BTN, 3, 3);
-            this.tableLayoutPanel2.Controls.Add(this.getAllPatients, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.editSelectedPatient_Button, 2, 3);
+            this.tableLayoutPanel2.Controls.Add(this.AddAppointment_BTN, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.getAllPatients, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.editSelectedPatient_Button, 2, 4);
+            this.tableLayoutPanel2.Controls.Add(this.ShowHideDateTimePicker_button, 3, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(850, 400);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -246,6 +248,16 @@
             this.AddAppointment_BTN.UseVisualStyleBackColor = true;
             this.AddAppointment_BTN.Visible = false;
             this.AddAppointment_BTN.Click += new System.EventHandler(this.AddAppointment_BTN_Click);
+            // 
+            // ShowHideDateTimePicker_button
+            // 
+            this.ShowHideDateTimePicker_button.Location = new System.Drawing.Point(486, 62);
+            this.ShowHideDateTimePicker_button.Name = "ShowHideDateTimePicker_button";
+            this.ShowHideDateTimePicker_button.Size = new System.Drawing.Size(155, 23);
+            this.ShowHideDateTimePicker_button.TabIndex = 10;
+            this.ShowHideDateTimePicker_button.Text = "Remove Date from search";
+            this.ShowHideDateTimePicker_button.UseVisualStyleBackColor = true;
+            this.ShowHideDateTimePicker_button.Click += new System.EventHandler(this.ShowHideDateTimePicker_button_Click);
             // 
             // appointmentBindingSource
             // 
@@ -286,5 +298,6 @@
         private System.Windows.Forms.Label searchPatients_LBL;
         private System.Windows.Forms.Label dateOfBirth_LBL;
         private System.Windows.Forms.Button AddAppointment_BTN;
+        private System.Windows.Forms.Button ShowHideDateTimePicker_button;
     }
 }

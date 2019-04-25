@@ -44,6 +44,18 @@ namespace Clinic.UserControls
             this.EditPatientGridView();
         }
 
+        private void DateOfBirth_datetimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            this.DOB_ValueChanged = true;
+        }
+
+        private void ResetDateOfBirth_Click(object sender, EventArgs e)
+        {
+            this.DateOfBirth_datetimePicker.Value = DateTime.Now;
+            this.DOB_ValueChanged = false;
+
+        }
+
         private void ResetSearchButton_Click(object sender, EventArgs e)
         {
             this.DateOfBirth_datetimePicker.Value = DateTime.Now;
@@ -53,6 +65,7 @@ namespace Clinic.UserControls
             this.ShowHideDateTimePicker_button_Click(sender, e);
           
         }
+        
 
         private void patients_datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
