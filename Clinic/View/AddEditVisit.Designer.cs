@@ -44,8 +44,18 @@
             System.Windows.Forms.Label bodyTemperatureLabel;
             System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.testDataGridView = new System.Windows.Forms.DataGridView();
+            this.DeleteRowButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxDatePerformed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxDateAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumnAbnormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxVisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxTestCodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cS6232_g3DataSet = new Clinic.DataSets.CS6232_g3DataSet();
             this.infoTextBox = new System.Windows.Forms.TextBox();
@@ -72,16 +82,6 @@
             this.BTInsertTest = new System.Windows.Forms.Button();
             this.testTableAdapter = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter();
             this.tableAdapterManager = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DeleteRowButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxDatePerformed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxDateAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumnAbnormal = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxVisitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTestCodeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             fullNameLabel1 = new System.Windows.Forms.Label();
             nurseLabel = new System.Windows.Forms.Label();
             visitDateLabel = new System.Windows.Forms.Label();
@@ -96,13 +96,13 @@
             fullNameLabel2 = new System.Windows.Forms.Label();
             bodyTemperatureLabel = new System.Windows.Forms.Label();
             infoLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // fullNameLabel1
@@ -299,6 +299,10 @@
             this.patientTextBox.Size = new System.Drawing.Size(200, 20);
             this.patientTextBox.TabIndex = 1;
             // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -383,8 +387,82 @@
             this.testDataGridView.Location = new System.Drawing.Point(3, 367);
             this.testDataGridView.Name = "testDataGridView";
             this.testDataGridView.Size = new System.Drawing.Size(890, 140);
-            this.testDataGridView.TabIndex = 31;
+            this.testDataGridView.TabIndex = 19;
             this.testDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.testDataGridView_CellContentClick);
+            // 
+            // DeleteRowButton
+            // 
+            this.DeleteRowButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.DeleteRowButton.HeaderText = "Delete";
+            this.DeleteRowButton.Name = "DeleteRowButton";
+            this.DeleteRowButton.UseColumnTextForButtonValue = true;
+            this.DeleteRowButton.Width = 44;
+            // 
+            // code
+            // 
+            this.code.DataPropertyName = "code";
+            this.code.HeaderText = "Test Code";
+            this.code.Name = "code";
+            this.code.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxDatePerformed
+            // 
+            this.dataGridViewTextBoxDatePerformed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewTextBoxDatePerformed.DataPropertyName = "date_performed";
+            this.dataGridViewTextBoxDatePerformed.HeaderText = "Date Performed";
+            this.dataGridViewTextBoxDatePerformed.Name = "dataGridViewTextBoxDatePerformed";
+            this.dataGridViewTextBoxDatePerformed.Width = 97;
+            // 
+            // dataGridViewTextBoxDateAvailable
+            // 
+            this.dataGridViewTextBoxDateAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewTextBoxDateAvailable.DataPropertyName = "date_available";
+            this.dataGridViewTextBoxDateAvailable.HeaderText = "Date Available";
+            this.dataGridViewTextBoxDateAvailable.Name = "dataGridViewTextBoxDateAvailable";
+            this.dataGridViewTextBoxDateAvailable.Width = 93;
+            // 
+            // dataGridViewCheckBoxColumnAbnormal
+            // 
+            this.dataGridViewCheckBoxColumnAbnormal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewCheckBoxColumnAbnormal.DataPropertyName = "abnormal_result";
+            this.dataGridViewCheckBoxColumnAbnormal.FalseValue = "0";
+            this.dataGridViewCheckBoxColumnAbnormal.HeaderText = "Abnormal?";
+            this.dataGridViewCheckBoxColumnAbnormal.Name = "dataGridViewCheckBoxColumnAbnormal";
+            this.dataGridViewCheckBoxColumnAbnormal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumnAbnormal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxColumnAbnormal.TrueValue = "1";
+            this.dataGridViewCheckBoxColumnAbnormal.Width = 82;
+            // 
+            // dataGridViewTextBoxResult
+            // 
+            this.dataGridViewTextBoxResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxResult.DataPropertyName = "result";
+            this.dataGridViewTextBoxResult.HeaderText = "Result";
+            this.dataGridViewTextBoxResult.Name = "dataGridViewTextBoxResult";
+            // 
+            // dataGridViewTextBoxVisitID
+            // 
+            this.dataGridViewTextBoxVisitID.DataPropertyName = "visit_id";
+            this.dataGridViewTextBoxVisitID.HeaderText = "visit_id";
+            this.dataGridViewTextBoxVisitID.Name = "dataGridViewTextBoxVisitID";
+            this.dataGridViewTextBoxVisitID.ReadOnly = true;
+            this.dataGridViewTextBoxVisitID.Visible = false;
+            // 
+            // dataGridViewTextBoxTestCodeID
+            // 
+            this.dataGridViewTextBoxTestCodeID.DataPropertyName = "test_code_id";
+            this.dataGridViewTextBoxTestCodeID.HeaderText = "test_code_id";
+            this.dataGridViewTextBoxTestCodeID.Name = "dataGridViewTextBoxTestCodeID";
+            this.dataGridViewTextBoxTestCodeID.ReadOnly = true;
+            this.dataGridViewTextBoxTestCodeID.Visible = false;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // testBindingSource
             // 
@@ -472,7 +550,7 @@
             this.weightTextBox.Location = new System.Drawing.Point(379, 108);
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.Size = new System.Drawing.Size(100, 20);
-            this.weightTextBox.TabIndex = 8;
+            this.weightTextBox.TabIndex = 9;
             // 
             // pulseTextBox
             // 
@@ -577,7 +655,7 @@
             this.BtSubmitChanges.Location = new System.Drawing.Point(3, 3);
             this.BtSubmitChanges.Name = "BtSubmitChanges";
             this.BtSubmitChanges.Size = new System.Drawing.Size(138, 23);
-            this.BtSubmitChanges.TabIndex = 1;
+            this.BtSubmitChanges.TabIndex = 20;
             this.BtSubmitChanges.Text = "Submit Test Changes";
             this.BtSubmitChanges.UseVisualStyleBackColor = true;
             this.BtSubmitChanges.Click += new System.EventHandler(this.BtSubmitChanges_Click);
@@ -587,7 +665,7 @@
             this.BtClearChanges.Location = new System.Drawing.Point(147, 3);
             this.BtClearChanges.Name = "BtClearChanges";
             this.BtClearChanges.Size = new System.Drawing.Size(123, 23);
-            this.BtClearChanges.TabIndex = 0;
+            this.BtClearChanges.TabIndex = 21;
             this.BtClearChanges.Text = "Clear Test Changes";
             this.BtClearChanges.UseVisualStyleBackColor = true;
             this.BtClearChanges.Click += new System.EventHandler(this.BtClearChanges_Click);
@@ -607,14 +685,14 @@
             this.CBInsertTestCode.Location = new System.Drawing.Point(3, 3);
             this.CBInsertTestCode.Name = "CBInsertTestCode";
             this.CBInsertTestCode.Size = new System.Drawing.Size(121, 21);
-            this.CBInsertTestCode.TabIndex = 33;
+            this.CBInsertTestCode.TabIndex = 17;
             // 
             // BTInsertTest
             // 
             this.BTInsertTest.Location = new System.Drawing.Point(130, 3);
             this.BTInsertTest.Name = "BTInsertTest";
             this.BTInsertTest.Size = new System.Drawing.Size(75, 23);
-            this.BTInsertTest.TabIndex = 34;
+            this.BTInsertTest.TabIndex = 18;
             this.BTInsertTest.Text = "Insert Test";
             this.BTInsertTest.UseVisualStyleBackColor = true;
             this.BTInsertTest.Click += new System.EventHandler(this.BTInsertTest_Click);
@@ -629,84 +707,6 @@
             this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.UpdateOrder = Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
-            // DeleteRowButton
-            // 
-            this.DeleteRowButton.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.DeleteRowButton.HeaderText = "Delete";
-            this.DeleteRowButton.Name = "DeleteRowButton";
-            this.DeleteRowButton.UseColumnTextForButtonValue = true;
-            this.DeleteRowButton.Width = 44;
-            // 
-            // code
-            // 
-            this.code.DataPropertyName = "code";
-            this.code.HeaderText = "Test Code";
-            this.code.Name = "code";
-            this.code.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxDatePerformed
-            // 
-            this.dataGridViewTextBoxDatePerformed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxDatePerformed.DataPropertyName = "date_performed";
-            this.dataGridViewTextBoxDatePerformed.HeaderText = "Date Performed";
-            this.dataGridViewTextBoxDatePerformed.Name = "dataGridViewTextBoxDatePerformed";
-            this.dataGridViewTextBoxDatePerformed.Width = 97;
-            // 
-            // dataGridViewTextBoxDateAvailable
-            // 
-            this.dataGridViewTextBoxDateAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxDateAvailable.DataPropertyName = "date_available";
-            this.dataGridViewTextBoxDateAvailable.HeaderText = "Date Available";
-            this.dataGridViewTextBoxDateAvailable.Name = "dataGridViewTextBoxDateAvailable";
-            this.dataGridViewTextBoxDateAvailable.Width = 93;
-            // 
-            // dataGridViewCheckBoxColumnAbnormal
-            // 
-            this.dataGridViewCheckBoxColumnAbnormal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewCheckBoxColumnAbnormal.DataPropertyName = "abnormal_result";
-            this.dataGridViewCheckBoxColumnAbnormal.FalseValue = "0";
-            this.dataGridViewCheckBoxColumnAbnormal.HeaderText = "Abnormal?";
-            this.dataGridViewCheckBoxColumnAbnormal.Name = "dataGridViewCheckBoxColumnAbnormal";
-            this.dataGridViewCheckBoxColumnAbnormal.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumnAbnormal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxColumnAbnormal.TrueValue = "1";
-            this.dataGridViewCheckBoxColumnAbnormal.Width = 82;
-            // 
-            // dataGridViewTextBoxResult
-            // 
-            this.dataGridViewTextBoxResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxResult.DataPropertyName = "result";
-            this.dataGridViewTextBoxResult.HeaderText = "Result";
-            this.dataGridViewTextBoxResult.Name = "dataGridViewTextBoxResult";
-            // 
-            // dataGridViewTextBoxVisitID
-            // 
-            this.dataGridViewTextBoxVisitID.DataPropertyName = "visit_id";
-            this.dataGridViewTextBoxVisitID.HeaderText = "visit_id";
-            this.dataGridViewTextBoxVisitID.Name = "dataGridViewTextBoxVisitID";
-            this.dataGridViewTextBoxVisitID.ReadOnly = true;
-            this.dataGridViewTextBoxVisitID.Visible = false;
-            // 
-            // dataGridViewTextBoxTestCodeID
-            // 
-            this.dataGridViewTextBoxTestCodeID.DataPropertyName = "test_code_id";
-            this.dataGridViewTextBoxTestCodeID.HeaderText = "test_code_id";
-            this.dataGridViewTextBoxTestCodeID.Name = "dataGridViewTextBoxTestCodeID";
-            this.dataGridViewTextBoxTestCodeID.ReadOnly = true;
-            this.dataGridViewTextBoxTestCodeID.Visible = false;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
             // AddEditVisit
             // 
             this.AcceptButton = this.btOK;
@@ -718,6 +718,7 @@
             this.Name = "AddEditVisit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Visit";
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).EndInit();
@@ -725,7 +726,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -173,7 +173,9 @@ namespace Clinic.UserControls
         private void addNurse_button_Click(object sender, EventArgs e)
         {
             Add_Edit_Nurse addNurse = new Add_Edit_Nurse();
+            addNurse.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = addNurse.ShowDialog();
+         
             if (result == DialogResult.Yes)
             {
                 this.ResetAdmin_Nurse_btn_Click(sender, e);
@@ -186,8 +188,9 @@ namespace Clinic.UserControls
             int selectedNurseID = int.Parse(selectedRow.Cells["NurseID"].Value.ToString());
             Add_Edit_Nurse editNurse = new Add_Edit_Nurse();
             editNurse.SetUp_ForEditNurse(this.nurseController.GetNurseById(selectedNurseID));
+            editNurse.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = editNurse.ShowDialog();
-            if (result == DialogResult.Yes)
+           if (result == DialogResult.Yes)
             {
                 this.ResetAdmin_Nurse_btn_Click(sender, e);
             }
