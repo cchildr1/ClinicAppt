@@ -62,6 +62,11 @@ namespace Clinic.View
                 this.bodyTemperatureTextBox.Text = visit.BodyTemperature.ToString();
                 this.infoTextBox.Text = visit.Info;
             }
+            if (!(visit.FinalDiagnosis == null || visit.FinalDiagnosis == ""))
+            {
+                this.ToggleControlLock();
+                MessageBox.Show("A final diagnosis has been entered. You cannot edit this visit.");
+            }
             this.FillTestData(visit.VisitId);
             this.FillInsertTestComboBox();
             this.DeleteRowButton.Text = "Delete";
@@ -135,11 +140,27 @@ namespace Clinic.View
                 };
                 newVisit.InitialDiagnosis = initialDiagnosisTextBox.Text;
                 newVisit.FinalDiagnosis = finalDiagnosisTextBox.Text;
+                this.ValidateRequiredFields();
+                
+                if (finalDiagnosisTextBox.Text != "")
+                {
+                    if (!this.CheckForOpenTests())
+                    {
+                        MessageBox.Show("You cannot enter a final diagnosis with open tests.", "Open Tests Present");
+                        return;
+                    }
+                    DialogResult result = MessageBox.Show("Once a final diagnosis is entered, you can no longer edit this visit. Confirm?", "Final Dignosis Closes Visit", MessageBoxButtons.YesNo);
 
-                if (this.update && valid)
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                if (this.update && this.valid)
                 {
                     if (this.visitController.EditVisit(oldVisit, newVisit))
                     {
+                        this.BtSubmitChanges_Click(sender, e);
                         MessageBox.Show("Visit updated.");
                         this.DialogResult = DialogResult.OK;
                     }
@@ -149,11 +170,12 @@ namespace Clinic.View
                         this.DialogResult = DialogResult.Cancel;
                     }
                 }
-                else if (!this.update && valid)
+                else if (!this.update && this.valid)
                 {
                     if (this.visitController.AddVisit(newVisit) > 0)
                     {
                         MessageBox.Show("Visit added");
+                        this.BtSubmitChanges_Click(sender, e);
                         this.DialogResult = DialogResult.OK;
                     }
                     else
@@ -178,6 +200,7 @@ namespace Clinic.View
 
         private void BtCancel_Click(object sender, EventArgs e)
         {
+            this.ToggleControlLock();
             this.DialogResult = DialogResult.Cancel;
             this.Dispose();
         }
@@ -206,6 +229,27 @@ namespace Clinic.View
                 this.valid = false;
                 return 0;
             }
+        }
+
+        private void ValidateTextPresent(TextBox textbox)
+        {
+            if (textbox.Text == "")
+            {
+                textbox.BackColor = Color.Red;
+                this.valid = false;
+            }
+        }
+
+        private void ValidateRequiredFields()
+        {
+            this.ValidateTextPresent(bpSystolicTextBox);
+            this.ValidateTextPresent(bpDiastolicTextBox);
+            this.ValidateTextPresent(pulseTextBox);
+            this.ValidateTextPresent(weightTextBox);
+            this.ValidateTextPresent(bodyTemperatureTextBox);
+            this.ValidateTextPresent(symptomsTextBox);
+            this.ValidateTextPresent(infoTextBox);
+            this.ValidateTextPresent(initialDiagnosisTextBox);
         }
 
         private void ColorReset()
@@ -309,8 +353,7 @@ namespace Clinic.View
         
         private void ProcessDeleteChanges(DataSet data)
         {
-            DataTable table = data.Tables[0].GetChanges(DataRowState.Deleted);
-            if (table != null)
+            if (this.rowsToDelete.Any())
             {
                 
                 foreach (int id in this.rowsToDelete)
@@ -362,10 +405,56 @@ namespace Clinic.View
             if (senderGrid.Columns[e.ColumnIndex].ToString() == senderGrid.Columns["DeleteRowButton"].ToString() &&
                 e.RowIndex >= 0)
             {
-                DataRow row = this.cS6232_g3DataSet.Tables[0].Rows[e.RowIndex];
-                this.rowsToDelete.Add((int)row["id"]);
-                row.Delete();
+                try
+                {
+                    DataTable table = this.cS6232_g3DataSet.Tables[0];
+                    DataRow row = table.Rows[e.RowIndex];
+                    if (row["result"].ToString() == "" && row["date_available"].ToString() == "")
+                    {
+                        this.rowsToDelete.Add((int)row["id"]);
+                        row.Delete();
+                        table.AcceptChanges();
+                    }
+                } catch (DeletedRowInaccessibleException ex)
+                {
+
+                }
             }
+        }
+
+        private void ToggleControlLock()
+        {
+            this.bodyTemperatureTextBox.Enabled = !this.bodyTemperatureTextBox.Enabled;
+            this.NurseComboBox.Enabled = !this.NurseComboBox.Enabled;
+            this.DTPVisitDate.Enabled = !this.DTPVisitDate.Enabled;
+            this.DTPVisitTime.Enabled = !this.DTPVisitTime.Enabled;
+            this.bpSystolicTextBox.Enabled = !this.bpSystolicTextBox.Enabled;
+            this.bpDiastolicTextBox.Enabled = !this.bpDiastolicTextBox.Enabled;
+            this.pulseTextBox.Enabled = !this.pulseTextBox.Enabled;
+            this.weightTextBox.Enabled = !this.weightTextBox.Enabled;
+            this.symptomsTextBox.Enabled = !this.symptomsTextBox.Enabled;
+            this.initialDiagnosisTextBox.Enabled = !this.initialDiagnosisTextBox.Enabled;
+            this.infoTextBox.Enabled = !this.infoTextBox.Enabled;
+            this.finalDiagnosisTextBox.Enabled = !this.finalDiagnosisTextBox.Enabled;
+            this.CBInsertTestCode.Enabled = !this.CBInsertTestCode.Enabled;
+            this.BTInsertTest.Enabled = !this.BTInsertTest.Enabled;
+            this.BtSubmitChanges.Enabled = !this.BtSubmitChanges.Enabled;
+            this.btOK.Enabled = !this.btOK.Enabled;
+            this.testDataGridView.Enabled = !this.testDataGridView.Enabled;
+        }
+
+        private bool CheckForOpenTests()
+        {
+            bool valid = true;
+            foreach(DataRow row in cS6232_g3DataSet.Tables[0].Rows)
+            {
+                if (row["result"].ToString() == "" || row["date_available"].ToString() == "")
+                {
+                    valid = false;
+                }
+            }
+            
+            return valid;
         }
     }
 }
