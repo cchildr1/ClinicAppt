@@ -23,7 +23,7 @@ namespace Clinic.DAL
                 "SET username = @new_username, " +
                 "password = HASHBYTES('SHA2_256', @new_password) " +
                 "WHERE username = @old_username AND " +
-                "password = HASHBYTES('SHA2_256', @old_password) AND " +
+                "password = @old_password AND " +
                 "id = @old_id AND " +
                 "person_id = @old_personID;";
 
@@ -106,7 +106,7 @@ namespace Clinic.DAL
                             {
                                 employee.EmployeeID = (int)reader["id"];
                                 employee.PersonId = (int)reader["person_id"];
-                                employee.Password = reader["password"].ToString();
+                                employee.HashedPassword = (byte[])reader["password"];
                                 employee.UserName = reader["username"].ToString();
                             }
                         }
