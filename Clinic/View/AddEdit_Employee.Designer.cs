@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.addEdit_employee_BASE_tablelayoutpanel = new System.Windows.Forms.TableLayoutPanel();
+            this.passwordMasked_confirmation_textbox = new System.Windows.Forms.MaskedTextBox();
             this.username_lbl = new System.Windows.Forms.Label();
             this.password = new System.Windows.Forms.Label();
             this.password_Confirmation_LBL = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.cancel_button = new System.Windows.Forms.Button();
             this.errorMessage_lbl = new System.Windows.Forms.Label();
             this.passwordMasked_textbox = new System.Windows.Forms.MaskedTextBox();
-            this.passwordMasked_confirmation_textbox = new System.Windows.Forms.MaskedTextBox();
             this.addEdit_employee_BASE_tablelayoutpanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,9 +55,9 @@
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.password_Confirmation_LBL, 0, 2);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.username_textbox, 1, 0);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.tableLayoutPanel1, 0, 4);
-            this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.cancel_button, 1, 4);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.errorMessage_lbl, 0, 3);
             this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.passwordMasked_textbox, 1, 1);
+            this.addEdit_employee_BASE_tablelayoutpanel.Controls.Add(this.cancel_button, 1, 4);
             this.addEdit_employee_BASE_tablelayoutpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addEdit_employee_BASE_tablelayoutpanel.Location = new System.Drawing.Point(0, 0);
             this.addEdit_employee_BASE_tablelayoutpanel.Name = "addEdit_employee_BASE_tablelayoutpanel";
@@ -69,6 +69,14 @@
             this.addEdit_employee_BASE_tablelayoutpanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.58201F));
             this.addEdit_employee_BASE_tablelayoutpanel.Size = new System.Drawing.Size(314, 378);
             this.addEdit_employee_BASE_tablelayoutpanel.TabIndex = 0;
+            // 
+            // passwordMasked_confirmation_textbox
+            // 
+            this.passwordMasked_confirmation_textbox.Location = new System.Drawing.Point(160, 153);
+            this.passwordMasked_confirmation_textbox.Name = "passwordMasked_confirmation_textbox";
+            this.passwordMasked_confirmation_textbox.Size = new System.Drawing.Size(135, 20);
+            this.passwordMasked_confirmation_textbox.TabIndex = 10;
+            this.passwordMasked_confirmation_textbox.UseSystemPasswordChar = true;
             // 
             // username_lbl
             // 
@@ -129,7 +137,7 @@
             this.Edit_info_button.Name = "Edit_info_button";
             this.Edit_info_button.Size = new System.Drawing.Size(69, 23);
             this.Edit_info_button.TabIndex = 0;
-            this.Edit_info_button.Text = "Edit";
+            this.Edit_info_button.Text = "OK";
             this.Edit_info_button.UseVisualStyleBackColor = true;
             this.Edit_info_button.Click += new System.EventHandler(this.Edit_info_button_Click);
             // 
@@ -169,14 +177,6 @@
             this.passwordMasked_textbox.Size = new System.Drawing.Size(135, 20);
             this.passwordMasked_textbox.TabIndex = 9;
             this.passwordMasked_textbox.UseSystemPasswordChar = true;
-            // 
-            // passwordMasked_confirmation_textbox
-            // 
-            this.passwordMasked_confirmation_textbox.Location = new System.Drawing.Point(160, 153);
-            this.passwordMasked_confirmation_textbox.Name = "passwordMasked_confirmation_textbox";
-            this.passwordMasked_confirmation_textbox.Size = new System.Drawing.Size(135, 20);
-            this.passwordMasked_confirmation_textbox.TabIndex = 10;
-            this.passwordMasked_confirmation_textbox.UseSystemPasswordChar = true;
             // 
             // AddEdit_Employee
             // 
