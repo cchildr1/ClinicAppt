@@ -5,14 +5,14 @@ using Clinic.Model;
 namespace Clinic.DAL
 {
     /// <summary>
-    /// THis class connects to the database and returns queries relating to the status table
+    /// This class connects to the database and returns queries relating to the status table
     /// </summary>
     class StatusDAL
     {
         /// <summary>
         /// This returns a list of all statuses
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all status types</returns>
         public List<Status> GetAllStatusTypes()
         {
             List<Status> statuses = new List<Status>();
@@ -41,8 +41,8 @@ namespace Clinic.DAL
         /// <summary>
         /// This method returns the status equal to the accepted status
         /// </summary>
-        /// <param name="statusID"></param>
-        /// <returns></returns>
+        /// <param name="statusID">Status ID value</param>
+        /// <returns>Status object</returns>
         public Status GetStatusByID(int statusID)
         {
             Status status = new Status();

@@ -14,7 +14,7 @@ namespace Clinic.Controller
         /// <summary>
         /// Returns a list of all nurses
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of Nurses.</returns>
         public List<Nurse> GetAllNurses()
         {
             return this.nurseDAL.GetAllNurses();
@@ -24,7 +24,7 @@ namespace Clinic.Controller
         /// Returns a list of all nurses with a value equal to the accepted lastname
         /// </summary>
         /// <param name="lastname"></param>
-        /// <returns></returns>
+        /// <returns>List of Nurses.</returns>
         public List<Nurse> GetNurseByLastName(string lastname)
         {
             return this.nurseDAL.GetAllNursesByLastname(lastname);
@@ -33,9 +33,9 @@ namespace Clinic.Controller
         /// <summary>
         /// Returns a list of all nurses with full names equal to the accepted first and last names
         /// </summary>
-        /// <param name="text1"></param>
-        /// <param name="text2"></param>
-        /// <returns></returns>
+        /// <param name="firstname">Nurse first name</param>
+        /// <param name="lastname">Nurse last name</param>
+        /// <returns>List of Nurses.</returns>
         public List<Nurse> GetNurseByFullName(string firstname, string lastname)
         {
             return this.nurseDAL.GetNurseByFullName(firstname, lastname);
@@ -44,8 +44,8 @@ namespace Clinic.Controller
         /// <summary>
         /// Returns a list of all nurses with a value equal to the accepted firstname
         /// </summary>
-        /// <param name="firstname"></param>
-        /// <returns></returns>
+        /// <param name="firstname">Nurse first name</param>
+        /// <returns>List of Nurses.</returns>
         public List<Nurse> GetNurseByFirstName(string firstname)
         {
             return this.nurseDAL.GetAllNursesByFirstname(firstname);
@@ -55,16 +55,19 @@ namespace Clinic.Controller
         /// <summary>
         /// This method returns true if the accepted SSN value is NOT present within the database
         /// </summary>
-        /// <returns></returns>
+        /// <param name="ssn">Social Security Number</param>
+        /// <returns>Yes/No if the SSN is a duplicate</returns>
         public bool IsSSN_Not_Duplicate(string ssn)
         {
             return this.nurseDAL.IsSSN_Not_Duplicate(ssn);
         }
 
+
         /// <summary>
-        /// This method will enter the accepted Nurse value into the database
+        /// This method will enter the accepted Nurse value into the database.
         /// </summary>
-        /// <param name="nurse"></param>
+        /// <param name="addedNurse">Nurse object to add</param>
+        /// <returns>Nurse object</returns>
         public Nurse Addnurse(Nurse addedNurse)
         {
            return this.nurseDAL.AddNurse(addedNurse);
@@ -73,8 +76,8 @@ namespace Clinic.Controller
         /// <summary>
         /// Returns the nurse with an Id eqaul to the accepted value
         /// </summary>
-        /// <param name="selectedNurseID"></param>
-        /// <returns></returns>
+        /// <param name="selectedNurseID">Nurse ID number</param>
+        /// <returns>Nurse object</returns>
         public Nurse GetNurseById(int selectedNurseID)
         {
             return NurseDAL.GetNurseByID(selectedNurseID);
@@ -95,7 +98,8 @@ namespace Clinic.Controller
         /// <summary>
         /// This method changes the status of the nurse to the accepted valuemember
         /// </summary>
-        /// <param name="valueMember"></param>
+        /// <param name="nurseID">NurseID</param>
+        /// <param name="valueMember">Value Member</param>
         public void ChangeStatus(int nurseID, int valueMember)
         {
             this.nurseDAL.ChangeStatus(nurseID, valueMember);

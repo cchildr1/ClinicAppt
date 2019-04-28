@@ -11,7 +11,10 @@ namespace Clinic.Controller
     {
         public StatusDAL statusDAL = new StatusDAL();
 
-        //returns all possible status within the database
+        /// <summary>
+        /// returns all possible status within the database
+        /// </summary>
+        /// <returns>List of all statuses</returns>
         public List<Status> GetAllStatusTypes()
         {
             return this.statusDAL.GetAllStatusTypes();
@@ -20,8 +23,8 @@ namespace Clinic.Controller
         /// <summary>
         /// Returns the Status equal to the accepted Status ID
         /// </summary>
-        /// <param name="statusID"></param>
-        /// <returns></returns>
+        /// <param name="statusID">Status ID value</param>
+        /// <returns>Status object</returns>
         public Status GetStatusByID(int statusID)
         {
             return this.statusDAL.GetStatusByID(statusID);

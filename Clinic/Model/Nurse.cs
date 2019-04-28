@@ -6,7 +6,6 @@
     /// </summary>
     public class Nurse : Employee
     {
-        //Getters and setters for Nurse values
         public int NurseID { get; set; }
         public int StatusID { get; set; }
     }

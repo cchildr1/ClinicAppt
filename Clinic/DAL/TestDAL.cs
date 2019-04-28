@@ -4,9 +4,16 @@ using Clinic.Model;
 
 namespace Clinic.DAL
 {
+    /// <summary>
+    /// Queries and returns all Test information from the database.
+    /// </summary>
     public static class TestDAL
     {
 
+        /// <summary>
+        /// Gets all the test codes in the database.
+        /// </summary>
+        /// <returns>List of all Tests</returns>
         public static List<Test> GetAllTestCodes()
         {
             List<Test> tests = new List<Test>();

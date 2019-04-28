@@ -21,7 +21,6 @@ namespace Clinic.View
             this.loggedInNurse = loggedInNurse;
             this.setLoggedInName();
             this.SetUpUserControls();
-            //this.loggingOut = false;
         }
 
         private void SetUpUserControls()
@@ -30,8 +29,6 @@ namespace Clinic.View
             appointments_UserControl appointments_UC = new appointments_UserControl();
             appointments_UC.Dock = DockStyle.Fill;
             this.appointments_tabPage.Controls.Add(appointments_UC);
-
-           
         }
 
 

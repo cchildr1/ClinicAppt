@@ -5,6 +5,9 @@ using Clinic.Model;
 
 namespace Clinic.View
 {
+    /// <summary>
+    /// Edit Appointment form.
+    /// </summary>
     public partial class EditAppointment : Form
     {
         private DoctorController doctorController = new DoctorController();
@@ -12,6 +15,10 @@ namespace Clinic.View
         private AppointmentController appointmentController = new AppointmentController();
         private DateTime SelectedDateTime;
         private Appointment oldAppointment;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public EditAppointment()
         {
             InitializeComponent();

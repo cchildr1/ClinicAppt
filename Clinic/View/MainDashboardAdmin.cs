@@ -17,18 +17,18 @@ namespace Clinic.View
             InitializeComponent();
         }
 
-        private void LogOut_Button_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-        }
-
         /// <summary>
         /// This sets the welcome lbl to welcome + the logged in username
         /// </summary>
-        /// <param name="welcomeName"></param>
+        /// <param name="welcomeName">The name of the user to flash when logged in.</param>
         public void SetLoggedInName(string welcomeName)
         {
             this.WelcomeLBL.Text = "Welcome " + welcomeName;
+        }
+
+        private void LogOut_Button_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void MainDashboardAdmin_Load(object sender, EventArgs e)

@@ -18,6 +18,7 @@ namespace Clinic.UserControls
         private DoctorController doctorController = new DoctorController();
         private NurseController nurseController = new NurseController();
         private List<Visit> visits = new List<Visit>();
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -29,8 +30,6 @@ namespace Clinic.UserControls
             this.PopulateNurseComboBox();
             this.PopulateDataGridView(this.visitController.GetAllVisits());
         }
-
-
 
         private void PopulateDataGridView(List<Visit> visits)
         {

@@ -86,6 +86,7 @@ namespace Clinic.Controller
         /// </summary>
         /// <param name="oldPatient">Accepted old patient to insure patient has not been edited since being selected</param>
         /// <param name="editedPatient">What the old patient will be edited too</param>
+        /// <returns>Yes/No if the patient was written to the db</returns>
         public bool EditPatient(Patient oldPatient, Patient editedPatient)
         {
             return patientDAL.UpdatePatient(oldPatient, editedPatient);
@@ -94,7 +95,7 @@ namespace Clinic.Controller
         /// <summary>
         /// This method adds the accepted patient to the database
         /// </summary>
-        /// <param name="addedPatient"></param>
+        /// <param name="addedPatient">Patient object to add to db</param>
         public void AddPatient(Patient addedPatient)
         {
             this.patientDAL.AddPatient(addedPatient);
@@ -104,7 +105,7 @@ namespace Clinic.Controller
         /// <summary>
         /// This method returns true if the accepted SSN value is NOT present within the database
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Yes/No if SSN is not a duplicate</returns>
         public bool IsSSN_Not_Duplicate(string ssn)
         {
             return this.patientDAL.IsSSN_Not_Duplicate(ssn);

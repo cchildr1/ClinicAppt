@@ -36,7 +36,7 @@ namespace Clinic.View
         /// <summary>
         /// Calling this method sets up the view to edit the accepted Nurse value
         /// </summary>
-        /// <param name="editedNurse"></param>
+        /// <param name="editedNurse">The Nurse object to edit.</param>
         public void SetUp_ForEditNurse(Nurse editedNurse)
         {
             this.editedNurse = editedNurse;

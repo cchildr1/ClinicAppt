@@ -7,6 +7,9 @@ using Clinic.Model;
 
 namespace Clinic.UserControls
 {
+    /// <summary>
+    /// User Control for nurses for the Admin portion of the app.
+    /// </summary>
     public partial class admin_NurseControl_userControl : UserControl
     {
         private NurseController nurseController = new NurseController();

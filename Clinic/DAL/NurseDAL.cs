@@ -16,7 +16,7 @@ namespace Clinic.DAL
         /// Returns true if the accepted SSN value is NOT present in the database
         /// </summary>
         /// <param name="ssn"></param>
-        /// <returns></returns>
+        /// <returns>Yes/No if SSN is not a duplicate</returns>
         public bool IsSSN_Not_Duplicate(string ssn)
         {
             bool valid_SSN = true;
@@ -70,9 +70,7 @@ namespace Clinic.DAL
                             nurse.PersonId = (int)reader["person_id"];
                             nurse.StatusID = (int)reader["status_id"];
                             nurse.UserName = reader["username"].ToString();
-                     //       nurse.EmployeeID = (int)reader["u.id"];
                             PopulatePersonalInformation(nurse);
-
                         }
                     }
                 }
@@ -119,10 +117,12 @@ namespace Clinic.DAL
             return nurses;
         }
 
+
         /// <summary>
         /// This method returns status description equal to the accepted ID
         /// </summary>
-        /// <returns></returns>
+        /// <param name="statusID">Status ID value</param>
+        /// <returns>String rep of the status value</returns>
         public string GetStatusByID(int statusID)
         {
             string status_description = "";
@@ -150,10 +150,12 @@ namespace Clinic.DAL
             return status_description;
         }
 
+
         /// <summary>
         /// This method will change the accpted nurse status to the value memeber
         /// </summary>
-        /// <param name="valueMember"></param>
+        /// <param name="nurseID">Nurse ID value</param>
+        /// <param name="valueMember">Value Member</param>
         public void ChangeStatus(int nurseID, int valueMember)
         {
             string updateStatus = "UPDATE nurse " +
@@ -178,12 +180,13 @@ namespace Clinic.DAL
                 throw ex;
             }
         }
-    
+
 
         /// <summary>
         /// This method adds the accepted nurse to the database
         /// </summary>
-        /// <param name="nurse"></param>
+        /// <param name="addedNurse">The Nurse object to add</param>
+        /// <returns>The Nurse object</returns>
         public Nurse AddNurse(Nurse addedNurse)
         {
             Nurse returnedNurse = new Nurse();
@@ -247,9 +250,9 @@ namespace Clinic.DAL
         /// <summary>
         /// Returns a list of all nurses with full names equal to the accepted first and last names
         /// </summary>
-        /// <param name="firstname"></param>
-        /// <param name="lastname"></param>
-        /// <returns></returns>
+        /// <param name="firstname">Nurse first name</param>
+        /// <param name="lastname">Nurse last name</param>
+        /// <returns>List of nurses returned by the query</returns>
         public List<Nurse> GetNurseByFullName(string firstname, string lastname)
         {
             List<Nurse> nurses = new List<Nurse>();
@@ -289,8 +292,8 @@ namespace Clinic.DAL
         /// <summary>
         /// Returns a list of all nurses with a first name equal to the accepted firstname
         /// </summary>
-        /// <param name="firstname"></param>
-        /// <returns></returns>
+        /// <param name="firstname">Nurse first name</param>
+        /// <returns>List of all Nurses returned by the query</returns>
         public List<Nurse> GetAllNursesByFirstname(string firstname)
         {
             List<Nurse> nurses = new List<Nurse>();
@@ -329,8 +332,8 @@ namespace Clinic.DAL
         /// <summary>
         /// This method will return a list of all Nurses with a lastname equal the the accepted lastname
         /// </summary>
-        /// <param name="lastname"></param>
-        /// <returns></returns>
+        /// <param name="lastname">Nurse last name</param>
+        /// <returns>List of all nurses returned by query</returns>
         public List<Nurse> GetAllNursesByLastname(string lastname)
         {
             List<Nurse> nurses = new List<Nurse>();
@@ -372,7 +375,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="oldNurse">The old nurse object in the db</param>
         /// <param name="updatedNurse">The new nurse object in the view</param>
-        /// <returns></returns>
+        /// <returns>Yes/No if update was successful</returns>
         public bool UpdateNurse(Nurse updatedNurse, Nurse oldNurse)
         {
             string updateStatement = "UPDATE person " +
@@ -384,7 +387,6 @@ namespace Clinic.DAL
                 "street_address = @new_street_address, " +
                 "phone = @new_phone, " +
                 "zipcode = @new_zipcode " +
-
                 "WHERE id = @id AND " +
                 "last_name = @old_last_name AND " +
                 "first_name = @old_first_name AND " +

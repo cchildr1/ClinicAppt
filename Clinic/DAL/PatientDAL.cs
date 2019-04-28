@@ -12,6 +12,7 @@ namespace Clinic.DAL
     public class PatientDAL
     {
         private ZipcodeDAL zipcodeDAL = new ZipcodeDAL();
+
         /// <summary>
         /// Returns all visits for a specified patient
         /// </summary>
@@ -90,7 +91,7 @@ namespace Clinic.DAL
         /// <summary>
         /// This method will add the accepted Patient to the database
         /// </summary>
-        /// <param name="addedPatient"></param>
+        /// <param name="addedPatient">Patient to add to the db</param>
         public void AddPatient(Patient addedPatient)
         {
             int addedPatient_PersonalInfoID = -1;
@@ -151,8 +152,8 @@ namespace Clinic.DAL
         /// <summary>
         /// Returns true if the accepted SSN value is NOT present in the database
         /// </summary>
-        /// <param name="ssn"></param>
-        /// <returns></returns>
+        /// <param name="ssn">Social security number</param>
+        /// <returns>Yes/No if ssn isn't a duplicate</returns>
         public bool IsSSN_Not_Duplicate(string ssn)
         {
             bool valid_SSN = true;

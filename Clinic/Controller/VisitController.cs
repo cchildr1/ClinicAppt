@@ -20,6 +20,7 @@ namespace Clinic.Controller
         {
             this.visits = this.visitDAL.GetAllVisits();
         }
+
         /// <summary>
         /// Returns all visits as list
         /// </summary>
@@ -29,15 +30,26 @@ namespace Clinic.Controller
             return this.visits;
         }
 
+        /// <summary>
+        /// Reloads the List<Visit> member variable
+        /// </summary>
+        /// <returns>The list of visits object</returns>
         public List<Visit> RefreshVisits()
         {
             this.visits = this.visitDAL.GetAllVisits();
             return this.visits;
         }
+
+        /// <summary>
+        /// Gets the visit by id number.
+        /// </summary>
+        /// <param name="id">Visit ID value</param>
+        /// <returns>Visit object</returns>
         public Visit GetVisitByID(int id)
         {
             return this.visitDAL.GetVisitByID(id);
         }
+
         /// <summary>
         /// Searches the list and returns only the values that match
         /// </summary>

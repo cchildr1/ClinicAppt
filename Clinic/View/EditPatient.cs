@@ -15,6 +15,9 @@ namespace Clinic.View
         string errorMessage = "";
         bool noValueChanged;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public EditPatient()
         {
             InitializeComponent();

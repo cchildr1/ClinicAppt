@@ -27,7 +27,7 @@ namespace Clinic.View
         /// <summary>
         /// This method will set the PatientCombo box value to the accepted patient. It will not allow a change to another patient
         /// </summary>
-        /// <param name="patient"></param>
+        /// <param name="patient">The Patient object to set to the view.</param>
         public void SetPatientToAcceptedPatient(Patient patient)
         {
             this.Patient_ComboBox.Text = patient.FullName;

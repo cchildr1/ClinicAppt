@@ -46,7 +46,7 @@ namespace Clinic.DAL
         /// <summary>
         /// Returns a Doctor equal to the doctorID
         /// </summary>
-        /// <param name="doctorID"></param>
+        /// <param name="doctorID">Doctor ID value</param>
         /// <returns>returns Doctor equal to the accepted DoctorID</returns>
         public static Doctor GetDoctorByID(int doctorID)
         {
