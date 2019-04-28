@@ -1,7 +1,6 @@
 ﻿using Clinic.Model;
 using System;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 
 namespace Clinic.DAL
 {

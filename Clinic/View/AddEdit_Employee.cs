@@ -5,7 +5,6 @@ using Clinic.Model;
 using Clinic.Controller;
 
 
-
 namespace Clinic.View
 {
     /// <summary>

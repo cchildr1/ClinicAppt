@@ -50,7 +50,7 @@ namespace Clinic.DAL
         {
             int employeeID = -1;
             string addEmployee = "INSERT users ( username, password, person_id) " +
-                "VALUES (@username, @password, @person_id) ";
+                "VALUES (@username, HASHBYTES('SHA2_256', @password), @person_id) ";
 
             string employeeIDStatement = "SELECT IDENT_CURRENT('users') FROM users";
 
@@ -61,7 +61,7 @@ namespace Clinic.DAL
                     using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
                     {
                         insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
-                        insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes("qwerty"));
+                        insertCommand.Parameters.AddWithValue("password", addedEmployee.Password);
                         insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
 
                         insertCommand.ExecuteNonQuery();
@@ -80,7 +80,8 @@ namespace Clinic.DAL
         }
 
         /// <summary>
-        /// Returns the employeeID equal to the accepted personID
+        /// Returns the employeeID equal to the accepted personID.
+        /// Note that the password returned is the hashed password in the database, not plaintext.
         /// </summary>
         /// <param name="personID">ID of the person</param>
         /// <returns>Employee object</returns>

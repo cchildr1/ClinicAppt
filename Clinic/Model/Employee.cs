@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-
+﻿
 namespace Clinic.Model
 {
     /// <summary>
