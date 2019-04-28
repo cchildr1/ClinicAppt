@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Model;
 
@@ -12,7 +9,7 @@ namespace Clinic.DAL
     class EmployeeDAL
     {
         /// <summary>
-        /// Changes the employee credentails.
+        /// Changes the employee credentials in the database..
         /// </summary>
         /// <param name="edited_employee">the new employee object</param>
         /// <param name="old_employee">the existing employee object</param>
@@ -35,7 +32,7 @@ namespace Clinic.DAL
                     update.Parameters.AddWithValue("@new_username", edited_employee.UserName);
                     update.Parameters.AddWithValue("@new_password", edited_employee.Password); 
                     update.Parameters.AddWithValue("@old_username", old_employee.UserName);
-                    update.Parameters.AddWithValue("@old_password", old_employee.Password);
+                    update.Parameters.AddWithValue("@old_password", old_employee.HashedPassword);
                     update.Parameters.AddWithValue("@old_id", old_employee.EmployeeID);
                     update.Parameters.AddWithValue("@old_personID", old_employee.PersonId);
                     int count = update.ExecuteNonQuery();
@@ -64,7 +61,7 @@ namespace Clinic.DAL
                     using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
                     {
                         insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
-                        insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes("qwerty"));//addedEmployee.Password)); New users Password is still 'test' WHY
+                        insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes("qwerty"));
                         insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
 
                         insertCommand.ExecuteNonQuery();
@@ -106,8 +103,8 @@ namespace Clinic.DAL
                             {
                                 employee.EmployeeID = (int)reader["id"];
                                 employee.PersonId = (int)reader["person_id"];
-                                employee.HashedPassword = (byte[])reader["password"];
                                 employee.UserName = reader["username"].ToString();
+                                employee.HashedPassword = (byte[])reader["password"];
                             }
                         }
                     }
