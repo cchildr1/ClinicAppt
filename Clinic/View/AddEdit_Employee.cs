@@ -67,6 +67,9 @@ namespace Clinic.View
                     this.addedEmployee.UserName = this.username_textbox.Text;
                     this.addedEmployee.Password = this.passwordMasked_textbox.Text;
                     this.employeeController.AddEmployeeInfo(this.addedEmployee);
+                    MessageBox.Show("New Employee Created.");
+                    this.ReturnedEmployee = this.SetUpdated_employee();
+                    this.DialogResult = DialogResult.Yes;
                 }
 
             }

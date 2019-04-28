@@ -257,7 +257,7 @@ namespace Clinic.View
                     {                 
                         Nurse addedNurse = this.nurseController.Addnurse(nurse);
                         this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
-                        this.Add_employee_info(addedNurse);                           
+                        this.Add_employee_info(addedNurse);
                     }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
@@ -298,6 +298,7 @@ namespace Clinic.View
             if (result == DialogResult.Yes)
             {
                 this.DialogResult = DialogResult.Yes;
+                MessageBox.Show("Nurse Added.");
                 this.Close();
             }
         }
