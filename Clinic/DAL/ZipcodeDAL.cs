@@ -1,6 +1,4 @@
-﻿using Clinic.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data.SqlClient;
 
 

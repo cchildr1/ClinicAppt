@@ -1,5 +1,4 @@
-﻿
-namespace Clinic.Model
+﻿namespace Clinic.Model
 {
     /// <summary>
     /// Represents an employee that can log into the system.

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Clinic.Model;
 using Clinic.Controller;
 using System.Windows.Forms;

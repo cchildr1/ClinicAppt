@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Clinic.Controller;
 using Clinic.Model;
-using Clinic.View;
 
 
 namespace Clinic.View

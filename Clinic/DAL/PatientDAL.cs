@@ -1,5 +1,4 @@
 ﻿using Clinic.Model;
-using Clinic.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
