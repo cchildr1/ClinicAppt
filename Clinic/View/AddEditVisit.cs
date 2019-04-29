@@ -309,6 +309,9 @@ namespace Clinic.View
                 this.ProcessDeleteChanges(this.cS6232_g3DataSet);
                 this.cS6232_g3DataSet.AcceptChanges();
                 MessageBox.Show("Tests updated.");
+            } else
+            {
+                MessageBox.Show("Visit does not exist. Cannot add tests.");
             }
         }
 
