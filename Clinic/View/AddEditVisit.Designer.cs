@@ -486,6 +486,7 @@
             this.infoTextBox.Name = "infoTextBox";
             this.infoTextBox.Size = new System.Drawing.Size(801, 30);
             this.infoTextBox.TabIndex = 12;
+            this.infoTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // bodyTemperatureTextBox
             // 
@@ -495,6 +496,7 @@
             this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
             this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
             this.bodyTemperatureTextBox.TabIndex = 10;
+            this.bodyTemperatureTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // doctorTextBox
             // 
@@ -517,6 +519,7 @@
             this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
             this.finalDiagnosisTextBox.Size = new System.Drawing.Size(801, 30);
             this.finalDiagnosisTextBox.TabIndex = 14;
+            this.finalDiagnosisTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // initialDiagnosisTextBox
             // 
@@ -530,6 +533,7 @@
             this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
             this.initialDiagnosisTextBox.Size = new System.Drawing.Size(801, 30);
             this.initialDiagnosisTextBox.TabIndex = 13;
+            this.initialDiagnosisTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // symptomsTextBox
             // 
@@ -543,6 +547,7 @@
             this.symptomsTextBox.Name = "symptomsTextBox";
             this.symptomsTextBox.Size = new System.Drawing.Size(801, 30);
             this.symptomsTextBox.TabIndex = 11;
+            this.symptomsTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // weightTextBox
             // 
@@ -551,6 +556,7 @@
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.Size = new System.Drawing.Size(100, 20);
             this.weightTextBox.TabIndex = 9;
+            this.weightTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // pulseTextBox
             // 
@@ -559,6 +565,7 @@
             this.pulseTextBox.Name = "pulseTextBox";
             this.pulseTextBox.Size = new System.Drawing.Size(100, 20);
             this.pulseTextBox.TabIndex = 8;
+            this.pulseTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // bpDiastolicTextBox
             // 
@@ -567,6 +574,7 @@
             this.bpDiastolicTextBox.Name = "bpDiastolicTextBox";
             this.bpDiastolicTextBox.Size = new System.Drawing.Size(100, 20);
             this.bpDiastolicTextBox.TabIndex = 7;
+            this.bpDiastolicTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // bpSystolicTextBox
             // 
@@ -575,6 +583,7 @@
             this.bpSystolicTextBox.Name = "bpSystolicTextBox";
             this.bpSystolicTextBox.Size = new System.Drawing.Size(100, 20);
             this.bpSystolicTextBox.TabIndex = 6;
+            this.bpSystolicTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // DTPVisitTime
             // 
@@ -584,6 +593,7 @@
             this.DTPVisitTime.Name = "DTPVisitTime";
             this.DTPVisitTime.Size = new System.Drawing.Size(200, 20);
             this.DTPVisitTime.TabIndex = 5;
+            this.DTPVisitTime.ValueChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // DTPVisitDate
             // 
@@ -593,6 +603,7 @@
             this.DTPVisitDate.Name = "DTPVisitDate";
             this.DTPVisitDate.Size = new System.Drawing.Size(200, 20);
             this.DTPVisitDate.TabIndex = 4;
+            this.DTPVisitDate.ValueChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // NurseComboBox
             // 

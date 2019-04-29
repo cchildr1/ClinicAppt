@@ -257,6 +257,23 @@ namespace Clinic.View
             this.ValidateTextPresent(initialDiagnosisTextBox);
         }
 
+        private void ResetALLErrorFields(TextBox textBox)
+        {
+            textBox.BackColor = Color.White;
+        }
+
+        private void RemoveErrors(object sender, EventArgs e)
+        {
+            this.ResetALLErrorFields(bpSystolicTextBox);
+            this.ResetALLErrorFields(bpDiastolicTextBox);
+            this.ResetALLErrorFields(pulseTextBox);
+            this.ResetALLErrorFields(weightTextBox);
+            this.ResetALLErrorFields(bodyTemperatureTextBox);
+            this.ResetALLErrorFields(symptomsTextBox);
+            this.ResetALLErrorFields(infoTextBox);
+            this.ResetALLErrorFields(initialDiagnosisTextBox);
+        }
+
         private void ColorReset()
         {
             weightTextBox.BackColor = SystemColors.Window;
