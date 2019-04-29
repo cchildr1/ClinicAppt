@@ -26,7 +26,8 @@ namespace Clinic.View
         /// <summary>
         /// Constructor for existing visit, populates form with pre-existing visit information
         /// </summary>
-        /// <param name="visit">visit to add to form</param>
+        /// <param name="visit">Visit Object</param>
+        /// <param name="loggedInNurse">The currently logged in nurse object</param>
         public AddEditVisit(Visit visit, Nurse loggedInNurse)
         {
             this.nurseController = new NurseController();

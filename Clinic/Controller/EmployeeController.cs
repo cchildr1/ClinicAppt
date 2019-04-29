@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Clinic.Model;
+﻿using Clinic.Model;
 using Clinic.DAL;
 
 namespace Clinic.Controller
 {
     /// <summary>
-    /// This is the employeeController class it will help edit/set/get employee datat
+    /// This is the employeeController class. Helps edit/set/get employee datasets.
     /// </summary>
     public class EmployeeController
     {
@@ -18,9 +13,9 @@ namespace Clinic.Controller
         /// <summary>
         /// returns true if the employee is successfully updated
         /// </summary>
-        /// <param name="editedEmployee"></param>
-        /// <param name="old_employee"></param>
-        /// <returns></returns>
+        /// <param name="editedEmployee">The new employee object</param>
+        /// <param name="old_employee">The existing employee object to upate</param>
+        /// <returns>Yes/No if was successful</returns>
         public bool EditEmployeeInfo(Employee editedEmployee, Employee old_employee)
         {
             return this.employeeDAL.EditEmployeeInfo(editedEmployee, old_employee);
@@ -29,8 +24,8 @@ namespace Clinic.Controller
         /// <summary>
         /// This method returns the employee eqaul to the personID
         /// </summary>
-        /// <param name="personID"></param>
-        /// <returns></returns>
+        /// <param name="personID">PersonID value.</param>
+        /// <returns>the coresponding Employee object</returns>
         public Employee GetEmployeeBy_PersonID(int personID)
         {
             return this.employeeDAL.GetEmployeeBy_PersonID(personID);
@@ -39,7 +34,7 @@ namespace Clinic.Controller
         /// <summary>
         /// This method adds a employee to the database
         /// </summary>
-        /// <param name="addedEmployee"></param>
+        /// <param name="addedEmployee">The employee object to add</param>
         public void AddEmployeeInfo(Employee addedEmployee)
         {
             this.employeeDAL.AddEmployee(addedEmployee);

@@ -1,5 +1,4 @@
-﻿
-using Clinic.Controller;
+﻿using Clinic.Controller;
 using Clinic.Model;
 using Clinic.View;
 using System;

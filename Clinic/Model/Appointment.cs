@@ -7,7 +7,6 @@ namespace Clinic.Model
     /// </summary>
     public class Appointment
     {
-        //Getters and setters for Appointment values
         public int AppointmentID { get; set; }
         public DateTime Scheduled_Date { get; set; }
         public string Reason_For_Visit { get; set; }

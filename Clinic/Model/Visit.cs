@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Clinic.Model
 {
@@ -8,7 +7,6 @@ namespace Clinic.Model
     /// </summary>
     public class Visit
     {
-        //Getters and setters for Visit values
         public int VisitId { get; set; }
         public DateTime DateTime { get; set; }
         public decimal Weight { get; set; }

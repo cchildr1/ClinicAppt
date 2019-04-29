@@ -7,7 +7,6 @@ namespace Clinic.Model
     /// </summary>
     public class Person
     {
-        //Getters and setters for Person values
         public int PersonId { get; set; }
         public string FirstName {get; set;}
         public string LastName { get; set; }

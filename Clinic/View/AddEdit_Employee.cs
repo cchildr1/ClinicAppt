@@ -12,7 +12,7 @@ namespace Clinic.View
     /// </summary>
     public partial class AddEdit_Employee : Form
     {
-        //This employee will be returned to the Add_Edit_Nurse page to insure that 
+        //This employee will be set to to the Add_Edit_Nurse page.
         public Employee ReturnedEmployee { get; set; }
 
         bool isEditingEmployee = false;
@@ -24,9 +24,11 @@ namespace Clinic.View
             InitializeComponent();
         }
 
+
         /// <summary>
         /// This form is called to EDIT a employee and the admin can to see/change values
         /// </summary>
+        /// <param name="employee">Employee to add to the view</param>
         public void SetUpFormToEditEmployee(Nurse employee)
         {
             this.username_textbox.Text = employee.UserName;
@@ -34,6 +36,10 @@ namespace Clinic.View
             this.isEditingEmployee = true;
         }
 
+        /// <summary>
+        /// Sets the employee object
+        /// </summary>
+        /// <param name="employee">Employee object</param>
         public void SetUpFormFor_New_Employee(Employee employee)
         {
             this.addedEmployee = employee;
@@ -61,6 +67,9 @@ namespace Clinic.View
                     this.addedEmployee.UserName = this.username_textbox.Text;
                     this.addedEmployee.Password = this.passwordMasked_textbox.Text;
                     this.employeeController.AddEmployeeInfo(this.addedEmployee);
+                //    MessageBox.Show("New Employee Created.");
+                //    this.ReturnedEmployee = this.SetUpdated_employee();
+                    this.DialogResult = DialogResult.Yes;
                 }
 
             }

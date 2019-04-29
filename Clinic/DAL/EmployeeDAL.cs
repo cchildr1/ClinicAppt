@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Text;
 using System.Windows.Forms;
 using Clinic.Model;
 
 namespace Clinic.DAL
 {
+    /// <summary>
+    /// Queries and returns Employee objects from the database.
+    /// </summary>
     class EmployeeDAL
     {
         /// <summary>
@@ -13,7 +15,7 @@ namespace Clinic.DAL
         /// </summary>
         /// <param name="edited_employee">the new employee object</param>
         /// <param name="old_employee">the existing employee object</param>
-        /// <returns></returns>
+        /// <returns>Yes/No if update operation was successful</returns>
         public bool EditEmployeeInfo(Employee edited_employee, Employee old_employee)
         {
             string updateStatement = "UPDATE users " +

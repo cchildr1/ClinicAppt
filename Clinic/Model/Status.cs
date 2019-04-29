@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Clinic.Model
+﻿namespace Clinic.Model
 {
+    /// <summary>
+    /// Represents the status of a person in the Clinic app.
+    /// </summary>
     class Status
     {
         public int StatusID {get; set;}

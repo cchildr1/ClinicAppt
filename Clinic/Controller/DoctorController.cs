@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Clinic.Controller
 {
+    /// <summary>
+    /// Controls the DoctorDAL.
+    /// </summary>
     class DoctorController
     {
 

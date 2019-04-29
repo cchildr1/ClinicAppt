@@ -13,6 +13,10 @@ namespace Clinic
     public partial class LoginForm : Form
     {
         private LoginController controller;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LoginForm()
         {
             InitializeComponent();

@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Clinic.Controller;
 using Clinic.Model;
-using Clinic.View;
 
 
 namespace Clinic.View
@@ -37,7 +36,7 @@ namespace Clinic.View
         /// <summary>
         /// Calling this method sets up the view to edit the accepted Nurse value
         /// </summary>
-        /// <param name="editedNurse"></param>
+        /// <param name="editedNurse">The Nurse object to edit.</param>
         public void SetUp_ForEditNurse(Nurse editedNurse)
         {
             this.editedNurse = editedNurse;
@@ -258,7 +257,7 @@ namespace Clinic.View
                     {                 
                         Nurse addedNurse = this.nurseController.Addnurse(nurse);
                         this.nurseController.ChangeStatus(nurse.NurseID, nurseStatus);
-                        this.Add_employee_info(addedNurse);                           
+                        this.Add_employee_info(addedNurse);
                     }
                         this.DialogResult = DialogResult.Yes;
                         this.Close();
@@ -277,7 +276,7 @@ namespace Clinic.View
             {
                 edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
             }
-
+            edit_Employee.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = edit_Employee.ShowDialog();
             if (result == DialogResult.Yes)
             {
@@ -295,10 +294,12 @@ namespace Clinic.View
         {
             AddEdit_Employee add_Employee = new AddEdit_Employee();
             add_Employee.SetUpFormFor_New_Employee(employee);
+            add_Employee.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = add_Employee.ShowDialog();
             if (result == DialogResult.Yes)
             {
                 this.DialogResult = DialogResult.Yes;
+                MessageBox.Show("Nurse Added.");
                 this.Close();
             }
         }

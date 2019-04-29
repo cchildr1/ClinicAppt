@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace Clinic.DAL
 {
+    /// <summary>
+    /// Queries and returns all Visit information from the database.
+    /// </summary>
     class VisitDAL
     {
         /// <summary>
@@ -117,7 +120,7 @@ namespace Clinic.DAL
         /// Returns a visit specified by it's ID
         /// </summary>
         /// <param name="id">visit id</param>
-        /// <returns></returns>
+        /// <returns>Visit object</returns>
         public Visit GetVisitByID(int id)
         {
             AppointmentDAL appointmentDAL = new AppointmentDAL();
@@ -266,7 +269,6 @@ namespace Clinic.DAL
                     int count = update.ExecuteNonQuery();
                     connection.Close();
                     return count > 0;
-
                 }
             }
         }

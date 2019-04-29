@@ -7,7 +7,6 @@ namespace Clinic.Model
     /// </summary>
     public class Test
     {
-        //Getters and setters for test values
         public int TestID { get; set; }
         public int VisitID { get; set; }
         public DateTime DatePerformed { get; set;  }
@@ -18,6 +17,10 @@ namespace Clinic.Model
         public string Code { get; set; }
         public string Description { get; set; }
 
+        /// <summary>
+        /// Formats a string in the necessary manner.
+        /// </summary>
+        /// <returns>Formatted string.</returns>
         public override string ToString()
         {
             return string.Format("{0}", Code);

@@ -5,6 +5,9 @@ using System.Data.SqlClient;
 
 namespace Clinic.DAL
 {
+    /// <summary>
+    /// Queries and returns Appointment objects.
+    /// </summary>
     class AppointmentDAL
     {
         /// <summary>
@@ -46,8 +49,8 @@ namespace Clinic.DAL
         /// <summary>
         /// Returns appointents equal to the patient ID
         /// </summary>
-        /// <param name="selectedRowPatientID"></param>
-        /// <returns></returns>
+        /// <param name="selectedRowPatientID">Patient ID value</param>
+        /// <returns>List of appointments</returns>
         public List<Appointment> GetAppointmentsByPatientID(int selectedRowPatientID)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -129,7 +132,6 @@ namespace Clinic.DAL
 
         /// <summary>
         /// This method returns true if the doctor is already schduled for the accepted time slot
-        /// 
         /// </summary>
         /// <param name="ScheduledDateTime">accepted time checked to see if doctor is already scheduled</param>
         /// <param name="DoctorID">Doctor being checked</param>
@@ -177,8 +179,8 @@ namespace Clinic.DAL
         /// <summary>
         /// Returns a populated appointment object for the specified ID
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Appointment ID value</param>
+        /// <returns>Appointment object</returns>
         public Appointment GetAppointmentByID(int id)
         {
             Appointment appointment = new Appointment();
