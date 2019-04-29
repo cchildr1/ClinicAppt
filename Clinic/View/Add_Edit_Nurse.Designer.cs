@@ -107,6 +107,7 @@
             // 
             // nurseStatus_comboBox
             // 
+            this.nurseStatus_comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nurseStatus_comboBox.FormattingEnabled = true;
             this.nurseStatus_comboBox.Location = new System.Drawing.Point(212, 254);
             this.nurseStatus_comboBox.Name = "nurseStatus_comboBox";
@@ -117,7 +118,7 @@
             // 
             this.status_lbl.AutoSize = true;
             this.status_lbl.Location = new System.Drawing.Point(5, 256);
-            this.status_lbl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.status_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.status_lbl.Name = "status_lbl";
             this.status_lbl.Size = new System.Drawing.Size(68, 13);
             this.status_lbl.TabIndex = 14;
@@ -127,7 +128,7 @@
             // 
             this.firstname_label.AutoSize = true;
             this.firstname_label.Location = new System.Drawing.Point(5, 5);
-            this.firstname_label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.firstname_label.Margin = new System.Windows.Forms.Padding(5);
             this.firstname_label.Name = "firstname_label";
             this.firstname_label.Size = new System.Drawing.Size(57, 13);
             this.firstname_label.TabIndex = 0;
@@ -137,7 +138,7 @@
             // 
             this.lastname_lbl.AutoSize = true;
             this.lastname_lbl.Location = new System.Drawing.Point(5, 31);
-            this.lastname_lbl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.lastname_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.lastname_lbl.Name = "lastname_lbl";
             this.lastname_lbl.Size = new System.Drawing.Size(58, 13);
             this.lastname_lbl.TabIndex = 1;
@@ -147,7 +148,7 @@
             // 
             this.dateOfBirth_LBL.AutoSize = true;
             this.dateOfBirth_LBL.Location = new System.Drawing.Point(5, 55);
-            this.dateOfBirth_LBL.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dateOfBirth_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.dateOfBirth_LBL.Name = "dateOfBirth_LBL";
             this.dateOfBirth_LBL.Size = new System.Drawing.Size(68, 13);
             this.dateOfBirth_LBL.TabIndex = 2;
@@ -157,7 +158,7 @@
             // 
             this.SSN_Label.AutoSize = true;
             this.SSN_Label.Location = new System.Drawing.Point(5, 78);
-            this.SSN_Label.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SSN_Label.Margin = new System.Windows.Forms.Padding(5);
             this.SSN_Label.Name = "SSN_Label";
             this.SSN_Label.Size = new System.Drawing.Size(29, 13);
             this.SSN_Label.TabIndex = 3;
@@ -167,7 +168,7 @@
             // 
             this.gender_LBL.AutoSize = true;
             this.gender_LBL.Location = new System.Drawing.Point(5, 103);
-            this.gender_LBL.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gender_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.gender_LBL.Name = "gender_LBL";
             this.gender_LBL.Size = new System.Drawing.Size(42, 13);
             this.gender_LBL.TabIndex = 4;
@@ -177,7 +178,7 @@
             // 
             this.streetAddress_LBL.AutoSize = true;
             this.streetAddress_LBL.Location = new System.Drawing.Point(5, 127);
-            this.streetAddress_LBL.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.streetAddress_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.streetAddress_LBL.Name = "streetAddress_LBL";
             this.streetAddress_LBL.Size = new System.Drawing.Size(76, 13);
             this.streetAddress_LBL.TabIndex = 5;
@@ -187,7 +188,7 @@
             // 
             this.phone_number_LBL.AutoSize = true;
             this.phone_number_LBL.Location = new System.Drawing.Point(5, 206);
-            this.phone_number_LBL.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.phone_number_LBL.Margin = new System.Windows.Forms.Padding(5);
             this.phone_number_LBL.Name = "phone_number_LBL";
             this.phone_number_LBL.Size = new System.Drawing.Size(38, 13);
             this.phone_number_LBL.TabIndex = 6;
@@ -197,7 +198,7 @@
             // 
             this.zipcode_lbl.AutoSize = true;
             this.zipcode_lbl.Location = new System.Drawing.Point(5, 231);
-            this.zipcode_lbl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.zipcode_lbl.Margin = new System.Windows.Forms.Padding(5);
             this.zipcode_lbl.Name = "zipcode_lbl";
             this.zipcode_lbl.Size = new System.Drawing.Size(46, 13);
             this.zipcode_lbl.TabIndex = 7;
