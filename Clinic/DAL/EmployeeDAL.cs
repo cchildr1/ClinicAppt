@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Model;
 
@@ -11,24 +8,31 @@ namespace Clinic.DAL
 {
     class EmployeeDAL
     {
+        /// <summary>
+        /// Changes the employee credentials in the database..
+        /// </summary>
+        /// <param name="edited_employee">the new employee object</param>
+        /// <param name="old_employee">the existing employee object</param>
+        /// <returns></returns>
         public bool EditEmployeeInfo(Employee edited_employee, Employee old_employee)
         {
             string updateStatement = "UPDATE users " +
                 "SET username = @new_username, " +
-                "password = @new_password " +
+                "password = HASHBYTES('SHA2_256', @new_password) " +
                 "WHERE username = @old_username AND " +
-           //     "password = @old_password AND " +
+                "password = @old_password AND " +
                 "id = @old_id AND " +
                 "person_id = @old_personID;";
+
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {
                 connection.Open();
                 using (SqlCommand update = new SqlCommand(updateStatement, connection))
                 {
                     update.Parameters.AddWithValue("@new_username", edited_employee.UserName);
-                    update.Parameters.AddWithValue("new_password", Encoding.Default.GetBytes("qwerty")); //edited_employee.Password); CHANGED PASSWORDS STILL WORK AS TEST
+                    update.Parameters.AddWithValue("@new_password", edited_employee.Password); 
                     update.Parameters.AddWithValue("@old_username", old_employee.UserName);
-                    //     update.Parameters.AddWithValue("old_password", old_employee.Password);
+                    update.Parameters.AddWithValue("@old_password", old_employee.HashedPassword);
                     update.Parameters.AddWithValue("@old_id", old_employee.EmployeeID);
                     update.Parameters.AddWithValue("@old_personID", old_employee.PersonId);
                     int count = update.ExecuteNonQuery();
@@ -41,12 +45,12 @@ namespace Clinic.DAL
         /// <summary>
         /// This method allows users to add employee values to the database
         /// </summary>
-        /// <param name="addedEmployee"></param>
+        /// <param name="addedEmployee">The employee object to add to the db.</param>
         public void AddEmployee(Employee addedEmployee)
         {
             int employeeID = -1;
             string addEmployee = "INSERT users ( username, password, person_id) " +
-                "VALUES (@username, @password, @person_id) ";
+                "VALUES (@username, HASHBYTES('SHA2_256', @password), @person_id) ";
 
             string employeeIDStatement = "SELECT IDENT_CURRENT('users') FROM users";
 
@@ -57,7 +61,7 @@ namespace Clinic.DAL
                     using (SqlCommand insertCommand = new SqlCommand(addEmployee, connection))
                     {
                         insertCommand.Parameters.AddWithValue("username", addedEmployee.UserName);
-                    insertCommand.Parameters.AddWithValue("password", Encoding.Default.GetBytes("qwerty"));//addedEmployee.Password)); New users Password is still 'test' WHY
+                        insertCommand.Parameters.AddWithValue("password", addedEmployee.Password);
                         insertCommand.Parameters.AddWithValue("person_id", addedEmployee.PersonId);
 
                         insertCommand.ExecuteNonQuery();
@@ -76,10 +80,11 @@ namespace Clinic.DAL
         }
 
         /// <summary>
-        /// Returns the employeeID equal to the accepted personID
+        /// Returns the employeeID equal to the accepted personID.
+        /// Note that the password returned is the hashed password in the database, not plaintext.
         /// </summary>
-        /// <param name="personID"></param>
-        /// <returns></returns>
+        /// <param name="personID">ID of the person</param>
+        /// <returns>Employee object</returns>
         public Employee GetEmployeeBy_PersonID(int personID)
         {
             Employee employee = new Employee();
@@ -99,9 +104,8 @@ namespace Clinic.DAL
                             {
                                 employee.EmployeeID = (int)reader["id"];
                                 employee.PersonId = (int)reader["person_id"];
-                                employee.Password = reader["password"].ToString();
                                 employee.UserName = reader["username"].ToString();
-
+                                employee.HashedPassword = (byte[])reader["password"];
                             }
                         }
                     }

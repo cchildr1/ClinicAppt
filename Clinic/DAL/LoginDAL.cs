@@ -1,7 +1,6 @@
 ﻿using Clinic.Model;
 using System;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 
 namespace Clinic.DAL
 {
@@ -24,7 +23,7 @@ namespace Clinic.DAL
                 "LEFT JOIN nurse n ON u.person_id = n.person_id " +
                 "LEFT JOIN administrator a ON u.person_id = a.person_id " +
                 "JOIN person phi ON u.person_id = phi.id "  +
-                "WHERE username = @username AND dbo.PasswordCheck(@password) = 'Valid'";
+                "WHERE username = @username AND password = HASHBYTES('SHA2_256', @password)";
 
             using (SqlConnection connection = ClinicDBConnection.GetConnection())
             {

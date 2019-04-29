@@ -417,7 +417,7 @@ namespace Clinic.View
                     }
                 } catch (DeletedRowInaccessibleException ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Deleted row inacessible.");
                 }
             }
         }

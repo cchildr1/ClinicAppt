@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Clinic.Model;
 using Clinic.Controller;
-using Clinic.View;
-
 
 
 namespace Clinic.View
@@ -60,7 +52,8 @@ namespace Clinic.View
                     }
                     else
                     {
-                        MessageBox.Show("Employee update failed " + this.editedEmployee.EmployeeID.ToString() + " personal-> " + this.editedEmployee.PersonId.ToString() + " username " + this.editedEmployee.UserName.ToString());
+                        MessageBox.Show("Employee update failed " + this.editedEmployee.EmployeeID.ToString() + " personal-> " + 
+                            this.editedEmployee.PersonId.ToString() + " username " + this.editedEmployee.UserName.ToString());
                     }
                 }
                 else
@@ -97,11 +90,13 @@ namespace Clinic.View
 
         private Employee SetUpdated_employee()
         {
-            Employee updatedEmployee = new Employee();
-            updatedEmployee.EmployeeID = this.editedEmployee.EmployeeID;
-            updatedEmployee.PersonId = this.editedEmployee.PersonId;
-            updatedEmployee.UserName = this.username_textbox.Text;
-            updatedEmployee.Password = this.passwordMasked_textbox.Text;
+            Employee updatedEmployee = new Employee
+            {
+                EmployeeID = this.editedEmployee.EmployeeID,
+                PersonId = this.editedEmployee.PersonId,
+                UserName = this.username_textbox.Text,
+                Password = this.passwordMasked_textbox.Text
+            };
             return updatedEmployee;
         }
 
