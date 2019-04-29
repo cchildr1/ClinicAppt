@@ -276,7 +276,7 @@ namespace Clinic.View
             {
                 edit_Employee.SetUpFormToEditEmployee(this.editedNurse);
             }
-
+            edit_Employee.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = edit_Employee.ShowDialog();
             if (result == DialogResult.Yes)
             {
@@ -294,6 +294,7 @@ namespace Clinic.View
         {
             AddEdit_Employee add_Employee = new AddEdit_Employee();
             add_Employee.SetUpFormFor_New_Employee(employee);
+            add_Employee.StartPosition = FormStartPosition.CenterScreen;
             DialogResult result = add_Employee.ShowDialog();
             if (result == DialogResult.Yes)
             {
