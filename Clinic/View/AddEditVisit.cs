@@ -174,7 +174,7 @@ namespace Clinic.View
                         this.DialogResult = DialogResult.Cancel;
                     }
                 }
-                else if (!this.update && this.valid && this.visitExists)
+                else if (!this.update && this.valid)
                 {
                     if (this.visitController.AddVisit(newVisit) > 0)
                     {
