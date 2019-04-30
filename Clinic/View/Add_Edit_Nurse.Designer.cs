@@ -206,6 +206,7 @@
             // 
             // gender_ComboBox
             // 
+            this.gender_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gender_ComboBox.FormattingEnabled = true;
             this.gender_ComboBox.Location = new System.Drawing.Point(212, 101);
             this.gender_ComboBox.Name = "gender_ComboBox";
@@ -305,7 +306,7 @@
             this.creditentals_button.Name = "creditentals_button";
             this.creditentals_button.Size = new System.Drawing.Size(112, 21);
             this.creditentals_button.TabIndex = 11;
-            this.creditentals_button.Text = "Edit Creditientals";
+            this.creditentals_button.Text = "Edit Credentials";
             this.creditentals_button.UseVisualStyleBackColor = true;
             this.creditentals_button.Click += new System.EventHandler(this.creditentals_button_Click);
             // 
