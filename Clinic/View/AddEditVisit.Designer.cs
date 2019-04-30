@@ -44,7 +44,6 @@
             System.Windows.Forms.Label bodyTemperatureLabel;
             System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.testDataGridView = new System.Windows.Forms.DataGridView();
             this.DeleteRowButton = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -83,6 +82,7 @@
             this.testTableAdapter = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter();
             this.tableAdapterManager = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager();
             this.tableLayoutPanelTest = new System.Windows.Forms.TableLayoutPanel();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             fullNameLabel1 = new System.Windows.Forms.Label();
             nurseLabel = new System.Windows.Forms.Label();
             visitDateLabel = new System.Windows.Forms.Label();
@@ -97,7 +97,6 @@
             fullNameLabel2 = new System.Windows.Forms.Label();
             bodyTemperatureLabel = new System.Windows.Forms.Label();
             infoLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).BeginInit();
@@ -105,6 +104,7 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanelTest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // fullNameLabel1
@@ -301,10 +301,6 @@
             this.patientTextBox.Size = new System.Drawing.Size(200, 20);
             this.patientTextBox.TabIndex = 1;
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -372,7 +368,6 @@
             this.testDataGridView.AutoGenerateColumns = false;
             this.testDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.testDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DeleteRowButton,
             this.code,
             this.dataGridViewTextBoxDatePerformed,
             this.dataGridViewTextBoxDateAvailable,
@@ -380,7 +375,8 @@
             this.dataGridViewTextBoxResult,
             this.dataGridViewTextBoxVisitID,
             this.dataGridViewTextBoxTestCodeID,
-            this.id});
+            this.id,
+            this.DeleteRowButton});
             this.tableLayoutPanelTest.SetColumnSpan(this.testDataGridView, 2);
             this.testDataGridView.DataSource = this.testBindingSource;
             this.testDataGridView.Location = new System.Drawing.Point(3, 37);
@@ -410,7 +406,7 @@
             this.dataGridViewTextBoxDatePerformed.DataPropertyName = "date_performed";
             this.dataGridViewTextBoxDatePerformed.HeaderText = "Order Date";
             this.dataGridViewTextBoxDatePerformed.Name = "dataGridViewTextBoxDatePerformed";
-            this.dataGridViewTextBoxDatePerformed.Width = 78;
+            this.dataGridViewTextBoxDatePerformed.Width = 84;
             // 
             // dataGridViewTextBoxDateAvailable
             // 
@@ -679,6 +675,7 @@
             // 
             // CBInsertTestCode
             // 
+            this.CBInsertTestCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBInsertTestCode.FormattingEnabled = true;
             this.CBInsertTestCode.Location = new System.Drawing.Point(3, 3);
             this.CBInsertTestCode.Name = "CBInsertTestCode";
@@ -725,6 +722,10 @@
             this.tableLayoutPanelTest.Size = new System.Drawing.Size(890, 186);
             this.tableLayoutPanelTest.TabIndex = 35;
             // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
+            // 
             // AddEditVisit
             // 
             this.AcceptButton = this.btOK;
@@ -736,7 +737,6 @@
             this.Name = "AddEditVisit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Visit";
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).EndInit();
@@ -746,6 +746,7 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanelTest.ResumeLayout(false);
             this.tableLayoutPanelTest.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
