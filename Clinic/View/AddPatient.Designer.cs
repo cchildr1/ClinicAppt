@@ -179,6 +179,7 @@
             // 
             // gender_ComboBox
             // 
+            this.gender_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gender_ComboBox.FormattingEnabled = true;
             this.gender_ComboBox.Location = new System.Drawing.Point(200, 134);
             this.gender_ComboBox.Name = "gender_ComboBox";
