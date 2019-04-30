@@ -44,7 +44,6 @@
             System.Windows.Forms.Label bodyTemperatureLabel;
             System.Windows.Forms.Label infoLabel;
             this.patientTextBox = new System.Windows.Forms.TextBox();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.testDataGridView = new System.Windows.Forms.DataGridView();
             this.DeleteRowButton = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -82,6 +81,8 @@
             this.BTInsertTest = new System.Windows.Forms.Button();
             this.testTableAdapter = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.testTableAdapter();
             this.tableAdapterManager = new Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager();
+            this.tableLayoutPanelTest = new System.Windows.Forms.TableLayoutPanel();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             fullNameLabel1 = new System.Windows.Forms.Label();
             nurseLabel = new System.Windows.Forms.Label();
             visitDateLabel = new System.Windows.Forms.Label();
@@ -96,13 +97,14 @@
             fullNameLabel2 = new System.Windows.Forms.Label();
             bodyTemperatureLabel = new System.Windows.Forms.Label();
             infoLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanelTest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // fullNameLabel1
@@ -217,7 +219,7 @@
             symptomsLabel.AutoSize = true;
             symptomsLabel.Location = new System.Drawing.Point(3, 157);
             symptomsLabel.Name = "symptomsLabel";
-            symptomsLabel.Size = new System.Drawing.Size(83, 36);
+            symptomsLabel.Size = new System.Drawing.Size(83, 42);
             symptomsLabel.TabIndex = 16;
             symptomsLabel.Text = "Symptoms:";
             symptomsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -228,9 +230,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             initialDiagnosisLabel.AutoSize = true;
-            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 229);
+            initialDiagnosisLabel.Location = new System.Drawing.Point(3, 241);
             initialDiagnosisLabel.Name = "initialDiagnosisLabel";
-            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 36);
+            initialDiagnosisLabel.Size = new System.Drawing.Size(83, 42);
             initialDiagnosisLabel.TabIndex = 18;
             initialDiagnosisLabel.Text = "Initial Diagnosis:";
             initialDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -241,9 +243,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 265);
+            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 283);
             finalDiagnosisLabel.Name = "finalDiagnosisLabel";
-            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 36);
+            finalDiagnosisLabel.Size = new System.Drawing.Size(83, 42);
             finalDiagnosisLabel.TabIndex = 20;
             finalDiagnosisLabel.Text = "Final Diagnosis:";
             finalDiagnosisLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -280,9 +282,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             infoLabel.AutoSize = true;
-            infoLabel.Location = new System.Drawing.Point(3, 193);
+            infoLabel.Location = new System.Drawing.Point(3, 199);
             infoLabel.Name = "infoLabel";
-            infoLabel.Size = new System.Drawing.Size(83, 36);
+            infoLabel.Size = new System.Drawing.Size(83, 42);
             infoLabel.TabIndex = 28;
             infoLabel.Text = "Info:";
             infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -299,10 +301,6 @@
             this.patientTextBox.Size = new System.Drawing.Size(200, 20);
             this.patientTextBox.TabIndex = 1;
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -310,7 +308,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.testDataGridView, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.infoTextBox, 1, 7);
             this.tableLayoutPanel1.Controls.Add(bodyTemperatureLabel, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.bodyTemperatureTextBox, 1, 5);
@@ -341,28 +338,27 @@
             this.tableLayoutPanel1.Controls.Add(this.btOK, 2, 10);
             this.tableLayoutPanel1.Controls.Add(this.btCancel, 3, 10);
             this.tableLayoutPanel1.Controls.Add(infoLabel, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 2, 13);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 3, 11);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanelTest, 0, 12);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 14;
+            this.tableLayoutPanel1.RowCount = 13;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.36364F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.90476F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.90476F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.90476F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.90476F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(896, 542);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.38094F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 546);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // testDataGridView
@@ -372,7 +368,6 @@
             this.testDataGridView.AutoGenerateColumns = false;
             this.testDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.testDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DeleteRowButton,
             this.code,
             this.dataGridViewTextBoxDatePerformed,
             this.dataGridViewTextBoxDateAvailable,
@@ -380,13 +375,13 @@
             this.dataGridViewTextBoxResult,
             this.dataGridViewTextBoxVisitID,
             this.dataGridViewTextBoxTestCodeID,
-            this.id});
-            this.tableLayoutPanel1.SetColumnSpan(this.testDataGridView, 4);
+            this.id,
+            this.DeleteRowButton});
+            this.tableLayoutPanelTest.SetColumnSpan(this.testDataGridView, 2);
             this.testDataGridView.DataSource = this.testBindingSource;
-            this.testDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.testDataGridView.Location = new System.Drawing.Point(3, 367);
+            this.testDataGridView.Location = new System.Drawing.Point(3, 37);
             this.testDataGridView.Name = "testDataGridView";
-            this.testDataGridView.Size = new System.Drawing.Size(890, 140);
+            this.testDataGridView.Size = new System.Drawing.Size(884, 108);
             this.testDataGridView.TabIndex = 19;
             this.testDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.testDataGridView_CellContentClick);
             // 
@@ -411,7 +406,7 @@
             this.dataGridViewTextBoxDatePerformed.DataPropertyName = "date_performed";
             this.dataGridViewTextBoxDatePerformed.HeaderText = "Order Date";
             this.dataGridViewTextBoxDatePerformed.Name = "dataGridViewTextBoxDatePerformed";
-            this.dataGridViewTextBoxDatePerformed.Width = 78;
+            this.dataGridViewTextBoxDatePerformed.Width = 84;
             // 
             // dataGridViewTextBoxDateAvailable
             // 
@@ -481,12 +476,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.infoTextBox, 3);
             this.infoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Info", true));
-            this.infoTextBox.Location = new System.Drawing.Point(92, 196);
+            this.infoTextBox.Location = new System.Drawing.Point(92, 202);
             this.infoTextBox.Multiline = true;
             this.infoTextBox.Name = "infoTextBox";
-            this.infoTextBox.Size = new System.Drawing.Size(801, 30);
+            this.infoTextBox.Size = new System.Drawing.Size(801, 36);
             this.infoTextBox.TabIndex = 12;
-            this.infoTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // bodyTemperatureTextBox
             // 
@@ -496,7 +490,6 @@
             this.bodyTemperatureTextBox.Name = "bodyTemperatureTextBox";
             this.bodyTemperatureTextBox.Size = new System.Drawing.Size(200, 20);
             this.bodyTemperatureTextBox.TabIndex = 10;
-            this.bodyTemperatureTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // doctorTextBox
             // 
@@ -514,12 +507,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.finalDiagnosisTextBox, 3);
             this.finalDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "FinalDiagnosis", true));
-            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 268);
+            this.finalDiagnosisTextBox.Location = new System.Drawing.Point(92, 286);
             this.finalDiagnosisTextBox.Multiline = true;
             this.finalDiagnosisTextBox.Name = "finalDiagnosisTextBox";
-            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(801, 30);
+            this.finalDiagnosisTextBox.Size = new System.Drawing.Size(801, 36);
             this.finalDiagnosisTextBox.TabIndex = 14;
-            this.finalDiagnosisTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // initialDiagnosisTextBox
             // 
@@ -528,12 +520,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.initialDiagnosisTextBox, 3);
             this.initialDiagnosisTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "InitialDiagnosis", true));
-            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 232);
+            this.initialDiagnosisTextBox.Location = new System.Drawing.Point(92, 244);
             this.initialDiagnosisTextBox.Multiline = true;
             this.initialDiagnosisTextBox.Name = "initialDiagnosisTextBox";
-            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(801, 30);
+            this.initialDiagnosisTextBox.Size = new System.Drawing.Size(801, 36);
             this.initialDiagnosisTextBox.TabIndex = 13;
-            this.initialDiagnosisTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // symptomsTextBox
             // 
@@ -545,9 +536,8 @@
             this.symptomsTextBox.Location = new System.Drawing.Point(92, 160);
             this.symptomsTextBox.Multiline = true;
             this.symptomsTextBox.Name = "symptomsTextBox";
-            this.symptomsTextBox.Size = new System.Drawing.Size(801, 30);
+            this.symptomsTextBox.Size = new System.Drawing.Size(801, 36);
             this.symptomsTextBox.TabIndex = 11;
-            this.symptomsTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // weightTextBox
             // 
@@ -556,7 +546,6 @@
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.Size = new System.Drawing.Size(100, 20);
             this.weightTextBox.TabIndex = 9;
-            this.weightTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // pulseTextBox
             // 
@@ -565,7 +554,6 @@
             this.pulseTextBox.Name = "pulseTextBox";
             this.pulseTextBox.Size = new System.Drawing.Size(100, 20);
             this.pulseTextBox.TabIndex = 8;
-            this.pulseTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // bpDiastolicTextBox
             // 
@@ -574,7 +562,6 @@
             this.bpDiastolicTextBox.Name = "bpDiastolicTextBox";
             this.bpDiastolicTextBox.Size = new System.Drawing.Size(100, 20);
             this.bpDiastolicTextBox.TabIndex = 7;
-            this.bpDiastolicTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // bpSystolicTextBox
             // 
@@ -583,7 +570,6 @@
             this.bpSystolicTextBox.Name = "bpSystolicTextBox";
             this.bpSystolicTextBox.Size = new System.Drawing.Size(100, 20);
             this.bpSystolicTextBox.TabIndex = 6;
-            this.bpSystolicTextBox.TextChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // DTPVisitTime
             // 
@@ -593,7 +579,6 @@
             this.DTPVisitTime.Name = "DTPVisitTime";
             this.DTPVisitTime.Size = new System.Drawing.Size(200, 20);
             this.DTPVisitTime.TabIndex = 5;
-            this.DTPVisitTime.ValueChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // DTPVisitDate
             // 
@@ -603,7 +588,6 @@
             this.DTPVisitDate.Name = "DTPVisitDate";
             this.DTPVisitDate.Size = new System.Drawing.Size(200, 20);
             this.DTPVisitDate.TabIndex = 4;
-            this.DTPVisitDate.ValueChanged += new System.EventHandler(this.RemoveErrors);
             // 
             // NurseComboBox
             // 
@@ -617,7 +601,7 @@
             // 
             // btOK
             // 
-            this.btOK.Location = new System.Drawing.Point(298, 304);
+            this.btOK.Location = new System.Drawing.Point(298, 328);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
             this.btOK.TabIndex = 15;
@@ -628,7 +612,7 @@
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(379, 304);
+            this.btCancel.Location = new System.Drawing.Point(379, 328);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 16;
@@ -643,22 +627,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 330);
+            this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 34);
+            this.label1.Size = new System.Drawing.Size(439, 34);
             this.label1.TabIndex = 29;
             this.label1.Text = "Tests";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel1
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 2);
             this.flowLayoutPanel1.Controls.Add(this.BtSubmitChanges);
             this.flowLayoutPanel1.Controls.Add(this.BtClearChanges);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(298, 513);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(448, 151);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(595, 26);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(439, 32);
             this.flowLayoutPanel1.TabIndex = 32;
             // 
             // BtSubmitChanges
@@ -685,7 +668,7 @@
             // 
             this.flowLayoutPanel2.Controls.Add(this.CBInsertTestCode);
             this.flowLayoutPanel2.Controls.Add(this.BTInsertTest);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(379, 333);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(448, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(338, 28);
             this.flowLayoutPanel2.TabIndex = 34;
@@ -719,18 +702,41 @@
             this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.UpdateOrder = Clinic.DataSets.CS6232_g3DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // tableLayoutPanelTest
+            // 
+            this.tableLayoutPanelTest.ColumnCount = 2;
+            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanelTest, 4);
+            this.tableLayoutPanelTest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelTest.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelTest.Controls.Add(this.testDataGridView, 0, 1);
+            this.tableLayoutPanelTest.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanelTest.Controls.Add(this.flowLayoutPanel2, 1, 0);
+            this.tableLayoutPanelTest.Controls.Add(this.flowLayoutPanel1, 1, 2);
+            this.tableLayoutPanelTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelTest.Location = new System.Drawing.Point(3, 357);
+            this.tableLayoutPanelTest.Name = "tableLayoutPanelTest";
+            this.tableLayoutPanelTest.RowCount = 3;
+            this.tableLayoutPanelTest.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelTest.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelTest.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelTest.Size = new System.Drawing.Size(890, 186);
+            this.tableLayoutPanelTest.TabIndex = 35;
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(Clinic.Model.Visit);
+            // 
             // AddEditVisit
             // 
             this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
-            this.ClientSize = new System.Drawing.Size(896, 542);
+            this.ClientSize = new System.Drawing.Size(884, 546);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVisit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Visit";
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDataGridView)).EndInit();
@@ -738,6 +744,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.cS6232_g3DataSet)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanelTest.ResumeLayout(false);
+            this.tableLayoutPanelTest.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -783,5 +792,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxVisitID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTestCodeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTest;
     }
 }

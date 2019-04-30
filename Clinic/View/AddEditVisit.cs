@@ -22,7 +22,6 @@ namespace Clinic.View
         private bool update;
         private bool valid;
         private List<int> rowsToDelete;
-        private bool visitExists;
 
         /// <summary>
         /// Constructor for existing visit, populates form with pre-existing visit information
@@ -39,7 +38,7 @@ namespace Clinic.View
             if (visit.VisitId == 0)
             {
                 this.update = false;
-                this.visitExists = false;
+                this.tableLayoutPanelTest.Hide();
                 this.oldVisit = visit;
                 this.patientTextBox.Text = visit.Appointment.Patient.FullName;
                 this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
@@ -49,7 +48,6 @@ namespace Clinic.View
             else
             {
                 this.update = true;
-                this.visitExists = true;
                 this.oldVisit = visit;
                 this.patientTextBox.Text = visit.Appointment.Patient.FullName;
                 this.doctorTextBox.Text = visit.Appointment.Doctor.FullName;
@@ -178,7 +176,6 @@ namespace Clinic.View
                 {
                     if (this.visitController.AddVisit(newVisit) > 0)
                     {
-                        this.visitExists = true;
                         MessageBox.Show("Visit added");
                         this.BtSubmitChanges_Click(sender, e);
                         this.DialogResult = DialogResult.OK;
@@ -257,23 +254,6 @@ namespace Clinic.View
             this.ValidateTextPresent(initialDiagnosisTextBox);
         }
 
-        private void ResetALLErrorFields(TextBox textBox)
-        {
-            textBox.BackColor = Color.White;
-        }
-
-        private void RemoveErrors(object sender, EventArgs e)
-        {
-            this.ResetALLErrorFields(bpSystolicTextBox);
-            this.ResetALLErrorFields(bpDiastolicTextBox);
-            this.ResetALLErrorFields(pulseTextBox);
-            this.ResetALLErrorFields(weightTextBox);
-            this.ResetALLErrorFields(bodyTemperatureTextBox);
-            this.ResetALLErrorFields(symptomsTextBox);
-            this.ResetALLErrorFields(infoTextBox);
-            this.ResetALLErrorFields(initialDiagnosisTextBox);
-        }
-
         private void ColorReset()
         {
             weightTextBox.BackColor = SystemColors.Window;
@@ -319,17 +299,11 @@ namespace Clinic.View
 
         private void BtSubmitChanges_Click(object sender, EventArgs e)
         {
-            if (this.visitExists)
-            {
-                this.ProcessInsertChanges(this.cS6232_g3DataSet);
-                this.ProcessUpdateChanges(this.cS6232_g3DataSet);
-                this.ProcessDeleteChanges(this.cS6232_g3DataSet);
-                this.cS6232_g3DataSet.AcceptChanges();
-                MessageBox.Show("Tests updated.");
-            } else
-            {
-                MessageBox.Show("Visit does not exist. Cannot add tests.");
-            }
+            this.ProcessInsertChanges(this.cS6232_g3DataSet);
+            this.ProcessUpdateChanges(this.cS6232_g3DataSet);
+            this.ProcessDeleteChanges(this.cS6232_g3DataSet);
+            this.cS6232_g3DataSet.AcceptChanges();
+            MessageBox.Show("Tests updated.");
         }
 
         private void ProcessUpdateChanges(DataSet data)
